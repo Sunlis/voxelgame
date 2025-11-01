@@ -15,6 +15,8 @@ var _action_remove := false
 var _mode := MODE_SPHERES
 var _radius := 6.0
 
+const REACH = 12.0
+
 
 func _ready():
 	_sdf_stamper.set_terrain(_terrain)
@@ -49,9 +51,9 @@ func _set_mode(mode: int):
 		_sdf_stamper.set_active(_mode == MODE_MESHES)
 
 
-func _process(delta: float):
+func _process(_delta: float):
 	var head_trans := _head.global_transform
-	var pointed_pos := head_trans.origin - 12.0 * head_trans.basis.z
+	var pointed_pos := head_trans.origin - REACH * head_trans.basis.z
 
 	if _mode == MODE_SPHERES:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -62,7 +64,8 @@ func _process(delta: float):
 		if _action_place:
 			do_sphere(pointed_pos, _radius, true)
 		elif _action_remove:
-			do_sphere(pointed_pos, _radius, false)
+			# do_sphere(pointed_pos, _radius, false)
+			dig(pointed_pos, _radius)
 	
 	elif _mode == MODE_MESHES:
 		if _action_place:
@@ -71,6 +74,14 @@ func _process(delta: float):
 	_action_place = false
 	_action_remove = false
 
+func dig(point: Vector3, radius: float):
+	var vt := _terrain.get_voxel_tool()
+	vt.mode = VoxelTool.MODE_REMOVE
+	var origin = _head.global_transform.origin
+	var diff = (origin - point).normalized()
+	for i in range(REACH):
+		var dig_point = origin - (i * diff)
+		vt.do_sphere(dig_point, radius)
 
 func do_sphere(center: Vector3, radius: float, add: bool):
 	var vt := _terrain.get_voxel_tool()
