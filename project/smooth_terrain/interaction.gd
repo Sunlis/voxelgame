@@ -34,10 +34,10 @@ func _input(event: InputEvent):
 				_set_mode(MODE_SPHERES)
 			elif event.keycode == KEY_2:
 				_set_mode(MODE_MESHES)
-			elif event.keycode == KEY_KP_ADD:
+			elif event.keycode == KEY_KP_ADD or event.keycode == KEY_EQUAL:
 				_radius += 0.1
 				print("radius: ", _radius)
-			elif event.keycode == KEY_KP_SUBTRACT:
+			elif event.keycode == KEY_KP_SUBTRACT or event.keycode == KEY_MINUS:
 				_radius = maxf(_radius - 0.1, 0.1)
 				print("radius: ", _radius)
 
@@ -56,6 +56,8 @@ func _process(delta: float):
 	if _mode == MODE_SPHERES:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			_action_place = true
+		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			_action_remove = true
 		
 		if _action_place:
 			do_sphere(pointed_pos, _radius, true)
