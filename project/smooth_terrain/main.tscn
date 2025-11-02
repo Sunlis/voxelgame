@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=9 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" uid="uid://bmtjwk40gw6pa" path="res://smooth_terrain/main.gd" id="1"]
 [ext_resource type="Material" uid="uid://p7s1kd8whqab" path="res://smooth_terrain/transvoxel_terrain_material.tres" id="2"]
-[ext_resource type="PackedScene" uid="uid://dljqckrx50m8t" path="res://common/spectator_avatar.tscn" id="3"]
-[ext_resource type="Script" uid="uid://crhr0g6j3f3t3" path="res://smooth_terrain/sdf_stamper.gd" id="5_7e8re"]
-[ext_resource type="Script" uid="uid://ci6x8qwkymjlm" path="res://smooth_terrain/interaction.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://daole3dpr3ja2" path="res://smooth_terrain/player.tscn" id="3_yf33p"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -27,8 +25,9 @@ volumetric_fog_density = 0.005
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_0eih8"]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" node_paths=PackedStringArray("_avatar")]
 script = ExtResource("1")
+_avatar = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
@@ -38,25 +37,6 @@ transform = Transform3D(0.912457, -0.352848, 0.207171, 0, 0.506317, 0.862348, -0
 shadow_enabled = true
 shadow_bias = 0.2
 directional_shadow_max_distance = 1000.0
-
-[node name="SpectatorAvatar" parent="." instance=ExtResource("3")]
-transform = Transform3D(-0.386615, 0, 0.922241, 0, 1, 0, -0.922241, 0, -0.386615, 10, 400, -10)
-speed = 100.0
-
-[node name="Camera" parent="SpectatorAvatar" index="0"]
-near = 0.1
-far = 10000.0
-
-[node name="OmniLight" type="OmniLight3D" parent="SpectatorAvatar"]
-visible = false
-light_color = Color(0.905882, 0.886275, 0.698039, 1)
-omni_range = 100.462
-
-[node name="Interaction" type="Node" parent="SpectatorAvatar"]
-script = ExtResource("6")
-
-[node name="SdfStamper" type="Node" parent="SpectatorAvatar"]
-script = ExtResource("5_7e8re")
 
 [node name="VoxelTerrain" type="VoxelLodTerrain" parent="."]
 view_distance = 2048
@@ -73,4 +53,7 @@ threaded_update_enabled = true
 generator = SubResource("VoxelGeneratorFlat_muprf")
 mesher = SubResource("VoxelMesherTransvoxel_0eih8")
 
-[editable path="SpectatorAvatar"]
+[node name="Player" parent="." instance=ExtResource("3_yf33p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6207078, 0)
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Player"]

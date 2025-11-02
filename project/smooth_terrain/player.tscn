@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://daole3dpr3ja2"]
+
+[ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_2tc2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_vjl7a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2tc2v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9611365, 0.27607355, 0, -0.27607355, 0.9611365, 0, 2.7724218, 4.3746586)

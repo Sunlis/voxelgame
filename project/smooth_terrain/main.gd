@@ -1,7 +1,7 @@
 extends Node
 
 @onready var _terrain = $VoxelTerrain
-@onready var _avatar = $SpectatorAvatar
+@export var _avatar: Node3D
 @onready var _light = $DirectionalLight
 
 var _process_stats = {}
