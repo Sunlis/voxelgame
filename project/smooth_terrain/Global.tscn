@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfsocb2dm8wnh"]
+
+[ext_resource type="Script" uid="uid://byi6ymhh3x7nt" path="res://smooth_terrain/global.gd" id="1_one0v"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_one0v")

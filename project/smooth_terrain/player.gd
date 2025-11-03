@@ -11,9 +11,12 @@ extends CharacterBody3D
 
 @export var mouse_sensitivity = 0.002
 
+var terrain: VoxelTerrain
+
 func _ready() -> void:
   Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   head_camera.make_current()
+  terrain = Global.get_terrain()
 
 func _unhandled_input(event: InputEvent) -> void:
   if not event is InputEventMouseMotion:

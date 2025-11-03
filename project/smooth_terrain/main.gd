@@ -15,6 +15,8 @@ const _process_stat_names = [
 	"time_update_task"
 ]
 
+func _ready() -> void:
+	Global.register_terrain(_terrain)
 
 func _process(delta):
 	var stats = _terrain.get_statistics()

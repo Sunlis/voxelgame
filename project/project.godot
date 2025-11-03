@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 DDD="*res://addons/zylann.debug_draw/debug_draw.gd"
+Global="*res://smooth_terrain/Global.tscn"
 
 [display]
 
