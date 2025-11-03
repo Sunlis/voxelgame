@@ -1,6 +1,6 @@
 extends Node
 
-@onready var _terrain = $VoxelTerrain
+@onready var _terrain = %terrain
 @export var _avatar: Node3D
 @onready var _light = $DirectionalLight
 
@@ -21,21 +21,24 @@ func _process(delta):
 	
 	DDD.set_text("FPS", Engine.get_frames_per_second())
 	DDD.set_text("Static memory", _format_memory(OS.get_static_memory_usage()))
-	DDD.set_text("Blocked lods", stats.blocked_lods)
+	if "blocked_lods" in stats:
+		DDD.set_text("Blocked lods", stats.blocked_lods)
 	DDD.set_text("Position", _avatar.position)
 
 	var global_stats = VoxelEngine.get_stats()
 	for p in global_stats:
-		var pool_stats = global_stats[p]
-		for k in pool_stats:
-			DDD.set_text(str(p, "_", k), pool_stats[k])
+		if p in global_stats:
+			var pool_stats = global_stats[p]
+			for k in pool_stats:
+				DDD.set_text(str(p, "_", k), pool_stats[k])
 
 	for k in _process_stat_names:
-		var v = stats[k]
-		if k in _process_stats:
-			_process_stats[k] = max(_process_stats[k], v)
-		else:
-			_process_stats[k] = v
+		if k in stats:
+			var v = stats[k]
+			if k in _process_stats:
+				_process_stats[k] = max(_process_stats[k], v)
+			else:
+				_process_stats[k] = v
 
 	_time_before_display_process_stats -= delta
 	if _time_before_display_process_stats < 0:

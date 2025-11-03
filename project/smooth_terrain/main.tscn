@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=12 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" uid="uid://bmtjwk40gw6pa" path="res://smooth_terrain/main.gd" id="1"]
-[ext_resource type="Material" uid="uid://p7s1kd8whqab" path="res://smooth_terrain/transvoxel_terrain_material.tres" id="2"]
+[ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="PackedScene" uid="uid://daole3dpr3ja2" path="res://smooth_terrain/player.tscn" id="3_yf33p"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
@@ -21,9 +21,28 @@ fog_density = 0.0005
 fog_aerial_perspective = 1.0
 volumetric_fog_density = 0.005
 
-[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_muprf"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_muprf"]
+load_path = "res://.godot/imported/dirt_albedo.png-1ea566b45deb8325a8458a1304e770f2.s3tc.ctex"
 
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_0eih8"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0eih8"]
+load_path = "res://.godot/imported/grass_albedo.png-daa10982e29958da33d5e57c02c43db6.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
+render_priority = 0
+shader = ExtResource("2_oexva")
+shader_parameter/u_transition_mask = 0
+shader_parameter/u_voxel_virtual_texture_tile_size = 0
+shader_parameter/u_voxel_virtual_texture_fade = 0.0
+shader_parameter/u_voxel_cell_size = 0.0
+shader_parameter/u_voxel_block_size = 0
+shader_parameter/u_voxel_virtual_texture_offset_scale = Vector4(0, 0, 0, 0)
+shader_parameter/u_lod_fade = Vector2(0, 0)
+shader_parameter/u_texture_top = SubResource("CompressedTexture2D_0eih8")
+shader_parameter/u_texture_sides = SubResource("CompressedTexture2D_muprf")
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
 [node name="Node" type="Node" node_paths=PackedStringArray("_avatar")]
 script = ExtResource("1")
@@ -38,20 +57,16 @@ shadow_enabled = true
 shadow_bias = 0.2
 directional_shadow_max_distance = 1000.0
 
-[node name="VoxelTerrain" type="VoxelLodTerrain" parent="."]
-view_distance = 2048
-voxel_bounds = AABB(-1024, -512, -1024, 2048, 1024, 2048)
-lod_distance = 50.0
-lod_fade_duration = 0.3
-material = ExtResource("2")
-normalmap_tile_resolution_min = 8
-normalmap_tile_resolution_max = 16
-collision_lod_count = 1
-mesh_block_size = 32
-full_load_mode_enabled = true
-threaded_update_enabled = true
-generator = SubResource("VoxelGeneratorFlat_muprf")
-mesher = SubResource("VoxelMesherTransvoxel_0eih8")
+[node name="terrain" type="VoxelTerrain" parent="."]
+bounds = AABB(-512, -512, -512, 1024, 1024, 1024)
+material_override = SubResource("ShaderMaterial_hlu6d")
+block_enter_notification_enabled = true
+area_edit_notification_enabled = true
+generator = SubResource("VoxelGeneratorFlat_erh7w")
+mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
+unique_name_in_owner = true
+
+[node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="terrain"]
 
 [node name="Player" parent="." instance=ExtResource("3_yf33p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6207078, 0)
