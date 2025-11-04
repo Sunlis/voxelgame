@@ -17,10 +17,10 @@ mesh = SubResource("CapsuleMesh_2tc2v")
 
 [node name="head_camera_container" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6473733, 0)
 
 [node name="head_camera" type="Camera3D" parent="head_camera_container"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6473733, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
