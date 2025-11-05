@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=5 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
@@ -6,12 +6,19 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2tc2v"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 1.0
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:mp_id")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_2tc2v")
@@ -22,9 +29,6 @@ shape = SubResource("CapsuleShape3D_vjl7a")
 [node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2tc2v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1, -1)
-mesh = SubResource("CylinderMesh_2tc2v")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_2tc2v")

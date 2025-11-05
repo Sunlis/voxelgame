@@ -2,6 +2,12 @@ extends CharacterBody3D
 
 @export var gravity = 18.0
 
+@export var mp_id: int
+@onready var mp_sync: MultiplayerSynchronizer = %mp_sync
+
+func _ready() -> void:
+  mp_sync.set_multiplayer_authority(mp_id)
+
 func _physics_process(delta):
   if self.is_on_floor():
     self.velocity *= 0.9
