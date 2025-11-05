@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=13 format=3 uid="uid://d3yg8jlxa54m1"]
 
+[ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
@@ -63,6 +64,7 @@ area_edit_notification_enabled = true
 generator = SubResource("VoxelGeneratorFlat_erh7w")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
 unique_name_in_owner = true
+script = ExtResource("2_muprf")
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="terrain"]
 

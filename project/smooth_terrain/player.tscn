@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=6 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2tc2v"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_2tc2v")
@@ -15,9 +22,9 @@ shape = SubResource("CapsuleShape3D_vjl7a")
 [node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2tc2v")
 
-[node name="head_camera_container" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6473733, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1, -1)
+mesh = SubResource("CylinderMesh_2tc2v")
 
-[node name="head_camera" type="Camera3D" parent="head_camera_container"]
-unique_name_in_owner = true
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2tc2v")

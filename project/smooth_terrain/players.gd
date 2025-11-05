@@ -3,16 +3,29 @@ extends Node3D
 func _ready():
   Multiplayer.client_connected.connect(_on_client_connected)
   Multiplayer.server_started.connect(_on_server_started)
+  Multiplayer.connected_to_server.connect(_on_connected_to_server)
 
 func _on_server_started():
+  create_local_player()
+
+func _on_client_connected(id):
+  create_remote_player(id)
+
+func _on_connected_to_server():
   create_local_player()
 
 func create_local_player() -> Node:
   var local_player_scene = preload("res://smooth_terrain/local_player.tscn")
   var local_player = local_player_scene.instantiate()
+  local_player.set_multiplayer_authority(get_tree().get_multiplayer().get_unique_id())
   add_child(local_player)
   local_player.position = Vector3(0, 10, 0)
   return local_player
 
-func _on_client_connected(id):
-  print('players._on_client_connected')
+func create_remote_player(id: int) -> Node3D:
+  var remote_player_scene = preload("res://smooth_terrain/remote_player.tscn")
+  var remote_player = remote_player_scene.instantiate()
+  remote_player.set_multiplayer_authority(id)
+  add_child(remote_player)
+  remote_player.position = Vector3(0, 10, 0)
+  return remote_player

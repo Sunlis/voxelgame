@@ -18,7 +18,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
   if not event is InputEventMouseMotion or Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
     return
-  self.rotate_y(-event.relative.x * mouse_sensitivity)
+  player.rotate_y(-event.relative.x * mouse_sensitivity)
   head_camera.rotate_x(-event.relative.y * mouse_sensitivity)
 
 func _physics_process(delta):
@@ -35,8 +35,8 @@ func _physics_process(delta):
   var grounded = player.is_on_floor()
   var speed = base_speed if grounded else base_speed * 0.5
 
-  var forward = -head.transform.basis.z
-  var right = head.transform.basis.x
+  var forward = -head.global_transform.basis.z
+  var right = head.global_transform.basis.x
   var up = Vector3(0, 1, 0)
   
   if Input.is_action_pressed("move_left"):

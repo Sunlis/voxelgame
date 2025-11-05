@@ -2,6 +2,7 @@ extends Node
 
 signal client_connected(id: int)
 signal server_started()
+signal connected_to_server()
 
 var server: ENetMultiplayerPeer = null
 var server_port: int = 9000
@@ -30,6 +31,7 @@ func create_client(ip: String, port: int) -> int:
   get_tree().get_multiplayer().multiplayer_peer = peer
   client = peer
   server = null
+  connected_to_server.emit()
   return OK
 
 func is_server() -> bool:
