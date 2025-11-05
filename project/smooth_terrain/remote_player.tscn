@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bohqv52e05riu"]
+
+[ext_resource type="Script" uid="uid://dijkj5ggwiq7j" path="res://smooth_terrain/remote_player.gd" id="1_ta3bm"]
+[ext_resource type="PackedScene" uid="uid://daole3dpr3ja2" path="res://smooth_terrain/player.tscn" id="2_nwmvt"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_umtl7"]
+
+[node name="remote_player" type="Node3D"]
+script = ExtResource("1_ta3bm")
+
+[node name="Player" parent="." instance=ExtResource("2_nwmvt")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_umtl7")

@@ -1,6 +1,7 @@
 extends Node
 
 signal client_connected(id: int)
+signal server_started()
 
 var server: ENetMultiplayerPeer = null
 var server_port: int = 9000
@@ -17,6 +18,7 @@ func create_server() -> int:
   get_tree().get_multiplayer().multiplayer_peer = peer
   server = peer
   client = null
+  server_started.emit()
   return OK
 
 func create_client(ip: String, port: int) -> int:
@@ -40,5 +42,13 @@ func get_client_peer() -> ENetMultiplayerPeer:
   return client
 
 func _client_connected(id: int) -> void:
-  print("Client connected with ID: %s" % id)
+  var window_id = 0
+  var args = OS.get_cmdline_user_args()
+  for arg in args:
+    if arg.begins_with("--window-id="):
+      var split_arg = arg.split("=")
+      if split_arg.size() == 2:
+        window_id = int(split_arg[1])
+        break
+  print("[%s] Client connected with ID: %d" % [window_id, id])
   client_connected.emit(id)

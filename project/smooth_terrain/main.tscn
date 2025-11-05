@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=12 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://bmtjwk40gw6pa" path="res://smooth_terrain/main.gd" id="1"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
-[ext_resource type="PackedScene" uid="uid://daole3dpr3ja2" path="res://smooth_terrain/player.tscn" id="3_yf33p"]
+[ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
@@ -45,9 +44,7 @@ shader_parameter/u_texture_sides = SubResource("CompressedTexture2D_muprf")
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
-[node name="Node" type="Node" node_paths=PackedStringArray("_avatar")]
-script = ExtResource("1")
-_avatar = NodePath("Player")
+[node name="Node" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
@@ -71,11 +68,7 @@ unique_name_in_owner = true
 
 [node name="players" type="Node3D" parent="."]
 unique_name_in_owner = true
-
-[node name="Player" parent="." instance=ExtResource("3_yf33p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6207078, 0)
-
-[node name="VoxelViewer" type="VoxelViewer" parent="Player"]
+script = ExtResource("3_muprf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 100
