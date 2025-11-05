@@ -22,7 +22,7 @@ Global="*res://smooth_terrain/Global.tscn"
 [display]
 
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/dpi/allow_hidpi=false
 
 [filesystem]
 
