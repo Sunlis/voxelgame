@@ -14,6 +14,7 @@ extends Node3D
 func _ready() -> void:
   Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   head_camera.make_current()
+  player.set_multiplayer_authority(self.get_multiplayer_authority(), true)
 
 func _unhandled_input(event: InputEvent) -> void:
   if not event is InputEventMouseMotion or Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
