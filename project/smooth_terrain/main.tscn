@@ -69,6 +69,9 @@ unique_name_in_owner = true
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="terrain"]
 
+[node name="players" type="Node3D" parent="."]
+unique_name_in_owner = true
+
 [node name="Player" parent="." instance=ExtResource("3_yf33p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6207078, 0)
 

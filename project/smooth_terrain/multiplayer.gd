@@ -1,5 +1,7 @@
 extends Node
 
+signal client_connected(id: int)
+
 var server: ENetMultiplayerPeer = null
 var server_port: int = 9000
 var client: ENetMultiplayerPeer = null
@@ -39,3 +41,4 @@ func get_client_peer() -> ENetMultiplayerPeer:
 
 func _client_connected(id: int) -> void:
   print("Client connected with ID: %s" % id)
+  client_connected.emit(id)
