@@ -13,11 +13,18 @@ func _on_client_connected(id):
 
 func _on_connected_to_server():
   create_local_player()
+  create_remote_player(1)
+  for id in Multiplayer.list_peer_ids():
+    create_remote_player(id)
 
 func create_local_player() -> Node:
   var local_player_scene = preload("res://smooth_terrain/local_player.tscn")
   var local_player = local_player_scene.instantiate()
-  local_player.set_multiplayer_authority(get_tree().get_multiplayer().get_unique_id())
+  var id = 1
+  if not Multiplayer.is_server():
+    id = Multiplayer.get_tree().get_multiplayer().get_unique_id()
+  print('create local player with id %d' % id)
+  local_player.set_multiplayer_authority(id, true)
   add_child(local_player)
   local_player.position = Vector3(0, 10, 0)
   return local_player
@@ -25,7 +32,8 @@ func create_local_player() -> Node:
 func create_remote_player(id: int) -> Node3D:
   var remote_player_scene = preload("res://smooth_terrain/remote_player.tscn")
   var remote_player = remote_player_scene.instantiate()
-  remote_player.set_multiplayer_authority(id)
+  remote_player.set_multiplayer_authority(id, true)
+  print('create remote player with id %d' % id)
   add_child(remote_player)
   remote_player.position = Vector3(0, 10, 0)
   return remote_player

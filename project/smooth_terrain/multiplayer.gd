@@ -54,3 +54,6 @@ func _client_connected(id: int) -> void:
         break
   print("[%s] Client connected with ID: %d" % [window_id, id])
   client_connected.emit(id)
+
+func list_peer_ids() -> PackedInt32Array:
+  return get_tree().get_multiplayer().get_peers()
