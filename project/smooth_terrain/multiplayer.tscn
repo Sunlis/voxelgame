@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2arnkpwqohlc"]
+
+[ext_resource type="Script" uid="uid://bx2uhg8bw155h" path="res://smooth_terrain/multiplayer.gd" id="1_yk28e"]
+
+[node name="Multiplayer" type="Node"]
+script = ExtResource("1_yk28e")
