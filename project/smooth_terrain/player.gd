@@ -12,6 +12,8 @@ extends CharacterBody3D
 @onready var viewer: VoxelViewer = %viewer
 @onready var label: Label3D = %label
 
+@onready var eyes: MeshInstance3D = %eyes
+
 var id: int
 var camera_container: Node3D = null
 var camera: Camera3D = null
@@ -94,6 +96,8 @@ func _handle_input(delta: float):
       camera.position.z = max(0, camera.position.z - 1)
     elif Input.is_action_just_pressed("camera_zoom_out"):
       camera.position.z = min(20, camera.position.z + 1)
+    
+    eyes.visible = camera.position.z > 0.0
 
     if Input.is_action_just_pressed("dig"):
       var origin = camera_container.global_transform.origin

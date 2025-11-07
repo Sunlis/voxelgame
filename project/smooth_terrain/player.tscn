@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=9 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
@@ -9,6 +9,18 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
 material = SubResource("StandardMaterial3D_2tc2v")
+
+[sub_resource type="SphereMesh" id="SphereMesh_2tc2v"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju8qp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_soj0r"]
+material = SubResource("StandardMaterial3D_ju8qp")
+radius = 0.05
+height = 0.1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 properties/0/path = NodePath(".:position")
@@ -29,6 +41,30 @@ shape = SubResource("CapsuleShape3D_vjl7a")
 
 [node name="body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2tc2v")
+
+[node name="eyes" type="MeshInstance3D" parent="body"]
+unique_name_in_owner = true
+layers = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body/eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12731531, 0.9242459, -0.2973065)
+mesh = SubResource("SphereMesh_2tc2v")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
+mesh = SubResource("SphereMesh_soj0r")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1479396, 0.9242459, -0.2973065)
+mesh = SubResource("SphereMesh_2tc2v")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
+mesh = SubResource("SphereMesh_soj0r")
+skeleton = NodePath("../../..")
 
 [node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
