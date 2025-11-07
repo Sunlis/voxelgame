@@ -1,6 +1,7 @@
 extends Node
 
 signal client_connected(id: int)
+signal client_disconnected(id: int)
 signal server_started()
 signal connected_to_server()
 
@@ -16,6 +17,7 @@ func create_server() -> int:
     Debug.print(error)
     return error
   peer.peer_connected.connect(_client_connected)
+  peer.peer_disconnected.connect(_client_disconnected)
   get_tree().get_multiplayer().multiplayer_peer = peer
   server = peer
   client = null
@@ -46,6 +48,10 @@ func get_client_peer() -> ENetMultiplayerPeer:
 func _client_connected(id: int) -> void:
   Debug.print("Client connected with ID: %d" % id)
   client_connected.emit(id)
+
+func _client_disconnected(id: int) -> void:
+  Debug.print("Client disconnected with ID: %d" % id)
+  client_disconnected.emit(id)
 
 func list_peer_ids() -> PackedInt32Array:
   return get_tree().get_multiplayer().get_peers()

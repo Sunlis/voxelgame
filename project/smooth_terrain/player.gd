@@ -22,6 +22,7 @@ func _ready():
   is_authority = get_tree().get_multiplayer().get_unique_id() == id
   if is_authority:
     _set_up_camera()
+    label.visible = false
   viewer.requires_visuals = true
   viewer.requires_collisions = true
   viewer.requires_data_block_notifications = true
