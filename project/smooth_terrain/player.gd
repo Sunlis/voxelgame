@@ -44,12 +44,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _set_up_camera():
   camera_container = Node3D.new()
-  camera_container.position = Vector3(0, 2, 0)
+  camera_container.position = Vector3(0, 1, 0)
   add_child(camera_container)
   camera = Camera3D.new()
   camera_container.add_child(camera)
   camera.position = Vector3(0, 0, 8)
-  camera.look_at(self.global_position + Vector3(0, 3, 0), Vector3.UP)
   camera.make_current()
 
 func _physics_process(delta):
@@ -83,6 +82,12 @@ func _handle_input(delta: float):
   if self.is_on_floor() and Input.is_action_just_pressed("jump"):
     self.velocity.y = jump_force
   
+  if camera:
+    if Input.is_action_just_pressed("camera_zoom_in"):
+      camera.position.z = max(0, camera.position.z - 1)
+    elif Input.is_action_just_pressed("camera_zoom_out"):
+      camera.position.z = min(20, camera.position.z + 1)
+
   if Input.is_action_just_pressed("pause"):
     if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
