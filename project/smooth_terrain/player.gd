@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var label: Label3D = %label
 
 var id: int
+var is_authority: bool = false
 
 func _enter_tree():
   id = int(self.name.split("_")[1])
@@ -20,7 +21,7 @@ func _enter_tree():
 
 func _ready():
   mp_sync.set_multiplayer_authority.call_deferred(1)
-  var is_authority = get_tree().get_multiplayer().get_unique_id() == id
+  is_authority = get_tree().get_multiplayer().get_unique_id() == id
   if is_authority:
     _set_up_camera()
   viewer.requires_visuals = true
@@ -33,8 +34,8 @@ func _ready():
 func _set_up_camera():
   var camera = Camera3D.new()
   add_child(camera)
-  camera.position = Vector3(0, 8, 0)
-  camera.look_at(Vector3(0, 0, 1), Vector3.UP)
+  camera.position = Vector3(0, 2, -8)
+  camera.look_at(Vector3(0, 3, 0), Vector3.UP)
   camera.make_current()
 
 func _physics_process(delta):
