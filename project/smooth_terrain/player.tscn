@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=6 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tc2v"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
+material = SubResource("StandardMaterial3D_2tc2v")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 properties/0/path = NodePath(".:position")
