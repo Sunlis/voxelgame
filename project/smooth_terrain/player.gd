@@ -88,3 +88,18 @@ func _handle_input(delta: float):
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     else:
       Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+  
+  if Input.is_action_just_pressed("dig"):
+    var origin = self.global_transform.origin
+    var forward = -camera.global_transform.basis.z
+    dig.rpc_id(1, origin, forward, dig_radius)
+
+@rpc("any_peer", "call_local", "reliable")
+func dig(origin: Vector3, direction: Vector3, radius: float):
+  var vt := Global.get_terrain().get_voxel_tool()
+  vt.mode = VoxelTool.MODE_REMOVE
+  var point = origin + direction * dig_reach
+  var diff = (origin - point).normalized()
+  for i in range(dig_reach):
+    var dig_point = origin - (i * diff)
+    vt.do_sphere(dig_point, radius)
