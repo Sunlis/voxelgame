@@ -82,22 +82,22 @@ func _handle_input(delta: float):
   if self.is_on_floor() and Input.is_action_just_pressed("jump"):
     self.velocity.y = jump_force
   
-  if camera:
-    if Input.is_action_just_pressed("camera_zoom_in"):
-      camera.position.z = max(0, camera.position.z - 1)
-    elif Input.is_action_just_pressed("camera_zoom_out"):
-      camera.position.z = min(20, camera.position.z + 1)
-
   if Input.is_action_just_pressed("pause"):
     if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     else:
       Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
   
-  if Input.is_action_just_pressed("dig"):
-    var origin = self.global_transform.origin
-    var forward = -camera.global_transform.basis.z
-    dig.rpc_id(1, origin, forward, dig_radius)
+  if camera:
+    if Input.is_action_just_pressed("camera_zoom_in"):
+      camera.position.z = max(0, camera.position.z - 1)
+    elif Input.is_action_just_pressed("camera_zoom_out"):
+      camera.position.z = min(20, camera.position.z + 1)
+
+    if Input.is_action_just_pressed("dig"):
+      var origin = camera_container.global_transform.origin
+      var forward = -camera.global_transform.basis.z
+      dig.rpc_id(1, origin, forward, dig_radius)
 
 @rpc("any_peer", "call_local", "reliable")
 func dig(origin: Vector3, direction: Vector3, radius: float):
