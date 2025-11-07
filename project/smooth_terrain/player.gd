@@ -17,12 +17,8 @@ var camera_container: Node3D = null
 var camera: Camera3D = null
 var is_authority: bool = false
 
-func _enter_tree():
-  id = int(self.name.split("_")[1])
-  self.set_multiplayer_authority(id, true)
-
 func _ready():
-  mp_sync.set_multiplayer_authority.call_deferred(1)
+  id = int(self.name.split("_")[1])
   is_authority = get_tree().get_multiplayer().get_unique_id() == id
   if is_authority:
     _set_up_camera()
@@ -32,6 +28,8 @@ func _ready():
   viewer.set_network_peer_id(id)
 
   label.text = self.name
+  self.set_multiplayer_authority.call_deferred(id, true)
+  mp_sync.set_multiplayer_authority.call_deferred(id)
 
 func _unhandled_input(event: InputEvent) -> void:
   if not event is InputEventMouseMotion:
@@ -51,7 +49,7 @@ func _set_up_camera():
   camera = Camera3D.new()
   camera_container.add_child(camera)
   camera.position = Vector3(0, 0, 8)
-  camera.look_at(Vector3(0, 3, 0), Vector3.UP)
+  camera.look_at(self.global_position + Vector3(0, 3, 0), Vector3.UP)
   camera.make_current()
 
 func _physics_process(delta):
