@@ -10,19 +10,25 @@ extends CharacterBody3D
 
 @onready var mp_sync: MultiplayerSynchronizer = %mp_sync
 @onready var viewer: VoxelViewer = %viewer
+@onready var label: Label3D = %label
+
+var id: int
+
+func _enter_tree():
+  id = int(self.name.split("_")[1])
+  self.set_multiplayer_authority(id, true)
 
 func _ready():
-  var id = self.get_multiplayer_authority()
-  self.set_multiplayer_authority(id, true)
-  mp_sync.set_multiplayer_authority(id)
-
+  mp_sync.set_multiplayer_authority.call_deferred(1)
   var is_authority = get_tree().get_multiplayer().get_unique_id() == id
   if is_authority:
     _set_up_camera()
-  viewer.requires_visuals = is_authority
-  viewer.requires_collisions = is_authority
+  viewer.requires_visuals = true
+  viewer.requires_collisions = true
   viewer.requires_data_block_notifications = true
   viewer.set_network_peer_id(id)
+
+  label.text = self.name
 
 func _set_up_camera():
   var camera = Camera3D.new()

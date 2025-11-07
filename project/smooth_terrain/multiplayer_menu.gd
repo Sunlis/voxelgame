@@ -9,6 +9,8 @@ extends VBoxContainer
 func _ready() -> void:
   join_button.pressed.connect(_on_join_button_pressed)
   host_button.pressed.connect(_on_host_button_pressed)
+  if Debug.get_cmdline_arg("window_id") == "0":
+    _on_host_button_pressed()
 
 func _on_join_button_pressed() -> void:
   var address: String = address_input.text.strip_edges()
@@ -24,10 +26,10 @@ func _on_join_button_pressed() -> void:
   var error = Multiplayer.create_client(ip, port)
   if error != OK:
     status_label.text = "Failed to connect to %s." % address
-    print(error)
+    Debug.print(error)
     return
   status_label.text = "Connected to %s." % address
-  print('Joined multiplayer session at %s' % address)
+  Debug.print('Joined multiplayer session at %s' % address)
   container.visible = false
 
 func _on_host_button_pressed() -> void:
@@ -35,8 +37,8 @@ func _on_host_button_pressed() -> void:
   var error = Multiplayer.create_server()
   if error != OK:
     status_label.text = "Failed to host session."
-    print(error)
+    Debug.print(error)
     return
   status_label.text = "Hosting on port %s." % Multiplayer.server_port
-  print('Hosting multiplayer session on port %s' % Multiplayer.server_port)
+  Debug.print('Hosting multiplayer session on port %s' % Multiplayer.server_port)
   container.visible = false

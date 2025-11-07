@@ -13,7 +13,7 @@ func create_server() -> int:
   # TODO: upnp
   var error := peer.create_server(server_port, 128)
   if error != OK:
-    print(error)
+    Debug.print(error)
     return error
   peer.peer_connected.connect(_client_connected)
   get_tree().get_multiplayer().multiplayer_peer = peer
@@ -26,7 +26,7 @@ func create_client(ip: String, port: int) -> int:
   var peer := ENetMultiplayerPeer.new()
   var error := peer.create_client(ip, port)
   if error != OK:
-    print(error)
+    Debug.print(error)
     return error
   get_tree().get_multiplayer().multiplayer_peer = peer
   client = peer
@@ -44,15 +44,7 @@ func get_client_peer() -> ENetMultiplayerPeer:
   return client
 
 func _client_connected(id: int) -> void:
-  var window_id = 0
-  var args = OS.get_cmdline_user_args()
-  for arg in args:
-    if arg.begins_with("--window-id="):
-      var split_arg = arg.split("=")
-      if split_arg.size() == 2:
-        window_id = int(split_arg[1])
-        break
-  print("[%s] Client connected with ID: %d" % [window_id, id])
+  Debug.print("Client connected with ID: %d" % id)
   client_connected.emit(id)
 
 func list_peer_ids() -> PackedInt32Array:

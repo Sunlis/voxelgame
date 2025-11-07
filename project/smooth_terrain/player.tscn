@@ -32,3 +32,9 @@ replication_config = SubResource("SceneReplicationConfig_2tc2v")
 
 [node name="viewer" type="VoxelViewer" parent="."]
 unique_name_in_owner = true
+
+[node name="label" type="Label3D" parent="."]
+unique_name_in_owner = true
+billboard = 1
+no_depth_test = true
+text = "name"

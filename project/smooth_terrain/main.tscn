@@ -66,7 +66,7 @@ albedo_color = Color(0, 0, 1, 1)
 material = SubResource("StandardMaterial3D_hlu6d")
 size = Vector3(1, 20, 1)
 
-[node name="Node" type="Node"]
+[node name="main" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")

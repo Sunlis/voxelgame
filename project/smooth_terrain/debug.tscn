@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ixatcr4c1ltf"]
+
+[ext_resource type="Script" uid="uid://wunfkscy8hxa" path="res://smooth_terrain/debug.gd" id="1_kjg0g"]
+
+[node name="debug" type="Node"]
+script = ExtResource("1_kjg0g")
