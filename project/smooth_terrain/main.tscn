@@ -75,8 +75,8 @@ environment = SubResource("2")
 transform = Transform3D(0.912457, -0.352848, 0.207171, 0, 0.506317, 0.862348, -0.409172, -0.786855, 0.461992, 14.4885, 6.21497, 0)
 layers = 3
 shadow_enabled = true
-shadow_bias = 0.2
-directional_shadow_max_distance = 1000.0
+shadow_blur = 0.5
+directional_shadow_max_distance = 128.0
 
 [node name="terrain" type="VoxelTerrain" parent="."]
 bounds = AABB(-512, -512, -512, 1024, 1024, 1024)

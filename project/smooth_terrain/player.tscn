@@ -103,6 +103,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="flashlight" type="SpotLight3D" parent="head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3404886, -1)
+layers = 3
 shadow_enabled = true
 spot_range = 100.0
 spot_angle = 30.0

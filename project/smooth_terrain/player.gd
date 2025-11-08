@@ -45,6 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
     return
   rotate_y(-event.relative.x * mouse_sensitivity)
   head.rotate_x(-event.relative.y * mouse_sensitivity)
+  head.rotation.x = clamp(head.rotation.x, PI * -0.49, PI * 0.49)
 
 func _set_up_camera():
   camera = Camera3D.new()
@@ -98,8 +99,6 @@ func _handle_input(delta: float):
     
     body.transparency = smoothstep(4.0, 0.5, camera.position.z)
     
-    eyes.visible = camera.position.z > 0.0
-
     if Input.is_action_just_pressed("dig"):
       var origin = head.global_transform.origin
       var forward = -camera.global_transform.basis.z
