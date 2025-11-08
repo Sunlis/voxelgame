@@ -1,26 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=12 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tc2v"]
+resource_local_to_scene = true
 albedo_color = Color(0, 0, 0.6627451, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2tc2v"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_2tc2v")
 
-[sub_resource type="SphereMesh" id="SphereMesh_2tc2v"]
-radius = 0.1
-height = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju8qp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icaiy"]
 albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_soj0r"]
-material = SubResource("StandardMaterial3D_ju8qp")
-radius = 0.05
-height = 0.1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 properties/0/path = NodePath(".:position")
@@ -40,6 +33,21 @@ albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
 albedo_color = Color(0.7365769, 0.7873032, 0.7902216, 1)
 metallic = 0.9
 roughness = 0.2
+
+[sub_resource type="Animation" id="Animation_ju8qp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/pick:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_2tc2v"]
 resource_name = "swing_pick"
@@ -71,21 +79,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_ju8qp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("head/pick:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_soj0r"]
 _data = {
 &"RESET": SubResource("Animation_ju8qp"),
@@ -104,35 +97,35 @@ unique_name_in_owner = true
 layers = 3
 mesh = SubResource("CapsuleMesh_2tc2v")
 
-[node name="eyes" type="MeshInstance3D" parent="body"]
+[node name="eyes" type="CSGCombiner3D" parent="body"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.64, -0.163)
-layers = 3
-cast_shadow = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31806636, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="body/eyes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12731531, 0.9242459, -0.2973065)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_2tc2v")
-skeleton = NodePath("../..")
+[node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14039466, 0, -0.47827077)
+radius = 0.1
+radial_segments = 32
+rings = 16
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_soj0r")
-skeleton = NodePath("../../..")
+[node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0594306)
+radius = 0.05
+radial_segments = 16
+rings = 12
+material = SubResource("StandardMaterial3D_icaiy")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1479396, 0.9242459, -0.2973065)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_2tc2v")
-skeleton = NodePath("../..")
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="body/eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16283545, 0, -0.47827077)
+radius = 0.1
+radial_segments = 32
+rings = 16
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_soj0r")
-skeleton = NodePath("../../..")
+[node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes/CSGSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0594306)
+radius = 0.05
+radial_segments = 16
+rings = 12
+material = SubResource("StandardMaterial3D_icaiy")
 
 [node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true

@@ -14,7 +14,7 @@ extends CharacterBody3D
 
 @onready var body: MeshInstance3D = %body
 @onready var head: Node3D = %head
-@onready var eyes: MeshInstance3D = %eyes
+@onready var eyes: CSGCombiner3D = %eyes
 @onready var flashlight: SpotLight3D = %flashlight
 
 @onready var anim_player: AnimationPlayer = %anim
@@ -35,6 +35,7 @@ func _ready():
   viewer.set_network_peer_id(id)
 
   label.text = self.name
+  body.mesh.material.albedo_color = Color.from_hsv(float(id % 10) / 10.0, 0.8, 0.8)
   self.set_multiplayer_authority.call_deferred(id, true)
   mp_sync.set_multiplayer_authority.call_deferred(id)
 
@@ -53,7 +54,7 @@ func _set_up_camera():
   camera = Camera3D.new()
   head.add_child(camera)
   camera.position = Vector3(0, 0, 8)
-  camera.set_cull_mask_value(1, false)
+  eyes.visible = false
   camera.make_current()
 
 func _physics_process(delta):
