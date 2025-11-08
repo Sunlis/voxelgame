@@ -12,10 +12,11 @@ extends CharacterBody3D
 @onready var viewer: VoxelViewer = %viewer
 @onready var label: Label3D = %label
 
+@onready var camera_container: Node3D = %camera_container
 @onready var eyes: MeshInstance3D = %eyes
+@onready var flashlight: SpotLight3D = %flashlight
 
 var id: int
-var camera_container: Node3D = null
 var camera: Camera3D = null
 var is_authority: bool = false
 
@@ -42,13 +43,9 @@ func _unhandled_input(event: InputEvent) -> void:
   if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
     return
   rotate_y(-event.relative.x * mouse_sensitivity)
-  if camera_container:
-    camera_container.rotate_x(-event.relative.y * mouse_sensitivity)
+  camera_container.rotate_x(-event.relative.y * mouse_sensitivity)
 
 func _set_up_camera():
-  camera_container = Node3D.new()
-  camera_container.position = Vector3(0, 1, 0)
-  add_child(camera_container)
   camera = Camera3D.new()
   camera_container.add_child(camera)
   camera.position = Vector3(0, 0, 8)
@@ -103,6 +100,9 @@ func _handle_input(delta: float):
       var origin = camera_container.global_transform.origin
       var forward = -camera.global_transform.basis.z
       dig.rpc_id(1, origin, forward, dig_radius)
+    
+    if Input.is_action_just_pressed("toggle_flashlight"):
+      flashlight.visible = not flashlight.visible
 
 @rpc("any_peer", "call_local", "reliable")
 func dig(origin: Vector3, direction: Vector3, radius: float):

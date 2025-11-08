@@ -34,6 +34,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
+floor_max_angle = 1.0471976
 script = ExtResource("1_2tc2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -44,25 +45,31 @@ mesh = SubResource("CapsuleMesh_2tc2v")
 
 [node name="eyes" type="MeshInstance3D" parent="body"]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.64, -0.163)
 layers = 3
+cast_shadow = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12731531, 0.9242459, -0.2973065)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_2tc2v")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_soj0r")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1479396, 0.9242459, -0.2973065)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_2tc2v")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="body/eyes/MeshInstance3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.064739466)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_soj0r")
 skeleton = NodePath("../../..")
 
@@ -78,3 +85,15 @@ unique_name_in_owner = true
 billboard = 1
 no_depth_test = true
 text = "name"
+
+[node name="camera_container" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="flashlight" type="SpotLight3D" parent="camera_container"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shadow_enabled = true
+spot_range = 100.0
+spot_angle = 30.0
+spot_angle_attenuation = 2.0
