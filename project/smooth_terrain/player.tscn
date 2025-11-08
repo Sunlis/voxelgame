@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=11 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
@@ -33,6 +33,14 @@ properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soj0r"]
+albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuq3k"]
+albedo_color = Color(0.7365769, 0.7873032, 0.7902216, 1)
+metallic = 0.9
+roughness = 0.2
+
 [node name="Player" type="CharacterBody3D"]
 floor_max_angle = 1.0471976
 script = ExtResource("1_2tc2v")
@@ -41,6 +49,8 @@ script = ExtResource("1_2tc2v")
 shape = SubResource("CapsuleShape3D_vjl7a")
 
 [node name="body" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+layers = 3
 mesh = SubResource("CapsuleMesh_2tc2v")
 
 [node name="eyes" type="MeshInstance3D" parent="body"]
@@ -86,28 +96,31 @@ billboard = 1
 no_depth_test = true
 text = "name"
 
-[node name="camera_container" type="Node3D" parent="."]
+[node name="head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="flashlight" type="SpotLight3D" parent="camera_container"]
+[node name="flashlight" type="SpotLight3D" parent="head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3404886, -1)
 shadow_enabled = true
 spot_range = 100.0
 spot_angle = 30.0
 spot_angle_attenuation = 2.0
 
-[node name="pick" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8257742)
+[node name="pick" type="Node3D" parent="head"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.56200767, -0.9859386, -0.010048032)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="pick"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="head/pick"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 3
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="pick/CSGCombiner3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="head/pick/CSGCombiner3D"]
 radius = 0.05
+material = SubResource("StandardMaterial3D_soj0r")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="pick/CSGCombiner3D"]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="head/pick/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44575065, 0.7189547, 0.07152295)
 polygon = PackedVector2Array(0, 0, 0.29439127, 0.25184762, 0.668218, 0.25727496, 1, 0, 0.62014556, 0.1788056, 0.31148338, 0.17636222)
 depth = 0.15
+material = SubResource("StandardMaterial3D_vuq3k")

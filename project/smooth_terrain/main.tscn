@@ -73,6 +73,7 @@ environment = SubResource("2")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.912457, -0.352848, 0.207171, 0, 0.506317, 0.862348, -0.409172, -0.786855, 0.461992, 14.4885, 6.21497, 0)
+layers = 3
 shadow_enabled = true
 shadow_bias = 0.2
 directional_shadow_max_distance = 1000.0
@@ -92,14 +93,17 @@ script = ExtResource("2_muprf")
 
 [node name="red" type="MeshInstance3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 10, 64)
+layers = 3
 mesh = SubResource("BoxMesh_muprf")
 
 [node name="green" type="MeshInstance3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 10, -64)
+layers = 3
 mesh = SubResource("BoxMesh_0eih8")
 
 [node name="blue" type="MeshInstance3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 10, 64)
+layers = 3
 mesh = SubResource("BoxMesh_erh7w")
 
 [node name="mp_spawner" type="MultiplayerSpawner" parent="."]

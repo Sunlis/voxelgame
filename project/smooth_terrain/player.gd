@@ -12,7 +12,8 @@ extends CharacterBody3D
 @onready var viewer: VoxelViewer = %viewer
 @onready var label: Label3D = %label
 
-@onready var camera_container: Node3D = %camera_container
+@onready var body: MeshInstance3D = %body
+@onready var head: Node3D = %head
 @onready var eyes: MeshInstance3D = %eyes
 @onready var flashlight: SpotLight3D = %flashlight
 
@@ -43,12 +44,13 @@ func _unhandled_input(event: InputEvent) -> void:
   if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
     return
   rotate_y(-event.relative.x * mouse_sensitivity)
-  camera_container.rotate_x(-event.relative.y * mouse_sensitivity)
+  head.rotate_x(-event.relative.y * mouse_sensitivity)
 
 func _set_up_camera():
   camera = Camera3D.new()
-  camera_container.add_child(camera)
+  head.add_child(camera)
   camera.position = Vector3(0, 0, 8)
+  camera.set_cull_mask_value(1, false)
   camera.make_current()
 
 func _physics_process(delta):
@@ -94,10 +96,12 @@ func _handle_input(delta: float):
     elif Input.is_action_pressed("camera_zoom_out"):
       camera.position.z = min(20, camera.position.z + (delta * 10.0))
     
+    body.transparency = smoothstep(4.0, 0.5, camera.position.z)
+    
     eyes.visible = camera.position.z > 0.0
 
     if Input.is_action_just_pressed("dig"):
-      var origin = camera_container.global_transform.origin
+      var origin = head.global_transform.origin
       var forward = -camera.global_transform.basis.z
       dig.rpc_id(1, origin, forward, dig_radius)
     
