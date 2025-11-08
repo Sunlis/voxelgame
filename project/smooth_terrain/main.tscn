@@ -47,7 +47,7 @@ shader_parameter/layer_depth = 10.0
 shader_parameter/num_depth_textures = 3
 shader_parameter/depth_textures = Array[Texture2D]([ExtResource("2_hlu6d"), ExtResource("2_erh7w"), ExtResource("4_erh7w")])
 shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_6c2kk"), ExtResource("3_md6sa"), ExtResource("4_tgnr8")])
-shader_parameter/normal_strength = 1.0
+shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
 
