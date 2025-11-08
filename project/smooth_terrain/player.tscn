@@ -92,6 +92,7 @@ unique_name_in_owner = true
 
 [node name="label" type="Label3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 billboard = 1
 no_depth_test = true
 text = "name"
@@ -102,7 +103,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="flashlight" type="SpotLight3D" parent="head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3404886, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 layers = 3
 shadow_enabled = true
 spot_range = 100.0
