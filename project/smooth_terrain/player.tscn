@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=14 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
@@ -40,6 +40,57 @@ albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
 albedo_color = Color(0.7365769, 0.7873032, 0.7902216, 1)
 metallic = 0.9
 roughness = 0.2
+
+[sub_resource type="Animation" id="Animation_2tc2v"]
+resource_name = "swing_pick"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/pick:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.5),
+"transitions": PackedFloat32Array(2.9281716, 0.26794338, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, -1.5707964), Vector3(0, 1.5707964, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_dig"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ju8qp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/pick:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_soj0r"]
+_data = {
+&"RESET": SubResource("Animation_ju8qp"),
+&"swing_pick": SubResource("Animation_2tc2v")
+}
 
 [node name="Player" type="CharacterBody3D"]
 floor_max_angle = 1.0471976
@@ -112,7 +163,7 @@ spot_angle = 30.0
 spot_angle_attenuation = 2.0
 
 [node name="pick" type="Node3D" parent="head"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.56200767, -0.9859386, -0.010048032)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56200767, -0.9859386, -0.010048032)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="head/pick"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -127,3 +178,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44575065, 0.7189547, 0.071
 polygon = PackedVector2Array(0, 0, 0.29439127, 0.25184762, 0.668218, 0.25727496, 1, 0, 0.62014556, 0.1788056, 0.31148338, 0.17636222)
 depth = 0.15
 material = SubResource("StandardMaterial3D_vuq3k")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_soj0r")
+}

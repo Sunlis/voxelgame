@@ -17,6 +17,8 @@ extends CharacterBody3D
 @onready var eyes: MeshInstance3D = %eyes
 @onready var flashlight: SpotLight3D = %flashlight
 
+@onready var anim_player: AnimationPlayer = %anim
+
 var id: int
 var camera: Camera3D = null
 var is_authority: bool = false
@@ -99,13 +101,16 @@ func _handle_input(delta: float):
     
     body.transparency = smoothstep(4.0, 0.5, camera.position.z)
     
-    if Input.is_action_just_pressed("dig"):
-      var origin = head.global_transform.origin
-      var forward = -camera.global_transform.basis.z
-      dig.rpc_id(1, origin, forward, dig_radius)
+    if Input.is_action_pressed("dig") and not anim_player.is_playing():
+      anim_player.play("swing_pick")
     
     if Input.is_action_just_pressed("toggle_flashlight"):
       flashlight.visible = not flashlight.visible
+
+func start_dig():
+  var origin = head.global_transform.origin
+  var forward = -camera.global_transform.basis.z
+  dig.rpc_id(1, origin, forward, dig_radius)
 
 @rpc("any_peer", "call_local", "reliable")
 func dig(origin: Vector3, direction: Vector3, radius: float):
