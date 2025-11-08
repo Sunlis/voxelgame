@@ -1,11 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=26 format=3 uid="uid://d3yg8jlxa54m1"]
 
+[ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
+[ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
 [ext_resource type="Texture2D" uid="uid://uv8ut1kofxit" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_baseColor.png" id="2_hlu6d"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
+[ext_resource type="Texture2D" uid="uid://brng144p8bvri" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_normal.png" id="3_md6sa"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
+[ext_resource type="Texture2D" uid="uid://bmxt0r6tlmpj6" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/StoneDirtFloor_diffuse.png" id="4_erh7w"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
+[ext_resource type="Texture2D" uid="uid://cevx3olsxymfe" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/StoneDirtFloor_normal.png" id="4_tgnr8"]
+[ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="5_1cem4"]
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
+[ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -24,9 +31,6 @@ fog_density = 0.0005
 fog_aerial_perspective = 1.0
 volumetric_fog_density = 0.005
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0eih8"]
-load_path = "res://.godot/imported/grass_albedo.png-daa10982e29958da33d5e57c02c43db6.s3tc.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
 render_priority = 0
 shader = ExtResource("2_oexva")
@@ -37,8 +41,13 @@ shader_parameter/u_voxel_cell_size = 0.0
 shader_parameter/u_voxel_block_size = 0
 shader_parameter/u_voxel_virtual_texture_offset_scale = Vector4(0, 0, 0, 0)
 shader_parameter/u_lod_fade = Vector2(0, 0)
-shader_parameter/u_texture_top = SubResource("CompressedTexture2D_0eih8")
-shader_parameter/u_texture_sides = ExtResource("2_hlu6d")
+shader_parameter/u_texture_top = ExtResource("9_6c2kk")
+shader_parameter/top_normal_map = ExtResource("5_1cem4")
+shader_parameter/layer_depth = 10.0
+shader_parameter/num_depth_textures = 3
+shader_parameter/depth_textures = Array[Texture2D]([ExtResource("2_hlu6d"), ExtResource("2_erh7w"), ExtResource("4_erh7w")])
+shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_6c2kk"), ExtResource("3_md6sa"), ExtResource("4_tgnr8")])
+shader_parameter/normal_strength = 1.0
 
 [sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
 
