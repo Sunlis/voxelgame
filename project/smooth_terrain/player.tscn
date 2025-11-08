@@ -45,6 +45,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("body/eyes:rotation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("head/pick:rotation")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soj0r"]
 albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
@@ -120,9 +123,12 @@ mesh = SubResource("CapsuleMesh_2tc2v")
 [node name="eyes" type="CSGCombiner3D" parent="body"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+layers = 2
+cast_shadow = 0
 
 [node name="eye_01" type="CSGSphere3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
+layers = 2
 radius = 0.2
 radial_segments = 32
 rings = 16
@@ -130,6 +136,7 @@ material = SubResource("StandardMaterial3D_icaiy")
 
 [node name="eye_02" type="CSGSphere3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
+layers = 2
 radius = 0.2
 radial_segments = 32
 rings = 16
@@ -155,9 +162,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="flashlight" type="SpotLight3D" parent="head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 visible = false
-layers = 3
+layers = 2
 shadow_enabled = true
 spot_range = 100.0
 spot_angle = 30.0
