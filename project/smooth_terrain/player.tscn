@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=13 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 
@@ -12,8 +12,15 @@ albedo_color = Color(0, 0, 0.6627451, 1)
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_2tc2v")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icaiy"]
-albedo_color = Color(0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_2tc2v"]
+offsets = PackedFloat32Array(0.96755725, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ju8qp"]
+gradient = SubResource("Gradient_2tc2v")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.7)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 properties/0/path = NodePath(".:position")
@@ -25,6 +32,12 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("head/flashlight:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("head:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soj0r"]
 albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
@@ -99,33 +112,29 @@ mesh = SubResource("CapsuleMesh_2tc2v")
 
 [node name="eyes" type="CSGCombiner3D" parent="body"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31806636, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84558344, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14039466, 0, -0.47827077)
-radius = 0.1
+radius = 0.2
 radial_segments = 32
 rings = 16
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes/CSGSphere3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0594306)
-radius = 0.05
-radial_segments = 16
-rings = 12
-material = SubResource("StandardMaterial3D_icaiy")
+[node name="Decal" type="Decal" parent="body/eyes/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.2)
+size = Vector3(0.2, 0.2, 0.2)
+texture_albedo = SubResource("GradientTexture2D_ju8qp")
 
 [node name="CSGSphere3D2" type="CSGSphere3D" parent="body/eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16283545, 0, -0.47827077)
-radius = 0.1
+radius = 0.2
 radial_segments = 32
 rings = 16
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="body/eyes/CSGSphere3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0594306)
-radius = 0.05
-radial_segments = 16
-rings = 12
-material = SubResource("StandardMaterial3D_icaiy")
+[node name="Decal2" type="Decal" parent="body/eyes/CSGSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.2)
+size = Vector3(0.2, 0.2, 0.2)
+texture_albedo = SubResource("GradientTexture2D_ju8qp")
 
 [node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
