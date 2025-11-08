@@ -49,6 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
   rotate_y(-event.relative.x * mouse_sensitivity)
   head.rotate_x(-event.relative.y * mouse_sensitivity)
   head.rotation.x = clamp(head.rotation.x, PI * -0.49, PI * 0.49)
+  # eyes look creepy if you let them rotate too much
+  eyes.rotation.x = clamp(head.rotation.x, PI * -0.25, PI * 0.25)
 
 func _set_up_camera():
   camera = Camera3D.new()
