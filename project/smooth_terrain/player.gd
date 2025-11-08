@@ -89,10 +89,10 @@ func _handle_input(delta: float):
       Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
   
   if camera:
-    if Input.is_action_just_pressed("camera_zoom_in"):
-      camera.position.z = max(0, camera.position.z - 1)
-    elif Input.is_action_just_pressed("camera_zoom_out"):
-      camera.position.z = min(20, camera.position.z + 1)
+    if Input.is_action_pressed("camera_zoom_in"):
+      camera.position.z = max(0, camera.position.z - (delta * 10.0))
+    elif Input.is_action_pressed("camera_zoom_out"):
+      camera.position.z = min(20, camera.position.z + (delta * 10.0))
     
     eyes.visible = camera.position.z > 0.0
 
