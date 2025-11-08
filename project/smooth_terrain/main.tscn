@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=20 format=3 uid="uid://d3yg8jlxa54m1"]
 
+[ext_resource type="Texture2D" uid="uid://uv8ut1kofxit" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_baseColor.png" id="2_hlu6d"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
+[ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -22,9 +24,6 @@ fog_density = 0.0005
 fog_aerial_perspective = 1.0
 volumetric_fog_density = 0.005
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_muprf"]
-load_path = "res://.godot/imported/dirt_albedo.png-1ea566b45deb8325a8458a1304e770f2.s3tc.ctex"
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0eih8"]
 load_path = "res://.godot/imported/grass_albedo.png-daa10982e29958da33d5e57c02c43db6.s3tc.ctex"
 
@@ -39,7 +38,7 @@ shader_parameter/u_voxel_block_size = 0
 shader_parameter/u_voxel_virtual_texture_offset_scale = Vector4(0, 0, 0, 0)
 shader_parameter/u_lod_fade = Vector2(0, 0)
 shader_parameter/u_texture_top = SubResource("CompressedTexture2D_0eih8")
-shader_parameter/u_texture_sides = SubResource("CompressedTexture2D_muprf")
+shader_parameter/u_texture_sides = ExtResource("2_hlu6d")
 
 [sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
 
@@ -129,3 +128,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="multiplayer_menu" parent="MarginContainer" instance=ExtResource("4_oexva")]
 layout_mode = 2
+
+[node name="block" parent="." instance=ExtResource("5_muprf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.578, -49.8, 46.235)
+size = Vector3(50, 100, 50)

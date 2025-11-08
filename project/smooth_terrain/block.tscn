@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=3 uid="uid://2wkh70pbpuoy"]
+
+[ext_resource type="Script" uid="uid://gat8scliiqsb" path="res://smooth_terrain/block.gd" id="1_b4d6w"]
+[ext_resource type="Texture2D" uid="uid://3fqi3wavq2yc" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_basecolor.jpg" id="2_f13e5"]
+[ext_resource type="Texture2D" uid="uid://bvhfducsmeud2" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_ambientocclusion.jpg" id="3_5m2mx"]
+[ext_resource type="Texture2D" uid="uid://dei03l13cgf6f" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_height.jpg" id="3_bj0ke"]
+[ext_resource type="Texture2D" uid="uid://bir1hyk1rmbcw" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_metallic.jpg" id="4_5m2mx"]
+[ext_resource type="Texture2D" uid="uid://d1581vytog43r" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_normalogl.jpg" id="6_bj0ke"]
+[ext_resource type="Texture2D" uid="uid://dhe15k041lfkj" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_roughness.jpg" id="6_ltalb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qevfl"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4d6w"]
+albedo_texture = ExtResource("2_f13e5")
+metallic = 1.0
+metallic_texture = ExtResource("4_5m2mx")
+roughness_texture = ExtResource("6_ltalb")
+normal_enabled = true
+normal_texture = ExtResource("6_bj0ke")
+ao_enabled = true
+ao_texture = ExtResource("3_5m2mx")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_bj0ke")
+heightmap_flip_texture = true
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_qevfl"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_b4d6w")
+size = Vector3(10, 10, 10)
+
+[node name="block" type="StaticBody3D"]
+script = ExtResource("1_b4d6w")
+size = Vector3(10, 10, 10)
+
+[node name="collider" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_qevfl")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("BoxMesh_qevfl")
