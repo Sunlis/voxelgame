@@ -1,4 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvm7ocin62h7r"]
+[gd_scene load_steps=5 format=3 uid="uid://bvm7ocin62h7r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fi4o2"]
+radius = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fi4o2"]
+height = 0.5
+radius = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls42v"]
 albedo_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
@@ -11,7 +18,20 @@ disable_receive_shadows = true
 
 [node name="prop_lantern" type="Node3D"]
 
-[node name="cap" type="CSGCylinder3D" parent="."]
+[node name="anchor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("SphereShape3D_fi4o2")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+mass = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_fi4o2")
+
+[node name="cap" type="CSGCylinder3D" parent="RigidBody3D"]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0.2258834, 0)
 radius = 0.2
 height = 0.15
@@ -19,44 +39,50 @@ sides = 4
 cone = true
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="light" type="CSGBox3D" parent="."]
+[node name="light" type="CSGBox3D" parent="RigidBody3D"]
 transparency = 0.2
 cast_shadow = 0
 size = Vector3(0.2, 0.3, 0.2)
 material = SubResource("StandardMaterial3D_q4ljm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="light"]
+[node name="OmniLight3D" type="OmniLight3D" parent="RigidBody3D/light"]
 light_color = Color(0.7137255, 0.49803922, 0.27058825, 1)
 shadow_enabled = true
 shadow_blur = 2.0
 omni_range = 50.0
 
-[node name="base" type="CSGBox3D" parent="."]
+[node name="base" type="CSGBox3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17690498, 0)
 size = Vector3(0.25, 0.05, 0.25)
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="cut_middle" type="CSGBox3D" parent="base"]
+[node name="cut_middle" type="CSGBox3D" parent="RigidBody3D/base"]
 operation = 2
 size = Vector3(0.2, 0.1, 0.2)
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="pillar" type="CSGBox3D" parent="base"]
+[node name="pillar" type="CSGBox3D" parent="RigidBody3D/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.175, 0.1)
 size = Vector3(0.03, 0.3, 0.03)
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="pillar2" type="CSGBox3D" parent="base"]
+[node name="pillar2" type="CSGBox3D" parent="RigidBody3D/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.175, 0.1)
 size = Vector3(0.03, 0.3, 0.03)
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="pillar3" type="CSGBox3D" parent="base"]
+[node name="pillar3" type="CSGBox3D" parent="RigidBody3D/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.175, -0.1)
 size = Vector3(0.03, 0.3, 0.03)
 material = SubResource("StandardMaterial3D_ls42v")
 
-[node name="pillar4" type="CSGBox3D" parent="base"]
+[node name="pillar4" type="CSGBox3D" parent="RigidBody3D/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.175, -0.1)
 size = Vector3(0.03, 0.3, 0.03)
 material = SubResource("StandardMaterial3D_ls42v")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+node_a = NodePath("../anchor")
+node_b = NodePath("../RigidBody3D")
+params/damping = 1.5
