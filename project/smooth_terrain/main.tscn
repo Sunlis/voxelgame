@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=32 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
 [ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
@@ -75,6 +75,12 @@ albedo_color = Color(0, 0, 1, 1)
 material = SubResource("StandardMaterial3D_hlu6d")
 size = Vector3(1, 20, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md6sa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tgnr8"]
+material = SubResource("StandardMaterial3D_md6sa")
+size = Vector3(1, 20, 1)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_md6sa"]
 plane = Plane(0, 0, 1, 0)
 
@@ -132,6 +138,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 10, 64)
 layers = 3
 mesh = SubResource("BoxMesh_erh7w")
 
+[node name="white" type="MeshInstance3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 10, -64)
+layers = 3
+mesh = SubResource("BoxMesh_tgnr8")
+
 [node name="mp_spawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://daole3dpr3ja2")
 spawn_path = NodePath("../players")
@@ -178,50 +189,63 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140, -49.77, 0)
 size = Vector3(128, 100, 300)
 
 [node name="walls" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.806126, 0)
 shape = SubResource("WorldBoundaryShape3D_md6sa")
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D"]
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 128, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.176386, 0)
 shape = SubResource("WorldBoundaryShape3D_md6sa")
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D2"]
 transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 128)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3982306, 0)
 shape = SubResource("WorldBoundaryShape3D_md6sa")
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D3"]
 transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
+metadata/_edit_lock_ = true
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -128, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.027399, 0)
 shape = SubResource("WorldBoundaryShape3D_md6sa")
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D4"]
 transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
+metadata/_edit_lock_ = true
