@@ -79,7 +79,12 @@ size = Vector3(1, 20, 1)
 plane = Plane(0, 0, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgnr8"]
+transparency = 1
 albedo_color = Color(0.37725735, 0.5632239, 0.6662606, 1)
+disable_receive_shadows = true
+distance_fade_mode = 2
+distance_fade_min_distance = 32.0
+distance_fade_max_distance = 8.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_at30r"]
 material = SubResource("StandardMaterial3D_tgnr8")
@@ -182,7 +187,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.806126, 0)
 shape = SubResource("WorldBoundaryShape3D_md6sa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D"]
-transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
 

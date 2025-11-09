@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dhe15k041lfkj" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_roughness.jpg" id="6_ltalb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qevfl"]
-size = Vector3(300, 100, 32)
+resource_local_to_scene = true
+size = Vector3(300, 100, 128)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4d6w"]
 albedo_texture = ExtResource("2_f13e5")
