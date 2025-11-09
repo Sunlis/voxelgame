@@ -109,6 +109,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 513
 floor_max_angle = 1.0471976
 script = ExtResource("1_2tc2v")
 

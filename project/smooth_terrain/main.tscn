@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=35 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
 [ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="5_1cem4"]
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
-[ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/prop_lantern.tscn" id="14_md6sa"]
+[ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -98,6 +98,13 @@ size = Vector2(256, 128)
 center_offset = Vector3(0, 64, 0)
 orientation = 2
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_md6sa"]
+bounce = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tgnr8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_at30r"]
+
 [node name="main" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -168,7 +175,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 
 [node name="prop_lantern" parent="." instance=ExtResource("14_md6sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0141882, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5565372, 1.914, -7.7271547)
 
 [node name="border" type="Node3D" parent="."]
 
@@ -249,3 +256,15 @@ transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_at30r")
 metadata/_edit_lock_ = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6434119, 2.0301006, -11.174766)
+collision_layer = 512
+collision_mask = 513
+physics_material_override = SubResource("PhysicsMaterial_md6sa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_tgnr8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("SphereMesh_at30r")

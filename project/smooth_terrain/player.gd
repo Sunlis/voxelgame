@@ -23,6 +23,8 @@ var id: int
 var camera: Camera3D = null
 var is_authority: bool = false
 
+var velocity_before_collision: Vector3
+
 func _ready():
   id = int(self.name.split("_")[1])
   is_authority = get_tree().get_multiplayer().get_unique_id() == id
@@ -71,7 +73,19 @@ func _physics_process(delta):
   if is_authority:
     _handle_input(delta)
 
+  velocity_before_collision = self.velocity
   move_and_slide()
+  # _check_collisions()
+
+func _check_collisions():
+  var collision_count = self.get_slide_collision_count()
+  for i in range(collision_count):
+    var collision = self.get_slide_collision(i)
+    var collider = collision.get_collider()
+    if collider is RigidBody3D:
+      var other = (collider as RigidBody3D)
+      print('force %d' % self.velocity_before_collision.length())
+      other.apply_impulse(-collision.get_normal() * sqrt(self.velocity_before_collision.length()) * 0.1, collision.get_position())
 
 func _handle_input(delta: float):
   var speed = base_speed
