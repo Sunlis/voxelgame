@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=27 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
 [ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="5_1cem4"]
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
+[ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/prop_lantern.tscn" id="14_md6sa"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -81,6 +82,7 @@ environment = SubResource("2")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.91212016, 3.5836575e-08, -0.40992305, 0.35500363, 0.5, 0.7899198, 0.204961, -0.8660251, 0.45606032, 14.4885, 6.21497, 0)
+visible = false
 layers = 3
 shadow_enabled = true
 shadow_blur = 0.5
@@ -141,3 +143,6 @@ layout_mode = 2
 [node name="block" parent="." instance=ExtResource("5_muprf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.578, -49.8, 46.235)
 size = Vector3(50, 100, 50)
+
+[node name="prop_lantern" parent="." instance=ExtResource("14_md6sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0141882, 0)
