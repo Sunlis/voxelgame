@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvm7ocin62h7r"]
+[gd_scene load_steps=9 format=3 uid="uid://bvm7ocin62h7r"]
 
 [ext_resource type="Script" uid="uid://cgkbdovcnm5ei" path="res://smooth_terrain/props/prop_lantern.gd" id="1_xbnba"]
 
@@ -6,12 +6,14 @@
 radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_xbnba"]
-radius = 0.05
-height = 0.1
+radius = 0.01
+height = 0.02
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fi4o2"]
-height = 0.5
-radius = 0.2
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbnba"]
+size = Vector3(0.25, 0.4, 0.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xbnba"]
+radius = 0.14
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls42v"]
 albedo_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
@@ -47,30 +49,44 @@ collision_mask = 0
 shape = SubResource("SphereShape3D_fi4o2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="anchor"]
+visible = false
 mesh = SubResource("SphereMesh_xbnba")
 
 [node name="rigidbody" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34462985, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, -1, 0, 1, 1.3113416e-07, 0, 0, 0)
 collision_layer = 512
 collision_mask = 513
 mass = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -0.15, 0)
+sleeping = true
 angular_damp = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rigidbody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-shape = SubResource("CylinderShape3D_fi4o2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_xbnba")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rigidbody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3504809, 0)
+shape = SubResource("SphereShape3D_xbnba")
 
 [node name="cap" type="CSGCylinder3D" parent="rigidbody"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0.2258834, 0)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, -0.2741166, 0)
 radius = 0.2
 height = 0.15
 sides = 4
 cone = true
 material = SubResource("StandardMaterial3D_ls42v")
 
+[node name="chain" type="CSGCylinder3D" parent="rigidbody/cap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16806775, 0)
+radius = 0.01
+height = 0.21865234
+material = SubResource("StandardMaterial3D_ls42v")
+
 [node name="light" type="CSGBox3D" parent="rigidbody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 transparency = 0.2
 cast_shadow = 0
 size = Vector3(0.2, 0.3, 0.2)
@@ -83,7 +99,7 @@ shadow_blur = 2.0
 omni_range = 50.0
 
 [node name="base" type="CSGBox3D" parent="rigidbody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17690498, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.676905, 0)
 size = Vector3(0.25, 0.05, 0.25)
 material = SubResource("StandardMaterial3D_ls42v")
 

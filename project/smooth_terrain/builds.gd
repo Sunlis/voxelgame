@@ -17,5 +17,6 @@ func _on_build_requested(pos: Vector3, norm: Vector3, block_type: int):
       Debug.print("Unknown block type: %d" % block_type)
       return
   node.name = "Build_%d" % self.get_child_count()
+  node.position = pos
   node.look_at_from_position(pos, pos + norm, Vector3.UP)
   add_child(node)
