@@ -8,6 +8,8 @@ extends CharacterBody3D
 @export var dig_reach = 4.0
 @export var dig_radius = 1.5
 
+@export var build_reach = 12.0
+
 @onready var mp_sync: MultiplayerSynchronizer = %mp_sync
 @onready var viewer: VoxelViewer = %viewer
 @onready var label: Label3D = %label
@@ -57,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _set_up_camera():
   camera = Camera3D.new()
   head.add_child(camera)
-  camera.position = Vector3(0, 0, 8)
+  camera.position = Vector3(0, 0, 0)
   eyes.visible = false
   camera.make_current()
 
@@ -118,11 +120,24 @@ func _handle_input(delta: float):
     
     body.transparency = smoothstep(4.0, 0.5, camera.position.z)
     
-    if Input.is_action_pressed("dig") and not anim_player.is_playing():
-      anim_player.play("swing_pick")
-    
-    if Input.is_action_just_pressed("toggle_flashlight"):
-      flashlight.visible = not flashlight.visible
+    if Input.is_action_just_pressed("toggle_build_mode"):
+      var vt = Global.get_terrain().get_voxel_tool()
+      var result = vt.raycast(
+        head.global_transform.origin, -camera.global_transform.basis.z, 8.0)
+      if result:
+        var mesh = CSGBox3D.new()
+        get_tree().root.add_child(mesh)
+        var pos = Vector3(result.position)
+        var norm = Vector3(result.normal)
+        mesh.transform.origin = pos + norm
+        mesh.look_at(pos + (norm * 2.0), Vector3.UP)
+
+  if Input.is_action_pressed("dig") and not anim_player.is_playing():
+    anim_player.play("swing_pick")
+  
+  if Input.is_action_just_pressed("toggle_flashlight"):
+    flashlight.visible = not flashlight.visible
+
 
 func start_dig():
   var origin = head.global_transform.origin

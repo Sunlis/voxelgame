@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=15 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
+[ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="2_ju8qp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
 
@@ -193,3 +194,20 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_soj0r")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_ju8qp")
