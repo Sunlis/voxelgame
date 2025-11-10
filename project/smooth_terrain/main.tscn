@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=36 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
 [ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
+[ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -268,3 +269,10 @@ shape = SubResource("SphereShape3D_tgnr8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
 mesh = SubResource("SphereMesh_at30r")
+
+[node name="builds" type="Node3D" parent="." node_paths=PackedStringArray("spawner")]
+script = ExtResource("15_tgnr8")
+spawner = NodePath("../prop_spawner")
+
+[node name="prop_spawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../builds")

@@ -122,15 +122,18 @@ func _handle_input(delta: float):
     
     if Input.is_action_just_pressed("toggle_build_mode"):
       var vt = Global.get_terrain().get_voxel_tool()
-      var result = vt.raycast(
-        head.global_transform.origin, -camera.global_transform.basis.z, 8.0)
+      var origin = head.global_transform.origin
+      var direction = -camera.global_transform.basis.z
+      var result = vt.raycast(origin, direction, build_reach)
       if result:
-        var mesh = CSGBox3D.new()
-        get_tree().root.add_child(mesh)
-        var pos = Vector3(result.position)
+        var pos = Vector3(origin + direction * result.distance)
         var norm = Vector3(result.normal)
-        mesh.transform.origin = pos + norm
-        mesh.look_at(pos + (norm * 2.0), Vector3.UP)
+        var mesh = CSGBox3D.new()
+        mesh.size = Vector3.ONE * 0.3
+        get_tree().root.add_child(mesh)
+        mesh.transform.origin = pos
+        mesh.look_at(pos + norm, Vector3.UP)
+        # Global.build(pos, norm, 1)
 
   if Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")
