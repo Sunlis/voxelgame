@@ -125,6 +125,8 @@ func _handle_input(delta: float):
       var origin = head.global_transform.origin
       var direction = -camera.global_transform.basis.z
       var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * build_reach)
+      # only collide with terrain (layer 5)
+      query.collision_mask = 1 << 5 - 1
       var result = state.intersect_ray(query)
       if result:
         var pos = Vector3(result.position)

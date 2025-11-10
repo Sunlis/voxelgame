@@ -61,7 +61,7 @@ mass = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -0.15, 0)
 sleeping = true
-angular_damp = 2.0
+angular_damp = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rigidbody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
