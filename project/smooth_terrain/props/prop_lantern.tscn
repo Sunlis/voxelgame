@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvm7ocin62h7r"]
+[gd_scene load_steps=8 format=3 uid="uid://bvm7ocin62h7r"]
 
 [ext_resource type="Script" uid="uid://cgkbdovcnm5ei" path="res://smooth_terrain/props/prop_lantern.gd" id="1_xbnba"]
 
@@ -21,6 +21,20 @@ albedo_color = Color(0.7137255, 0.49803922, 0.27058825, 1)
 emission_enabled = true
 emission = Color(0.71389663, 0.49756378, 0.27067244, 1)
 disable_receive_shadows = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xbnba"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("rigidbody:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("rigidbody:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="prop_lantern" type="Node3D"]
 script = ExtResource("1_xbnba")
@@ -101,5 +115,7 @@ material = SubResource("StandardMaterial3D_ls42v")
 [node name="PinJoint3D" type="PinJoint3D" parent="."]
 node_a = NodePath("../anchor")
 node_b = NodePath("../rigidbody")
-params/bias = 0.8
-params/damping = 2.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xbnba")
+visibility_update_mode = 1

@@ -121,19 +121,15 @@ func _handle_input(delta: float):
     body.transparency = smoothstep(4.0, 0.5, camera.position.z)
     
     if Input.is_action_just_pressed("toggle_build_mode"):
-      var vt = Global.get_terrain().get_voxel_tool()
+      var state = get_world_3d().direct_space_state
       var origin = head.global_transform.origin
       var direction = -camera.global_transform.basis.z
-      var result = vt.raycast(origin, direction, build_reach)
+      var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * build_reach)
+      var result = state.intersect_ray(query)
       if result:
-        var pos = Vector3(origin + direction * result.distance)
+        var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
-        var mesh = CSGBox3D.new()
-        mesh.size = Vector3.ONE * 0.3
-        get_tree().root.add_child(mesh)
-        mesh.transform.origin = pos
-        mesh.look_at(pos + norm, Vector3.UP)
-        # Global.build(pos, norm, 1)
+        Global.build(pos, norm, 1)
 
   if Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")
