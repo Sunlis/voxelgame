@@ -1,117 +1,66 @@
 # Helper class to setup and cleanup UPNP for easy server hosting.
 extends Node
 
-class_name UPNPHelper
+signal setup_failed(internal_port: int)
+signal port_ready(external_port: int, internal_port: int)
 
-# I made this a node even if it should not need to be, because when using RefCounted, threads add a
-# reference to the object of the method they run, and since the thread is owned by that same
-# reference, we get a cycle. So one way to break the cycle is to use an Object instead, but using a
-# Node instead is less error-prone as the user won't forget to free it.
+var threads: Array[Thread] = []
+var mappings: Array = []
+var _upnp: UPNP = null
 
-var _upnp : UPNP
-var _port := -1
-var _protocols : PackedStringArray
-# Not using a thread for now
-#var _thread : Thread
+func _ready():
+  tree_exiting.connect(_exit_tree)
 
+func find_port(internal_port: int, protocol: String, description: String, duration_sec: int = 86400):
+  var thread = Thread.new()
+  threads.append(thread)
+  thread.start(_thread_find_port.bind(internal_port, protocol, description, duration_sec))
 
-#func _init():
-#  _thread = Thread.new()
+func find_port_blocking(internal_port: int, protocol: String, description: String, duration_sec: int = 86400) -> int:
+  return _thread_find_port(internal_port, protocol, description, duration_sec)
 
-
-#func _notification(what: int):
-#  if what == NOTIFICATION_PREDELETE:
-#    pass
-
-
-func setup(port: int, protocols: PackedStringArray, description: String, duration_seconds: int):
-  _setup(port, protocols, description, duration_seconds)
-
-
-func is_setup() -> bool:
-  return _upnp != null
-
+func _thread_find_port(internal_port: int, protocol: String, description: String, duration_sec: int):
+  if _upnp == null:
+    _upnp = UPNP.new()
+    var err = _upnp.discover()  
+    if err != OK:
+      setup_failed.emit(internal_port)
+      print("UPNP discovery failed with error: %d" % err)
+      return -1
+  if _upnp.get_gateway() and _upnp.get_gateway().is_valid_gateway():
+    for port in range(1025, 65535):
+      print('try port %d' % port)
+      var map_err = _upnp.add_port_mapping(port, internal_port, description, protocol, duration_sec)
+      if map_err == OK:
+        port_ready.emit.call_deferred(port, internal_port)
+        mappings.append({
+          "external_port": port,
+          "internal_port": internal_port,
+          "protocol": protocol,
+        })
+        print("UPNP port mapping successful: external port %d to internal port %d" % [port, internal_port])
+        return port
+  setup_failed.emit(internal_port)
+  print("UPNP port mapping failed")
+  return -1
 
 func cleanup():
-  _cleanup()
+  _exit_tree()
 
+func _notification(what):
+  if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_PREDELETE:
+    _exit_tree()
 
-func _setup(port: int, protocols: PackedStringArray, description: String, duration_seconds: int) \
-  -> bool:
-  
-  if _upnp != null:
-    _log_error("UPNP setup failed: already setup")
-    return false
-  
-  var upnp := UPNP.new()
-  print("UPNP setup discover...")
-  var discover_result := upnp.discover()
-  if discover_result != UPNP.UPNP_RESULT_SUCCESS:
-    _log_error(str("UPNP discover failed: returned ", _format_result(discover_result)))
-    return false
-  
-  var gateway := upnp.get_gateway()
-  if gateway == null:
-    _log_error("UPNP setup failed: no gateway")
-    return false
-  
-  if not gateway.is_valid_gateway():
-    _log_error("UPNP setup failed: no valid gateway")
-    return false
-  
-  for protocol in protocols:
-    _log_info(str("UPNP adding port mapping for ", protocol, "..."))
-    var result := upnp.add_port_mapping(port, port, description, protocol, duration_seconds)
-    if result != UPNP.UPNP_RESULT_SUCCESS:
-      _log_error(str("UPNP failed to add port mapping (port ", port, ", protocol ", protocol, 
-        "): returned ", _format_result(result)))
-      return false
-
-  var address := upnp.query_external_address()
-  _log_info(str("External address: ", address))
-  
-  _upnp = upnp
-  _port = port
-  _protocols = protocols
-  _log_info("UPNP setup done")
-  return true
-
-
-func _cleanup() -> bool:
-  if _upnp == null:
-    _log_error("UPNP cleanup failed: wasn't setup")
-    return false
-  
-  for protocol in _protocols:
-    _log_info(str("UPNP remove port mapping for ", protocol, "..."))
-    var result := _upnp.delete_port_mapping(_port, protocol)
-    if result != UPNP.UPNP_RESULT_SUCCESS:
-      _log_error(str("UPNP port mapping removal failed (port ", _port, ", protocol ",
-        protocol, "): returned ", _format_result(result)))
-#      return false
-
-  _upnp = null
-  _log_info("UPNP cleanup done")
-  return true
-
-
-func _exit_tree():
-  if is_setup():
-    _cleanup()
-
-
-func _log_info(msg: String):
-  print(msg)
-
-
-func _log_error(msg: String):
-  push_error(msg)
-
-
-static func _format_result(result: int) -> String:
-  return str(_get_result_as_string(result), " (", result, ")")
-
-
-static func _get_result_as_string(result: int) -> String:
-  var items := ClassDB.class_get_enum_constants(&"UPNP", &"UPNPResult")
-  return items[result]
+func _exit_tree() -> void:
+  for thread in threads:
+    thread.wait_to_finish()
+  threads.clear()
+  if not _upnp:
+    return
+  for mapping in mappings:
+    var err = _upnp.delete_port_mapping(mapping["external_port"], mapping["protocol"])
+    if err == OK:
+      print("Successfully removed UPNP port mapping for external port %d" % mapping["external_port"])
+    else:
+      print("Failed to remove UPNP port mapping for external port %d with error: %d" % [mapping["external_port"], err])
+  mappings.clear()

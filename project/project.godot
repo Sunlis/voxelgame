@@ -21,6 +21,7 @@ DDD="*res://addons/zylann.debug_draw/debug_draw.gd"
 Global="*res://smooth_terrain/Global.tscn"
 Multiplayer="*res://smooth_terrain/multiplayer.tscn"
 Debug="*res://smooth_terrain/debug.tscn"
+UPNPHelper="*res://smooth_terrain/upnp.gd"
 
 [display]
 

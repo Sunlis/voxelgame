@@ -39,6 +39,6 @@ func _on_host_button_pressed() -> void:
     status_label.text = "Failed to host session."
     Debug.print(error)
     return
-  status_label.text = "Hosting on port %s." % Multiplayer.server_port
-  Debug.print('Hosting multiplayer session on port %s' % Multiplayer.server_port)
+  status_label.text = "Hosting on port %s (internal), %s (external)." % [Multiplayer.server_port, Multiplayer.external_port]
+  Debug.print('Hosting multiplayer session on port %s (internal), %s (external).' % [Multiplayer.server_port, Multiplayer.external_port])
   container.visible = false

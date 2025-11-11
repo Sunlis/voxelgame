@@ -7,11 +7,16 @@ signal connected_to_server()
 
 var server: ENetMultiplayerPeer = null
 var server_port: int = 9000
+var external_port: int = -1
 var client: ENetMultiplayerPeer = null
 
 func create_server() -> int:
   var peer := ENetMultiplayerPeer.new()
-  # TODO: upnp
+  var port = UPNPHelper.find_port_blocking(server_port, "UDP", "DigSlop Game Server", 60)
+  if port == -1 or port == null:
+    Debug.print("Failed to find port")
+    return -1
+  external_port = port
   var error := peer.create_server(server_port, 128)
   if error != OK:
     Debug.print(error)
