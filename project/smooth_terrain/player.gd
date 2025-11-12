@@ -25,6 +25,12 @@ var id: int
 var camera: Camera3D = null
 var is_authority: bool = false
 
+enum Mode {
+  MINING,
+  BUILDING
+}
+var mode = Mode.MINING
+
 var velocity_before_collision: Vector3
 
 func _ready():
@@ -131,7 +137,7 @@ func _handle_input(delta: float):
       if result:
         var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
-        Global.build(pos, norm, 1)
+        Global.build(pos, norm, 2)
 
   if Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")

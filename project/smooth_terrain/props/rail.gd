@@ -2,9 +2,9 @@
 
 extends Node3D
 
-@export var control_point: Vector3 = Vector3.ZERO:
+@export var before_point: Vector3 = Vector3.ZERO:
   set(v):
-    control_point = v
+    before_point = v
     _update()
 @export var start_point: Vector3 = Vector3.ZERO:
   set(v):
@@ -14,10 +14,15 @@ extends Node3D
   set(v):
     end_point = v
     _update()
+@export var after_point: Vector3 = Vector3.ZERO:
+  set(v):
+    after_point = v
+    _update()
 
-var control_marker: Node3D
+var before_marker: Node3D
 var start_marker: Node3D
 var end_marker: Node3D
+var after_marker: Node3D
 
 var segments = []
 
@@ -32,9 +37,10 @@ func _clear():
   segments = []
 
 func _setup_markers():
-  control_marker = _make_marker(control_point, Color.GREEN)
+  before_marker = _make_marker(before_point, Color.GREEN)
   start_marker = _make_marker(start_point, Color.RED)
   end_marker = _make_marker(end_point, Color.BLUE)
+  after_marker = _make_marker(after_point, Color.YELLOW)
 
 
 func _make_marker(pos: Vector3, color: Color = Color.WHITE) -> Node3D:
@@ -61,14 +67,16 @@ func _update():
   _clear()
   _setup_markers()
 
-  control_marker.position = control_point
+  before_marker.position = before_point
   start_marker.position = start_point
   end_marker.position = end_point
+  after_marker.position = after_point
 
   var curve = Curve3D.new()
   curve.add_point(end_point)
+  curve.set_point_out(0, end_point - after_point)
   curve.add_point(start_point)
-  curve.set_point_in(1, start_point - control_point)
+  curve.set_point_in(1, start_point - before_point)
   curve.bake_interval = 1.0
   
   var steps = ceil(curve.get_baked_length() / curve.bake_interval)

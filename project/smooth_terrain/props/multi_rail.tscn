@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://be6g07hy2y7wt"]
+
+[ext_resource type="Script" uid="uid://pfi3hkctbobq" path="res://smooth_terrain/props/multi_rail.gd" id="1_fok5p"]
+
+[node name="multi_rail" type="Node3D"]
+script = ExtResource("1_fok5p")
