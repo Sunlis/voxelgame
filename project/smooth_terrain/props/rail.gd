@@ -39,7 +39,7 @@ func _setup_markers():
 
 func _make_marker(pos: Vector3, color: Color = Color.WHITE) -> Node3D:
   var marker = CSGSphere3D.new()
-  marker.radius = 0.5
+  marker.radius = 0.3
   marker.position = pos
   marker.material = StandardMaterial3D.new()
   marker.material.albedo_color = color
@@ -73,13 +73,15 @@ func _update():
   
   var steps = ceil(curve.get_baked_length() / curve.bake_interval)
   var last_segment = null
-  for i in range(steps):
+  for i in range(steps + 1):
     var point = curve.sample_baked((float(i) / float(steps)) * curve.get_baked_length(), true)
     var next = curve.sample_baked((float(i + 1) / float(steps)) * curve.get_baked_length(), true)
+    if i == steps:
+      next = point + (point - curve.sample_baked((float(i - 1) / float(steps)) * curve.get_baked_length(), true)).normalized()
     var rail_segment = _make_box(Color.SANDY_BROWN)
     rail_segment.position = point
     rail_segment.look_at_from_position(point, next, Vector3.UP)
-    rail_segment.scale = Vector3(1.0, 0.1, 0.1)
+    rail_segment.scale = Vector3(1.0, 0.06, 0.2)
     segments.append(rail_segment)
     if last_segment:
       _add_connecting_rails(last_segment, rail_segment)
@@ -111,13 +113,13 @@ func _add_connecting_rails(previous: Node3D, current: Node3D):
   # Create left rail
   var left_rail = _make_box(Color.SILVER)
   left_rail.position = left_midpoint
-  left_rail.scale = Vector3(0.1, 0.1, left_length)
+  left_rail.scale = Vector3(0.08, 0.14, left_length)
   left_rail.look_at_from_position(left_rail.position, left_rail.position + left_direction, Vector3.UP)
   segments.append(left_rail)
   
   # Create right rail
   var right_rail = _make_box(Color.SILVER)
   right_rail.position = right_midpoint
-  right_rail.scale = Vector3(0.1, 0.1, right_length)
+  right_rail.scale = Vector3(0.08, 0.14, right_length)
   right_rail.look_at_from_position(right_rail.position, right_rail.position + right_direction, Vector3.UP)
   segments.append(right_rail)
