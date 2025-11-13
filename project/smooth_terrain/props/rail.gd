@@ -50,7 +50,6 @@ func _make_marker(pos: Vector3, color: Color = Color.WHITE) -> Node3D:
   marker.material = StandardMaterial3D.new()
   marker.material.albedo_color = color
   add_child(marker)
-  marker.owner = self
   return marker
 
 func _make_box(color: Color = Color.WHITE) -> CSGBox3D:
@@ -58,7 +57,6 @@ func _make_box(color: Color = Color.WHITE) -> CSGBox3D:
   box.material = StandardMaterial3D.new()
   box.material.albedo_color = color
   add_child(box)
-  box.owner = self
   return box
 
 func _update():
