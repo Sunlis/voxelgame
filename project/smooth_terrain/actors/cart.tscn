@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bllfwvmlam755"]
+[gd_scene load_steps=21 format=4 uid="uid://bllfwvmlam755"]
 
 [ext_resource type="Script" uid="uid://mrmjd5g35wcm" path="res://smooth_terrain/actors/cart.gd" id="1_pvflh"]
 [ext_resource type="Texture2D" uid="uid://bm1cl7iac6dw2" path="res://smooth_terrain/actors/assets/pxArt_(7).png" id="1_r1apt"]
@@ -178,101 +178,14 @@ albedo_texture = ExtResource("4_pvflh")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo2fy"]
 albedo_texture = ExtResource("6_pvflh")
 
-[sub_resource type="Animation" id="Animation_nrhbf"]
-resource_name = "moving"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector3(0, 0.06529049, 0.07108917), Vector3(0, 0.065, -0.071)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector3(-0.09377654, 0, 0), Vector3(0.08726646, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pvflh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.06529049, 0.07108917)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.09377654, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mo2fy"]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mo2fy"]
-_data = {
-&"RESET": SubResource("Animation_pvflh"),
-&"idle": SubResource("Animation_mo2fy"),
-&"moving": SubResource("Animation_nrhbf")
-}
-
 [node name="cart" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.9956062, 0.09363915, 0, -0.09363915, 0.9956062, 0, 0.06529049, 0.07108917)
 script = ExtResource("1_pvflh")
 
-[node name="polySurface15" type="MeshInstance3D" parent="."]
+[node name="container" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.773105, 0)
+
+[node name="polySurface15" type="MeshInstance3D" parent="container"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1.7763568e-17, 0.0343027, -0.00045131682)
 mesh = SubResource("ArrayMesh_mo2fy")
 skeleton = NodePath("")
@@ -282,18 +195,14 @@ surface_material_override/2 = SubResource("StandardMaterial3D_848om")
 surface_material_override/3 = SubResource("StandardMaterial3D_n4dl2")
 surface_material_override/4 = SubResource("StandardMaterial3D_ihb6n")
 
-[node name="Possum" type="MeshInstance3D" parent="."]
+[node name="Possum" type="MeshInstance3D" parent="container"]
 transform = Transform3D(-4.371139e-09, 0.012171349, -0.099256516, 1.3877788e-17, 0.099256516, 0.012171349, 0.1, 5.3202676e-10, -4.33864e-09, -0.7177646, 0.8506094, -0.53342766)
 mesh = ExtResource("5_nrhbf")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mo2fy")
 
-[node name="Label3D" type="Label3D" parent="Possum"]
+[node name="Label3D" type="Label3D" parent="container/Possum"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4050434, -2.9802322e-08)
 pixel_size = 0.05
 billboard = 2
 text = "Frank"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_mo2fy")
-}

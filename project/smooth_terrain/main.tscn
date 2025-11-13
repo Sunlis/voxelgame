@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=36 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
 [ext_resource type="Script" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
+[ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
@@ -262,5 +263,13 @@ spawner = NodePath("../prop_spawner")
 [node name="prop_spawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../builds")
 
-[node name="cart" parent="." instance=ExtResource("18_gxx5o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3925996, 0.4337591, -5.4551682)
+[node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
+transform = Transform3D(0.46150994, 0.4277966, -0.77717346, 0.11003556, 0.84167975, 0.52864677, 0.8802845, -0.32949245, 0.34137073, 8.068624, 1.0537205, 10.672591)
+rail = NodePath("../rail")
+perc = 0.2634307760149902
+tilt_frequency = 4.0
+state = 1
+move_speed = 10.0
+
+[node name="rail" parent="." instance=ExtResource("18_4hwsc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3119516, 0)

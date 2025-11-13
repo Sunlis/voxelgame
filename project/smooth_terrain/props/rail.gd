@@ -2,6 +2,8 @@
 
 extends Node3D
 
+class_name Rail
+
 @export var rail_points: Array[RailPoint] = []:
   set(v):
     rail_points = v
@@ -64,6 +66,32 @@ var _cached_curve: Curve3D
 var _curve_valid: bool = false
 var _last_point_count: int = 0
 var _point_connections: Array = []
+
+func get_rail_length() -> float:
+  _ensure_curve()
+  if _cached_curve:
+    return _cached_curve.get_baked_length()
+  return 0.0
+
+func get_transform_at_distance(dist: float) -> Transform3D:
+  _ensure_curve()
+  if _cached_curve:
+    var length := _cached_curve.get_baked_length()
+    dist = clamp(dist, 0.0, length)
+    var pos := _cached_curve.sample_baked(dist, true)
+    var ahead_pos := _cached_curve.sample_baked(min(dist + 0.1, length), true)
+    var tangent := (ahead_pos - pos).normalized()
+    if tangent.length() < 0.001:
+      tangent = Vector3.FORWARD
+    # Use interpolated normal: nearest point's normal (could be improved with weighting)
+    var rp_index := int(round((dist / length) * (rail_points.size() - 1)))
+    var base_normal: Vector3 = rail_points[clamp(rp_index, 0, rail_points.size() - 1)].normal.normalized()
+    if base_normal.length() < 0.5:
+      base_normal = Vector3.UP
+    var b := Basis.looking_at(tangent, base_normal)
+    var local_t := Transform3D(b, pos)
+    return global_transform * local_t
+  return Transform3D.IDENTITY
 
 func _connect_point_signals():
   _point_connections.clear()
