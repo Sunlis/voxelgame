@@ -2,7 +2,7 @@
 
 extends Node3D
 
-@export var rail_points: Array[RailPoint] = []: # Array of RailPoint resources (RailPoint resources expected)
+@export var rail_points: Array[RailPoint] = []:
   set(v):
     rail_points = v
     _disconnect_point_signals()
@@ -21,10 +21,31 @@ extends Node3D
     rail_width = max(v, 0.1)
     _update()
 
-@export var tie_length: float = 1.0
-@export var tie_thickness: float = 0.06
-@export var rail_height: float = 0.14
-@export var rail_thickness: float = 0.08
+@export var tie_length: float = 1.0:
+  set(v):
+    tie_length = max(v, 0.001)
+    _update()
+
+@export var tie_thickness: float = 0.06:
+  set(v):
+    tie_thickness = max(v, 0.001)
+    _update()
+
+@export var rail_height: float = 0.14:
+  set(v):
+    rail_height = max(v, 0.001)
+    _update()
+
+@export var rail_thickness: float = 0.08:
+  set(v):
+    rail_thickness = max(v, 0.001)
+    _update()
+
+# Independent tie width so changing rail_thickness no longer affects tie length
+@export var tie_width: float = 2.5:
+  set(v):
+    tie_width = max(v, 0.001)
+    _update()
 
 @export var show_debug_markers: bool = false:
   set(v):
@@ -166,7 +187,7 @@ func _update():
     tie.material = StandardMaterial3D.new()
     tie.material.albedo_color = Color.SANDY_BROWN
     tie.position = pos
-    tie.scale = Vector3(tie_length, tie_thickness, rail_thickness * 2.5)
+    tie.scale = Vector3(tie_length, tie_thickness, tie_width)
     tie.look_at_from_position(pos, pos + tangent, base_normal)
     add_child(tie)
 

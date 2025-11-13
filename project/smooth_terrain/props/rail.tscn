@@ -6,19 +6,20 @@
 [sub_resource type="Resource" id="Resource_8pbdb"]
 script = ExtResource("2_nwlu7")
 position = Vector3(7.19, -3.96, -5)
+normal = Vector3(0.28, 1, 0)
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [sub_resource type="Resource" id="Resource_mufwa"]
 script = ExtResource("2_nwlu7")
 position = Vector3(5, 0, 10)
-normal = Vector3(0, 1, 0.38)
+normal = Vector3(0, 1, -0.125)
 rotation = 0.11
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [sub_resource type="Resource" id="Resource_nwlu7"]
 script = ExtResource("2_nwlu7")
 position = Vector3(17.94, 3.43, 9.26)
-normal = Vector3(-0.34, 1, 0)
+normal = Vector3(-0.38, 1, 0)
 rotation = 0.2
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
@@ -32,5 +33,9 @@ metadata/_custom_type_script = "uid://hs11wfuvqq46"
 [node name="rail" type="Node3D"]
 script = ExtResource("1_24b0p")
 rail_points = Array[ExtResource("2_nwlu7")]([SubResource("Resource_8pbdb"), SubResource("Resource_mufwa"), SubResource("Resource_nwlu7"), SubResource("Resource_cofod")])
+tie_spacing = 1.4
+tie_length = 1.3
+tie_thickness = 0.05
+tie_width = 0.25
 show_debug_markers = true
-handle_strength = 4.28
+handle_strength = 2.0
