@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
 [ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
 [ext_resource type="Texture2D" uid="uid://uv8ut1kofxit" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_baseColor.png" id="2_hlu6d"]
@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
-[ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
-[ext_resource type="PackedScene" uid="uid://be6g07hy2y7wt" path="res://smooth_terrain/props/multi_rail.tscn" id="17_da2ih"]
+[ext_resource type="Script" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
+[ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -109,7 +109,6 @@ environment = SubResource("2")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9121203, -3.8550473e-07, -0.4099227, 0.35500365, 0.49999997, 0.7899193, 0.20496103, -0.86602545, 0.45606023, 14.4885, 81.574554, 0)
-visible = false
 layers = 3
 shadow_enabled = true
 shadow_blur = 0.5
@@ -263,4 +262,5 @@ spawner = NodePath("../prop_spawner")
 [node name="prop_spawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../builds")
 
-[node name="multi_rail" parent="." instance=ExtResource("17_da2ih")]
+[node name="cart" parent="." instance=ExtResource("18_gxx5o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3925996, 0.4337591, -5.4551682)
