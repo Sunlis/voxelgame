@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd6bqs5ncfxu0"]
+
+[ext_resource type="Script" uid="uid://bs7d3d6hrh6qr" path="res://smooth_terrain/build_menu_item.gd" id="1_l16p2"]
+[ext_resource type="Texture2D" uid="uid://cm4fko0kfcnis" path="res://smooth_terrain/assets/ui/input/lantern.png" id="1_oubr4"]
+
+[node name="build_menu_item" type="PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+script = ExtResource("1_l16p2")
+
+[node name="lantern" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="lantern"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("1_oubr4")
+expand_mode = 3
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="lantern"]
+layout_mode = 2
+text = "Lantern"
+horizontal_alignment = 1

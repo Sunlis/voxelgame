@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+const BuildType = preload("res://smooth_terrain/build_types.gd")
+
 @export var base_speed = 40.0
 @export var jump_force = 10.0
 @export var gravity = 18.0
@@ -137,7 +139,7 @@ func _handle_input(delta: float):
       if result:
         var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
-        Global.build(pos, norm, 2)
+        Global.build(pos, norm, BuildType.Type.LANTERN)
 
   if Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")

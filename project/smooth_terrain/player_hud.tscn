@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://5dcux3hgtdra"]
+
+[ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
+[ext_resource type="PackedScene" uid="uid://dd6bqs5ncfxu0" path="res://smooth_terrain/build_menu_item.tscn" id="2_abirf"]
+[ext_resource type="Texture2D" uid="uid://b0a67f8owkg62" path="res://smooth_terrain/assets/ui/input/railroad.png" id="3_a35rk"]
+[ext_resource type="Texture2D" uid="uid://qikctejv1hqe" path="res://smooth_terrain/assets/ui/input/flashlight.png" id="4_1k1ky"]
+
+[node name="player_hud" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="crosshair" type="TextureRect" parent="center"]
+layout_mode = 2
+texture = ExtResource("1_abirf")
+
+[node name="bottom" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bottom"]
+layout_mode = 2
+
+[node name="build_menu" type="PanelContainer" parent="bottom/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/build_menu"]
+layout_mode = 2
+
+[node name="build label" type="Label" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+layout_mode = 2
+text = "Build"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="build_menu_item" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer" instance=ExtResource("2_abirf")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="rail" type="VBoxContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer/PanelContainer2/rail"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("3_a35rk")
+expand_mode = 3
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer/PanelContainer2/rail"]
+layout_mode = 2
+text = "Rail"
+horizontal_alignment = 1
+
+[node name="controls" type="MarginContainer" parent="bottom/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/controls"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("4_1k1ky")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "(F) Flashlight"
+horizontal_alignment = 1
