@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bllfwvmlam755"]
+[gd_scene load_steps=23 format=4 uid="uid://bllfwvmlam755"]
 
 [ext_resource type="Script" uid="uid://mrmjd5g35wcm" path="res://smooth_terrain/actors/cart.gd" id="1_pvflh"]
 [ext_resource type="Texture2D" uid="uid://bm1cl7iac6dw2" path="res://smooth_terrain/actors/assets/pxArt_(7).png" id="1_r1apt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://drcpcb2bmjskn" path="res://smooth_terrain/actors/assets/pxArt_(5).png" id="4_pvflh"]
 [ext_resource type="ArrayMesh" uid="uid://c6n1gbaxn0qrq" path="res://smooth_terrain/actors/assets/POSSUM.obj" id="5_nrhbf"]
 [ext_resource type="Texture2D" uid="uid://wqwj1apsa7hb" path="res://smooth_terrain/actors/assets/posm.png" id="6_pvflh"]
+[ext_resource type="PackedScene" uid="uid://dw7382tbetwnj" path="res://smooth_terrain/props/static_lantern.tscn" id="8_mo2fy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6efkv"]
 resource_name = "WHEEL_TXT"
@@ -178,6 +179,8 @@ albedo_texture = ExtResource("4_pvflh")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo2fy"]
 albedo_texture = ExtResource("6_pvflh")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ty30i"]
+
 [node name="cart" type="Node3D"]
 script = ExtResource("1_pvflh")
 
@@ -206,3 +209,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4050434, -2.9802322e-08)
 pixel_size = 0.05
 billboard = 2
 text = "Frank"
+
+[node name="lantern" parent="container" instance=ExtResource("8_mo2fy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1763911, 0.69750893, 0.56519026)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="container/lantern"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.1005311, -4.3943538e-09, 0)
+radius = 0.01
+height = 0.2
+material = SubResource("StandardMaterial3D_ty30i")

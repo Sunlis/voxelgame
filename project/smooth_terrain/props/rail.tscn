@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_8pbdb"]
 script = ExtResource("2_nwlu7")
-position = Vector3(15.17, -2.77, -0.77)
+position = Vector3(13.87, 2.32, -9.32)
 normal = Vector3(0.28, 1, 0)
 rotation = 0.69
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
@@ -26,15 +26,15 @@ metadata/_custom_type_script = "uid://hs11wfuvqq46"
 [sub_resource type="Resource" id="Resource_cofod"]
 script = ExtResource("2_nwlu7")
 position = Vector3(25.15, -0.41, -3.7)
-normal = Vector3(-0.505, 1, 0.955)
+normal = Vector3(-0.035, 1, 0.145)
 rotation = -0.915
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [sub_resource type="Resource" id="Resource_2meyo"]
 script = ExtResource("2_nwlu7")
 position = Vector3(0.205, -2.145, 1.335)
-normal = Vector3(0, 1, -0.45)
-rotation = 1.535
+normal = Vector3(0, 1, -0.2)
+rotation = 0.89
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [node name="rail" type="Node3D"]

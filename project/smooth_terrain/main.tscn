@@ -1,18 +1,18 @@
 [gd_scene load_steps=36 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
-[ext_resource type="Texture2D" uid="uid://dbyfjxd8tuccq" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_normal.png" id="2_6c2kk"]
-[ext_resource type="Texture2D" uid="uid://bah3m1tg3vybk" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_baseColor.png" id="2_erh7w"]
-[ext_resource type="Texture2D" uid="uid://uv8ut1kofxit" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/StoneDirtWall_baseColor.png" id="2_hlu6d"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
-[ext_resource type="Texture2D" uid="uid://brng144p8bvri" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_normal.png" id="3_md6sa"]
+[ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="3_gxx5o"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
-[ext_resource type="Texture2D" uid="uid://bmxt0r6tlmpj6" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/StoneDirtFloor_diffuse.png" id="4_erh7w"]
+[ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="4_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
-[ext_resource type="Texture2D" uid="uid://cevx3olsxymfe" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/StoneDirtFloor_normal.png" id="4_tgnr8"]
 [ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="5_1cem4"]
 [ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
+[ext_resource type="Texture2D" uid="uid://lk57gwrolslf" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_normal.png" id="5_yt5qh"]
+[ext_resource type="Texture2D" uid="uid://by7jgkq13xvhf" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_diffuse.png" id="6_fah67"]
+[ext_resource type="Texture2D" uid="uid://dagsj1hedvbj0" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_diffuse.png" id="7_wh6ns"]
+[ext_resource type="Texture2D" uid="uid://cl0glxqh3o60a" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_diffuse.png" id="8_mwbl6"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
 [ext_resource type="Script" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
@@ -50,8 +50,8 @@ shader_parameter/u_texture_top = ExtResource("9_6c2kk")
 shader_parameter/top_normal_map = ExtResource("5_1cem4")
 shader_parameter/layer_depth = 10.0
 shader_parameter/num_depth_textures = 3
-shader_parameter/depth_textures = Array[Texture2D]([ExtResource("2_hlu6d"), ExtResource("2_erh7w"), ExtResource("4_erh7w")])
-shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_6c2kk"), ExtResource("3_md6sa"), ExtResource("4_tgnr8")])
+shader_parameter/depth_textures = Array[Texture2D]([ExtResource("6_fah67"), ExtResource("7_wh6ns"), ExtResource("8_mwbl6")])
+shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("3_gxx5o"), ExtResource("4_4hwsc"), ExtResource("5_yt5qh")])
 shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
@@ -110,6 +110,7 @@ environment = SubResource("2")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9121203, -3.8550473e-07, -0.4099227, 0.35500365, 0.49999997, 0.7899193, 0.20496103, -0.86602545, 0.45606023, 14.4885, 81.574554, 0)
+visible = false
 layers = 3
 shadow_enabled = true
 shadow_blur = 0.5
@@ -264,10 +265,10 @@ spawner = NodePath("../prop_spawner")
 spawn_path = NodePath("../builds")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(0.46150994, 0.4277966, -0.77717346, 0.11003556, 0.84167975, 0.52864677, 0.8802845, -0.32949245, 0.34137073, 8.068624, 1.0537205, 10.672591)
+transform = Transform3D(-0.27955917, -0.07470656, 0.9572177, 0.12818767, 0.98513865, 0.11432339, -0.9515327, 0.15466365, -0.2658281, 12.099403, 1.7867739, -7.807731)
 rail = NodePath("../rail")
-perc = 0.2634307760149902
-tilt_frequency = 4.0
+perc = 0.823697777475108
+tilt_frequency = 2.0
 state = 1
 move_speed = 10.0
 
