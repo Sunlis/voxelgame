@@ -2,6 +2,8 @@
 
 extends PanelContainer
 
+class_name BuildMenuItem
+
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 const ICONS = {

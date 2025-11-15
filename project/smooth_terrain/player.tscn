@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
-[ext_resource type="PackedScene" uid="uid://5dcux3hgtdra" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
+[ext_resource type="PackedScene" uid="uid://smc2oaia7e80" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
 
@@ -196,3 +196,4 @@ libraries = {
 }
 
 [node name="player_hud" parent="." instance=ExtResource("2_ju8qp")]
+unique_name_in_owner = true

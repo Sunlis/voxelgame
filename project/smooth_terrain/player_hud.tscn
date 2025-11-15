@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://iglxf8kbg85n"]
+[gd_scene load_steps=5 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
+[ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
 [ext_resource type="PackedScene" uid="uid://bh73umytkudvh" path="res://smooth_terrain/build_menu_item.tscn" id="2_abirf"]
 [ext_resource type="Texture2D" uid="uid://qikctejv1hqe" path="res://smooth_terrain/assets/ui/flashlight.png" id="4_1k1ky"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kvse2")
 
 [node name="center" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,6 +30,8 @@ size_flags_vertical = 8
 layout_mode = 2
 
 [node name="build_menu" type="PanelContainer" parent="bottom/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -40,13 +44,15 @@ layout_mode = 2
 text = "Build"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+[node name="build_items" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="build_menu_item" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer" instance=ExtResource("2_abirf")]
+[node name="build_menu_item" parent="bottom/VBoxContainer/build_menu/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
 layout_mode = 2
+hovered = true
 
-[node name="build_menu_item2" parent="bottom/VBoxContainer/build_menu/VBoxContainer/HBoxContainer" instance=ExtResource("2_abirf")]
+[node name="build_menu_item2" parent="bottom/VBoxContainer/build_menu/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
 layout_mode = 2
 build_type = 1
 

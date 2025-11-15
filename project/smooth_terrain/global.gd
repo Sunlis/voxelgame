@@ -2,6 +2,11 @@ extends Node
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
+func wrap_mod(a: int, b: int) -> int:
+  return ((a % b) + b) % b
+
+### TERRAIN
+
 var _terrain: VoxelTerrain = null
 
 func register_terrain(terrain: VoxelTerrain) -> void:
@@ -9,6 +14,8 @@ func register_terrain(terrain: VoxelTerrain) -> void:
 
 func get_terrain() -> VoxelTerrain:
   return _terrain
+
+### BUILD
 
 signal build_requested(pos: Vector3, norm: Vector3, build_type: BuildType.Type)
 

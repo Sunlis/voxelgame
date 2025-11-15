@@ -21,6 +21,8 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @onready var eyes: CSGCombiner3D = %eyes
 @onready var flashlight: SpotLight3D = %flashlight
 
+@onready var player_hud: PlayerHUD = %player_hud
+
 @onready var anim_player: AnimationPlayer = %anim
 
 var id: int
@@ -129,6 +131,13 @@ func _handle_input(delta: float):
     body.transparency = smoothstep(4.0, 0.5, camera.position.z)
     
     if Input.is_action_just_pressed("toggle_build_mode"):
+      if mode == Mode.BUILDING:
+        self.mode = Mode.MINING
+      else:
+        self.mode = Mode.BUILDING
+      player_hud.build_mode = self.mode == Mode.BUILDING
+
+    if self.mode == Mode.BUILDING and Input.is_action_just_pressed("build"):
       var state = get_world_3d().direct_space_state
       var origin = head.global_transform.origin
       var direction = -camera.global_transform.basis.z
@@ -141,7 +150,7 @@ func _handle_input(delta: float):
         var norm = Vector3(result.normal)
         Global.build(pos, norm, BuildType.Type.LANTERN)
 
-  if Input.is_action_pressed("dig") and not anim_player.is_playing():
+  if self.mode == Mode.MINING and Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")
   
   if Input.is_action_just_pressed("toggle_flashlight"):
