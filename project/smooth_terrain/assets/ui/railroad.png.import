@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm4fko0kfcnis"
-path="res://.godot/imported/lantern.png-d3a022f0ca9ca226ccd0ffbc6e6771bf.ctex"
+uid="uid://b0a67f8owkg62"
+path="res://.godot/imported/railroad.png-93377031d85fad6257727a5bbbd453ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://smooth_terrain/assets/ui/input/lantern.png"
-dest_files=["res://.godot/imported/lantern.png-d3a022f0ca9ca226ccd0ffbc6e6771bf.ctex"]
+source_file="res://smooth_terrain/assets/ui/railroad.png"
+dest_files=["res://.godot/imported/railroad.png-93377031d85fad6257727a5bbbd453ba.ctex"]
 
 [params]
 
