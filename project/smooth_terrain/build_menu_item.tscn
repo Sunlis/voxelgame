@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd6bqs5ncfxu0"]
+[gd_scene load_steps=3 format=3 uid="uid://bh73umytkudvh"]
 
 [ext_resource type="Script" uid="uid://bs7d3d6hrh6qr" path="res://smooth_terrain/build_menu_item.gd" id="1_l16p2"]
 [ext_resource type="Texture2D" uid="uid://cm4fko0kfcnis" path="res://smooth_terrain/assets/ui/lantern.png" id="1_oubr4"]
@@ -7,25 +7,34 @@
 custom_minimum_size = Vector2(80, 80)
 script = ExtResource("1_l16p2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="color" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.5489626, 0.5489626, 0.54896253, 0.49019608)
+color = Color(0.25599694, 0.5249276, 0.68603885, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="lantern" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="vbox" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="texture" type="TextureRect" parent="MarginContainer/PanelContainer/lantern"]
+[node name="texture" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/vbox"]
 unique_name_in_owner = true
+modulate = Color(0.5, 0.5, 0.5, 1)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 texture = ExtResource("1_oubr4")
@@ -33,7 +42,7 @@ expand_mode = 3
 stretch_mode = 5
 flip_h = true
 
-[node name="label" type="Label" parent="MarginContainer/PanelContainer/lantern"]
+[node name="label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/vbox"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Lantern"
