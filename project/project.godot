@@ -25,6 +25,7 @@ UPNPHelper="*res://smooth_terrain/upnp.gd"
 
 [display]
 
+window/size/mode=2
 window/size/initial_position_type=0
 window/stretch/mode="viewport"
 window/dpi/allow_hidpi=false

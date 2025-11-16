@@ -136,7 +136,6 @@ func _handle_input(delta: float):
         self.mode = Mode.MINING
       else:
         self.mode = Mode.BUILDING
-      build_marker.visible = self.mode == Mode.BUILDING
       player_hud.build_mode = self.mode == Mode.BUILDING
 
     if self.mode == Mode.BUILDING:
@@ -147,7 +146,9 @@ func _handle_input(delta: float):
       # only collide with terrain (layer 5)
       query.collision_mask = 1 << 5 - 1
       var result = state.intersect_ray(query)
-      if result:
+      var collision = "position" in result
+      build_marker.visible = collision
+      if collision:
         var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
         build_marker.global_transform.origin = pos + norm * 0.1
@@ -155,6 +156,8 @@ func _handle_input(delta: float):
         build_marker.directional = BuildType.ROTATABLE.get(player_hud.get_selected_build_type(), false)
         if Input.is_action_just_pressed("build"):
           Global.build(pos, norm, BuildType.Type.LANTERN)
+    else: # self.mode != Mode.BUILDING
+      build_marker.visible = false
 
     if self.mode == Mode.BUILDING:
       if Input.is_action_pressed("rotate_build_clockwise"):
