@@ -1,8 +1,10 @@
 @tool
 
+extends MarginContainer
+
 class_name PlayerHUD
 
-extends MarginContainer
+const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @export var build_mode: bool = false:
   set(v):
@@ -54,3 +56,9 @@ func _unhandled_input(event: InputEvent) -> void:
         selected_build_index -= 1
       _pan_delta = 0.0
     _last_pan = now
+
+func get_selected_build_type() -> BuildType.Type:
+  var build_items = build_item_container.get_children()
+  var wrapped_index = Global.wrap_mod(selected_build_index, build_items.size())
+  var item = build_items[wrapped_index] as BuildMenuItem
+  return item.build_type

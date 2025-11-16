@@ -1,20 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7i0m8172qkjt"]
+[gd_scene load_steps=3 format=3 uid="uid://b7i0m8172qkjt"]
+
+[ext_resource type="Script" uid="uid://c3x6byqibd0wk" path="res://build_marker.gd" id="1_al237"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asw5t"]
-albedo_color = Color(0.03071098, 0.47326565, 0.80482495, 1)
+transparency = 1
+albedo_color = Color(0.03137255, 0.4745098, 0.8039216, 0.60784316)
 
 [node name="build_marker" type="Node3D"]
+script = ExtResource("1_al237")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = SubResource("StandardMaterial3D_asw5t")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-radius = 0.3
-height = 0.2
-cone = true
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D"]
+radius = 0.25
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
-radius = 0.1
-height = 1.0
+[node name="arrow" type="CSGCombiner3D" parent="CSGCombiner3D"]
+unique_name_in_owner = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+radius = 0.05
+height = 0.5
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995, 0.1)
+polygon = PackedVector2Array(-0.2, -0.3, 0, 0, 0.2, -0.3)
+depth = 0.2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4582223, 0)
+size = Vector3(0.1, 0.5, 0.2)

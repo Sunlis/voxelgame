@@ -11,6 +11,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @export var dig_radius = 1.5
 
 @export var build_reach = 12.0
+@export var build_rotate_speed = 5.0
 
 @onready var mp_sync: MultiplayerSynchronizer = %mp_sync
 @onready var viewer: VoxelViewer = %viewer
@@ -22,7 +23,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @onready var flashlight: SpotLight3D = %flashlight
 
 @onready var player_hud: PlayerHUD = %player_hud
-
+@onready var build_marker: Node3D = %build_marker
 @onready var anim_player: AnimationPlayer = %anim
 
 var id: int
@@ -135,9 +136,10 @@ func _handle_input(delta: float):
         self.mode = Mode.MINING
       else:
         self.mode = Mode.BUILDING
+      build_marker.visible = self.mode == Mode.BUILDING
       player_hud.build_mode = self.mode == Mode.BUILDING
 
-    if self.mode == Mode.BUILDING and Input.is_action_just_pressed("build"):
+    if self.mode == Mode.BUILDING:
       var state = get_world_3d().direct_space_state
       var origin = head.global_transform.origin
       var direction = -camera.global_transform.basis.z
@@ -148,7 +150,17 @@ func _handle_input(delta: float):
       if result:
         var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
-        Global.build(pos, norm, BuildType.Type.LANTERN)
+        build_marker.global_transform.origin = pos + norm * 0.1
+        build_marker.look_at(build_marker.global_transform.origin + norm, Vector3.UP)
+        build_marker.directional = BuildType.ROTATABLE.get(player_hud.get_selected_build_type(), false)
+        if Input.is_action_just_pressed("build"):
+          Global.build(pos, norm, BuildType.Type.LANTERN)
+
+    if self.mode == Mode.BUILDING:
+      if Input.is_action_pressed("rotate_build_clockwise"):
+        build_marker.rot -= delta * build_rotate_speed
+      elif Input.is_action_pressed("rotate_build_counterclockwise"):
+        build_marker.rot += delta * build_rotate_speed
 
   if self.mode == Mode.MINING and Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")
