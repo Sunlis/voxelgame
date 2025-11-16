@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7i0m8172qkjt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asw5t"]
+albedo_color = Color(0.03071098, 0.47326565, 0.80482495, 1)
+
+[node name="build_marker" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_asw5t")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+radius = 0.3
+height = 0.2
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+radius = 0.1
+height = 1.0
