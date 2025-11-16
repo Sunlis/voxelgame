@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="3_gxx5o"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cl0glxqh3o60a" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_diffuse.png" id="8_mwbl6"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
-[ext_resource type="Script" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
+[ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 [ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
 
@@ -52,7 +52,7 @@ shader_parameter/layer_depth = 10.0
 shader_parameter/num_depth_textures = 3
 shader_parameter/depth_textures = Array[Texture2D]([ExtResource("6_fah67"), ExtResource("7_wh6ns"), ExtResource("8_mwbl6")])
 shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("3_gxx5o"), ExtResource("4_4hwsc"), ExtResource("5_yt5qh")])
-shader_parameter/normal_strength = 2.0
+shader_parameter/normal_strength = 4.0
 
 [sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
 
