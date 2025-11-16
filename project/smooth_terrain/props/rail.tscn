@@ -1,48 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2ixdxijpuadn"]
+[gd_scene load_steps=2 format=3 uid="uid://d2ixdxijpuadn"]
 
 [ext_resource type="Script" uid="uid://bb33nn54n0jn8" path="res://smooth_terrain/props/rail.gd" id="1_24b0p"]
-[ext_resource type="Script" uid="uid://hs11wfuvqq46" path="res://smooth_terrain/props/rail_point.gd" id="2_nwlu7"]
-
-[sub_resource type="Resource" id="Resource_8pbdb"]
-script = ExtResource("2_nwlu7")
-position = Vector3(13.87, 2.32, -9.32)
-normal = Vector3(0.28, 1, 0)
-rotation = 0.69
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_mufwa"]
-script = ExtResource("2_nwlu7")
-position = Vector3(5, 0, 10)
-normal = Vector3(0, 1, -0.125)
-rotation = 0.11
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_nwlu7"]
-script = ExtResource("2_nwlu7")
-position = Vector3(17.94, -2.32, 9.26)
-rotation = -1.02
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_cofod"]
-script = ExtResource("2_nwlu7")
-position = Vector3(25.15, -0.41, -3.7)
-normal = Vector3(-0.035, 1, 0.145)
-rotation = -0.915
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_2meyo"]
-script = ExtResource("2_nwlu7")
-position = Vector3(0.205, -2.145, 1.335)
-normal = Vector3(0, 1, -0.2)
-rotation = 0.89
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [node name="rail" type="Node3D"]
 script = ExtResource("1_24b0p")
-rail_points = Array[ExtResource("2_nwlu7")]([SubResource("Resource_8pbdb"), SubResource("Resource_mufwa"), SubResource("Resource_nwlu7"), SubResource("Resource_cofod"), SubResource("Resource_2meyo")])
 tie_spacing = 1.4
 tie_length = 1.3
 tie_thickness = 0.05
 tie_width = 0.25
 show_debug_markers = true
-handle_strength = 2.4699999999999998
+handle_strength = 2.0

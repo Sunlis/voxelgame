@@ -1,6 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=41 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="3_gxx5o"]
@@ -14,11 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://dagsj1hedvbj0" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_diffuse.png" id="7_wh6ns"]
 [ext_resource type="Texture2D" uid="uid://cl0glxqh3o60a" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_diffuse.png" id="8_mwbl6"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
-[ext_resource type="PackedScene" uid="uid://bvm7ocin62h7r" path="res://smooth_terrain/props/prop_lantern.tscn" id="14_md6sa"]
 [ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 [ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
-[ext_resource type="PackedScene" uid="uid://c3h38lwxk27dk" path="res://smooth_terrain/assets/environment/dumpster_old_and_weathered.glb" id="19_4hwsc"]
+[ext_resource type="Script" uid="uid://hs11wfuvqq46" path="res://smooth_terrain/props/rail_point.gd" id="19_yt5qh"]
+[ext_resource type="PackedScene" uid="uid://chxh4h680iioj" path="res://dumpster.tscn" id="20_yt5qh"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
 
@@ -103,6 +103,26 @@ size = Vector2(256, 128)
 center_offset = Vector3(0, 64, 0)
 orientation = 2
 
+[sub_resource type="Resource" id="Resource_fah67"]
+script = ExtResource("19_yt5qh")
+position = Vector3(10, 0.5, 10)
+metadata/_custom_type_script = "uid://hs11wfuvqq46"
+
+[sub_resource type="Resource" id="Resource_wh6ns"]
+script = ExtResource("19_yt5qh")
+position = Vector3(10, 3.16, 8.42)
+metadata/_custom_type_script = "uid://hs11wfuvqq46"
+
+[sub_resource type="Resource" id="Resource_yt5qh"]
+script = ExtResource("19_yt5qh")
+position = Vector3(10, 0.3, 3)
+metadata/_custom_type_script = "uid://hs11wfuvqq46"
+
+[sub_resource type="Resource" id="Resource_mwbl6"]
+script = ExtResource("19_yt5qh")
+position = Vector3(10, 0.1, 0)
+metadata/_custom_type_script = "uid://hs11wfuvqq46"
+
 [node name="main" type="Node"]
 script = ExtResource("1_at30r")
 
@@ -177,9 +197,6 @@ theme_override_constants/margin_bottom = 16
 [node name="multiplayer_menu" parent="MarginContainer" instance=ExtResource("4_oexva")]
 layout_mode = 2
 size_flags_vertical = 8
-
-[node name="prop_lantern" parent="." instance=ExtResource("14_md6sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5565372, 1.914, -7.7271547)
 
 [node name="border" type="Node3D" parent="."]
 
@@ -269,13 +286,13 @@ spawner = NodePath("../prop_spawner")
 spawn_path = NodePath("../builds")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(-0.92171365, 0.3237326, -0.21363772, 0.25807983, 0.9230467, 0.2852709, 0.2895491, 0.2078025, -0.9343337, 13.87, 5.6319513, -9.32)
+transform = Transform3D(1, 0, 0, 0, 0.49229005, -0.87043124, 0, 0.87043124, 0.49229005, 10, 0.5, 10)
 rail = NodePath("../rail")
 tilt_frequency = 2.0
 move_speed = 10.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3119516, 0)
+rail_points = Array[ExtResource("19_yt5qh")]([SubResource("Resource_fah67"), SubResource("Resource_wh6ns"), SubResource("Resource_yt5qh"), SubResource("Resource_mwbl6")])
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("19_4hwsc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 51.23366)
+[node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)
