@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt5kav47ebpgu"]
+
+[ext_resource type="PackedScene" uid="uid://b2830tqomits5" path="res://smooth_terrain/assets/environment/CityPack/Low Poly City Pack.fbx" id="1_c101i"]
+
+[node name="world" type="Node3D"]
+
+[node name="Low Poly City Pack" parent="." instance=ExtResource("1_c101i")]
