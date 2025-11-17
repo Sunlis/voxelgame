@@ -25,9 +25,8 @@ UPNPHelper="*res://smooth_terrain/upnp.gd"
 
 [display]
 
-window/size/mode=2
-window/size/initial_position_type=0
-window/stretch/mode="viewport"
+window/size/mode=3
+window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 
 [filesystem]
@@ -133,7 +132,9 @@ build_select_prev={
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
+anti_aliasing/quality/msaa_3d=1
 limits/global_shader_variables/buffer_size=262144
+anti_aliasing/quality/screen_space_aa=1
 shadows/shadow_atlas/size=8192
 shadows/shadow_atlas/quadrant_0_subdiv=1
 shadows/shadow_atlas/quadrant_1_subdiv=1
