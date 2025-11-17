@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://be50grd414l1o"]
+
+[ext_resource type="PackedScene" uid="uid://dc3kdrh64asxv" path="res://streetlight.tscn" id="1_fh4w1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hwsc"]
+albedo_color = Color(0.5137255, 0.47058824, 0.45490196, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dm4p5"]
+material = SubResource("StandardMaterial3D_4hwsc")
+size = Vector2(182, 30)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fh4w1"]
+points = PackedVector3Array(-91, 0, -15, -91, 0, 14.999998, 91, 0, -15, 91, 0, 14.999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fah67"]
+albedo_color = Color(0.67058825, 0.60784316, 0.5568628, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fh4w1"]
+material = SubResource("StandardMaterial3D_fah67")
+size = Vector3(122, 0.2, 6)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f78cl"]
+points = PackedVector3Array(-61, -0.1, -3, -61, 0.1, -3, 61, -0.1, -3, -61, -0.1, 3, -61, 0.1, 3, 61, 0.1, -3, 61, -0.1, 3, 61, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pk5nr"]
+material = SubResource("StandardMaterial3D_fah67")
+size = Vector3(194, 0.2, 6)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6g3mr"]
+points = PackedVector3Array(-97, -0.1, -3, -97, 0.1, -3, 97, -0.1, -3, -97, -0.1, 3, -97, 0.1, 3, 97, 0.1, -3, 97, -0.1, 3, 97, 0.1, 3)
+
+[node name="road_section" type="Node3D"]
+
+[node name="road" type="StaticBody3D" parent="."]
+
+[node name="road" type="MeshInstance3D" parent="road"]
+mesh = SubResource("PlaneMesh_dm4p5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="road"]
+shape = SubResource("ConvexPolygonShape3D_fh4w1")
+
+[node name="inner_sidewalk" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="sidewalk_00" type="MeshInstance3D" parent="inner_sidewalk"]
+mesh = SubResource("BoxMesh_fh4w1")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inner_sidewalk"]
+shape = SubResource("ConvexPolygonShape3D_f78cl")
+
+[node name="outer_sidewalk" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
+
+[node name="sidewalk_01" type="MeshInstance3D" parent="outer_sidewalk"]
+mesh = SubResource("BoxMesh_pk5nr")
+skeleton = NodePath("../../inner_sidewalk/sidewalk_00")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="outer_sidewalk"]
+shape = SubResource("ConvexPolygonShape3D_6g3mr")
+
+[node name="streetlight" parent="." instance=ExtResource("1_fh4w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.5)
+
+[node name="streetlight3" parent="." instance=ExtResource("1_fh4w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 15.5)
+
+[node name="streetlight2" parent="." instance=ExtResource("1_fh4w1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -30, 0, -15.5)
+
+[node name="streetlight4" parent="." instance=ExtResource("1_fh4w1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 30, 0, -15.5)

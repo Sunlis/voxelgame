@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dc3kdrh64asxv"]
+[gd_scene load_steps=8 format=4 uid="uid://dc3kdrh64asxv"]
 
 [ext_resource type="Texture2D" uid="uid://w2h1qyvhye11" path="res://smooth_terrain/assets/environment/CityPack/ColorTexture.jpg" id="1_es5hd"]
 
@@ -49,7 +49,11 @@ emission = Color(0.7294118, 0.5686275, 0.34901962, 1)
 material = SubResource("StandardMaterial3D_mwbl6")
 size = Vector3(1.38, 0.36, 0.07)
 
-[node name="streetlight" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3l16s"]
+height = 16.0
+radius = 0.25
+
+[node name="streetlight" type="StaticBody3D"]
 
 [node name="LightStreetBig" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, 0, 0, 0)
@@ -70,3 +74,7 @@ shadow_enabled = true
 spot_range = 40.0
 spot_angle = 70.0
 spot_angle_attenuation = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+shape = SubResource("CylinderShape3D_3l16s")
