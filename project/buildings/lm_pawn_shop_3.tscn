@@ -1,0 +1,637 @@
+[gd_scene load_steps=36 format=4 uid="uid://crnfcpqaeu635"]
+
+[ext_resource type="Texture2D" uid="uid://dtb5gcwdifp1u" path="res://smooth_terrain/assets/environment/ccity_building_set_1_11.png" id="1_65i4e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p47gj"]
+resource_name = "Pawnshop"
+cull_mode = 2
+albedo_texture = ExtResource("1_65i4e")
+roughness = 0.34
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_73ti0"]
+_surfaces = [{
+"aabb": AABB(-873.07605, -55.468277, -769.9601, 1742.01, 146.27856, 1539.9202),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAgADAAUABgAEAAAABwAFAAMABgAHAAQABwAGAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAAAAP////8AAP//AAAAAAAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_clwfj"]
+resource_name = "Sketchfab_Scene_pasted__pCube80_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-873.07605, -55.468277, -769.9601, 1742.01, 146.27856, 1539.9202),
+"attribute_data": PackedByteArray("zACgTideKnAnXqBOzAAqcMwAKnAnXqBOJ14qcMwAoE49YB1Pwqhzb8KoHU89YHNvPWAdT8Koc2/CqB1PPWBzbw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD///8//////wAA/z///wAAAAD/P/////////8/AAAAAAAA/z8AAP//////PwAAAAD///8/AAD//wAA/z//f////3////9/////f///////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_73ti0")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kxvkc"]
+_surfaces = [{
+"aabb": AABB(-825, -91.04677, -700, 1600, 400, 1400),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAwAEAAIAAAAFAAEABQAAAAYABQAGAAcACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAD//wAAAAD//wAAAAAAAP////8AAAAA//8AAP//AAD///////8AAAAAAAAAAAAAAAD/////AAAAAAAA//8AAJ0ZAAD//wAAMm7/////AAAybgAA//8AAJ0Z/////wAAbpEAAP//AABh5v////8AAGHmAAD//wAAbpH/////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_88nwk"]
+resource_name = "Sketchfab_Scene_pasted__pCube81_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-825, -91.04677, -700, 1600, 400, 1400),
+"attribute_data": PackedByteArray("12ViqEmm+W9JpmKo12X5b9dl+W9JpmKoSab5b9dlYqhJpvlv12ViqNdl+W9JpmKo6gvicKIoJaiiKOJw6gslqOs14nDjUSWo41HicOs1Jag="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAD//wAA/////wAAAAD///////8AAP//AAAAAAAA/////wAA////P/////8AAP8///8AAAAA/z//////////PwAAAAAAAP//AAD///////8AAAAA/////wAA//8AAP//nRkAAP///n8ybv/////+fzJuAAD///5/nRn//////n9ukQAA///+f2Hm//////5/YeYAAP///n9ukf/////+f////3////9/////f////3//fwAA/38AAP9/AAD/fwAA/z//f/8//3//P/9//z//f/9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kxvkc")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_18agm"]
+_surfaces = [{
+"aabb": AABB(-823.07605, -55.468277, -723.7151, 1646.1521, 164.42151, 1445.5527),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEABQAAAAIABQACAAQABgAAAAUABgADAAAABwABAAMABwADAAYABAABAAcACAAEAAcACQAFAAQACQAEAAgACAAHAAoACgAHAAYACwAIAAoACwAKAAwACgAGAA0ADQAGAAUADQAMAAoADQAFAAkADQAOAAwADgANAAkADgAJAA8A"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("iAhSm3b3AAB291KbiAgAAHb3Upt29wAAiAhSm4gIAAB29///dvcAAIgI//929wAAiAj//4gIAAB29///iAgAAP///////wAAAAD/////AAD/////AAAAAP//AAD//wAA//8AAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAP//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ns32d"]
+resource_name = "Sketchfab_Scene_pasted__polySurface804_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-823.07605, -55.468277, -723.7151, 1646.1521, 164.42151, 1445.5527),
+"attribute_data": PackedByteArray("/qcKf7T/dv+0/wp//qd2/zBgYm+6qNtOuqhibzBg204PZVThFKfL/xSnVOEPZcv/FKdU4Q9ly/8PZVThFKfL/9r/QX4c+d0Psf9UATr553M6+edz2v9BfpGpxn0TrwZ0o17tD/aougD2qO0Po166AKNe7Q/2qLoA9qjtD6NeugCjXu0P9qi6APao7Q+jXroAo17tD/aougD2qO0Po166AA=="),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEgARABMAEAAUABEAEgATABUAFgAUABAAFQATABcAFgAXABQAFQAXABYAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("iAhSm3b3/z9291KbiAj/P3b3Upt29/8/iAhSm4gI/z8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD///8//////wAA/z///wAAAAD/P/////////8/AAAAAAAA//8AAP///////wAAAAD/////AAD//wAA//8AAP////8Xy3b3//9293gy////////TjN29///iAgiPogI//929ynJ/////wAAgz0AAP//AABW1YgI//+ICFfViAj//3b3//9291Kbdvf//3b3//929///iAhSm3b3//929///dvf//3b3UpuICP//dvf//4gI//9291Kbdvf//3b3//+ICP//iAhSm4gI//+ICP//iAj//3b3UpuICP//iAj//4gI//+ICFKbdvf//4gI//929///iAhSm4gI//////9/////f////3////9/////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/P/9//z//f/8//3//P/9/1rkTo8PaiDV42/I2BNl8k8i9GqHJ1JqVp6qrqqaqq6r///9/////f////3////9//z//f/8//3//P/9//z//f/9//3//f/9//3//f/9//3//v/9//7//f/+//3//v/9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_18agm")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3xh5s"]
+_surfaces = [{
+"aabb": AABB(-639.89624, -55.468277, 721.8376, 528.64606, 164.42151, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAD/////AAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ncfjp"]
+resource_name = "Sketchfab_Scene_pasted__polySurface805_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-639.89624, -55.468277, 721.8376, 528.64606, 164.42151, 1e-05),
+"attribute_data": PackedByteArray("FAw74Ocorf7fKDvgCgyt/g=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAA/n//////AAD+f///AAAAAP5/AAD//wAA/n//f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3xh5s")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_txrbh"]
+_surfaces = [{
+"aabb": AABB(108.95738, -55.468277, 721.8375, 530.9388, 164.42151, 6.1035156e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2uk6w"]
+resource_name = "Sketchfab_Scene_pasted__polySurface806_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(108.95738, -55.468277, 721.8375, 530.9388, 164.42151, 6.1035156e-05),
+"attribute_data": PackedByteArray("1jU74LNR8f6yUTvg0jXx/g=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//wAA/n//f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_txrbh")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4ki8f"]
+_surfaces = [{
+"aabb": AABB(-873.07605, 64.44719, -769.9601, 1742.01, 146.27858, 1539.9202),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABQADAAEABgAFAAAABwAEAAMABwAGAAQABQAHAAMABgAHAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xjcgr"]
+resource_name = "Sketchfab_Scene_pasted__pCube84_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-873.07605, 64.44719, -769.9601, 1742.01, 146.27858, 1539.9202),
+"attribute_data": PackedByteArray("uQC9axFeYnARXr1ruQBicCNmQ3AOpineDqZDcCNmKd65AGJwEV69axFeYnC5AL1rFmDMar+oXW+/qMxqFmBdbxZgzGq/qF1vv6jMahZgXW8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/PwAA//8AAP////8AAAAA////////AAD//wAAAAAAAP////8AAP///z//////AAD/P///AAAAAP8//////////z8AAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/9/////f////3////9///////9/////f////3////9/////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4ki8f")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_86qfh"]
+_surfaces = [{
+"aabb": AABB(-865, 20, -865, 1730, 374.53174, 1530),
+"format": 34896613377,
+"index_count": 270,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAABAADAAcABAAHAAgABgAmAAUAKAAmAAYABQAfAAEAKAArACYALAArACgAJgAkAAUABQAkAB8AKwAlACYAJgAlACQALAAtACsALgAtACwALgAwAC0AMAAvAC0AMAAxAC8AMQAyAC8AMQAzADIALQAvACkALQApACsAKwApACUAKQAnACUAKQAqACcAJQAnACMAJQAjACQAIgAjACAAIgAgADQANAAgAB4AIQAiADQAJAAhADUAIQA0ADUAJAA1AB8ANAAeADYANQA0ADYANgAeABwAHwA1ADcANQA2ADcANgAcADgANwA2ADgAOAAcABoAHwA3AB0AAQAfAB0AAQAdAAMAHQA3ADkANwA4ADkAAwAdABIAHQA5ABIAAwASAAcAOQA4ABsAOAAaABsAOQAbABcAEgA5ABcAGgAYABsAGgAZABgABwASADoAEgAXADoABwA6ADsACAAHADsACAA7AAkACQA7ADwAOgA8ADsACQA8AAsAFwA9ADoAOgA9ADwAFwAWAD0ACwA8AAoAPQAKADwACwAKAAwADAAKAA0ADAANAA4ACgAPAA0APQAQAAoACgAQAA8AFgAQAD0AEAARAA8AFgA+ABAAEAA+ABEAGAA+ABYAPgAUABEAGAA/AD4APgA/ABQAGQA/ABgAPwAVABQAGQATAD8APwATABUA"),
+"lods": [0.3699764, PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAABAADAAcABAAHAAgACAAHAAkACQAHAAoACQAKAAsACwAKAAwADAAKAA0ADAANAA4ACgAPAA0ACgAQAA8AEAAKAAcAEAARAA8AAwASAAcABwASABAAEAATABEAEwAUABEAEwAVABQAFgATABAAFwAWABAAEgAXABAAGAATABYAGQATABgAGgAZABgAGgAYABsAEgAbABcAHAAaABsAEgAcABsAHQAcABIAAwAdABIAHQAeABwAAQAdAAMAHwAeAB0AAQAfAB0AHwAgAB4ABQAfAAEAIQAgAB8AIQAiACAAIgAjACAAJAAhAB8ABQAkAB8AJQAjACQAJgAkAAUAJgAlACQABgAmAAUAJQAnACMAKAAmAAYAKQAnACUAKQAqACcAKwAlACYAKAArACYAKwApACUALAArACgALQApACsALAAtACsALgAtACwALQAvACkALgAwAC0AMAAvAC0AMAAxAC8AMQAyAC8AMQAzADIA")],
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAALNH7NwAAAAAAADs3AAA/BqzR+zcAAD8GgAA7NwAAAAAs0cAAAAA//8AAAAAAAD8GrNH//8AAPwaAAD//wAAUCMAAP//AABHurNH//8AANVfAAD//wAAR7oAAP//AABHurNHY+QAAEe6AABj5AAADrizR2PkAAAOuLNHfP0AAA64kqtj5AAANR2zR3z9AAAOuP//fP0AAA64/e1j5AAADrj//2PkAAANYpKrfP0AAIglkqt8/QAADWL97Xz9AAANYv//fP0AAIgl//98/QAAiCX97Xz9AAA1Hf//fP0AADUds0dq2gAANR3//2raAAA4ArNHatoAADgC//9q2gAAOAKSq4ICAAA4Av3tggIAADgC//+CAgAAOAKzR4ICAADG/bNHggIAAP//s0cAAAAAxv3//4ICAAD//wAA//8AAMb9s0d8/QAAxv3//3z9AAD//7NH//8AAG/TAAD//wAAb9OzR///AABv0wAAY+QAAKfVs0d8/QAAb9OzR2PkAACn1bNHY+QAAKfV//98/QAAp9X//2PkAAA4Av3tatoAADgCkqtq2gAANR397WraAAA1HZKratoAADUd/e18/QAANR2Sq3z9AACIJbNHfP0AAFAjs0f//wAA1V+zR///AAANYrNHfP0AAA64kqt8/QAADrj97Xz9AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jahio"]
+resource_name = "Sketchfab_Scene_pasted__loftedSurface3_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-865, 20, -865, 1730, 374.53174, 1530),
+"attribute_data": PackedByteArray("pF6hAA+piQ8PqaEApF6JD6ReiQ8PqZsSD6mJD6RemxLJb8FIyW+TTuimk07Jb0Yz6Kb5Eslv+RIASLwA3l2hD95dvAAASKEPAEihD95d9BHeXaEPBEjzEUtqvAAeeaEPHnm8AEtqoQ9LaqEPHnn0ER55oQ9OavMRqACcAKgAiw98A5wAxzaLDwwYnADHNpwAqACLD6gA6xHHNusRxzaLDx0IyE2hCshNoQr4Rx0ISBLsHPhHoQqGMuwcyE3sNkgS7DbITewchjK4D6EAeBd9D3gXoQC4D30PuA99D3gX6BF4F30PuA/oEQlh1k2nb9ZNp28SSKdvzzIJYdUSp2/VEm0ioQAtKn0PLSqhAG0ifQ9tIn0PLSroES0qfQ9tIugRUMtTAF3haTxd4VMAUMtpPABIvADeXaEP3l28AABIoQ8ASKEP3l30Ed5doQ8ASPQRpF6hAA+piQ8PqaEApF6JD6ReiQ8PqZsSD6mJD6RemxIRYdIW5qahTuam0hYRYaFOpF6hAA+piQ8PqaEApF6JD6ReiQ8PqZsSD6mJD6RemxITZqalOqZE4TqmpqUTZkThEgGTEgEIGk4BCJMSEgEaTqdv1RIJYdZNCWHVEqdv1k3opsFI6KZGMxIBSUgBCElIEgHVMgEI1TKnbxJICWESSKdvzzIJYc8yfAOLDwwYiw+RA+sRfAOLDwwYiw+4GOsRHQj4Rx0IhjKhCkgS7BxIEuw2hjLsNvhHCWESSAlhzzI="),
+"format": 34896613399,
+"index_count": 270,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAKAHQACAAJAAoACwAIAHQACwB0AHUADQALAHUADQB1AAwADgAPABAADgARAA8AEgATABQAEgAVABMAdgBtAHcAdgBvAG0AeAB2AHcAeAB3AHkAbAB4AHkAbAB5AG4AFgAXABgAFgAZABcAGgAbABwAGgAdABsAegBxAHsAegBzAHEAfAB6AHsAfAB7AH0AcAB8AH0AcAB9AHIAHgB+ACAAHgAfAH4AIAB+AH8AIAB/ACIAIgB/ACEAIgAhACMAJACAAIEAJAAlAIAAgACCAIEAgACDAIIAgwAnAIIAgwAmACcAhAApACoAhAAoACkAhQCEACoAKQAsACoAhQAqAC0AKwCFAC0AKwAtAIYALQCHAIYALQAxAIcAMQAvAIcAMQCIAC8ALACIADEAKQAuACwALACJAIgALgCJACwALgAwAIkAMgAzADQAMgA1ADMANgA3ADgANgA5ADcAigA7ADwAigA6ADsAiwCKADwAiwA8AD0APgCLAD0APgA9AD8AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkA"),
+"lods": [0.3699764, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAIAAoACwAKAAwADQALAAwADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAIAAfACEAIAAhACIAIgAhACMAJAAlACYAJgAnACQAKAApACoAKwAoACoAKQAsACoAKwAqAC0AKQAuACwAKwAtAC8ALgAwACwALQAxAC8ALAAwADEAMQAwAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAOgA8AD0APgA6AD0APgA9AD8AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEA")],
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 140,
+"vertex_data": PackedByteArray("AAAAAAAA/z8AALNH7Nz/PwAAAADs3P8/AACzRwAA/z8AALNHAACqKjgCs0dq2qoqAACzR+zcqio4ArNHggKqKjgC/e2CAv8/OAL//4IC/z84Av//atr/PzgCkquCAv8/OAKzR2ra/z84ArNHggL/PwAAAADs3P5//BqzR+zc/n/8GgAA7Nz+fwAAs0fs3P5/AACzR+zc/z81HbNHatr/P/was0fs3P8/OAKzR2ra/z/8GgAA7Nz/P/was0f///8//BoAAP///z/8GrNH7Nz/P/was0fs3KkqNR2zR3z9qir8GrNH//+qKjUds0dq2qkq/BoAAP///n/8GrNH///+f1AjAAD///5/R7qzR////n/VXwAA///+f0e6AAD///5//BqzR////z81HbNHfP3/Pw64s0d8/f8/R7qzR////z81Hf//fP3+f4gl//98/f5/iCX97Xz9/n81HbNHfP3+fw1i/e18/f5/iCWSq3z9/n8NYv//fP3+fw64s0d8/f5/Drj//3z9/n8NYpKrfP3+f0e6AAD///8/R7qzR2Pk/z9HugAAY+T/P0e6s0f///8/R7qzR///qioOuLNHY+SqKke6s0dj5KoqDrizR3z9qioOuP//fP3/Pw64//9j5P8/Drj97WPk/z8OuJKrY+T/Pw64s0d8/f8/DrizR2Pk/z9v0wAAY+T/P2/Ts0f///8/b9MAAP///z9v07NHY+T/P2/Ts0dj5Koqp9WzR3z9qipv07NH//+qKqfVs0dj5Koqp9WzR2Pk/z+n1f//fP3/P6fVs0d8/f8/p9X//2Pk/z9v0wAA///+f///s0f///5///8AAP///n9v07NH///+f2/Ts0f///8/xv2zR3z9/z///7NH////P6fVs0d8/f8///8AAP///z///7NHAAD/P///AAAAAP8///+zR////z///7NH//+qKsb9s0eCAqoq//+zRwAAqirG/bNHfP2qKsb9s0d8/f8/xv3//4IC/z/G/bNHggL/P8b9//98/f8///8AAAAAAAAAALNHAAAAAAAAAAAAAAAA//+zRwAAAAD//7NHAAAAADgCs0eCAgAAAACzRwAAAADG/bNHggIAAMb9s0eCAgAAOAL//4ICAAA4ArNHggIAAMb9//+CAgAAOAKzR2ra/n81Hf//atr+fzUds0dq2v5/OAL//2ra/n81HbNHatr//zUd//98/f//NR2zR3z9//81Hf//atr//zgC/e1q2v8/OAKSq2ra/z84Av3tatr+fzUd/e1q2v5/OAKSq2ra/n81HZKratr+fzUd/e1q2v//NR397Xz9//81HZKratr//zUdkqt8/f//UCOzR////n/VX7NH///+f4gls0d8/f8/UCOzR////z/VX7NH////Pw1is0d8/f8/NR397Xz9/n81HZKrfP3+f4gls0d8/f5/DWKzR3z9/n8OuJKrfP3+fw64/e18/f5/Drj97Xz9/z8OuJKrfP3/P/9/////f////3////9///+qqqqqqqqqqqqqqqqqqqqq/3////9/////f////3////9/////f////3////9/////f////3////n/AoD+//9/////f/n/AoD/f////3////9/////f///qKqqqqmqqqqqqqqqqKqqqv9/////f////3////9/////f////3///////3////9/////f////3//f////3////9/////f////3////9/////f////3////9/////f////38AAP9/AAD/fwAA/38AAFTVqipU1aoqVNWqKlTVqir/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///qqqqqqqqqqqqqqqqqqqqqv9/////f////3////9/////f////3////9/////f///////f////3////9/////f/9/AAD/fwAA/38AAP9/AABU1aoqVNWqKlTVqipU1aoq/38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f/+//3//v/9//7//f/+//3////9/////f////3////9/////f////3////9/////P/9//z//f/8//3//P/9//3////9/////f////3////9/////f////z//f/8//3//P/9//z//f/9/////f///////f////3////9/////f/9/////f////3////9/////f////3////9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_86qfh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gs1g"]
+resource_name = "Pawnshop1GLOW"
+cull_mode = 2
+albedo_texture = ExtResource("1_65i4e")
+roughness = 0.2
+emission_enabled = true
+emission_texture = ExtResource("1_65i4e")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3f7yj"]
+_surfaces = [{
+"aabb": AABB(-611.35986, 124.90022, 650, 1461.3599, 269.63153, 1e-05),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Pawnshop1GLOW",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("f9AAAAAAAAD/////AAAAAP//AAAAAAAAf9D//wAAAAAAAPzmAAAAAKVHuooAAAAAAAC6igAAAAClR/zmAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dbjxy"]
+resource_name = "Sketchfab_Scene_pasted__loftedSurface3_Pawnshop1GLOW_03"
+_surfaces = [{
+"aabb": AABB(-611.35986, 124.90022, 650, 1461.3599, 269.63153, 1e-05),
+"attribute_data": PackedByteArray("BEjzEUBck01AXPMRBEiTTaEK+EfsHIYyoQqGMuwc+Ec="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_6gs1g"),
+"name": "Pawnshop1GLOW",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("f9AAAAAA/n//////AAD+f///AAAAAP5/f9D//wAA/n8AAPzmAAD+f6VHuooAAP5/AAC6igAA/n+lR/zmAAD+f/9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3f7yj")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vaemk"]
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABQADAAEABgAFAAAABwAEAAMABwAGAAQABQAHAAMABgAHAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cekgo"]
+resource_name = "Sketchfab_Scene_pasted__pCube85_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("vACicNILdv/SC6JwvAB2/3jLtmbL1tNxy9a2ZnjL03G5C4T/vACicLwAdv/EC7pwP2Hab6xljv+sZdpvP2GO/z9h2m+sZY7/rGXabz9hjv8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/PwAA//8AAAAA//8AAAAAAAD/////AAAAAAAAAAAAAAAA//8AAP///z//////AAD/P///AAAAAP8//////////z8AAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/9/////f////3////9///////9/////f////3////9/53/m/95/3v/pf+n/3H/b//9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vaemk")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nn3pp"]
+_surfaces = [{
+"aabb": AABB(-125, -361.70914, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEAAwAFAAQA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAAAAD/////AAD/////AAAAAAAA//8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t572h"]
+resource_name = "Sketchfab_Scene_pasted__pCube88_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-125, -361.70914, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("YqnzAZ+vEXKfr/MBgqkRcqOpAheVrxNnla8CF6OpE2c="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/P/9/////f////3////9///////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nn3pp")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2l776"]
+_surfaces = [{
+"aabb": AABB(-125, -361.70914, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Pawnshop1GLOW",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAD/////AAAAAP//AAAAAAAA////////AAAAAAAAAAAAAAAA/////wAAAAAAAP//AAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_moa4x"]
+resource_name = "Sketchfab_Scene_pasted__pCube88_Pawnshop1GLOW_03"
+_surfaces = [{
+"aabb": AABB(-125, -361.70914, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("n6/zAQrLEXIKy/MBn68Rcp+v8wEKyxFyCsvzAZ+vEXI="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_6gs1g"),
+"name": "Pawnshop1GLOW",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP///z//////AAD/P///AAAAAP8//////////z8AAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2l776")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_scp13"]
+_surfaces = [{
+"aabb": AABB(-125, 292.46814, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABQADAAEABgAFAAAABwAEAAMABwAGAAQABQAHAAMABgAHAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nefjb"]
+resource_name = "Sketchfab_Scene_pasted__pCube89_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-125, 292.46814, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("B+WJMjz18Tw89YkyyeTxPMnk8Tw89e5pPPXxPMnk7mnJ5O5pPPUiczz17mnJ5CJzWPjuaTz18TxY+PE8PPXuab/h7mnJ5PE8v+HxPMnk7mk="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/PwAA//8AAAAA//8AAAAAAAD/////AAAAAAAAAAAAAAAA//8AAP//VNX/////AABU1f//AAAAAFTV////////VNUAAAAAAACqKgAA/////6oqAAAAAP//qioAAP//AACqKv9/////f////3////9///////9/////f////3////9//v//f/7//3/+//9//v//f6qqVFWqqlRVqqpUVaqqVFVU1VTVVNVU1VTVVNVU1VTV")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_scp13")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8u13l"]
+_surfaces = [{
+"aabb": AABB(-825, -91.04677, -700, 1600, 400, 1400),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAwAEAAIAAAAFAAEABQAAAAYABQAGAAcACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAD//wAAAAD//wAAAAAAAP////8AAAAA//8AAP//AAD///////8AAAAAAAAAAAAAAAD/////AAAAAAAA//8AAJ0ZAAD//wAAMm7/////AAAybgAA//8AAJ0Z/////wAAbpEAAP//AABh5v////8AAGHmAAD//wAAbpH/////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4660s"]
+resource_name = "Sketchfab_Scene_pasted__pCube90_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-825, -91.04677, -700, 1600, 400, 1400),
+"attribute_data": PackedByteArray("12XM4EmmYqhJpszg12ViqNdlYqhJpszgSaZiqNdlzOBJpmKo12XM4NdlYqhJpszg6gslqKIoZ9+iKCWo6gtn3+s1JajjUWff41ElqOs1Z98="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAD//wAA/////wAAAAD///////8AAP//AAAAAAAA/////wAA////P/////8AAP8///8AAAAA/z//////////PwAAAAAAAP//AAD///////8AAAAA/////wAA//8AAP//nRkAAP///n8ybv/////+fzJuAAD///5/nRn//////n9ukQAA///+f2Hm//////5/YeYAAP///n9ukf/////+f////3////9/////f////3//fwAA/38AAP9/AAD/fwAA/z//f/8//3//P/9//z//f/9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8u13l")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qkurk"]
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABQADAAEABgAFAAAABwAEAAMABwAGAAQABQAHAAMABgAHAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hepyy"]
+resource_name = "Sketchfab_Scene_pasted__pCube91_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("QimicJY1dv+WNaJwQil2/3jLtmbL1tNxy9a2ZnjL03F8NYT/QimicEIpdv+HNbpwP2Hab6xljv+sZdpvP2GO/z9h2m+sZY7/rGXabz9hjv8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/PwAA//8AAAAA//8AAAAAAAD/////AAAAAAAAAAAAAAAA//8AAP///z//////AAD/P///AAAAAP8//////////z8AAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/9/////f////3////9///////9/////f////3////9/53/m/95/3v/pf+n/3H/b//9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qkurk")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4g1xy"]
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABQADAAEABgAFAAAABwAEAAMABwAGAAQABQAHAAMABgAHAAUA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qwimn"]
+resource_name = "Sketchfab_Scene_pasted__pCube92_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(-125, -374.85712, -50, 250, 850, 100),
+"attribute_data": PackedByteArray("FFKicIdddv+HXaJwFFJ2/3jLtmbL1tNxy9a2ZnjL03FtXYT/FFKicBRSdv95XbpwP2Hab6xljv+sZdpvP2GO/z9h2m+sZY7/rGXabz9hjv8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//////P/////8AAP8//////////z8AAP//AAD/PwAA//8AAAAA//8AAAAAAAD/////AAAAAAAAAAAAAAAA//8AAP///z//////AAD/P///AAAAAP8//////////z8AAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/9/////f////3////9///////9/////f////3////9/53/m/95/3v/pf+n/3H/b//9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4g1xy")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4h2md"]
+_surfaces = [{
+"aabb": AABB(378.852, 20, 500, 200, 374.53174, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAD//wAAAAD//wAAAAAAAAAAAAAAAAAA/////wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0msu2"]
+resource_name = "Sketchfab_Scene_pasted__polySurface807_Pawnshop_03"
+_surfaces = [{
+"aabb": AABB(378.852, 20, 500, 200, 374.53174, 1e-05),
+"attribute_data": PackedByteArray("jjUpThJJjwCONY8AEkkpTg=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_p47gj"),
+"name": "Pawnshop",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAD//wAA/n///wAAAAD+fwAAAAAAAP5//////wAA/n//f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4h2md")
+
+[node name="LM_PawnShop3" type="Node3D"]
+
+[node name="pasted__pCube804" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 450, -100)
+
+[node name="pasted__pCube80_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube804"]
+mesh = SubResource("ArrayMesh_clwfj")
+skeleton = NodePath("")
+
+[node name="pasted__pCube814" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 650, -100)
+
+[node name="pasted__pCube81_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube814"]
+mesh = SubResource("ArrayMesh_88nwk")
+skeleton = NodePath("")
+
+[node name="pasted__pCube833" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1400, -100)
+
+[node name="pasted__polySurface8043" type="Node3D" parent="pasted__pCube833"]
+
+[node name="pasted__polySurface804_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube833/pasted__polySurface8043"]
+mesh = SubResource("ArrayMesh_ns32d")
+skeleton = NodePath("")
+
+[node name="pasted__polySurface8053" type="Node3D" parent="pasted__pCube833"]
+
+[node name="pasted__polySurface805_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube833/pasted__polySurface8053"]
+mesh = SubResource("ArrayMesh_ncfjp")
+skeleton = NodePath("")
+
+[node name="pasted__polySurface8063" type="Node3D" parent="pasted__pCube833"]
+
+[node name="pasted__polySurface806_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube833/pasted__polySurface8063"]
+mesh = SubResource("ArrayMesh_2uk6w")
+skeleton = NodePath("")
+
+[node name="pasted__pCube843" type="Node3D" parent="."]
+transform = Transform3D(1.0087591, 0, 0, 0, 0.23405826, 0, 0, 0, 1.0196692, 0, 509.63113, -100)
+
+[node name="pasted__pCube84_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube843"]
+mesh = SubResource("ArrayMesh_xjcgr")
+skeleton = NodePath("")
+
+[node name="pasted__loftedSurface33" type="Node3D" parent="."]
+
+[node name="pasted__loftedSurface3_Pawnshop_03" type="MeshInstance3D" parent="pasted__loftedSurface33"]
+mesh = SubResource("ArrayMesh_jahio")
+skeleton = NodePath("")
+
+[node name="pasted__loftedSurface3_Pawnshop1GLOW_03" type="MeshInstance3D" parent="pasted__loftedSurface33"]
+mesh = SubResource("ArrayMesh_dbjxy")
+skeleton = NodePath("")
+
+[node name="pasted__pCube853" type="Node3D" parent="."]
+transform = Transform3D(0.88083035, 0, 0, 0, 1.1757045, 0, 0, 0, 0.5320808, -750, 999.6744, 626.60406)
+
+[node name="pasted__pCube85_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube853"]
+mesh = SubResource("ArrayMesh_cekgo")
+skeleton = NodePath("")
+
+[node name="pasted__pCube883" type="Node3D" parent="."]
+transform = Transform3D(0.39773002, 0, 0, 0, 0.93146527, 0, 0, 0, 2.9818811, -2.6507146, 895.87274, 802.3021)
+
+[node name="pasted__pCube88_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube883"]
+mesh = SubResource("ArrayMesh_t572h")
+skeleton = NodePath("")
+
+[node name="pasted__pCube88_Pawnshop1GLOW_03" type="MeshInstance3D" parent="pasted__pCube883"]
+mesh = SubResource("ArrayMesh_moa4x")
+skeleton = NodePath("")
+
+[node name="pasted__pCube893" type="Node3D" parent="."]
+transform = Transform3D(0.88083035, 0, 0, 0, 0.082168445, 0, 0, 0, 3.3586907, 437.17786, 1420.2595, -373.82446)
+
+[node name="pasted__pCube89_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube893"]
+mesh = SubResource("ArrayMesh_nefjb")
+skeleton = NodePath("")
+
+[node name="pasted__pCube903" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1050, -100)
+
+[node name="pasted__pCube90_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube903"]
+mesh = SubResource("ArrayMesh_4660s")
+skeleton = NodePath("")
+
+[node name="pasted__pCube913" type="Node3D" parent="."]
+transform = Transform3D(0.88083035, 0, 0, 0, 1.1757045, 0, 0, 0, 0.5320808, -1.1464086, 999.6744, 626.60406)
+
+[node name="pasted__pCube91_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube913"]
+mesh = SubResource("ArrayMesh_hepyy")
+skeleton = NodePath("")
+
+[node name="pasted__pCube924" type="Node3D" parent="."]
+transform = Transform3D(0.88083035, 0, 0, 0, 1.1757045, 0, 0, 0, 0.5320808, 750, 999.6744, 626.60406)
+
+[node name="pasted__pCube92_Pawnshop_03" type="MeshInstance3D" parent="pasted__pCube924"]
+mesh = SubResource("ArrayMesh_qwimn")
+skeleton = NodePath("")
+
+[node name="pasted__polySurface8073" type="Node3D" parent="."]
+
+[node name="pasted__polySurface807_Pawnshop_03" type="MeshInstance3D" parent="pasted__polySurface8073"]
+mesh = SubResource("ArrayMesh_0msu2")
+skeleton = NodePath("")

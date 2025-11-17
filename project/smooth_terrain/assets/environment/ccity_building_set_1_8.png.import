@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0fs5nnjw1pit"
-path.s3tc="res://.godot/imported/Asphalt_06_roughness.jpg-9c341b36f7d48007ec0fd61b24818f7b.s3tc.ctex"
+uid="uid://b1qrmp5j4v07a"
+path.s3tc="res://.godot/imported/ccity_building_set_1_8.png-0fea159b277883ebcf8ff4fcd684eec9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "44b00120e73ec0ab067ccacfbece91d3"
+}
 
 [deps]
 
-source_file="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_roughness.jpg"
-dest_files=["res://.godot/imported/Asphalt_06_roughness.jpg-9c341b36f7d48007ec0fd61b24818f7b.s3tc.ctex"]
+source_file="res://smooth_terrain/assets/environment/ccity_building_set_1_8.png"
+dest_files=["res://.godot/imported/ccity_building_set_1_8.png-0fea159b277883ebcf8ff4fcd684eec9.s3tc.ctex"]
 
 [params]
 

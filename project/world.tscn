@@ -1,136 +1,31 @@
-[gd_scene load_steps=112 format=4 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=79 format=4 uid="uid://ckavqb25bdaul"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
-[ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
-[ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
-[ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="3_gxx5o"]
-[ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
-[ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="4_4hwsc"]
-[ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
-[ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="5_1cem4"]
-[ext_resource type="PackedScene" uid="uid://2wkh70pbpuoy" path="res://smooth_terrain/block.tscn" id="5_muprf"]
-[ext_resource type="Texture2D" uid="uid://lk57gwrolslf" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_normal.png" id="5_yt5qh"]
-[ext_resource type="Texture2D" uid="uid://by7jgkq13xvhf" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_diffuse.png" id="6_fah67"]
-[ext_resource type="Texture2D" uid="uid://dagsj1hedvbj0" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_diffuse.png" id="7_wh6ns"]
-[ext_resource type="Texture2D" uid="uid://cl0glxqh3o60a" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_diffuse.png" id="8_mwbl6"]
-[ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
-[ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
-[ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
-[ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
-[ext_resource type="Script" uid="uid://hs11wfuvqq46" path="res://smooth_terrain/props/rail_point.gd" id="19_yt5qh"]
-[ext_resource type="Texture2D" uid="uid://yvgsjrehhril" path="res://smooth_terrain/assets/environment/ccity_building_set_1_1.png" id="20_fah67"]
-[ext_resource type="PackedScene" uid="uid://chxh4h680iioj" path="res://dumpster.tscn" id="20_yt5qh"]
+[ext_resource type="Texture2D" uid="uid://ce3shfau7olvi" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_basecolor.jpg" id="2_dwbse"]
+[ext_resource type="PackedScene" uid="uid://daole3dpr3ja2" path="res://smooth_terrain/player.tscn" id="3_036b0"]
+[ext_resource type="Texture2D" uid="uid://bkswvo3j5avue" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_metallic.jpg" id="3_pkg7o"]
+[ext_resource type="Texture2D" uid="uid://bbkanvse57jem" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_normal.jpg" id="4_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://0fs5nnjw1pit" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_roughness.jpg" id="5_ioo17"]
+[ext_resource type="Texture2D" uid="uid://yvgsjrehhril" path="res://smooth_terrain/assets/environment/ccity_building_set_1_1.png" id="6_dwbse"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwbse"]
+albedo_texture = ExtResource("2_dwbse")
+metallic = 1.0
+metallic_texture = ExtResource("3_pkg7o")
+roughness_texture = ExtResource("5_ioo17")
+normal_enabled = true
+normal_texture = ExtResource("4_gbfbk")
 
-[sub_resource type="Sky" id="1"]
-sky_material = SubResource("PhysicalSkyMaterial_1vceu")
-
-[sub_resource type="Environment" id="2"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("1")
-ambient_light_color = Color(0.427493, 0.42749307, 0.42749307, 1)
-ambient_light_sky_contribution = 0.2
-ambient_light_energy = 0.2
-fog_enabled = true
-fog_density = 0.0005
-fog_aerial_perspective = 1.0
-volumetric_fog_density = 0.005
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
-render_priority = 0
-shader = ExtResource("2_oexva")
-shader_parameter/u_transition_mask = 0
-shader_parameter/u_voxel_virtual_texture_tile_size = 0
-shader_parameter/u_voxel_virtual_texture_fade = 0.0
-shader_parameter/u_voxel_cell_size = 0.0
-shader_parameter/u_voxel_block_size = 0
-shader_parameter/u_voxel_virtual_texture_offset_scale = Vector4(0, 0, 0, 0)
-shader_parameter/u_lod_fade = Vector2(0, 0)
-shader_parameter/u_texture_top = ExtResource("9_6c2kk")
-shader_parameter/top_normal_map = ExtResource("5_1cem4")
-shader_parameter/layer_depth = 10.0
-shader_parameter/num_depth_textures = 3
-shader_parameter/depth_textures = Array[Texture2D]([ExtResource("6_fah67"), ExtResource("7_wh6ns"), ExtResource("8_mwbl6")])
-shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("3_gxx5o"), ExtResource("4_4hwsc"), ExtResource("5_yt5qh")])
-shader_parameter/normal_strength = 4.0
-
-[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_erh7w"]
-
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oexva"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_muprf"]
-material = SubResource("StandardMaterial3D_oexva")
-size = Vector3(1, 20, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muprf"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0eih8"]
-material = SubResource("StandardMaterial3D_muprf")
-size = Vector3(1, 20, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlu6d"]
-albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_erh7w"]
-material = SubResource("StandardMaterial3D_hlu6d")
-size = Vector3(1, 20, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md6sa"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_tgnr8"]
-material = SubResource("StandardMaterial3D_md6sa")
-size = Vector3(1, 20, 1)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_md6sa"]
-plane = Plane(0, 0, 1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgnr8"]
-transparency = 1
-albedo_color = Color(0.37725735, 0.5632239, 0.6662606, 1)
-disable_receive_shadows = true
-distance_fade_mode = 2
-distance_fade_min_distance = 32.0
-distance_fade_max_distance = 8.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_at30r"]
-material = SubResource("StandardMaterial3D_tgnr8")
-size = Vector2(256, 128)
-center_offset = Vector3(0, 64, 0)
-orientation = 2
-
-[sub_resource type="Resource" id="Resource_fah67"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.5, 10)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_wh6ns"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 3.16, 8.42)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_yt5qh"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.3, 3)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_mwbl6"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.1, 0)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
+[sub_resource type="PlaneMesh" id="PlaneMesh_pkg7o"]
+material = SubResource("StandardMaterial3D_dwbse")
+size = Vector2(128, 128)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaqf1"]
 resource_name = "FillerBuildings1"
 cull_mode = 2
-albedo_texture = ExtResource("20_fah67")
+albedo_texture = ExtResource("6_dwbse")
 roughness = 0.38
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wh6ns"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_pkg7o"]
 _surfaces = [{
 "aabb": AABB(-556.12476, 20.000061, 549.7099, 106.12479, 200, 25.195435),
 "format": 34359742465,
@@ -144,7 +39,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mwbl6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gbfbk"]
 resource_name = "Sketchfab_Scene_polySurface128_FillerBuildings1_03"
 _surfaces = [{
 "aabb": AABB(-556.12476, 20.000061, 549.7099, 106.12479, 200, 25.195435),
@@ -160,9 +55,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/AcLxAQAXEPxuQ9E///gwyAAoEHxuQ9E/AcLxCAAoEHxuQ9E///gwwQAXEPxuQ9E/AcLxAQAXENvbQlE/AcLxCAAoEHxuQ9E/AcLxCAAoEFvbQlE/AcLxAQAXEPxuQ9E/AcLxCAAoEFvbQlE///gwyAAoEHxuQ9E///gwyAAoEFvbQlE/AcLxCAAoEHxuQ9E///gwyAAoEFvbQlE///gwwQAXEPxuQ9E///gwwQAXENvbQlE///gwyAAoEHxuQ9E///gwwQAXENvbQlE/AcLxAQAXEPxuQ9E/AcLxAQAXENvbQlE///gwwQAXEPxuQ9E/3//f/7//z//f/9//v//P/9//3/+//8//3//f////z8AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/////f////7////9/////v////3////+/////f////7//f///////v/9///////+//3///////7//f///////vw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_wh6ns")
+shadow_mesh = SubResource("ArrayMesh_pkg7o")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bsaje"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ioo17"]
 _surfaces = [{
 "aabb": AABB(-18.714485, 188.94412, 600, 876.95184, 162.94138, 100),
 "format": 34896613377,
@@ -177,7 +72,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5h1po"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wse8f"]
 resource_name = "Sketchfab_Scene_polySurface34_FillerBuildings1_03"
 _surfaces = [{
 "aabb": AABB(-18.714485, 188.94412, 600, 876.95184, 162.94138, 100),
@@ -194,9 +89,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/////wAA8D///wAAAAD1P///AAD///8/AAD//wAA8z8AAAAA////PwAAAAAAAP8/AAD//wAA22f//wAA///rcwAAAAD//+tz/////wAA22f//2wpYev8PwAAbClh6/8/AABsKWHr8z8AAAAAAADzP///bClh65JpAABsKWHrkmnxdocEaXjKA7d/JAD1e+v3z3+f/89/n/////9/////f/7//3////9/r3snAs9/n//1e+v39Xvr9////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bsaje")
+shadow_mesh = SubResource("ArrayMesh_ioo17")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yewfo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ic0uy"]
 _surfaces = [{
 "aabb": AABB(-1095.6228, 1019.99994, -2041.6792, 1735.6228, 136.82733, 2681.6792),
 "format": 34896613377,
@@ -210,7 +105,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2yrad"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_k3n1d"]
 resource_name = "Sketchfab_Scene_polySurface139_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-1095.6228, 1019.99994, -2041.6792, 1735.6228, 136.82733, 2681.6792),
@@ -226,9 +121,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("Iw6DySYJqirb8YPJ2PaqKiMOg8nY9qoq2/GDySYJqirmBQAA0QNL7gAA82j//0vu5gUAAC38S+4AAPNoAABL7uYFAAAt/MJm///zaP//wmYY+gAALfzCZgAA82j//8JmGPoAAC38NTz///NoAAA1PBj6AADRAzU8///zaP//NTwY+gAA0QPC5gAA82gAAMLm5gUAANEDwub///NoAADC5gML82ggB///Awvw3d74//8DC/No3vj//wML8N0gB///AwvzaN74/n/79PDd3vj+f/v082je+P5/Awvw3d74/n/79PNo3vj/P/v08N0gB/8/+/TzaCAH/z/79PDd3vj/P/v082ggB///Awvw3SAH//8DC/NoIAf///v08N0gB///2Abw3W0E///YBv//kfv//9gG8N2R+///2Ab//20E///YBvDdkfv+fyb5//+R+/5/Jvnw3ZH7/n/YBv//kfv+fyb58N2R+/8/Jvn//20E/z8m+fDdbQT/Pyb5//+R+/8/Jvnw3W0E///YBv//bQT//9gG8N1tBP//Jvn//20E///YBv//bQSkHyMO///Y9s402Ab//5H7MTTb8f//2PbpHyMO//8mCekfJvn//5H7pB8m+f//bQQxNNvx//8mCc40Iw7//yYJAAAjDoPJ2PYAACMO///Y9gAAIw6DySYJAAAjDv//2PYAANvxg8nY9gAA2/H//9j2AAAjDoPJ2PYAANvx///Y9gAA2/GDySYJAADb8f//JgkAANvxg8nY9gAA2/H//yYJAAAjDoPJJgkAACMO//8mCQAA2/GDySYJAACqqqqqqqqqqqqqqaqpqqqq00hXbtNIV27TSFdu00hXbgAA/38AAP9/AAD/fwAA/38FZ/MxBWfzMQVn8zEFZ/MxAAD/fwAA/38AAP9/AAD/f/8//3//P/9//z//f/8//3//f////3////9/////f////38AAP9/AAD/fwAA/38AAP///3////9/////f////3//P/9//z//f/8//3//P/9//3////9/////f////3////9/AAD/fwAA/38AAP9/AAD///9/////f////3////9/zp6XsKa5K6OCuL2jEp91sBKfdbDOnpewgri9o6a5K6P/v/9//7//f/+//3//v/9/////f////3////9/////f/8//3//P/9//z//f/8//3//f/9//3//f/9//3//f/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_yewfo")
+shadow_mesh = SubResource("ArrayMesh_ic0uy")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2864h"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_2o6r5"]
 _surfaces = [{
 "aabb": AABB(-1095.6228, 1085.4796, -2041.6792, 1735.6228, 1e-05, 2681.6792),
 "format": 34896613377,
@@ -242,7 +137,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5sfev"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_70uel"]
 resource_name = "Sketchfab_Scene_polySurface140_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-1095.6228, 1085.4796, -2041.6792, 1735.6228, 1e-05, 2681.6792),
@@ -258,9 +153,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAqir//wAA//+qKgAAAAD//6oq//8AAAAAqiqqqqqqqqqqqqqqqqqqqqqq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2864h")
+shadow_mesh = SubResource("ArrayMesh_2o6r5")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_nsgef"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hiqwa"]
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
 "format": 34896613377,
@@ -274,7 +169,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_cl685"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_2u3nc"]
 resource_name = "Sketchfab_Scene_polySurface141_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
@@ -290,9 +185,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD/////qioAAAAAAACqKgAA//8AAKoqAAAAAP//qipU1VTVVNVU1VTVVNVU1VTV")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_nsgef")
+shadow_mesh = SubResource("ArrayMesh_hiqwa")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_vtexj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_udxuc"]
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -1093.9342, 1831.8711, 549.44434, 1687.5344),
 "format": 34896613377,
@@ -306,7 +201,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3kni1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ikiii"]
 resource_name = "Sketchfab_Scene_polySurface142_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -1093.9342, 1831.8711, 549.44434, 1687.5344),
@@ -322,9 +217,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD//zyZqir///7///+qKgAA/////6oq///+/zyZqioAAAAAPJmj/wAA////////AAAAAP////8AAP//PJmt/wAAlDMAAK3/AAAAAAAA1f8AAAAA///+f////v////5///8AAP///n8AAP/////+f///AAD///8////+/zyZ/z///wAAPJn/P////v////8///8AAAAA9T///5QzAADrP///AAAAAP//AACUMwAA//8AAAAAAAD/////lDMAAP//AAD//zyZsND//5QzAACw0P///v88mbDQAACUMwAAsNCqqqmqqqqpqqqqqaqqqqmqMkBlgP8//38AQAGALEBZgCxAWYAWQC2A/3////9/////f////3///wCAAgBagLUAOYBzAPl/AgC/g4AHLoVdCiFCIcKjwaNBy8HLQUlCScL+//9//v//f/7//3/+//9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_vtexj")
+shadow_mesh = SubResource("ArrayMesh_udxuc")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_w2f66"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cbp6q"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -339,7 +234,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dt6ls"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_26xuy"]
 resource_name = "Sketchfab_Scene_pCylinder10_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -356,9 +251,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_w2f66")
+shadow_mesh = SubResource("ArrayMesh_cbp6q")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2dwr5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bc84e"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -373,7 +268,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_68jyw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wukud"]
 resource_name = "Sketchfab_Scene_pCylinder11_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -390,9 +285,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2dwr5")
+shadow_mesh = SubResource("ArrayMesh_bc84e")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_67s2j"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_il2jm"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -407,7 +302,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_b8geo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wjb0r"]
 resource_name = "Sketchfab_Scene_pCylinder12_FillerBuildings1_03"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -424,9 +319,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_67s2j")
+shadow_mesh = SubResource("ArrayMesh_il2jm")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_y2egj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_mc2jv"]
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
 "format": 34896613377,
@@ -440,7 +335,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_f3d8o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bo7i5"]
 resource_name = "Sketchfab_Scene_polySurface804_FillerBuildings1_03"
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
@@ -456,9 +351,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD/////VNUAAAAAAABU1QAAAAD//1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_y2egj")
+shadow_mesh = SubResource("ArrayMesh_mc2jv")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6fr28"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4h6ng"]
 _surfaces = [{
 "aabb": AABB(-600, -150, -600, 1001.4006, 380, 1200),
 "format": 34896613377,
@@ -472,7 +367,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3boek"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_o3ebs"]
 resource_name = "Sketchfab_Scene_pCube11_FillerBuildings1_05"
 _surfaces = [{
 "aabb": AABB(-600, -150, -600, 1001.4006, 380, 1200),
@@ -488,9 +383,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNX/f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//39U1VTVVNVU1VTVVNVU1VTV")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_6fr28")
+shadow_mesh = SubResource("ArrayMesh_4h6ng")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bupo1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_k83mh"]
 _surfaces = [{
 "aabb": AABB(-600, -150.00006, -600, 1001.4006, 349.99994, 1200),
 "format": 34896613377,
@@ -504,7 +399,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5qfsd"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qktwf"]
 resource_name = "Sketchfab_Scene_pCube12_FillerBuildings1_05"
 _surfaces = [{
 "aabb": AABB(-600, -150.00006, -600, 1001.4006, 349.99994, 1200),
@@ -520,9 +415,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAA//8AAP///////wAAAAD/////AAD//wAA////f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bupo1")
+shadow_mesh = SubResource("ArrayMesh_k83mh")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bwb5a"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bh8nc"]
 _surfaces = [{
 "aabb": AABB(-600, -150, -600, 1001.4006, 350, 1200),
 "format": 34896613377,
@@ -536,7 +431,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_w6et3"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jjr1n"]
 resource_name = "Sketchfab_Scene_pCube13_FillerBuildings1_05"
 _surfaces = [{
 "aabb": AABB(-600, -150, -600, 1001.4006, 350, 1200),
@@ -552,9 +447,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAA//8AAP///////wAAAAD/////AAD//wAA////f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bwb5a")
+shadow_mesh = SubResource("ArrayMesh_bh8nc")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qy4iv"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gggvi"]
 _surfaces = [{
 "aabb": AABB(-640, 1019.99994, -640, 1081.4006, 136.82733, 1280),
 "format": 34896613377,
@@ -568,7 +463,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_swhw4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_w44yn"]
 resource_name = "Sketchfab_Scene_polySurface139_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-640, 1019.99994, -640, 1081.4006, 136.82733, 1280),
@@ -584,9 +479,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("sRaDySwTqipN6YPJ0uyqKrEWg8nS7KoqTemDySwTqip4CQAA/wdL7gAA82j//0vueAkAAP/3S+4AAPNoAABL7ngJAAD/98Jm///zaP//wmaG9gAA//fCZgAA82j//8JmhvYAAP/3NTz///NoAAA1PIb2AAD/BzU8///zaP//NTyG9gAA/wfC5gAA82gAAMLmeAkAAP8Hwub///NoAADC5qwR82juDv//rBHw3RDx//+sEfNoEPH//6wR8N3uDv//rBHzaBDx/n9S7vDdEPH+f1Lu82gQ8f5/rBHw3RDx/n9S7vNoEPH/P1Lu8N3uDv8/Uu7zaO4O/z9S7vDdEPH/P1Lu82juDv//rBHw3e4O//+sEfNo7g7//1Lu8N3uDv//+wrw3UcJ///7Cv//t/b///sK8N239v//+wr//0cJ///7CvDdt/b+fwP1//+39v5/A/Xw3bf2/n/7Cv//t/b+fwP18N239v8/A/X//0cJ/z8D9fDdRwn/PwP1//+39v8/A/Xw3UcJ///7Cv//Rwn///sK8N1HCf//A/X//0cJ///7Cv//RwnNJrEW///S7NMu+wr//7f2Uy5N6f//0uz8JrEW//8sE/wmA/X//7f2zSYD9f//RwlTLk3p//8sE9MusRb//ywTAACxFoPJ0uwAALEW///S7AAAsRaDySwTAACxFv//0uwAAE3pg8nS7AAATen//9LsAACxFoPJ0uwAAE3p///S7AAATemDySwTAABN6f//LBMAAE3pg8nS7AAATen//ywTAACxFoPJLBMAALEW//8sEwAATemDySwTAACqqqqqqqqqqqqqqaqpqqqq00hXbtNIV27TSFdu00hXbgAA/38AAP9/AAD/fwAA/38FZ/MxBWfzMQVn8zEFZ/MxAAD/fwAA/38AAP9/AAD/f/8//3//P/9//z//f/8//3//f////3////9/////f////38AAP9/AAD/fwAA/38AAP///3////9/////f////3//P/9//z//f/8//3//P/9//3////9/////f////3////9/AAD/fwAA/38AAP9/AAD///9/////f////3////9/N6bjrAuw+adar1Goa6bJrGumyaw3puOsWq9RqAuw+af/v/9//7//f/+//3//v/9/////f////3////9/////f/8//3//P/9//z//f/8//3//f/9//3//f/9//3//f/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_qy4iv")
+shadow_mesh = SubResource("ArrayMesh_gggvi")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5jj5q"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6ah6f"]
 _surfaces = [{
 "aabb": AABB(-640, 1085.4796, -640, 1081.4006, 1e-05, 1280),
 "format": 34896613377,
@@ -600,7 +495,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_p62ub"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_g1i3r"]
 resource_name = "Sketchfab_Scene_polySurface140_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-640, 1085.4796, -640, 1081.4006, 1e-05, 1280),
@@ -616,9 +511,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAqir//wAA//+qKgAAAAD//6oq//8AAAAAqiqqqqqqqqqqqqqqqqqqqqqq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_5jj5q")
+shadow_mesh = SubResource("ArrayMesh_6ah6f")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1mx63"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_my276"]
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
 "format": 34896613377,
@@ -632,7 +527,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_adbqy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_yx0jh"]
 resource_name = "Sketchfab_Scene_polySurface141_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
@@ -648,9 +543,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD/////VNUAAAAAAABU1QAAAAD//1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_1mx63")
+shadow_mesh = SubResource("ArrayMesh_my276")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_52ymr"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1ew0l"]
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -546.39026, 1187.2001, 549.44434, 1139.9905),
 "format": 34896613377,
@@ -664,7 +559,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ss3h1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ryup7"]
 resource_name = "Sketchfab_Scene_polySurface142_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -546.39026, 1187.2001, 549.44434, 1139.9905),
@@ -680,9 +575,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD//wuWqir///7///+qKgAA/////6oq///+/wuWqioAAAAAC5Z3/wAA////////AAAAAP//+f8AAP//C5aO/wAAlDMAAHD/AAAAAAAAv/8AAAAA///+f////v////5///8AAP///n8AAP/////+f///AAD///8////+/wuW/z///wAAC5b/P////v////8///8AAAAA7z///5QzAADRP///AAAAAP//AACUMwAA//8AAAAAAAD/////lDMAAP//AAD//wuWq9f//5QzAACr1////v8LlqvXAACUMwAAq9eqqqmqqqqpqqqqqaqqqqmqSkCVgP8//38CQASAPUB7gE5AnYAiQEWA/3////9/////f////3///wKABgCTgCcBVoCuAPZ/BACvhF8JgYcDD1NBU8EBwQFBKcEqQXtBe8H+//9//v//f/7//3/+//9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_52ymr")
+shadow_mesh = SubResource("ArrayMesh_1ew0l")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7jdpl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ytpkv"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -697,7 +592,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_eb6jx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jas3d"]
 resource_name = "Sketchfab_Scene_pCylinder10_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -714,9 +609,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_7jdpl")
+shadow_mesh = SubResource("ArrayMesh_ytpkv")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yhxsk"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_7htu6"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -731,7 +626,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_46kkf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_7qk3m"]
 resource_name = "Sketchfab_Scene_pCylinder11_FillerBuildings1_07"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -748,9 +643,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_yhxsk")
+shadow_mesh = SubResource("ArrayMesh_7htu6")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rb5ft"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xpnt2"]
 _surfaces = [{
 "aabb": AABB(-0.013301641, 0.02445449, -0.18585819, 0.07294415, 0.29366106, 0.24371554),
 "format": 34896613377,
@@ -764,7 +659,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2ggs0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ruyqm"]
 resource_name = "Sketchfab_Scene_pCube17_FillerBuildings1_04"
 _surfaces = [{
 "aabb": AABB(-0.013301641, 0.02445449, -0.18585819, 0.07294415, 0.29366106, 0.24371554),
@@ -780,9 +675,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///z//////////P///AAD///8/AAD//////z8AAP////+qKv////8AAKoq////////qioAAP//AACqKgAA//8AAAAA//8AAAAAAAD/////AAAAAAAAAAAAAAAAAAAAAAAAqir//wAA//+qKv//AAAAAKoqAAAAAP//qir//wAA////P/////8AAP8///8AAAAA/z//////////P/9//3//f/9//3//f/9//3+qqqmqqqqpqqqqqaqqqqmq/7//v/+//7//v/+//7//v1VVVFVVVVRVVFVUVVVVVFX/fwAA/38AAP9/AAD/fwAA")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_rb5ft")
+shadow_mesh = SubResource("ArrayMesh_xpnt2")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_017uh"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_fnoqa"]
 _surfaces = [{
 "aabb": AABB(-428.31888, 119.510056, 298.3207, 1e-05, 116.565704, 74.14459),
 "format": 34896613377,
@@ -796,7 +691,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_cu6gy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_nx736"]
 resource_name = "Sketchfab_Scene_polySurface130_FillerBuildings1_04"
 _surfaces = [{
 "aabb": AABB(-428.31888, 119.510056, 298.3207, 1e-05, 116.565704, 74.14459),
@@ -812,9 +707,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD//wAA//8AAAAA/////wAAAAAAAP//AAD/////////P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_017uh")
+shadow_mesh = SubResource("ArrayMesh_fnoqa")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_t81yd"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_55kwu"]
 _surfaces = [{
 "aabb": AABB(-416.61902, 39.646812, 134.68074, 18.749603, 1033.5895, 220.18288),
 "format": 34896613377,
@@ -828,7 +723,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_neiiw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_f3o6s"]
 resource_name = "Sketchfab_Scene_polySurface129_FillerBuildings1_04"
 _surfaces = [{
 "aabb": AABB(-416.61902, 39.646812, 134.68074, 18.749603, 1033.5895, 220.18288),
@@ -844,9 +739,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AABJ/E3lUekAAJP4pvJR6f7/k/hN5VHp/v9rB03lUekAAGsHpvJR6QAAtQNN5VHp/////03lm+YAAEn8kRSb5v////+RFJvmAABJ/E3lm+YAAEn8TeWb5v//k/iRFJvmAABJ/JEUm+b//5P4TeWb5v7///9N5Rv8AACT+KbycPsAAEn8TeVG//7/k/j+/675//9rB/////8AAJP4pvL/////k/j/////AABrB6by//8AAGsHpvL/////k/hN5f//AACT+Kby/////2sHTeX///7/awf+/zn5AAC1A03lHfkAAGsHpvKu+f7/AABN5df4//9rB03lm+YAALUDAACb5v//awcAAJvmAAC1A03lm+YAALUDTeWb5v//AAAAAJvmAAC1AwAAm+b//wAATeWb5kkiH3hJIh94SSIfeCH4uF0h+LhdIfi4XS3nlzMt55czLeeXMy3nlzNoTC5naEwuZ2hMLmdoTC5nKecHFlrnQBY/5vkU3OfVFttj/3/bY/9/22P/f9tj/3/+/yOc//8jnP//I5z//yOcAmn/Z/loB2gpad1n4WgbaC3nlzMt55czLeeXMy3nlzNoTC5naEwuZ2hMLmdoTC5n")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_t81yd")
+shadow_mesh = SubResource("ArrayMesh_55kwu")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xpwax"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_w4lh7"]
 _surfaces = [{
 "aabb": AABB(-401.40057, -150, -600, 1001.4006, 380, 1200),
 "format": 34896613377,
@@ -860,7 +755,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mqwyj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_k3lar"]
 resource_name = "Sketchfab_Scene_pCube11_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-401.40057, -150, -600, 1001.4006, 380, 1200),
@@ -876,9 +771,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNX/f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//39U1VTVVNVU1VTVVNVU1VTV")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_xpwax")
+shadow_mesh = SubResource("ArrayMesh_w4lh7")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_e5rnw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_olr1q"]
 _surfaces = [{
 "aabb": AABB(-401.40057, -150.00006, -600, 1001.4006, 349.99994, 1200),
 "format": 34896613377,
@@ -892,7 +787,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dll3c"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_q42o5"]
 resource_name = "Sketchfab_Scene_pCube12_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-401.40057, -150.00006, -600, 1001.4006, 349.99994, 1200),
@@ -908,9 +803,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAA//8AAP///////wAAAAD/////AAD//wAA////f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_e5rnw")
+shadow_mesh = SubResource("ArrayMesh_olr1q")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hoeuj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_b7btk"]
 _surfaces = [{
 "aabb": AABB(-401.40057, -150, -600, 1001.4006, 350, 1200),
 "format": 34896613377,
@@ -924,7 +819,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hflid"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_kkgr2"]
 resource_name = "Sketchfab_Scene_pCube13_FillerBuildings1_06"
 _surfaces = [{
 "aabb": AABB(-401.40057, -150, -600, 1001.4006, 350, 1200),
@@ -940,9 +835,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n/////////+f///AAD///5/AAD//////n8AAP//AAD/////AAAAAP///////wAA//8AAAAAAAD/////AAD//////////wAA/////wAAAAD/////////////AAAAAAAA//8AAP///////wAAAAD/////AAD//wAA////f////3////9/////f///////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_hoeuj")
+shadow_mesh = SubResource("ArrayMesh_b7btk")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_krdkx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_iett8"]
 _surfaces = [{
 "aabb": AABB(-441.40057, 1019.99994, -640, 1081.4006, 136.82733, 1280),
 "format": 34896613377,
@@ -956,7 +851,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2eax0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_r5m4j"]
 resource_name = "Sketchfab_Scene_polySurface139_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-441.40057, 1019.99994, -640, 1081.4006, 136.82733, 1280),
@@ -972,9 +867,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("sRaDySwTVNVN6YPJ0uxU1bEWg8nS7FTVTemDySwTVNV4CQAA/wdL7gAA82j//0vueAkAAP/3S+4AAPNoAABL7ngJAAD/98Jm///zaP//wmaG9gAA//fCZgAA82j//8JmhvYAAP/3NTz///NoAAA1PIb2AAD/BzU8///zaP//NTyG9gAA/wfC5gAA82gAAMLmeAkAAP8Hwub///NoAADC5qwR82juDv//rBHw3RDx//+sEfNoEPH//6wR8N3uDv//rBHzaBDx/n9S7vDdEPH+f1Lu82gQ8f5/rBHw3RDx/n9S7vNoEPH/P1Lu8N3uDv8/Uu7zaO4O/z9S7vDdEPH/P1Lu82juDv//rBHw3e4O//+sEfNo7g7//1Lu8N3uDv//+wrw3UcJ///7Cv//t/b///sK8N239v//+wr//0cJ///7CvDdt/b+fwP1//+39v5/A/Xw3bf2/n/7Cv//t/b+fwP18N239v8/A/X//0cJ/z8D9fDdRwn/PwP1//+39v8/A/Xw3UcJ///7Cv//Rwn///sK8N1HCf//A/X//0cJ///7Cv//RwnNJrEW///S7NMu+wr//7f2Uy5N6f//0uz8JrEW//8sE/wmA/X//7f2zSYD9f//RwlTLk3p//8sE9MusRb//ywTAACxFoPJ0uwAALEW///S7AAAsRaDySwTAACxFv//0uwAAE3pg8nS7AAATen//9LsAACxFoPJ0uwAAE3p///S7AAATemDySwTAABN6f//LBMAAE3pg8nS7AAATen//ywTAACxFoPJLBMAALEW//8sEwAATemDySwTAACqqqqqqqqqqqqqqaqpqqqq00hXbtNIV27TSFdu00hXbgAA/38AAP9/AAD/fwAA/38FZ/MxBWfzMQVn8zEFZ/MxAAD/fwAA/38AAP9/AAD/f/8//3//P/9//z//f/8//3//f////3////9/////f////38AAP9/AAD/fwAA/38AAP///3////9/////f////3//P/9//z//f/8//3//P/9//3////9/////f////3////9/AAD/fwAA/38AAP9/AAD///9/////f////3////9/N6bjrAuw+adar1Goa6bJrGumyaw3puOsWq9RqAuw+af/v/9//7//f/+//3//v/9/////f////3////9/////f/8//3//P/9//z//f/8//3//f/9//3//f/9//3//f/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_krdkx")
+shadow_mesh = SubResource("ArrayMesh_iett8")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qst75"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_e77ka"]
 _surfaces = [{
 "aabb": AABB(-441.40057, 1085.4796, -640, 1081.4006, 1e-05, 1280),
 "format": 34896613377,
@@ -988,7 +883,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_g02c4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_c0wax"]
 resource_name = "Sketchfab_Scene_polySurface140_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-441.40057, 1085.4796, -640, 1081.4006, 1e-05, 1280),
@@ -1004,9 +899,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAqir//wAA//+qKgAAAAD//6oq//8AAAAAqiqqqqqqqqqqqqqqqqqqqqqq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_qst75")
+shadow_mesh = SubResource("ArrayMesh_e77ka")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_8ikjf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_sedwk"]
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
 "format": 34896613377,
@@ -1020,7 +915,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_l30ja"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_37ykd"]
 resource_name = "Sketchfab_Scene_polySurface141_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-67.56221, 1145.7253, 276.58182, 1e-05, 158.16284, 144.21072),
@@ -1036,9 +931,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD/////VNUAAAAAAABU1QAAAAD//1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_8ikjf")
+shadow_mesh = SubResource("ArrayMesh_sedwk")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ifuuo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1hvhf"]
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -546.39026, 1187.2001, 549.44434, 1139.9905),
 "format": 34896613377,
@@ -1052,7 +947,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dqitk"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_75cpn"]
 resource_name = "Sketchfab_Scene_polySurface142_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-593.6, 1179.7175, -546.39026, 1187.2001, 549.44434, 1139.9905),
@@ -1068,9 +963,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD//wuWqir///7///+qKgAA/////6oq///+/wuWqioAAAAAC5Z3/wAA////////AAAAAP//+f8AAP//C5aO/wAAlDMAAHD/AAAAAAAAv/8AAAAA///+f////v////5///8AAP///n8AAP/////+f///AAD///8////+/wuW/z///wAAC5b/P////v////8///8AAAAA7z///5QzAADRP///AAAAAP//AACUMwAA//8AAAAAAAD/////lDMAAP//AAD//wuWq9f//5QzAACr1////v8LlqvXAACUMwAAq9eqqqmqqqqpqqqqqaqqqqmqSkCVgP8//38CQASAPUB7gE5AnYAiQEWA/3////9/////f////3///wKABgCTgCcBVoCuAPZ/BACvhF8JgYcDD1NBU8EBwQFBKcEqQXtBe8H+//9//v//f/7//3/+//9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ifuuo")
+shadow_mesh = SubResource("ArrayMesh_1hvhf")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yn80s"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ct3wn"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -1085,7 +980,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_y6mmf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ynm8w"]
 resource_name = "Sketchfab_Scene_pCylinder10_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -1102,9 +997,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_yn80s")
+shadow_mesh = SubResource("ArrayMesh_ct3wn")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rbfxc"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rakx2"]
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
 "format": 34896613377,
@@ -1119,7 +1014,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ismdy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_3fh52"]
 resource_name = "Sketchfab_Scene_pCylinder11_FillerBuildings1_08"
 _surfaces = [{
 "aabb": AABB(-100, -75, -86.602554, 200, 150, 173.20511),
@@ -1136,17 +1031,17 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/78AAAAAVRX/P///AABVFf8/AAAAAFUV/7///wAAVRUAAAAA/3//P/+//////6pq/z8AAP7/qmr/vwAA//+qav//AAD/f/8//7///wAAVRX/vwAAAABVFf+///8AAP8//7///////z//P///AAD/PwAA////f/8//z////7/qmr//////3//PwAA////f/8///////9//z//P////v//P/9/AAD/f////3////9/AAD/f////38AAP9/////fwAA/38AAP9/AAD/fwAA////f////3/+//9//3////9/////fwAA////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_rbfxc")
+shadow_mesh = SubResource("ArrayMesh_rakx2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krl8x"]
 resource_name = "FillerBuildings1GLOW"
 cull_mode = 2
-albedo_texture = ExtResource("20_fah67")
+albedo_texture = ExtResource("6_dwbse")
 roughness = 0.26
 emission_enabled = true
-emission_texture = ExtResource("20_fah67")
+emission_texture = ExtResource("6_dwbse")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6s65v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_8f1f8"]
 _surfaces = [{
 "aabb": AABB(-9806.465, 494.67993, -13411.086, 1811.4482, 937.79224, 1783.4844),
 "format": 34896613377,
@@ -1160,7 +1055,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_udm6t"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lxwtw"]
 resource_name = "Sketchfab_Scene_Filler_SalsGlow_FillerBuildings1GLOW_02"
 _surfaces = [{
 "aabb": AABB(-9806.465, 494.67993, -13411.086, 1811.4482, 937.79224, 1783.4844),
@@ -1176,9 +1071,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("Gc90oP////9H9etc/////xnP61z/////R/V0oP////8fnv///////0zEdrz/////H552vP////9MxP///////95t////////C5R2vP/////ebXa8/////wuU////////vTR0oDL3///qWutcMvf//70061wy9///6lp0oDL3/////+T58BT/P///9b7yJ/8////k+fIn/z////W+8BT/Px+e//9hAgAATMR2vGECAABMxP//YQIAAB+edrxhAgAA3m3//2ECAAALlHa8YQIAAAuU//9hAgAA3m12vGECAADgLHSgAAD//7IG61wAAP//4CzrXAAA//+yBnSgAAD//1kA7zovHP8/WQAAANAM/z9ZAO860Az/P1kAAAAvHP8/AABumD+Q//8AAH9dn5///wAAf10/kP//AABumJ+f//8AAG6Y6Kf//wAAf11It///AAB/Xein//8AAG6YSLf///9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//fwAA/38AAP9/AAD/fwAA/3/+//9//v//f////3/+//9//v//f/7//3////9//v/+//9//v//f/7//3////9//3/+//9//v//f////3/+//8//3//P/9//z//f/8//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_6s65v")
+shadow_mesh = SubResource("ArrayMesh_8f1f8")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_sgoob"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ir1d4"]
 _surfaces = [{
 "aabb": AABB(-9806.465, 494.67993, -13411.086, 1811.4482, 937.79224, 1783.4844),
 "format": 34896613377,
@@ -1192,7 +1087,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5uqds"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tj74d"]
 resource_name = "Sketchfab_Scene_Filler_SalsWindows_FillerBuildings1_02"
 _surfaces = [{
 "aabb": AABB(-9806.465, 494.67993, -13411.086, 1811.4482, 937.79224, 1783.4844),
@@ -1208,9 +1103,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("UQV0oDL3//9/K+tcMvf//1EF61wy9///fyt0oDL3//9RBQNEMvf//38regAy9///UQV6ADL3//9/KwNEMvf//700A0Qy9///6lp6ADL3//+9NHoAMvf//+paA0Qy9///Gc////////9H9Xa8/////xnPdrz/////R/X///////8fnnSg/////0zE61z/////H57rXP////9MxHSg/////95tdKD/////C5TrXP/////ebetc/////wuUdKD/////3m0DRP////8LlHoA/////95tegD/////C5QDRP////8fngNE/////0zEegD/////H556AP////9MxANE/////xnPA0T/////R/V6AP////8Zz3oA/////0f1A0T////////k+Vre/z////W+W/H/P///5Plb8f8////1vlre/z///+T5scb/P///9b6y2f8////k+bLZ/z////W+scb/P///HZvwFP8///8uYPIn/z///x2b8if/P///LmDwFP8/Gc///2ECAABH9Xa8YQIAAEf1//9hAgAAGc92vGECAAD8WXSgAAD//84z61wAAP///FnrXAAA///OM3SgAAD///xZA0QAAP//zjN6AAAA///8WXoAAAD//84zA0QAAP//4CwDRAAA//+yBnoAAAD//+AsegAAAP//sgYDRAAA//9ZAG6YLxz/P1kAf13QDP8/WQBumNAM/z9ZAH9dLxz/P1kAbpjYM/8/WQB/XXkk/z9ZAG6YeST/P1kAf13YM/8/WQDvOtgz/z9ZAAAAeST/P1kA7zp5JP8/WQAAANgz/z8AAOI9P5D//wAA8wKfn///AADzAj+Q//8AAOI9n5////9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9//v//f/7//3////9//v/+//9//v//f/7//3////9//v//f/7//3/+//9/////f/7//3/+//9//v//f////3//f/7//3/+//9/////f/7//3/+//9//v//f////3/+//9//v//f/7//3////9//v//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_sgoob")
+shadow_mesh = SubResource("ArrayMesh_ir1d4")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2c8iv"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_yy5nj"]
 _surfaces = [{
 "aabb": AABB(-9100, 20, -13388.6875, 1097.8696, 1430.0001, 1754.6602),
 "format": 34896613377,
@@ -1224,7 +1119,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5herc"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_p5g01"]
 resource_name = "Sketchfab_Scene_Filler_SalsT8_group8_pCube11_FillerBuildings1_02"
 _surfaces = [{
 "aabb": AABB(-9100, 20, -13388.6875, 1097.8696, 1430.0001, 1754.6602),
@@ -1240,185 +1135,18 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///n///wZE///+f///AAD///5/AAAGRP///n///wAA////////BkROg/////8AAE6D/////wZE////////roJOg/////+ugv////8AAAAAToNU1QAABkT//1TVAAAAAP//VNUAAAZEToNU1QAABkQAAP////8AAAAA/////wZEAAD//wAAAAAAAP////8AAE6D/////wZEAAD/////AAAAAP////8GRE6D/////66CAAD/////roJOg///AAAAAAAAVNUAAAZEToNU1QAAAABOg1TVAAAGRAAAVNUAAAZE///+f///roL///5///8GRP///n8AAK6C///+fwAABkROg///AACugv////8AAAZE/////wAAroJOg///AACuggAA/////wZEAAD/////roIAAP//AAAGRAAA//8AAAZEAAD//wAAroJOg///AAAGRE6D//8AAK6CAAD//wAAVsEAAP////+uggAA/////1bBAAD//wAAroIAAP////+ugk6D/////1bBAAD/////roIAAP////9WwU6D//8AAK6CAAD//wAAVsFOg///AACugk6D//8AAFbBAAD//wAAroL///5///9Wwf///n///66C///+fwAAVsH///5///+ugv///////1bBToP/////roJOg/////9Wwf////8AAK6CToP//wAAVsH/////AACugv////8AAFbBToP//wAAVsH///5//////////n///1bB///+fwAA//////5///9Wwf//////////ToP/////VsFOg/////////////8AAFbBToP//wAA////////AABWwf////8AAP//ToP//wAA//8AAP////9WwQAA////////AAD//wAAVsEAAP////9WwU6D////////AAD/////VsEAAP///////06D//8AAFbBAAD//wAA//9Og///AABWwU6D//8AAP//AAD///9/////f////3////9/////v/9//7//f/+//3//v/9//7//f/+//39U1VTVVNVU1VTVVNVU1VTV////f////3////9/////f/+//3//v/9//7//f/+//3//v/9//7//f1TVVNVU1VTVVNVU1VTVVNX/f////3////9/////f////z//f/8//3//P/9//z//f////3////9/////f////3//P/9//z//f/8//3//P/9/////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9//3////9/////f////3////+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9//3////9/////f////3////+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/////f////3////9/////f/+//3//v/9//7//f/+//3//P/9//z//f/8//3//P/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_2c8iv")
+shadow_mesh = SubResource("ArrayMesh_yy5nj")
 
-[node name="main" type="Node"]
-script = ExtResource("1_at30r")
+[node name="world" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("2")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_pkg7o")
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9121203, -3.8550473e-07, -0.4099227, 0.35500365, 0.49999997, 0.7899193, 0.20496103, -0.86602545, 0.45606023, 14.4885, 81.574554, 0)
-visible = false
-layers = 3
-shadow_enabled = true
-shadow_blur = 0.5
-directional_shadow_max_distance = 128.0
-
-[node name="terrain" type="VoxelTerrain" parent="."]
-bounds = AABB(-512, -512, -512, 1024, 1024, 1024)
-collision_layer = 17
-material_override = SubResource("ShaderMaterial_hlu6d")
-block_enter_notification_enabled = true
-area_edit_notification_enabled = true
-generator = SubResource("VoxelGeneratorFlat_erh7w")
-mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
-render_layers_mask = 3
-unique_name_in_owner = true
-script = ExtResource("2_muprf")
-
-[node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="terrain"]
-
-[node name="red" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 10, 64)
-layers = 3
-mesh = SubResource("BoxMesh_muprf")
-
-[node name="green" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 10, -64)
-layers = 3
-mesh = SubResource("BoxMesh_0eih8")
-
-[node name="blue" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 10, 64)
-layers = 3
-mesh = SubResource("BoxMesh_erh7w")
-
-[node name="white" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 10, -64)
-layers = 3
-mesh = SubResource("BoxMesh_tgnr8")
-
-[node name="mp_spawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://daole3dpr3ja2")
-spawn_path = NodePath("../players")
-
-[node name="players" type="Node3D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_muprf")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-z_index = 100
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -337.0
-offset_top = -211.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="multiplayer_menu" parent="MarginContainer" instance=ExtResource("4_oexva")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="border" type="Node3D" parent="."]
-
-[node name="block" parent="border" instance=ExtResource("5_muprf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.8, 140)
-size = Vector3(300, 100, 128)
-
-[node name="block4" parent="border" instance=ExtResource("5_muprf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.79, -140)
-size = Vector3(300, 100, 128)
-
-[node name="block2" parent="border" instance=ExtResource("5_muprf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, -49.78, 0)
-size = Vector3(128, 100, 300)
-
-[node name="block3" parent="border" instance=ExtResource("5_muprf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140, -49.77, 0)
-size = Vector3(128, 100, 300)
-
-[node name="walls" type="Node3D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="StaticBody3D" type="StaticBody3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.806126, 0)
-shape = SubResource("WorldBoundaryShape3D_md6sa")
-metadata/_edit_lock_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D"]
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_at30r")
-metadata/_edit_lock_ = true
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="walls"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 128, 0, 0)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.176386, 0)
-shape = SubResource("WorldBoundaryShape3D_md6sa")
-metadata/_edit_lock_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D2"]
-transparency = 0.5
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_at30r")
-metadata/_edit_lock_ = true
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="walls"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 128)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3982306, 0)
-shape = SubResource("WorldBoundaryShape3D_md6sa")
-metadata/_edit_lock_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D3"]
-transparency = 0.5
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_at30r")
-metadata/_edit_lock_ = true
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="walls"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -128, 0, 0)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.027399, 0)
-shape = SubResource("WorldBoundaryShape3D_md6sa")
-metadata/_edit_lock_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D4"]
-transparency = 0.5
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_at30r")
-metadata/_edit_lock_ = true
-
-[node name="builds" type="Node3D" parent="." node_paths=PackedStringArray("spawner")]
-script = ExtResource("15_tgnr8")
-spawner = NodePath("../prop_spawner")
-
-[node name="prop_spawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../builds")
-
-[node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(1, 0, 0, 0, 0.49229005, -0.87043124, 0, 0.87043124, 0.49229005, 10, 0.5, 10)
-rail = NodePath("../rail")
-tilt_frequency = 2.0
-move_speed = 10.0
-
-[node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-rail_points = Array[ExtResource("19_yt5qh")]([SubResource("Resource_fah67"), SubResource("Resource_wh6ns"), SubResource("Resource_yt5qh"), SubResource("Resource_mwbl6")])
-
-[node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)
+[node name="Player" parent="." instance=ExtResource("3_036b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1980793, 0)
 
 [node name="Filler_Housing1" type="Node3D" parent="."]
-transform = Transform3D(2.6226832e-09, 0, 0.02, 0, 0.02, 0, -0.02, 0, 2.6226832e-09, -64, 0, 0)
+transform = Transform3D(-1.7484555e-09, 0, -0.04, 0, 0.04, 0, 0.04, 0, -1.7484555e-09, -73.06928, 0, -2.1903381)
 
 [node name="Filler_SalsT82" type="Node3D" parent="Filler_Housing1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500.0003, 0, 511.31268)
@@ -1430,14 +1158,14 @@ transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 0, 0)
 transform = Transform3D(9.640467, 0, 0, 0, 0.53028077, 0, 0, 0, 1.0801408, 4334.5444, 331.17932, 7.293626)
 
 [node name="polySurface128_FillerBuildings1_03" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group88/polySurface1283"]
-mesh = SubResource("ArrayMesh_mwbl6")
+mesh = SubResource("ArrayMesh_gbfbk")
 skeleton = NodePath("")
 
 [node name="polySurface343" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group88"]
 transform = Transform3D(0.45576152, 0, 6.2107185e-33, 0, 0.85534424, 0, -3.081488e-33, 0, 0.91858435, 33.5862, 28.931158, 48.849403)
 
 [node name="polySurface34_FillerBuildings1_03" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group88/polySurface343"]
-mesh = SubResource("ArrayMesh_5h1po")
+mesh = SubResource("ArrayMesh_wse8f")
 skeleton = NodePath("")
 
 [node name="group236" type="Node3D" parent="Filler_Housing1/Filler_SalsT82"]
@@ -1447,56 +1175,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.744442, 0)
 transform = Transform3D(0.6631157, 0, 0, 0, 1.1672939, 0, 0, 0, 0.67443377, 0, 290.10474, 0)
 
 [node name="polySurface139_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/polySurface1396"]
-mesh = SubResource("ArrayMesh_2yrad")
+mesh = SubResource("ArrayMesh_k3n1d")
 skeleton = NodePath("")
 
 [node name="polySurface1406" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 460.7445, 0)
 
 [node name="polySurface140_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/polySurface1406"]
-mesh = SubResource("ArrayMesh_5sfev")
+mesh = SubResource("ArrayMesh_70uel")
 skeleton = NodePath("")
 
 [node name="polySurface1416" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.5049251, -518.4306, 460.7445, -269.7932)
 
 [node name="polySurface141_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/polySurface1416"]
-mesh = SubResource("ArrayMesh_cl685")
+mesh = SubResource("ArrayMesh_2u3nc")
 skeleton = NodePath("")
 
 [node name="polySurface1426" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.19825321, 0, 0, 0, 0.35155606, 0, 0, 0, 0.2604633, -441.71414, 1191.7329, -156.03679)
 
 [node name="polySurface142_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/polySurface1426"]
-mesh = SubResource("ArrayMesh_3kni1")
+mesh = SubResource("ArrayMesh_ikiii")
 skeleton = NodePath("")
 
 [node name="pCylinder106" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.47523433, 0, 0, 0, 0.47523433, 0, 0, 0, 0.47523433, 229.40585, 1639.9132, -265.08414)
 
 [node name="pCylinder10_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/pCylinder106"]
-mesh = SubResource("ArrayMesh_dt6ls")
+mesh = SubResource("ArrayMesh_26xuy")
 skeleton = NodePath("")
 
 [node name="pCylinder116" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.47523433, 0, 0, 0, 0.47523433, 0, 0, 0, 0.47523433, 231.7621, 1639.9132, -475.04657)
 
 [node name="pCylinder11_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/pCylinder116"]
-mesh = SubResource("ArrayMesh_68jyw")
+mesh = SubResource("ArrayMesh_wukud")
 skeleton = NodePath("")
 
 [node name="pCylinder123" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.47523433, 0, 0, 0, 0.47523433, 0, 0, 0, 0.47523433, 229.40585, 1639.9132, -69.662544)
 
 [node name="pCylinder12_FillerBuildings1_03" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/pCylinder123"]
-mesh = SubResource("ArrayMesh_b8geo")
+mesh = SubResource("ArrayMesh_wjb0r")
 skeleton = NodePath("")
 
 [node name="polySurface8043" type="Node3D" parent="Filler_Housing1/Filler_SalsT82/group236"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.5049251, -146.3555, 460.7445, -269.7932)
 
 [node name="polySurface804_FillerBuildings1_03" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT82/group236/polySurface8043"]
-mesh = SubResource("ArrayMesh_f3d8o")
+mesh = SubResource("ArrayMesh_bo7i5")
 skeleton = NodePath("")
 
 [node name="Filler_SalsT92" type="Node3D" parent="Filler_Housing1"]
@@ -1509,21 +1237,21 @@ transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 170, 0)
 
 [node name="pCube11_FillerBuildings1_05" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group89/pCube115"]
-mesh = SubResource("ArrayMesh_3boek")
+mesh = SubResource("ArrayMesh_o3ebs")
 skeleton = NodePath("")
 
 [node name="pCube125" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group89"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 550.00006, 0)
 
 [node name="pCube12_FillerBuildings1_05" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group89/pCube125"]
-mesh = SubResource("ArrayMesh_5qfsd")
+mesh = SubResource("ArrayMesh_qktwf")
 skeleton = NodePath("")
 
 [node name="pCube136" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group89"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900.00006, 0)
 
 [node name="pCube13_FillerBuildings1_05" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group89/pCube136"]
-mesh = SubResource("ArrayMesh_w6et3")
+mesh = SubResource("ArrayMesh_jjr1n")
 skeleton = NodePath("")
 
 [node name="group237" type="Node3D" parent="Filler_Housing1/Filler_SalsT92"]
@@ -1533,42 +1261,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.744442, 0)
 transform = Transform3D(0.6631157, 0, 0, 0, 1.1672939, 0, 0, 0, 0.67443377, 0, -59.89526, -1.8189894e-12)
 
 [node name="polySurface139_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/polySurface1397"]
-mesh = SubResource("ArrayMesh_swhw4")
+mesh = SubResource("ArrayMesh_w44yn")
 skeleton = NodePath("")
 
 [node name="polySurface1407" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group237"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 110.744514, -1.8189894e-12)
 
 [node name="polySurface140_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/polySurface1407"]
-mesh = SubResource("ArrayMesh_p62ub")
+mesh = SubResource("ArrayMesh_g1i3r")
 skeleton = NodePath("")
 
 [node name="polySurface1417" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group237"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.5049251, -262.14612, 110.744514, 45.10632)
 
 [node name="polySurface141_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/polySurface1417"]
-mesh = SubResource("ArrayMesh_adbqy")
+mesh = SubResource("ArrayMesh_yx0jh")
 skeleton = NodePath("")
 
 [node name="polySurface1427" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group237"]
 transform = Transform3D(0.19825321, 0, 0, 0, 0.35155606, 0, 0, 0, 0.2604633, -185.9872, 841.733, 124.91044)
 
 [node name="polySurface142_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/polySurface1427"]
-mesh = SubResource("ArrayMesh_ss3h1")
+mesh = SubResource("ArrayMesh_ryup7")
 skeleton = NodePath("")
 
 [node name="pCylinder107" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group237"]
 transform = Transform3D(0.4969483, 0, 0, 0, 0.4969483, 0, 0, 0, 0.4969483, -202.04628, 1293.1927, -231.43797)
 
 [node name="pCylinder10_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/pCylinder107"]
-mesh = SubResource("ArrayMesh_eb6jx")
+mesh = SubResource("ArrayMesh_jas3d")
 skeleton = NodePath("")
 
 [node name="pCylinder117" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group237"]
 transform = Transform3D(0.4969483, 0, 0, 0, 0.4969483, 0, 0, 0, 0.4969483, 124.78207, 1293.1927, -231.43797)
 
 [node name="pCylinder11_FillerBuildings1_07" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group237/pCylinder117"]
-mesh = SubResource("ArrayMesh_46kkf")
+mesh = SubResource("ArrayMesh_7qk3m")
 skeleton = NodePath("")
 
 [node name="group284" type="Node3D" parent="Filler_Housing1/Filler_SalsT92"]
@@ -1578,21 +1306,21 @@ transform = Transform3D(-1.2818495, -1.4997598e-32, -9.386046e-17, 0, 1, -9.3860
 transform = Transform3D(396.93967, 0, 1.2621775e-29, 0, 396.93967, 0, -1.2621775e-29, 0, 396.93967, 603.9051, 122.07874, 542.32764)
 
 [node name="pCube17_FillerBuildings1_04" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group284/pCube174"]
-mesh = SubResource("ArrayMesh_2ggs0")
+mesh = SubResource("ArrayMesh_ruyqm")
 skeleton = NodePath("")
 
 [node name="polySurface1304" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group284"]
 transform = Transform3D(-0.7801228, -1.285715e-32, -4.4034887e-16, 0, 0.8572806, -4.4034887e-16, -9.553749e-17, 1.049866e-16, 3.5957215, 271.73788, 251.47414, -834.30597)
 
 [node name="polySurface130_FillerBuildings1_04" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group284/polySurface1304"]
-mesh = SubResource("ArrayMesh_cu6gy")
+mesh = SubResource("ArrayMesh_nx736")
 skeleton = NodePath("")
 
 [node name="polySurface1294" type="Node3D" parent="Filler_Housing1/Filler_SalsT92/group284"]
 transform = Transform3D(-0.7801228, -1.4997598e-32, -1.5978611e-16, 0, 1, -1.5978611e-16, -9.553749e-17, 1.2246469e-16, 1.3047526, 293.43823, 0, 69.63443)
 
 [node name="polySurface129_FillerBuildings1_04" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT92/group284/polySurface1294"]
-mesh = SubResource("ArrayMesh_neiiw")
+mesh = SubResource("ArrayMesh_f3o6s")
 skeleton = NodePath("")
 
 [node name="Filler_SalsT102" type="Node3D" parent="Filler_Housing1"]
@@ -1605,21 +1333,21 @@ transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 170, 0)
 
 [node name="pCube11_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group810/pCube116"]
-mesh = SubResource("ArrayMesh_mqwyj")
+mesh = SubResource("ArrayMesh_k3lar")
 skeleton = NodePath("")
 
 [node name="pCube126" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group810"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 550.00006, 0)
 
 [node name="pCube12_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group810/pCube126"]
-mesh = SubResource("ArrayMesh_dll3c")
+mesh = SubResource("ArrayMesh_q42o5")
 skeleton = NodePath("")
 
 [node name="pCube137" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group810"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900.00006, 0)
 
 [node name="pCube13_FillerBuildings1_06" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group810/pCube137"]
-mesh = SubResource("ArrayMesh_hflid")
+mesh = SubResource("ArrayMesh_kkgr2")
 skeleton = NodePath("")
 
 [node name="group238" type="Node3D" parent="Filler_Housing1/Filler_SalsT102"]
@@ -1629,61 +1357,61 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.744442, 0)
 transform = Transform3D(0.6631157, 0, 0, 0, 1.1672939, 0, 0, 0, 0.67443377, 0, -59.89526, 0)
 
 [node name="polySurface139_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/polySurface1398"]
-mesh = SubResource("ArrayMesh_2eax0")
+mesh = SubResource("ArrayMesh_r5m4j")
 skeleton = NodePath("")
 
 [node name="polySurface1408" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group238"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.67443377, 0, 110.744514, 0)
 
 [node name="polySurface140_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/polySurface1408"]
-mesh = SubResource("ArrayMesh_g02c4")
+mesh = SubResource("ArrayMesh_c0wax")
 skeleton = NodePath("")
 
 [node name="polySurface1418" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group238"]
 transform = Transform3D(0.6631157, 0, 0, 0, 1, 0, 0, 0, 0.5049251, 128.14305, 110.744514, 45.10632)
 
 [node name="polySurface141_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/polySurface1418"]
-mesh = SubResource("ArrayMesh_l30ja")
+mesh = SubResource("ArrayMesh_37ykd")
 skeleton = NodePath("")
 
 [node name="polySurface1428" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group238"]
 transform = Transform3D(0.19825321, 0, 0, 0, 0.35155606, 0, 0, 0, 0.2604633, 204.30197, 841.733, 124.91044)
 
 [node name="polySurface142_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/polySurface1428"]
-mesh = SubResource("ArrayMesh_dqitk")
+mesh = SubResource("ArrayMesh_75cpn")
 skeleton = NodePath("")
 
 [node name="pCylinder108" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group238"]
 transform = Transform3D(0.4969483, 0, 0, 0, 0.4969483, 0, 0, 0, 0.4969483, -133.97389, 1293.1927, -231.43797)
 
 [node name="pCylinder10_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/pCylinder108"]
-mesh = SubResource("ArrayMesh_y6mmf")
+mesh = SubResource("ArrayMesh_ynm8w")
 skeleton = NodePath("")
 
 [node name="pCylinder118" type="Node3D" parent="Filler_Housing1/Filler_SalsT102/group238"]
 transform = Transform3D(0.4969483, 0, 0, 0, 0.4969483, 0, 0, 0, 0.4969483, 192.85446, 1293.1927, -231.43797)
 
 [node name="pCylinder11_FillerBuildings1_08" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT102/group238/pCylinder118"]
-mesh = SubResource("ArrayMesh_ismdy")
+mesh = SubResource("ArrayMesh_3fh52")
 skeleton = NodePath("")
 
 [node name="Filler_SalsGlow2" type="Node3D" parent="Filler_Housing1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8900, 0, 12550)
 
 [node name="Filler_SalsGlow_FillerBuildings1GLOW_02" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsGlow2"]
-mesh = SubResource("ArrayMesh_udm6t")
+mesh = SubResource("ArrayMesh_lxwtw")
 skeleton = NodePath("")
 
 [node name="Filler_SalsWindows2" type="Node3D" parent="Filler_Housing1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8900, 0, 12550)
 
 [node name="Filler_SalsWindows_FillerBuildings1_02" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsWindows2"]
-mesh = SubResource("ArrayMesh_5uqds")
+mesh = SubResource("ArrayMesh_tj74d")
 skeleton = NodePath("")
 
 [node name="Filler_SalsT8_group8_pCube112" type="Node3D" parent="Filler_Housing1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8900, 0, 12550)
 
 [node name="Filler_SalsT8_group8_pCube11_FillerBuildings1_02" type="MeshInstance3D" parent="Filler_Housing1/Filler_SalsT8_group8_pCube112"]
-mesh = SubResource("ArrayMesh_5herc")
+mesh = SubResource("ArrayMesh_p5g01")
 skeleton = NodePath("")
