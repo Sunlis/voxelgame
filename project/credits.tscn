@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c1eimu22a4rdc"]
+
+[node name="credits" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="voxel library" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://github.com/Zylann/godot_voxel\"]Voxel Tools for Godot[/url]"
+fit_content = true
+
+[node name="sky shader" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://github.com/gdquest-demos/godot-4-stylized-sky\"]Godot 4 Stylized Sky Shader[/url]"
+fit_content = true
+
+[node name="buildings" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://viravoloshyn.itch.io/colorful-low-poly-city-asset-pack\"]Buildings and Foliage[/url]"
+fit_content = true
+
+[node name="possum" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://sketchfab.com/3d-models/posm-b0774e904c284e349daa0c2b8860e811\"]Possum[/url]"
+fit_content = true
+
+[node name="minecart" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://sketchfab.com/3d-models/low-poly-minecart-ecfc948e32e94ff2a8744b15bf125d19\"]Minecart[/url]"
+fit_content = true
+
+[node name="materials" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://juliosillet.gumroad.com/l/mat_01\"]Ground materials[/url]"
+fit_content = true
