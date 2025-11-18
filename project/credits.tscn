@@ -14,6 +14,13 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="title" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Credits"
+fit_content = true
+
 [node name="voxel library" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
@@ -38,6 +45,12 @@ bbcode_enabled = true
 text = "[url=\"https://sketchfab.com/3d-models/posm-b0774e904c284e349daa0c2b8860e811\"]Possum[/url]"
 fit_content = true
 
+[node name="dumpster" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://skfb.ly/oqxQR\"]Dumpster[/url]"
+fit_content = true
+
 [node name="minecart" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
@@ -48,4 +61,28 @@ fit_content = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://juliosillet.gumroad.com/l/mat_01\"]Ground materials[/url]"
+fit_content = true
+
+[node name="crosshairs" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://kenney.nl/assets/crosshair-pack\"]Crosshairs[/url]"
+fit_content = true
+
+[node name="flashlight icon" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://www.flaticon.com/free-icon/flashlight_8775298?term=flashlight&page=1&position=13&origin=search&related_id=8775298\"]Flashlight icon[/url]"
+fit_content = true
+
+[node name="lantern icon" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://www.flaticon.com/free-icon/lantern_5404113?term=lantern&page=1&position=3&origin=search&related_id=5404113\"]Lantern icon[/url]"
+fit_content = true
+
+[node name="rail icon" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://www.flaticon.com/free-icon/railroad_8810365?term=rail&page=1&position=4&origin=search&related_id=8810365\"]Rail icon[/url]"
 fit_content = true
