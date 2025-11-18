@@ -86,3 +86,9 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://www.flaticon.com/free-icon/railroad_8810365?term=rail&page=1&position=4&origin=search&related_id=8810365\"]Rail icon[/url]"
 fit_content = true
+
+[node name="debug menu" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://github.com/godot-extended-libraries/godot-debug-menu\"]Debug overlay[/url]"
+fit_content = true

@@ -9,7 +9,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @export var mouse_sensitivity = 0.002
 @export var dig_reach = 4.0
 @export var dig_radius = 1.0
-@export var dig_noise: float = 0.1
+@export var dig_noise: float = 0.02
 
 @export var build_reach = 12.0
 @export var build_rotate_speed = 5.0
