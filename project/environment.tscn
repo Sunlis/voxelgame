@@ -516,25 +516,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
 size = Vector3(128, 64, 128)
 material = SubResource("StandardMaterial3D_yilnh")
 
-[node name="roads" type="Node3D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="road_section" parent="roads" instance=ExtResource("4_g4tgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -76)
-metadata/_edit_lock_ = true
-
-[node name="road_section2" parent="roads" instance=ExtResource("4_g4tgr")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 76, 0.1, 0)
-metadata/_edit_lock_ = true
-
-[node name="road_section3" parent="roads" instance=ExtResource("4_g4tgr")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.1, 76)
-metadata/_edit_lock_ = true
-
-[node name="road_section4" parent="roads" instance=ExtResource("4_g4tgr")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -76, 0.1, 0)
-metadata/_edit_lock_ = true
-
 [node name="border blocks" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0)
 metadata/_edit_lock_ = true
@@ -623,255 +604,282 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_pk5nr")
 metadata/_edit_lock_ = true
 
-[node name="grass_quad" type="MeshInstance3D" parent="."]
+[node name="simple low poly" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+visible = false
+
+[node name="grass_quad" type="MeshInstance3D" parent="simple low poly"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96, 0.11, 96)
 mesh = SubResource("QuadMesh_g4tgr")
+skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="grass_quad2" type="MeshInstance3D" parent="."]
+[node name="grass_quad2" type="MeshInstance3D" parent="simple low poly"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 96, 0.11, 96)
 mesh = SubResource("QuadMesh_g4tgr")
+skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="grass_quad3" type="MeshInstance3D" parent="."]
+[node name="grass_quad3" type="MeshInstance3D" parent="simple low poly"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 96, 0.11, -96)
 mesh = SubResource("QuadMesh_g4tgr")
+skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="grass_quad4" type="MeshInstance3D" parent="."]
+[node name="grass_quad4" type="MeshInstance3D" parent="simple low poly"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -96, 0.11, -96)
 mesh = SubResource("QuadMesh_g4tgr")
+skeleton = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="truck" type="StaticBody3D" parent="."]
+[node name="roads" type="Node3D" parent="simple low poly"]
+metadata/_edit_lock_ = true
+
+[node name="road_section" parent="simple low poly/roads" instance=ExtResource("4_g4tgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -76)
+metadata/_edit_lock_ = true
+
+[node name="road_section2" parent="simple low poly/roads" instance=ExtResource("4_g4tgr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 76, 0.1, 0)
+metadata/_edit_lock_ = true
+
+[node name="road_section3" parent="simple low poly/roads" instance=ExtResource("4_g4tgr")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.1, 76)
+metadata/_edit_lock_ = true
+
+[node name="road_section4" parent="simple low poly/roads" instance=ExtResource("4_g4tgr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -76, 0.1, 0)
+metadata/_edit_lock_ = true
+
+[node name="truck" type="StaticBody3D" parent="simple low poly"]
 transform = Transform3D(1, 0, 3.7252903e-09, 0, 1.0000001, 0, -3.7252903e-09, 0, 1, 3.197, 0.792, -89.443)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="truck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/truck"]
 transform = Transform3D(-2.997213, 0, 0.12928912, 0, 3, 0, -0.12928912, 0, -2.997213, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_pk5nr")
 
-[node name="truck2" type="MeshInstance3D" parent="truck"]
+[node name="truck2" type="MeshInstance3D" parent="simple low poly/truck"]
 transform = Transform3D(-2.997213, 0, 0.12928914, 0, 2.9999995, 0, -0.12928914, 0, -2.997213, 0, 0, 0)
 mesh = SubResource("ArrayMesh_poig3")
 skeleton = NodePath("")
 
-[node name="parking ticket" type="MeshInstance3D" parent="truck/truck2"]
+[node name="parking ticket" type="MeshInstance3D" parent="simple low poly/truck/truck2"]
 transform = Transform3D(0.05588574, -0.2649899, 0.9626304, -0.19864635, 0.9419112, 0.2708189, -0.9784766, -0.20635793, 1.2724202e-07, 3.3198872, 0.86679846, -0.60496986)
 mesh = SubResource("QuadMesh_2eiut")
 
-[node name="house" type="StaticBody3D" parent="."]
+[node name="house" type="StaticBody3D" parent="simple low poly"]
 transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -2.1855692e-06, 0, -113)
 
-[node name="sidewalk_short" parent="house" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short" parent="simple low poly/house" instance=ExtResource("8_poig3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0.1, 8)
 
-[node name="HouseSmall" type="MeshInstance3D" parent="house"]
+[node name="HouseSmall" type="MeshInstance3D" parent="simple low poly/house"]
 transform = Transform3D(-3, 0, -4.5298742e-07, 0, 3, 0, 4.5298742e-07, 0, -3, -3, 0, 4.5298742e-07)
 mesh = SubResource("ArrayMesh_oqxhg")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="house"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/house"]
 transform = Transform3D(-3, 0, -4.5298742e-07, 0, 3, 0, 4.5298742e-07, 0, -3, -3, 0, 4.5298742e-07)
 shape = SubResource("ConvexPolygonShape3D_poig3")
 
-[node name="RubishBin3" type="MeshInstance3D" parent="house"]
+[node name="RubishBin3" type="MeshInstance3D" parent="simple low poly/house"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.374346, 0, 5.097)
 mesh = SubResource("ArrayMesh_3gbvy")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="house"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="simple low poly/house"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.374346, 0, 5.097)
 shape = SubResource("ConvexPolygonShape3D_oqxhg")
 
-[node name="Bush1" type="MeshInstance3D" parent="house"]
+[node name="Bush1" type="MeshInstance3D" parent="simple low poly/house"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.6844025, 0.09377098, 9.515463)
 mesh = SubResource("ArrayMesh_7q7v2")
 skeleton = NodePath("")
 
-[node name="fence" parent="house" instance=ExtResource("10_oqxhg")]
+[node name="fence" parent="simple low poly/house" instance=ExtResource("10_oqxhg")]
 transform = Transform3D(-1.3113419e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113419e-07, -20.999998, 0, -22)
 visible = false
 sections = 6
 
-[node name="fence3" parent="house" instance=ExtResource("10_oqxhg")]
+[node name="fence3" parent="simple low poly/house" instance=ExtResource("10_oqxhg")]
 transform = Transform3D(2.2649374e-07, 0, 3, 0, 3, 0, -3, 0, 2.2649374e-07, 15.527176, 0, 13.291458)
 visible = false
 sections = 6
 
-[node name="fence2" parent="house" instance=ExtResource("10_oqxhg")]
+[node name="fence2" parent="simple low poly/house" instance=ExtResource("10_oqxhg")]
 transform = Transform3D(-3, 0, 4.5298745e-07, 0, 3, 0, -4.5298745e-07, 0, -3, 15.000002, 0, -22.588058)
 visible = false
 sections = 6
 
-[node name="big_house" type="StaticBody3D" parent="."]
+[node name="big_house" type="StaticBody3D" parent="simple low poly"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 0, -134)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house"]
 transform = Transform3D(-4, 0, 3.496911e-07, 0, 4, 0, -3.496911e-07, 0, -4, 1.1432553e-06, 0, -13.077316)
 shape = SubResource("ConvexPolygonShape3D_2eiut")
 
-[node name="HouseBig2" type="MeshInstance3D" parent="big_house/CollisionShape3D"]
+[node name="HouseBig2" type="MeshInstance3D" parent="simple low poly/big_house/CollisionShape3D"]
 mesh = SubResource("ArrayMesh_2eiut")
 skeleton = NodePath("")
 
-[node name="Table" type="MeshInstance3D" parent="big_house/CollisionShape3D/HouseBig2"]
+[node name="Table" type="MeshInstance3D" parent="simple low poly/big_house/CollisionShape3D/HouseBig2"]
 transform = Transform3D(-0.75, 0, -6.556708e-08, 0, 0.75, 0, 6.556708e-08, 0, -0.75, 1.9324999, 0.875, -2.477251)
 mesh = SubResource("ArrayMesh_txl0x")
 skeleton = NodePath("")
 
-[node name="Chair" type="MeshInstance3D" parent="big_house/CollisionShape3D/HouseBig2"]
+[node name="Chair" type="MeshInstance3D" parent="simple low poly/big_house/CollisionShape3D/HouseBig2"]
 transform = Transform3D(-0.7245831, 0, 0.19359578, 0, 0.75, 0, -0.19359578, 0, -0.7245831, 1.2944088, 0.87500006, -2.4680119)
 mesh = SubResource("ArrayMesh_7px3q")
 skeleton = NodePath("")
 
-[node name="sidewalk_short" parent="big_house" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short" parent="simple low poly/big_house" instance=ExtResource("8_poig3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0.1, 30)
 
-[node name="sidewalk_short2" parent="big_house" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short2" parent="simple low poly/big_house" instance=ExtResource("8_poig3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0.1, 14)
 
-[node name="sidewalk_short3" parent="big_house" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short3" parent="simple low poly/big_house" instance=ExtResource("8_poig3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18, 0.1, -2)
 
-[node name="bushes" type="StaticBody3D" parent="big_house"]
+[node name="bushes" type="StaticBody3D" parent="simple low poly/big_house"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35427094, 0, 35.367767)
 
-[node name="Bush4" type="MeshInstance3D" parent="big_house/bushes"]
+[node name="Bush4" type="MeshInstance3D" parent="simple low poly/big_house/bushes"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4sbom")
 skeleton = NodePath("")
 
-[node name="Bush5" type="MeshInstance3D" parent="big_house/bushes"]
+[node name="Bush5" type="MeshInstance3D" parent="simple low poly/big_house/bushes"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0)
 mesh = SubResource("ArrayMesh_3jj1w")
 skeleton = NodePath("")
 
-[node name="Bush6" type="MeshInstance3D" parent="big_house/bushes"]
+[node name="Bush6" type="MeshInstance3D" parent="simple low poly/big_house/bushes"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8, 0, 0)
 mesh = SubResource("ArrayMesh_2bfpd")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house/bushes"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house/bushes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
 shape = SubResource("BoxShape3D_poig3")
 
-[node name="bushes2" type="StaticBody3D" parent="big_house"]
+[node name="bushes2" type="StaticBody3D" parent="simple low poly/big_house"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.354271, 0, 35.367767)
 
-[node name="Bush4" type="MeshInstance3D" parent="big_house/bushes2"]
+[node name="Bush4" type="MeshInstance3D" parent="simple low poly/big_house/bushes2"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4sbom")
 skeleton = NodePath("")
 
-[node name="Bush5" type="MeshInstance3D" parent="big_house/bushes2"]
+[node name="Bush5" type="MeshInstance3D" parent="simple low poly/big_house/bushes2"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0)
 mesh = SubResource("ArrayMesh_3jj1w")
 skeleton = NodePath("")
 
-[node name="Bush6" type="MeshInstance3D" parent="big_house/bushes2"]
+[node name="Bush6" type="MeshInstance3D" parent="simple low poly/big_house/bushes2"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8, 0, 0)
 mesh = SubResource("ArrayMesh_2bfpd")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house/bushes2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house/bushes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
 shape = SubResource("BoxShape3D_poig3")
 
-[node name="bushes3" type="StaticBody3D" parent="big_house"]
+[node name="bushes3" type="StaticBody3D" parent="simple low poly/big_house"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.645729, 0, 34.367767)
 
-[node name="Bush4" type="MeshInstance3D" parent="big_house/bushes3"]
+[node name="Bush4" type="MeshInstance3D" parent="simple low poly/big_house/bushes3"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4sbom")
 skeleton = NodePath("")
 
-[node name="Bush5" type="MeshInstance3D" parent="big_house/bushes3"]
+[node name="Bush5" type="MeshInstance3D" parent="simple low poly/big_house/bushes3"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0)
 mesh = SubResource("ArrayMesh_3jj1w")
 skeleton = NodePath("")
 
-[node name="Bush6" type="MeshInstance3D" parent="big_house/bushes3"]
+[node name="Bush6" type="MeshInstance3D" parent="simple low poly/big_house/bushes3"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8, 0, 0)
 mesh = SubResource("ArrayMesh_2bfpd")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house/bushes3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house/bushes3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
 shape = SubResource("BoxShape3D_poig3")
 
-[node name="bushes4" type="StaticBody3D" parent="big_house"]
+[node name="bushes4" type="StaticBody3D" parent="simple low poly/big_house"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.645728, 0, 22.367767)
 
-[node name="Bush4" type="MeshInstance3D" parent="big_house/bushes4"]
+[node name="Bush4" type="MeshInstance3D" parent="simple low poly/big_house/bushes4"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4sbom")
 skeleton = NodePath("")
 
-[node name="Bush5" type="MeshInstance3D" parent="big_house/bushes4"]
+[node name="Bush5" type="MeshInstance3D" parent="simple low poly/big_house/bushes4"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0)
 mesh = SubResource("ArrayMesh_3jj1w")
 skeleton = NodePath("")
 
-[node name="Bush6" type="MeshInstance3D" parent="big_house/bushes4"]
+[node name="Bush6" type="MeshInstance3D" parent="simple low poly/big_house/bushes4"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8, 0, 0)
 mesh = SubResource("ArrayMesh_2bfpd")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house/bushes4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house/bushes4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
 shape = SubResource("BoxShape3D_poig3")
 
-[node name="bushes5" type="StaticBody3D" parent="big_house"]
+[node name="bushes5" type="StaticBody3D" parent="simple low poly/big_house"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.645727, 0, 10.367767)
 
-[node name="Bush4" type="MeshInstance3D" parent="big_house/bushes5"]
+[node name="Bush4" type="MeshInstance3D" parent="simple low poly/big_house/bushes5"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4sbom")
 skeleton = NodePath("")
 
-[node name="Bush5" type="MeshInstance3D" parent="big_house/bushes5"]
+[node name="Bush5" type="MeshInstance3D" parent="simple low poly/big_house/bushes5"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0)
 mesh = SubResource("ArrayMesh_3jj1w")
 skeleton = NodePath("")
 
-[node name="Bush6" type="MeshInstance3D" parent="big_house/bushes5"]
+[node name="Bush6" type="MeshInstance3D" parent="simple low poly/big_house/bushes5"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8, 0, 0)
 mesh = SubResource("ArrayMesh_2bfpd")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="big_house/bushes5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple low poly/big_house/bushes5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
 shape = SubResource("BoxShape3D_poig3")
 
-[node name="tree_large_01" parent="big_house" instance=ExtResource("9_2eiut")]
+[node name="tree_large_01" parent="simple low poly/big_house" instance=ExtResource("9_2eiut")]
 transform = Transform3D(2.828427, 0, -2.828427, 0, 4, 0, 2.828427, 0, 2.828427, 15.767906, -0.82944894, 34.297546)
 
-[node name="office" type="Node3D" parent="."]
+[node name="office" type="Node3D" parent="simple low poly"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 45, 0, -129)
 
-[node name="Office" type="MeshInstance3D" parent="office"]
+[node name="Office" type="MeshInstance3D" parent="simple low poly/office"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_aai17")
 skeleton = NodePath("")
 
-[node name="tree_large_01" parent="office" instance=ExtResource("9_2eiut")]
+[node name="tree_large_01" parent="simple low poly/office" instance=ExtResource("9_2eiut")]
 transform = Transform3D(3.7423925, 0, 1.4122667, 0, 4, 0, -1.4122667, 0, 3.7423925, 24.970806, -3.8146973e-06, -21.498302)
 
-[node name="tree_small_01" parent="office" instance=ExtResource("11_4sbom")]
+[node name="tree_small_01" parent="simple low poly/office" instance=ExtResource("11_4sbom")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.378643, -9.536743e-07, -22.758545)
 
-[node name="sidewalk_short" parent="office" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short" parent="simple low poly/office" instance=ExtResource("8_poig3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.16819477, 0.099998094, -24.96347)
 
-[node name="sidewalk_short2" parent="office" instance=ExtResource("8_poig3")]
+[node name="sidewalk_short2" parent="simple low poly/office" instance=ExtResource("8_poig3")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.16819565, 0.099998094, -14.96347)
 
-[node name="Bench" type="MeshInstance3D" parent="office"]
+[node name="Bench" type="MeshInstance3D" parent="simple low poly/office"]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 5, 0.3, -20)
 mesh = SubResource("ArrayMesh_mpsl3")
 skeleton = NodePath("")
 
-[node name="Bench2" type="MeshInstance3D" parent="office"]
+[node name="Bench2" type="MeshInstance3D" parent="simple low poly/office"]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 5.000004, 0.3, -26)
 mesh = SubResource("ArrayMesh_mpsl3")
 skeleton = NodePath("")
