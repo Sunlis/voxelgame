@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=41 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
+[ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="3_gxx5o"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
 [ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="4_4hwsc"]
@@ -20,21 +21,95 @@
 [ext_resource type="PackedScene" uid="uid://c13gjqnhj2ubf" path="res://environment.tscn" id="20_fah67"]
 [ext_resource type="PackedScene" uid="uid://chxh4h680iioj" path="res://dumpster.tscn" id="20_yt5qh"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1vceu"]
+[sub_resource type="Gradient" id="Gradient_yt5qh"]
+offsets = PackedFloat32Array(0.44474393, 0.49595687)
+colors = PackedColorArray(0.941163, 0.92547023, 0.80043983, 1, 0.8392157, 0.8039216, 0.54901963, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fah67"]
+gradient = SubResource("Gradient_yt5qh")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yt5qh"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fah67"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_yt5qh")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wh6ns"]
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mwbl6"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_wh6ns")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bsaje"]
+seed = 1
+frequency = 0.003
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5h1po"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_bsaje")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yewfo"]
+seed = 100
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yrad"]
+noise = SubResource("FastNoiseLite_yewfo")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fah67"]
+shader = ExtResource("2_yt5qh")
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_5h1po")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_mwbl6")
+shader_parameter/cloud_curves = SubResource("NoiseTexture2D_fah67")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.60000000894072
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = Color(0.079914324, 0.1311861, 0.116117515, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_2yrad")
+shader_parameter/high_clouds_density = 0.5000000074506
+shader_parameter/top_color = Color(0.018427175, 0.10611347, 0.12707329, 1)
+shader_parameter/bottom_color = Color(0.0024231998, 0.0935624, 0.12708682, 1)
+shader_parameter/sun_scatter = Color(0.12698245, 0.09916323, 0.055878036, 1)
+shader_parameter/astro_tint = Color(1, 1, 0.92156863, 1)
+shader_parameter/astro_sampler = SubResource("GradientTexture2D_fah67")
+shader_parameter/astro_scale = 6.400000095367679
+shader_parameter/astro_intensity = 1.0
+shader_parameter/stars_intensity = 0.5000000074506
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="1"]
-sky_material = SubResource("PhysicalSkyMaterial_1vceu")
+sky_material = SubResource("ShaderMaterial_fah67")
 
 [sub_resource type="Environment" id="2"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("1")
-ambient_light_color = Color(0.427493, 0.42749307, 0.42749307, 1)
-ambient_light_sky_contribution = 0.2
-ambient_light_energy = 0.2
-fog_enabled = true
-fog_density = 0.0005
+ambient_light_color = Color(0.84370357, 0.76168144, 0.65900594, 1)
+ambient_light_sky_contribution = 0.5
+ambient_light_energy = 0.02
+fog_mode = 1
+fog_light_energy = 0.2
+fog_density = 1.0
 fog_aerial_perspective = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 64.0
+fog_depth_end = 128.0
 volumetric_fog_density = 0.005
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
@@ -85,12 +160,13 @@ script = ExtResource("1_at30r")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9121203, -3.8550473e-07, -0.4099227, 0.35500365, 0.49999997, 0.7899193, 0.20496103, -0.86602545, 0.45606023, 14.4885, 81.574554, 0)
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70710677, -0.70710677, 0, -0.25570723, -0.25570723, 0.93232375, -0.65925246, -0.65925246, -0.36162466, 0, 10, 0)
 layers = 3
+light_energy = 0.1
 shadow_enabled = true
 shadow_opacity = 0.8
-directional_shadow_max_distance = 128.0
+directional_shadow_mode = 1
 
 [node name="terrain" type="VoxelTerrain" parent="."]
 bounds = AABB(-64, -64, -64, 128, 128, 128)
