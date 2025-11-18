@@ -8,7 +8,8 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @export var mouse_sensitivity = 0.002
 @export var dig_reach = 4.0
-@export var dig_radius = 1.5
+@export var dig_radius = 1.0
+@export var dig_noise: float = 0.1
 
 @export var build_reach = 12.0
 @export var build_rotate_speed = 5.0
@@ -185,4 +186,9 @@ func dig(origin: Vector3, direction: Vector3, radius: float):
   var diff = (origin - point).normalized()
   for i in range(dig_reach):
     var dig_point = origin - (i * diff)
-    vt.do_sphere(dig_point, radius)
+    var shift = Vector3(
+      randf_range(-1, 1),
+      randf_range(-1, 1),
+      randf_range(-1, 1)
+    ) * radius * dig_noise
+    vt.do_sphere(dig_point + shift, radius)
