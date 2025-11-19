@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://c13gjqnhj2ubf"]
+[gd_scene load_steps=52 format=4 uid="uid://c13gjqnhj2ubf"]
 
 [ext_resource type="Script" uid="uid://n4amujd55aie" path="res://environment.gd" id="1_00014"]
 [ext_resource type="Texture2D" uid="uid://w2h1qyvhye11" path="res://smooth_terrain/assets/environment/CityPack/ColorTexture.jpg" id="1_wetts"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y2au1y08rsl7" path="res://tree_large_01.tscn" id="9_2eiut"]
 [ext_resource type="PackedScene" uid="uid://cpkeqsii8yy2w" path="res://fence.tscn" id="10_oqxhg"]
 [ext_resource type="PackedScene" uid="uid://dxh5vid7du8ml" path="res://tree_small_01.tscn" id="11_4sbom"]
+[ext_resource type="PackedScene" uid="uid://cbv5hr0pj8d40" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Models/Buildings/SM_ordinary_houses_01.gltf" id="13_3gbvy"]
 [ext_resource type="PackedScene" uid="uid://v7eggkovynbk" path="res://house_cutout.tscn" id="13_3jj1w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yilnh"]
@@ -822,3 +823,5 @@ sections = 25
 [node name="fence4" parent="border_fences" instance=ExtResource("10_oqxhg")]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -99.99999, 0, -100)
 sections = 25
+
+[node name="Root Scene" parent="." instance=ExtResource("13_3gbvy")]
