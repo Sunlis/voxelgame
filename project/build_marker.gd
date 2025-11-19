@@ -10,9 +10,11 @@ class_name BuildMarker
   set(v):
     rot = v
     _update()
+@export var forward: Vector3 = Vector3.FORWARD
 
 @onready var arrow: Node3D = %arrow
 
 func _update():
   arrow.visible = directional
   arrow.rotation.z = rot
+  forward = arrow.global_transform.basis.y.normalized()

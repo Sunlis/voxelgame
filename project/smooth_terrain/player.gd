@@ -24,7 +24,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @onready var flashlight: SpotLight3D = %flashlight
 
 @onready var player_hud: PlayerHUD = %player_hud
-@onready var build_marker: Node3D = %build_marker
+@onready var build_marker: BuildMarker = %build_marker
 @onready var anim_player: AnimationPlayer = %anim
 
 var id: int
@@ -138,6 +138,7 @@ func _handle_input(delta: float):
       else:
         self.mode = Mode.BUILDING
       player_hud.build_mode = self.mode == Mode.BUILDING
+      Global.player_build_mode_changed.emit(self.mode == Mode.BUILDING, player_hud.get_selected_build_type())
 
     if self.mode == Mode.BUILDING:
       var state = get_world_3d().direct_space_state
@@ -153,13 +154,17 @@ func _handle_input(delta: float):
         var pos = Vector3(result.position)
         var norm = Vector3(result.normal)
         build_marker.global_transform.origin = pos + norm * 0.1
-        build_marker.look_at(build_marker.global_transform.origin + norm, Vector3.UP)
+        # avoid "Target and up vectors are colinear" by choosing a fallback up vector
+        var up_vec = Vector3.UP
+        if abs(norm.dot(up_vec)) > 0.999:
+          up_vec = Vector3(1, 0, 0) # fallback perpendicular vector
+        build_marker.look_at(build_marker.global_transform.origin + norm, up_vec)
         var selected_build = player_hud.get_selected_build_type()
         build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
         if selected_build == BuildType.Type.RAIL:
-          Global.move_temporary_rail_point(pos, norm, build_marker.global_transform.basis.y)
+          Global.move_temporary_rail_point(pos, norm, build_marker.forward)
         if Input.is_action_just_pressed("build"):
-          Global.build(pos, norm, build_marker.global_transform.basis.z, selected_build)
+          Global.build(pos, norm, build_marker.forward, selected_build)
     else: # self.mode != Mode.BUILDING
       build_marker.visible = false
 

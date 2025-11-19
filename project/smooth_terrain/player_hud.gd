@@ -37,6 +37,7 @@ func _process(_delta):
       selected_build_index += 1
     elif Input.is_action_just_pressed("build_select_prev"):
       selected_build_index -= 1
+    Global.player_build_mode_changed.emit(build_mode, get_selected_build_type())
 
 var _pan_delta: float = 0.0
 var _last_pan = 0.0

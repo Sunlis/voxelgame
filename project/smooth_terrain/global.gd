@@ -37,3 +37,7 @@ func move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) ->
 @rpc("any_peer", "call_local", "reliable")
 func do_move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) -> void:
   move_temp_rail.emit(pos, norm, forward)
+
+### PLAYER
+
+signal player_build_mode_changed(building: bool, build_type: BuildType.Type)

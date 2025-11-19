@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://d2ixdxijpuadn"]
+[gd_scene load_steps=13 format=4 uid="uid://d2ixdxijpuadn"]
 
 [ext_resource type="Script" uid="uid://bb33nn54n0jn8" path="res://smooth_terrain/props/rail.gd" id="1_24b0p"]
 [ext_resource type="Texture2D" uid="uid://cehxp6f0j2f6t" path="res://smooth_terrain/assets/rail/Textures/colormap.png" id="2_nwlu7"]
 
 [sub_resource type="Curve3D" id="Curve3D_nwlu7"]
 resource_local_to_scene = true
+bake_interval = 1.0
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
@@ -12,8 +13,10 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_8pbdb"]
+resource_local_to_scene = true
+bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -95,10 +98,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cofod")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mufwa"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.47058824)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pbdb"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.47058824)
+
 [node name="rail" type="Node3D"]
 script = ExtResource("1_24b0p")
 curve = SubResource("Curve3D_nwlu7")
 preview_curve = SubResource("Curve3D_8pbdb")
+handle_strength = null
 
 [node name="path" type="Path3D" parent="."]
 unique_name_in_owner = true
@@ -134,5 +146,17 @@ surface_0/warp_along_curve = true
 surface_0/sample_cubic = false
 surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
-surface_0/triangle_count = 640
+surface_0/triangle_count = 0
 unique_name_in_owner = true
+
+[node name="marker_01" type="CSGSphere3D" parent="."]
+unique_name_in_owner = true
+radial_segments = 32
+rings = 16
+material = SubResource("StandardMaterial3D_mufwa")
+
+[node name="marker_02" type="CSGSphere3D" parent="."]
+unique_name_in_owner = true
+radial_segments = 32
+rings = 16
+material = SubResource("StandardMaterial3D_8pbdb")
