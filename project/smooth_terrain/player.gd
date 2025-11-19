@@ -152,7 +152,7 @@ func _handle_input(delta: float):
       build_marker.visible = collision
       if collision:
         var pos = Vector3(result.position)
-        var norm = Vector3(result.normal)
+        var norm = Vector3(result.normal).normalized()
         build_marker.global_transform.origin = pos + norm * 0.1
         # avoid "Target and up vectors are colinear" by choosing a fallback up vector
         var up_vec = Vector3.UP
@@ -162,9 +162,9 @@ func _handle_input(delta: float):
         var selected_build = player_hud.get_selected_build_type()
         build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
         if selected_build == BuildType.Type.RAIL:
-          Global.move_temporary_rail_point(pos, norm, build_marker.forward)
+          Global.move_temporary_rail_point(pos + norm * 0.1, norm, build_marker.forward)
         if Input.is_action_just_pressed("build"):
-          Global.build(pos, norm, build_marker.forward, selected_build)
+          Global.build(pos + norm * 0.1, norm, build_marker.forward, selected_build)
     else: # self.mode != Mode.BUILDING
       build_marker.visible = false
 

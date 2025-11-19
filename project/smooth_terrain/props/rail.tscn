@@ -13,10 +13,8 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_8pbdb"]
-resource_local_to_scene = true
-bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -110,7 +108,6 @@ albedo_color = Color(0, 1, 0, 0.47058824)
 script = ExtResource("1_24b0p")
 curve = SubResource("Curve3D_nwlu7")
 preview_curve = SubResource("Curve3D_8pbdb")
-handle_strength = null
 
 [node name="path" type="Path3D" parent="."]
 unique_name_in_owner = true
@@ -146,7 +143,7 @@ surface_0/warp_along_curve = true
 surface_0/sample_cubic = false
 surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
-surface_0/triangle_count = 0
+surface_0/triangle_count = 426
 unique_name_in_owner = true
 
 [node name="marker_01" type="CSGSphere3D" parent="."]

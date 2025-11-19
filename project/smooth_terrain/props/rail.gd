@@ -13,7 +13,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @export var preview_curve: Curve3D
 
-@export var handle_strength: float = 4.0
+@export var handle_strength: float = 8.0
 
 @onready var path: Path3D = %path
 @onready var preview_path: Path3D = %preview_path
@@ -69,19 +69,21 @@ func get_transform_at_distance(distance: float) -> Transform3D:
 func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_type: BuildType.Type) -> void:
   if build_type != BuildType.Type.RAIL:
     return
-  curve.add_point(pos, -forward.normalized() * handle_strength, forward.normalized() * handle_strength)
+  var out = forward.normalized() * handle_strength
+  curve.add_point(pos, -out, out)
   preview_curve.set_point_position(0, pos)
-  preview_curve.set_point_in(0, -forward.normalized() * handle_strength)
-  preview_curve.set_point_out(0, forward.normalized() * handle_strength)
+  preview_curve.set_point_in(0, -out)
+  preview_curve.set_point_out(0, out)
   preview_curve.set_point_position(1, pos)
-  preview_curve.set_point_in(1, -forward.normalized() * handle_strength)
-  preview_curve.set_point_out(1, forward.normalized() * handle_strength)
+  preview_curve.set_point_in(1, -out)
+  preview_curve.set_point_out(1, out)
   preview_mesh.visible = false
 
 func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
+  var out = forward.normalized() * handle_strength
   preview_curve.set_point_position(1, pos)
-  preview_curve.set_point_in(1, -forward.normalized() * handle_strength)
-  preview_curve.set_point_out(1, forward.normalized() * handle_strength)
+  preview_curve.set_point_in(1, -out)
+  preview_curve.set_point_out(1, out)
   preview_mesh.visible = true
   marker_01.global_position = pos
-  marker_02.global_position = pos + forward.normalized() * handle_strength
+  marker_02.global_position = pos + out
