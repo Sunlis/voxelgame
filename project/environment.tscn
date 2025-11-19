@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://c13gjqnhj2ubf"]
+[gd_scene load_steps=55 format=4 uid="uid://c13gjqnhj2ubf"]
 
 [ext_resource type="Script" uid="uid://n4amujd55aie" path="res://environment.gd" id="1_00014"]
 [ext_resource type="Texture2D" uid="uid://w2h1qyvhye11" path="res://smooth_terrain/assets/environment/CityPack/ColorTexture.jpg" id="1_wetts"]
@@ -11,8 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://y2au1y08rsl7" path="res://tree_large_01.tscn" id="9_2eiut"]
 [ext_resource type="PackedScene" uid="uid://cpkeqsii8yy2w" path="res://fence.tscn" id="10_oqxhg"]
 [ext_resource type="PackedScene" uid="uid://dxh5vid7du8ml" path="res://tree_small_01.tscn" id="11_4sbom"]
-[ext_resource type="PackedScene" uid="uid://cbv5hr0pj8d40" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Models/Buildings/SM_ordinary_houses_01.gltf" id="13_3gbvy"]
-[ext_resource type="PackedScene" uid="uid://v7eggkovynbk" path="res://house_cutout.tscn" id="13_3jj1w"]
+[ext_resource type="PackedScene" uid="uid://cx3s3m1ph6gju" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_01.prefab.scn" id="13_txl0x"]
+[ext_resource type="PackedScene" uid="uid://cafs1cjko14vy" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_02.prefab.scn" id="14_7px3q"]
+[ext_resource type="PackedScene" uid="uid://frgqppvqfx1f" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_03.prefab.scn" id="15_mpsl3"]
+[ext_resource type="PackedScene" uid="uid://b521t1rdl6upl" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_04.prefab.scn" id="16_mbc85"]
+[ext_resource type="PackedScene" uid="uid://wpwas4qdhp2o" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_05.prefab.scn" id="17_w1st6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yilnh"]
 albedo_color = Color(0.03417117, 0.40080187, 0.16301897, 1)
@@ -803,9 +806,6 @@ transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 5.
 mesh = SubResource("ArrayMesh_mpsl3")
 skeleton = NodePath("")
 
-[node name="Node3D" parent="." instance=ExtResource("13_3jj1w")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9.966197e-06, 0, 114)
-
 [node name="border_fences" type="Node3D" parent="."]
 
 [node name="fence" parent="border_fences" instance=ExtResource("10_oqxhg")]
@@ -824,4 +824,50 @@ sections = 25
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -99.99999, 0, -100)
 sections = 25
 
-[node name="Root Scene" parent="." instance=ExtResource("13_3gbvy")]
+[node name="SM_ordinary_houses_01" parent="." instance=ExtResource("13_txl0x")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -87.97809, 0, -144.14853)
+
+[node name="SM_ordinary_houses_02" parent="." instance=ExtResource("14_7px3q")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6.8430586, 5.2919464, -139.64859)
+
+[node name="SM_ordinary_houses_14" parent="." instance=ExtResource("14_7px3q")]
+transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, -63.573326, 5.291939, 142.35965)
+
+[node name="SM_ordinary_houses_10" parent="." instance=ExtResource("14_7px3q")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 140.7035, 5.2919464, -71.58292)
+
+[node name="SM_ordinary_houses_03" parent="." instance=ExtResource("15_mpsl3")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -146.89978, 0.09000397, -6.0471992)
+
+[node name="SM_ordinary_houses_15" parent="." instance=ExtResource("15_mpsl3")]
+transform = Transform3D(5, 0, 2.842171e-14, 0, 5, 0, -2.842171e-14, 0, 5, 27.674591, 0.09000397, 145.769)
+
+[node name="SM_ordinary_houses_08" parent="." instance=ExtResource("15_mpsl3")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -158.06332, 0.09000397, -139.27696)
+
+[node name="SM_ordinary_houses_11" parent="." instance=ExtResource("15_mpsl3")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 136.12462, 0.09000397, 13.925266)
+
+[node name="SM_ordinary_houses_12" parent="." instance=ExtResource("15_mpsl3")]
+transform = Transform3D(5, 0, 2.842171e-14, 0, 5, 0, -2.842171e-14, 0, 5, 124.67226, 0.09000397, 69.073425)
+
+[node name="SM_ordinary_houses_04" parent="." instance=ExtResource("16_mbc85")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -132.31345, 0.0900116, -67.150345)
+
+[node name="SM_ordinary_houses_16" parent="." instance=ExtResource("16_mbc85")]
+transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 82.71147, 0.090019226, 133.84966)
+
+[node name="SM_ordinary_houses_07" parent="." instance=ExtResource("16_mbc85")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 99.87123, 0.0900116, -126.37975)
+
+[node name="SM_ordinary_houses_05" parent="." instance=ExtResource("17_w1st6")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -208.68555, 0.09000015, 41.18955)
+
+[node name="SM_ordinary_houses_13" parent="." instance=ExtResource("17_w1st6")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 128.64044, 0.09000778, 115.28142)
+
+[node name="SM_ordinary_houses_09" parent="." instance=ExtResource("17_w1st6")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -122.13847, 0.09000015, 86.670334)
+
+[node name="SM_ordinary_houses_06" parent="." instance=ExtResource("17_w1st6")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 23.965607, 0.09000015, -130.75293)
