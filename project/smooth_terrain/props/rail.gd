@@ -6,64 +6,69 @@ class_name Rail
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
-@export var rail_points: Array[RailPoint] = []:
-  set(v):
-    rail_points = v
+@export var curve: Curve3D = null:
+  set(value):
+    curve = value
     _update()
 
-@export var tie_spacing: float = 2.0:
-  set(v):
-    tie_spacing = max(v, 0.1)
-    _update()
+@export var preview_curve: Curve3D
 
-@export var rail_width: float = 1.0:
-  set(v):
-    rail_width = max(v, 0.1)
-    _update()
+@onready var path: Path3D = %path
+@onready var preview_path: Path3D = %preview_path
+@onready var path_mesh: PathMesh3D = %mesh
+@onready var preview_mesh: PathMesh3D = %preview_mesh
 
-@export var tie_length: float = 1.0:
-  set(v):
-    tie_length = max(v, 0.001)
-    _update()
+var _rail_length: float = 0.0
+var _transforms = {}
 
-@export var tie_thickness: float = 0.06:
-  set(v):
-    tie_thickness = max(v, 0.001)
-    _update()
+func _ready():
+  path.curve_changed.connect(self._curve_changed)
+  _curve_changed()
+  preview_curve = Curve3D.new()
+  var out = curve.get_point_out(curve.point_count - 1)
+  if out == Vector3.ZERO:
+    out = -curve.get_point_in(curve.point_count - 1)
+  preview_curve.add_point(
+    curve.get_point_position(curve.point_count - 1),
+    curve.get_point_in(curve.point_count - 1),
+    out)
+  preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
+  preview_path.curve = preview_curve
 
-@export var rail_height: float = 0.14:
-  set(v):
-    rail_height = max(v, 0.001)
-    _update()
+  # Global.build_requested.connect(self._on_build_requested)
+  Global.move_temp_rail.connect(_move_temp_rail)
 
-@export var rail_thickness: float = 0.08:
-  set(v):
-    rail_thickness = max(v, 0.001)
-    _update()
-
-# Independent tie width so changing rail_thickness no longer affects tie length
-@export var tie_width: float = 2.5:
-  set(v):
-    tie_width = max(v, 0.001)
-    _update()
-
-@export var show_debug_markers: bool = false:
-  set(v):
-    show_debug_markers = v
-    _update()
-
-# Scales the strength/length of the in/out handles at each RailPoint.
-# Higher = broader, gentler curves. Lower = tighter/straighter.
-@export var handle_strength: float = 1.0:
-  set(v):
-    handle_strength = clamp(v, 0.0, 5.0)
-    _update()
+func _curve_changed():
+  _rail_length = curve.get_baked_length()
+  _transforms.clear()
 
 func _update():
-  pass
+  if is_inside_tree():
+    path.curve = curve
 
 func get_rail_length() -> float:
-  return 1.0
+  return _rail_length
 
-func get_transform_at_distance(_distance: float) -> Transform3D:
+func get_transform_at_distance(distance: float) -> Transform3D:
+  if distance in _transforms:
+    return _transforms[distance]
+  if curve != null:
+    var tran = curve.sample_baked_with_rotation(clamp(distance, 0.0, self.get_rail_length()))
+    _transforms[distance] = tran
+    return tran
   return Transform3D.IDENTITY
+
+func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_type: BuildType.Type) -> void:
+  if build_type != BuildType.Type.RAIL:
+    return
+  curve.add_point(pos, -forward.normalized(), forward.normalized())
+  preview_curve = Curve3D.new()
+  preview_curve.add_point(pos, -forward.normalized(), forward.normalized())
+  preview_curve.add_point(Vector3(0, 1, 0), Vector3.ZERO, Vector3.ZERO)
+  preview_mesh.visible = false
+
+func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
+  preview_curve.set_point_position(1, pos)
+  preview_curve.set_point_in(1, -forward.normalized() * 4.0)
+  preview_curve.set_point_out(1, forward.normalized() * 4.0)
+  preview_mesh.visible = true

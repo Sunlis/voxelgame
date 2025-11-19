@@ -1,6 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=38 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 [ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
-[ext_resource type="Script" uid="uid://hs11wfuvqq46" path="res://smooth_terrain/props/rail_point.gd" id="19_yt5qh"]
 [ext_resource type="PackedScene" uid="uid://c13gjqnhj2ubf" path="res://environment.tscn" id="20_fah67"]
 [ext_resource type="PackedScene" uid="uid://chxh4h680iioj" path="res://dumpster.tscn" id="20_yt5qh"]
 
@@ -136,20 +135,21 @@ shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
-[sub_resource type="Resource" id="Resource_yt5qh"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0, 10)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
+[sub_resource type="Curve3D" id="Curve3D_4hwsc"]
+resource_local_to_scene = true
+bake_interval = 2.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 10, 0.93, 9.55, 0, 0, 0.6, 0, 0, -3, 10, 3.14, 8.64, 0, 0, 3, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
-[sub_resource type="Resource" id="Resource_fah67"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 3, 8.635)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_wh6ns"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0, 1.67)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
+[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="main" type="Node"]
 script = ExtResource("1_at30r")
@@ -215,13 +215,14 @@ spawner = NodePath("../prop_spawner")
 spawn_path = NodePath("../builds")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
+transform = Transform3D(1, 0, 0, 0, 0.13891119, -0.9903048, 0, 0.9903048, 0.13891119, 10, 0.93, 9.55)
 rail = NodePath("../rail")
 tilt_frequency = 2.0
-move_speed = 10.0
+move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-rail_points = Array[ExtResource("19_yt5qh")]([SubResource("Resource_yt5qh"), SubResource("Resource_fah67"), SubResource("Resource_wh6ns")])
-handle_strength = 2.5
+curve = SubResource("Curve3D_4hwsc")
+preview_curve = SubResource("Curve3D_yt5qh")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)

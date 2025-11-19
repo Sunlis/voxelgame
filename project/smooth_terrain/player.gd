@@ -157,7 +157,7 @@ func _handle_input(delta: float):
         var selected_build = player_hud.get_selected_build_type()
         build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
         if selected_build == BuildType.Type.RAIL:
-          Global.move_temporary_rail_point(pos, norm, build_marker.global_transform.basis.z)
+          Global.move_temporary_rail_point(pos, norm, build_marker.global_transform.basis.y)
         if Input.is_action_just_pressed("build"):
           Global.build(pos, norm, build_marker.global_transform.basis.z, selected_build)
     else: # self.mode != Mode.BUILDING
