@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://c13gjqnhj2ubf"]
+[gd_scene load_steps=84 format=4 uid="uid://c13gjqnhj2ubf"]
 
 [ext_resource type="Script" uid="uid://n4amujd55aie" path="res://environment.gd" id="1_00014"]
 [ext_resource type="Texture2D" uid="uid://w2h1qyvhye11" path="res://smooth_terrain/assets/environment/CityPack/ColorTexture.jpg" id="1_wetts"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cpkeqsii8yy2w" path="res://fence.tscn" id="10_oqxhg"]
 [ext_resource type="PackedScene" uid="uid://cx3s3m1ph6gju" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_01.prefab.scn" id="13_txl0x"]
 [ext_resource type="PackedScene" uid="uid://cafs1cjko14vy" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_02.prefab.scn" id="14_7px3q"]
+[ext_resource type="Material" uid="uid://hv2ksatmxr1b" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Materials/GroundSmooth.material" id="15_7q7v2"]
 [ext_resource type="PackedScene" uid="uid://frgqppvqfx1f" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_03.prefab.scn" id="15_mpsl3"]
 [ext_resource type="PackedScene" uid="uid://b521t1rdl6upl" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Prefab/Buildings/SM_ordinary_houses_04.prefab.scn" id="16_mbc85"]
 [ext_resource type="Material" uid="uid://djgmqgtbxhfn8" path="res://smooth_terrain/assets/environment/POLY_Megapolis/Materials/MainMaterialDark.material" id="17_txl0x"]
@@ -1051,6 +1052,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ojgnk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_aai17"]
+material = ExtResource("15_7q7v2")
+size = Vector3(8, 4, 1)
 
 [node name="environment" type="Node3D"]
 script = ExtResource("1_00014")
@@ -2142,3 +2147,11 @@ transform = Transform3D(0.86862373, 0, 5.9367914, 0, 6, 0, -5.9367914, 0, 0.8686
 mesh = SubResource("ArrayMesh_8ga8t")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("17_txl0x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -56)
+mesh = SubResource("BoxMesh_aai17")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51192474)
+text = "You gotta dig. Don't ask why."
