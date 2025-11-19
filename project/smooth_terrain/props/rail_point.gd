@@ -14,7 +14,14 @@ signal point_changed
 		normal = v
 		point_changed.emit()
 
-@export var rotation: float = 0.0: # rotation around normal in radians
+@export var forward: Vector3 = Vector3.FORWARD:
 	set(v):
-		rotation = v
+		forward = v
 		point_changed.emit()
+
+@export var temporary: bool = false
+
+func _init(pos: Vector3 = Vector3.ZERO, norm: Vector3 = Vector3.UP, fwd: Vector3 = Vector3.FORWARD):
+	position = pos
+	normal = norm
+	forward = fwd

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=40 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
@@ -136,24 +136,19 @@ shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
+[sub_resource type="Resource" id="Resource_yt5qh"]
+script = ExtResource("19_yt5qh")
+position = Vector3(10, 0, 10)
+metadata/_custom_type_script = "uid://hs11wfuvqq46"
+
 [sub_resource type="Resource" id="Resource_fah67"]
 script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.5, 10)
+position = Vector3(10, 3, 8.635)
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [sub_resource type="Resource" id="Resource_wh6ns"]
 script = ExtResource("19_yt5qh")
-position = Vector3(10, 3.16, 8.42)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_yt5qh"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.3, 3)
-metadata/_custom_type_script = "uid://hs11wfuvqq46"
-
-[sub_resource type="Resource" id="Resource_mwbl6"]
-script = ExtResource("19_yt5qh")
-position = Vector3(10, 0.1, 0)
+position = Vector3(10, 0, 1.67)
 metadata/_custom_type_script = "uid://hs11wfuvqq46"
 
 [node name="main" type="Node"]
@@ -220,13 +215,13 @@ spawner = NodePath("../prop_spawner")
 spawn_path = NodePath("../builds")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(1, 0, 0, 0, 0.49229005, -0.87043124, 0, 0.87043124, 0.49229005, 10, 0.5, 10)
 rail = NodePath("../rail")
 tilt_frequency = 2.0
 move_speed = 10.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-rail_points = Array[ExtResource("19_yt5qh")]([SubResource("Resource_fah67"), SubResource("Resource_wh6ns"), SubResource("Resource_yt5qh"), SubResource("Resource_mwbl6")])
+rail_points = Array[ExtResource("19_yt5qh")]([SubResource("Resource_yt5qh"), SubResource("Resource_fah67"), SubResource("Resource_wh6ns")])
+handle_strength = 2.5
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)

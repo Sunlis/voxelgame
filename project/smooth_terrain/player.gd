@@ -154,9 +154,12 @@ func _handle_input(delta: float):
         var norm = Vector3(result.normal)
         build_marker.global_transform.origin = pos + norm * 0.1
         build_marker.look_at(build_marker.global_transform.origin + norm, Vector3.UP)
-        build_marker.directional = BuildType.ROTATABLE.get(player_hud.get_selected_build_type(), false)
+        var selected_build = player_hud.get_selected_build_type()
+        build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
+        if selected_build == BuildType.Type.RAIL:
+          Global.move_temporary_rail_point(pos, norm, build_marker.global_transform.basis.z)
         if Input.is_action_just_pressed("build"):
-          Global.build(pos, norm, BuildType.Type.LANTERN)
+          Global.build(pos, norm, build_marker.global_transform.basis.z, selected_build)
     else: # self.mode != Mode.BUILDING
       build_marker.visible = false
 
