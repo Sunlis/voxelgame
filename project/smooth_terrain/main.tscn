@@ -214,6 +214,11 @@ spawner = NodePath("../prop_spawner")
 [node name="prop_spawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../builds")
 
+[node name="drops" type="Node3D" parent="."]
+
+[node name="drop_spawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../drops")
+
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
 transform = Transform3D(1, 0, 0, 0, 0.13891119, -0.9903048, 0, 0.9903048, 0.13891119, 10, 0.93, 9.55)
 rail = NodePath("../rail")
