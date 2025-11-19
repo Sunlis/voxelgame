@@ -104,3 +104,15 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://animpicstudio.itch.io/poly-megapolis-city-unity-ue-godot\"]Buildings[/url] (though tbh this pack was a pain to use)"
 fit_content = true
+
+[node name="pathmesh" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://github.com/iiMidknightii/PathMesh3D\"]PathMesh3D[/url]"
+fit_content = true
+
+[node name="rail mesh" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://kenney.nl/assets/train-kit\"]Rail mesh[/url]"
+fit_content = true
