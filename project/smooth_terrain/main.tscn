@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
@@ -107,6 +107,7 @@ ambient_light_sky_contribution = 0.5
 ambient_light_energy = 0.02
 fog_enabled = true
 fog_light_color = Color(0.90807027, 0.9176544, 0.9325737, 1)
+fog_density = 0.004
 fog_aerial_perspective = 1.0
 fog_sky_affect = 0.0
 fog_depth_begin = 64.0
