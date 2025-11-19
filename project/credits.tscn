@@ -36,7 +36,7 @@ fit_content = true
 [node name="buildings" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[url=\"https://viravoloshyn.itch.io/colorful-low-poly-city-asset-pack\"]Buildings and Foliage[/url]"
+text = "[url=\"https://viravoloshyn.itch.io/colorful-low-poly-city-asset-pack\"]Truck (Low Poly City Asset Pack)[/url]"
 fit_content = true
 
 [node name="possum" type="RichTextLabel" parent="VBoxContainer"]
@@ -91,4 +91,16 @@ fit_content = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://github.com/godot-extended-libraries/godot-debug-menu\"]Debug overlay[/url]"
+fit_content = true
+
+[node name="spritemesh" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://github.com/98teg/SpriteMesh\"]Sprite Mesh[/url]"
+fit_content = true
+
+[node name="village houses" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://kalponic-studio.itch.io/polystyle-sidescroll-village-pack\"]Village Houses[/url]"
 fit_content = true

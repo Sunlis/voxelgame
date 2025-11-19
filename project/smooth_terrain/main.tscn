@@ -99,14 +99,14 @@ sky_material = SubResource("ShaderMaterial_fah67")
 [sub_resource type="Environment" id="2"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.5
 sky = SubResource("1")
 ambient_light_source = 1
 ambient_light_color = Color(0.17479518, 0.13707772, 0.088998355, 1)
 ambient_light_sky_contribution = 0.5
 ambient_light_energy = 0.02
-fog_mode = 1
-fog_light_energy = 0.2
-fog_density = 1.0
+fog_enabled = true
+fog_light_color = Color(0.90807027, 0.9176544, 0.9325737, 1)
 fog_aerial_perspective = 1.0
 fog_sky_affect = 0.0
 fog_depth_begin = 64.0
@@ -161,10 +161,10 @@ script = ExtResource("1_at30r")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("2")
 
-[node name="sun" type="DirectionalLight3D" parent="."]
+[node name="moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.70710677, -0.70710677, 0, -0.25570723, -0.25570723, 0.93232375, -0.65925246, -0.65925246, -0.36162466, 0, 10, 0)
 layers = 3
-light_energy = 0.1
+light_energy = 0.05
 shadow_enabled = true
 shadow_opacity = 0.8
 directional_shadow_mode = 1
