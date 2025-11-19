@@ -33,7 +33,7 @@ bbcode_enabled = true
 text = "[url=\"https://github.com/gdquest-demos/godot-4-stylized-sky\"]Godot 4 Stylized Sky Shader[/url]"
 fit_content = true
 
-[node name="buildings" type="RichTextLabel" parent="VBoxContainer"]
+[node name="truck" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://viravoloshyn.itch.io/colorful-low-poly-city-asset-pack\"]Truck (Low Poly City Asset Pack)[/url]"
@@ -99,8 +99,8 @@ bbcode_enabled = true
 text = "[url=\"https://github.com/98teg/SpriteMesh\"]Sprite Mesh[/url]"
 fit_content = true
 
-[node name="village houses" type="RichTextLabel" parent="VBoxContainer"]
+[node name="buildings" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[url=\"https://kalponic-studio.itch.io/polystyle-sidescroll-village-pack\"]Village Houses[/url]"
+text = "[url=\"https://animpicstudio.itch.io/poly-megapolis-city-unity-ue-godot\"]Buildings[/url] (though tbh this pack was a pain to use)"
 fit_content = true
