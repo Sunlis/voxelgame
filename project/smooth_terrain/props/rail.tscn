@@ -62,8 +62,16 @@ handle_strength = 2.0
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_24b0p")
 
-[node name="PathMesh3D" type="PathMesh3D" parent="." node_paths=PackedStringArray("path_3d")]
-path_3d = NodePath("../Path3D")
+[node name="PathMesh3D" type="PathMesh3D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 mesh = SubResource("ArrayMesh_mufwa")
 surface_0/tile_rotation = Vector3(0, 0, 0)
 surface_0/tile_rotation_order = 2
@@ -74,3 +82,4 @@ surface_0/sample_cubic = false
 surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
 surface_0/triangle_count = 1493
+script = null

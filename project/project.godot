@@ -22,6 +22,7 @@ Global="*res://smooth_terrain/Global.tscn"
 Multiplayer="*res://smooth_terrain/multiplayer.tscn"
 Debug="*res://smooth_terrain/debug.tscn"
 UPNPHelper="*res://smooth_terrain/upnp.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [display]
 
@@ -32,6 +33,10 @@ window/stretch/mode="viewport"
 window/dpi/allow_hidpi=false
 window/quality/screen_space_aa=0
 window/quality/msaa_3d=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/PathMesh3D/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
 
 [filesystem]
 
