@@ -27,6 +27,14 @@ var _rail_length: float = 0.0
 var _transforms = {}
 
 func _ready():
+  if curve == null:
+    curve = Curve3D.new()
+  while curve.point_count < 2:
+    curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
+  if preview_curve == null:
+    preview_curve = Curve3D.new()
+  while preview_curve.point_count < 2:
+    preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
   path.curve_changed.connect(self._curve_changed)
   _curve_changed()
   preview_curve = Curve3D.new()

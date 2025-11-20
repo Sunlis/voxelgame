@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
@@ -137,18 +137,18 @@ shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
-[sub_resource type="Curve3D" id="Curve3D_4hwsc"]
+[sub_resource type="Curve3D" id="Curve3D_fah67"]
 resource_local_to_scene = true
-bake_interval = 2.0
+bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 10, 0.93, 9.55, 0, 0, 0.6, 0, 0, -3, 10, 3.14, 8.64, 0, 0, 3, 0, 0, 0, 10, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -1.235, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -46.555),
+"tilts": PackedFloat32Array(0, 0.11868239, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_fah67"]
+[sub_resource type="Curve3D" id="Curve3D_wh6ns"]
 _data = {
-"points": PackedVector3Array(0, 0, 3, 0, 0, -3, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10.08, 0.115, -46.555, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -227,16 +227,16 @@ _spawnable_scenes = PackedStringArray("uid://dw6os34ni7lta")
 spawn_path = NodePath("../drops")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(1, 0, 0, 0, 0.13891119, -0.9903048, 0, 0.9903048, 0.13891119, 10, 0.93, 9.55)
+transform = Transform3D(-0.95559835, 0.05224256, 0.29000446, 0, 0.98415864, -0.17729026, -0.2946725, -0.16941826, -0.9404603, 14.355, 0.79, -56.55)
 rail = NodePath("../rail")
 tilt_frequency = 2.0
 move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-curve = SubResource("Curve3D_4hwsc")
-preview_curve = SubResource("Curve3D_fah67")
+curve = SubResource("Curve3D_fah67")
+preview_curve = SubResource("Curve3D_wh6ns")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
-transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)
+transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)
 
 [node name="environment" parent="." instance=ExtResource("20_fah67")]
