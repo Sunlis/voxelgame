@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw6os34ni7lta"]
+
+[ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="1_hmaih"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f4jv2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va8iu"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igoh1"]
+albedo_color = Color(0.5911141, 0.591114, 0.59111404, 1)
+normal_enabled = true
+normal_texture = ExtResource("1_hmaih")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_morri"]
+material = SubResource("StandardMaterial3D_igoh1")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="drop" type="Node3D"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_f4jv2")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 512
+collision_mask = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_va8iu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_morri")
