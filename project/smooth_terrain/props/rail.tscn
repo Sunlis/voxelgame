@@ -145,15 +145,18 @@ surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
 surface_0/triangle_count = 426
 unique_name_in_owner = true
+visible = false
 
 [node name="marker_01" type="CSGSphere3D" parent="."]
 unique_name_in_owner = true
+visible = false
 radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_mufwa")
 
 [node name="marker_02" type="CSGSphere3D" parent="."]
 unique_name_in_owner = true
+visible = false
 radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_8pbdb")

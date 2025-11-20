@@ -146,7 +146,7 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
+[sub_resource type="Curve3D" id="Curve3D_fah67"]
 _data = {
 "points": PackedVector3Array(0, 0, 3, 0, 0, -3, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
@@ -220,7 +220,7 @@ spawn_path = NodePath("../builds")
 script = ExtResource("16_yt5qh")
 
 [node name="drop" parent="drops" instance=ExtResource("17_fah67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2229166, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009045601, 0)
 
 [node name="drop_spawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://dw6os34ni7lta")
@@ -234,7 +234,7 @@ move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
 curve = SubResource("Curve3D_4hwsc")
-preview_curve = SubResource("Curve3D_yt5qh")
+preview_curve = SubResource("Curve3D_fah67")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 9, 0, 10)
