@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw6os34ni7lta"]
+[gd_scene load_steps=7 format=3 uid="uid://dw6os34ni7lta"]
 
+[ext_resource type="Script" uid="uid://b86jilwa7ohc5" path="res://drop.gd" id="1_f4jv2"]
 [ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="1_hmaih"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f4jv2"]
@@ -18,6 +19,7 @@ material = SubResource("StandardMaterial3D_igoh1")
 size = Vector3(0.2, 0.2, 0.2)
 
 [node name="drop" type="Node3D"]
+script = ExtResource("1_f4jv2")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_f4jv2")

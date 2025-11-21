@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://c13gjqnhj2ubf"]
+[gd_scene load_steps=87 format=4 uid="uid://c13gjqnhj2ubf"]
 
 [ext_resource type="Script" uid="uid://n4amujd55aie" path="res://environment.gd" id="1_00014"]
 [ext_resource type="Texture2D" uid="uid://w2h1qyvhye11" path="res://smooth_terrain/assets/environment/CityPack/ColorTexture.jpg" id="1_wetts"]
@@ -17,6 +17,11 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yilnh"]
 albedo_color = Color(0.03417117, 0.40080187, 0.16301897, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3gbvy"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7q7v2"]
+plane = Plane(0, -1, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pk5nr"]
 albedo_texture = ExtResource("6_dm4p5")
@@ -1074,28 +1079,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
 size = Vector3(128, 64, 128)
 material = SubResource("StandardMaterial3D_yilnh")
 
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -512, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_3gbvy")
+
+[node name="roof" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="roof"]
+shape = SubResource("WorldBoundaryShape3D_7q7v2")
+
 [node name="border blocks" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0)
 metadata/_edit_lock_ = true
 
 [node name="block" parent="border blocks" instance=ExtResource("5_g4tgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72, -50, 120)
-size = Vector3(300, 100, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72, -256, 120)
+size = Vector3(300, 512, 128)
 metadata/_edit_lock_ = true
 
 [node name="block4" parent="border blocks" instance=ExtResource("5_g4tgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, -50, -120)
-size = Vector3(300, 100, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, -256, -120)
+size = Vector3(300, 512, 128)
 metadata/_edit_lock_ = true
 
 [node name="block2" parent="border blocks" instance=ExtResource("5_g4tgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, -50, 72)
-size = Vector3(128, 100, 300)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, -256, 72)
+size = Vector3(128, 512, 300)
 metadata/_edit_lock_ = true
 
 [node name="block3" parent="border blocks" instance=ExtResource("5_g4tgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, -50, -72)
-size = Vector3(128, 100, 300)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, -256, -72)
+size = Vector3(128, 512, 300)
 metadata/_edit_lock_ = true
 
 [node name="simple low poly" type="Node3D" parent="."]

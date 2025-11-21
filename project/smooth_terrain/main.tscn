@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
@@ -168,7 +168,7 @@ shadow_opacity = 0.8
 directional_shadow_mode = 1
 
 [node name="terrain" type="VoxelTerrain" parent="."]
-bounds = AABB(-64, -64, -64, 128, 128, 128)
+bounds = AABB(-64, -512, -64, 128, 528, 128)
 collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
