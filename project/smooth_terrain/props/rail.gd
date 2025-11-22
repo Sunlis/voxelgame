@@ -30,6 +30,8 @@ var _transforms = {}
 
 var _preview_valid: bool = false
 
+var PREVIEW_COLOR = Color.from_string("#63a5d9", Color.BLUE)
+
 func _ready():
   if curve == null:
     curve = Curve3D.new()
@@ -54,10 +56,10 @@ func _ready():
   _hide_preview()
 
   preview_check.body_entered.connect(func(body: Node3D) -> void:
-    print('Body entered preview: ', body.name)
+    _mark_preview_invalid()
   )
   preview_check.body_exited.connect(func(body: Node3D) -> void:
-    print('Body exited preview: ', body.name)
+    _mark_preview_valid()
   )
 
   Global.build_requested.connect(_on_build_requested)
@@ -132,23 +134,6 @@ func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
   _last_preview_in = -out
   _last_preview_out = out
   _show_preview()
-  # var collider = _get_preview_collider()
-  # if collider:
-  #   # collider.set_collision_layer_value(1, false)
-  #   # collider.set_collision_mask_value(1, false)
-  #   # collider.set_collision_layer_value(5, true)
-  #   # collider.set_collision_mask_value(5, true)
-  #   var space_state = get_world_3d().direct_space_state
-  #   var shape = _get_collision_shape(collider)
-  #   if shape:
-  #     collision_check_shape.shape = shape.shape.duplicate()
-  #     var query = PhysicsShapeQueryParameters3D.new()
-  #     query.shape_rid = collider.get_rid()
-  #     query.shape = shape.shape
-  #     query.transform = collider.global_transform
-  #     query.collision_mask = 1 << 5 - 1
-  #     var result = space_state.intersect_shape(query)
-  #     print(result)
 
 func _build_mode_changed(building: bool, build_type: BuildType.Type) -> void:
   if building and build_type == BuildType.Type.RAIL:
@@ -158,8 +143,18 @@ func _build_mode_changed(building: bool, build_type: BuildType.Type) -> void:
 
 func _hide_preview():
   preview_mesh.visible = false
-  # preview_mesh.collision_mode = PathMesh3D.COLLISION_MODE_NONE
 
 func _show_preview():
   preview_mesh.visible = true
-  # preview_mesh.collision_mode = PathMesh3D.COLLISION_MODE_TRIMESH
+
+func _mark_preview_invalid():
+  _preview_valid = false
+  var mat = preview_mesh.mesh.surface_get_material(0)
+  mat.albedo_color = Color.RED
+  mat.emission = Color.RED
+
+func _mark_preview_valid():
+  _preview_valid = true
+  var mat = preview_mesh.mesh.surface_get_material(0)
+  mat.albedo_color = PREVIEW_COLOR
+  mat.emission = PREVIEW_COLOR
