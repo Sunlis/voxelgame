@@ -97,6 +97,8 @@ func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
   marker_01.global_position = pos
   marker_02.global_position = pos + out
   _show_preview()
+  var collider = preview_mesh.get_collision_node()
+  print(collider)
 
 func _build_mode_changed(building: bool, build_type: BuildType.Type) -> void:
   if building and build_type == BuildType.Type.RAIL:
