@@ -138,6 +138,7 @@ debug_custom_color = Color(1, 0, 0, 1)
 [node name="preview_mesh" type="PathMesh3D" parent="." node_paths=PackedStringArray("path_3d")]
 path_3d = NodePath("../preview_path")
 mesh = SubResource("ArrayMesh_2meyo")
+collision_mode = 1
 surface_0/tile_rotation = Vector3(0, 0, 0)
 surface_0/tile_rotation_order = 2
 surface_0/distribution = 0

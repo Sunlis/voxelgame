@@ -47,12 +47,11 @@ func _ready():
     out)
   preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
   preview_path.curve = preview_curve
+  _hide_preview()
 
   Global.build_requested.connect(_on_build_requested)
   Global.move_temp_rail.connect(_move_temp_rail)
-  Global.player_build_mode_changed.connect(func(building: bool, build_type: BuildType.Type) -> void:
-    preview_mesh.visible = building and build_type == BuildType.Type.RAIL
-  )
+  Global.player_build_mode_changed.connect(_build_mode_changed)
 
 func _curve_changed():
   _rail_length = curve.get_baked_length()
@@ -85,13 +84,30 @@ func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_t
   preview_curve.set_point_position(1, pos)
   preview_curve.set_point_in(1, -out)
   preview_curve.set_point_out(1, out)
-  preview_mesh.visible = false
+  _hide_preview()
 
 func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
   var out = forward.normalized() * handle_strength
+  preview_curve.set_point_position(0, curve.get_point_position(curve.point_count - 1))
+  preview_curve.set_point_in(0, curve.get_point_in(curve.point_count - 1))
+  preview_curve.set_point_out(0, curve.get_point_out(curve.point_count - 1))
   preview_curve.set_point_position(1, pos)
   preview_curve.set_point_in(1, -out)
   preview_curve.set_point_out(1, out)
-  preview_mesh.visible = true
   marker_01.global_position = pos
   marker_02.global_position = pos + out
+  _show_preview()
+
+func _build_mode_changed(building: bool, build_type: BuildType.Type) -> void:
+  if building and build_type == BuildType.Type.RAIL:
+    _show_preview()
+  else:
+    _hide_preview()
+
+func _hide_preview():
+  preview_mesh.visible = false
+  preview_mesh.collision_mode = PathMesh3D.COLLISION_MODE_NONE
+
+func _show_preview():
+  preview_mesh.visible = true
+  preview_mesh.collision_mode = PathMesh3D.COLLISION_MODE_TRIMESH
