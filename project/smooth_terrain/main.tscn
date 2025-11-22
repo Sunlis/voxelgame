@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=39 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_6c2kk"]
 [ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 [ext_resource type="Script" uid="uid://cbpq1pki1mqb1" path="res://smooth_terrain/drops.gd" id="16_yt5qh"]
-[ext_resource type="PackedScene" uid="uid://dw6os34ni7lta" path="res://drop.tscn" id="17_fah67"]
 [ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
 [ext_resource type="PackedScene" uid="uid://c13gjqnhj2ubf" path="res://environment.tscn" id="20_fah67"]
@@ -218,22 +217,6 @@ spawn_path = NodePath("../builds")
 
 [node name="drops" type="Node3D" parent="."]
 script = ExtResource("16_yt5qh")
-
-[node name="drop" parent="drops" instance=ExtResource("17_fah67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7928944, 6.656528)
-drop_type = 1
-
-[node name="drop2" parent="drops" instance=ExtResource("17_fah67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3645844, 1.7928944, 0)
-drop_type = 2
-
-[node name="drop3" parent="drops" instance=ExtResource("17_fah67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7928944, -1.5847176)
-drop_type = 6
-
-[node name="drop4" parent="drops" instance=ExtResource("17_fah67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4769783, 1.7928944, 0)
-drop_type = 14
 
 [node name="drop_spawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://dw6os34ni7lta")

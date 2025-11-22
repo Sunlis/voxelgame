@@ -45,3 +45,7 @@ signal player_build_mode_changed(building: bool, build_type: BuildType.Type)
 ### COLLISIONS
 
 signal terrain_modified(point: Vector3, radius: float)
+
+### DROPS
+
+signal create_drop(position: Vector3, drop_rate: float)

@@ -52,6 +52,9 @@ class DropConfig:
     self.value = v
     return self
   
+  func drop_at_depth(depth: float) -> bool:
+    return depth >= min_depth and depth <= max_depth
+  
   func get_rarity_at_depth(depth: float) -> float:
     if depth < min_depth or depth > max_depth:
       return 0.0
@@ -59,6 +62,11 @@ class DropConfig:
     var middle_depth = min_depth + depth_range / 2
     var dist_from_center = abs(middle_depth - depth)
     return rarity * (1.0 - (dist_from_center / (depth_range / 2)))
+  
+  func _to_string() -> String:
+    return "DropConfig(type=%s, name=%s, depth=[%.1f, %.1f], rarity=%.3f, value=%.2f)" % [
+      str(type), name, min_depth, max_depth, rarity, value
+    ]
 
 static var drop_configs: Dictionary = {
   
@@ -155,3 +163,33 @@ static var drop_configs: Dictionary = {
 
 static func get_drop_config(drop_type: Type) -> DropConfig:
   return drop_configs.get(drop_type, null)
+
+class DepthDrop:
+  var type: Type
+  var depth: float
+  var should_drop: bool
+  func _init(t: Type, d: float, s: bool):
+    self.type = t
+    self.depth = d
+    self.should_drop = s
+
+static func select_drop_at_depth(depth: float, drop_rate: float) -> DepthDrop:
+  var total_rarity = 0.0
+  var valid_drops = []
+  for config in drop_configs.values():
+    if config.drop_at_depth(depth):
+      total_rarity += config.get_rarity_at_depth(depth)
+      valid_drops.append(config)
+  
+  if total_rarity == 0.0:
+    return DepthDrop.new(Type.TRASH, depth, false)
+
+  var pick = randf() * total_rarity
+  var cumulative = 0.0
+  for config in valid_drops:
+    cumulative += config.get_rarity_at_depth(depth)
+    if pick <= cumulative:
+      if randf() <= drop_rate:
+        return DepthDrop.new(config.type, depth, true)
+      break
+  return DepthDrop.new(Type.TRASH, depth, false)

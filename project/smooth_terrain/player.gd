@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
-const TerrainUtil = preload("res://terrain.gd")
 
 @export var base_speed = 40.0
 @export var jump_force = 10.0
@@ -11,6 +10,8 @@ const TerrainUtil = preload("res://terrain.gd")
 @export var dig_reach = 4.0
 @export var dig_radius = 1.0
 @export var dig_noise: float = 0.02
+
+@export var drop_rate: float = 0.05
 
 @export var build_reach = 12.0
 @export var build_rotate_speed = 5.0
@@ -197,3 +198,5 @@ func dig(origin: Vector3, direction: Vector3, radius: float):
     var dig_point = origin - (i * diff)
     vt.do_sphere(dig_point, radius)
     Global.terrain_modified.emit(dig_point, radius * 2.0)
+    if TerrainUtil.sphere_intersect(dig_point, radius):
+      Global.create_drop.emit(dig_point, drop_rate)
