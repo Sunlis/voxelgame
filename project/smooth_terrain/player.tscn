@@ -190,6 +190,10 @@ polygon = PackedVector2Array(0, 0, 0.29439127, 0.25184762, 0.668218, 0.25727496,
 depth = 0.15
 material = SubResource("StandardMaterial3D_vuq3k")
 
+[node name="CSGSphere3D" type="CSGSphere3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+radius = 0.2
+
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {

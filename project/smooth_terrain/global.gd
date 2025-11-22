@@ -41,3 +41,7 @@ func do_move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3)
 ### PLAYER
 
 signal player_build_mode_changed(building: bool, build_type: BuildType.Type)
+
+### COLLISIONS
+
+signal terrain_modified(point: Vector3, radius: float)

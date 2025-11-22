@@ -60,7 +60,7 @@ class DropConfig:
     var dist_from_center = abs(middle_depth - depth)
     return rarity * (1.0 - (dist_from_center / (depth_range / 2)))
 
-var drop_configs: Dictionary = {
+static var drop_configs: Dictionary = {
   
   # Garbage Tier (0 - 50)
 
@@ -152,3 +152,6 @@ var drop_configs: Dictionary = {
       .set_rarity(0.01)
       .set_value(50),
 }
+
+static func get_drop_config(drop_type: Type) -> DropConfig:
+  return drop_configs.get(drop_type, null)

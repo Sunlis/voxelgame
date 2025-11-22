@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
+const TerrainUtil = preload("res://terrain.gd")
 
 @export var base_speed = 40.0
 @export var jump_force = 10.0
@@ -192,11 +193,7 @@ func dig(origin: Vector3, direction: Vector3, radius: float):
   vt.mode = VoxelTool.MODE_REMOVE
   var point = origin + direction * dig_reach
   var diff = (origin - point).normalized()
-  for i in range(dig_reach):
+  for i in Util.rangef(0.0, dig_reach, radius / 2.0):
     var dig_point = origin - (i * diff)
-    var shift = Vector3(
-      randf_range(-1, 1),
-      randf_range(-1, 1),
-      randf_range(-1, 1)
-    ) * radius * dig_noise
-    vt.do_sphere(dig_point + shift, radius)
+    vt.do_sphere(dig_point, radius)
+    Global.terrain_modified.emit(dig_point, radius * 2.0)
