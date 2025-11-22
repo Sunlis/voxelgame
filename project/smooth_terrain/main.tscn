@@ -145,7 +145,7 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_wh6ns"]
+[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
 _data = {
 "points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10.08, 0.115, -46.555, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
@@ -230,7 +230,7 @@ move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
 curve = SubResource("Curve3D_fah67")
-preview_curve = SubResource("Curve3D_wh6ns")
+preview_curve = SubResource("Curve3D_yt5qh")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)

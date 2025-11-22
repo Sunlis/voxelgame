@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d2ixdxijpuadn"]
+[gd_scene load_steps=14 format=4 uid="uid://d2ixdxijpuadn"]
 
 [ext_resource type="Script" uid="uid://bb33nn54n0jn8" path="res://smooth_terrain/props/rail.gd" id="1_24b0p"]
 [ext_resource type="Texture2D" uid="uid://cehxp6f0j2f6t" path="res://smooth_terrain/assets/rail/Textures/colormap.png" id="2_nwlu7"]
@@ -14,7 +14,7 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_8pbdb"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0.565, -2.25, 0, -10, 1.405, 0, 0, 0, -1.445, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -107,6 +107,9 @@ albedo_color = Color(1, 0, 0, 0.47058824)
 transparency = 1
 albedo_color = Color(0, 1, 0, 0.47058824)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwlu7"]
+size = Vector3(1, 0.1, 0.2)
+
 [node name="rail" type="Node3D"]
 script = ExtResource("1_24b0p")
 curve = SubResource("Curve3D_nwlu7")
@@ -148,7 +151,6 @@ surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
 surface_0/triangle_count = 426
 unique_name_in_owner = true
-visible = false
 
 [node name="marker_01" type="CSGSphere3D" parent="."]
 unique_name_in_owner = true
@@ -163,3 +165,13 @@ visible = false
 radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_8pbdb")
+
+[node name="preview_check" type="PathArea3D" parent="." node_paths=PackedStringArray("path_3d")]
+path_3d = NodePath("../preview_path")
+shape = SubResource("BoxShape3D_nwlu7")
+distribution = 1
+distance = 0.3
+rotation_mode = 1
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
