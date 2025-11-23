@@ -576,8 +576,6 @@ private: \
     ClassDB::bind_method(D_METHOD("create_convex_collision", "clean", "simplify"), &m_class::create_convex_collision, DEFVAL(true), DEFVAL(false)); \
     ClassDB::bind_method(D_METHOD("create_multiple_convex_collision", "settings"), &m_class::create_multiple_convex_collision, DEFVAL(nullptr)); \
     \
-    ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "collision_node", PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE), "", "get_collision_node"); \
-    \
     BIND_ENUM_CONSTANT(COLLISION_MODE_NONE); \
     BIND_ENUM_CONSTANT(COLLISION_MODE_TRIMESH); \
     BIND_ENUM_CONSTANT(COLLISION_MODE_CONVEX); \
