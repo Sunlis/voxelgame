@@ -1,27 +1,20 @@
-[gd_scene load_steps=15 format=4 uid="uid://d2ixdxijpuadn"]
+[gd_scene load_steps=14 format=4 uid="uid://d2ixdxijpuadn"]
 
 [ext_resource type="Script" uid="uid://bb33nn54n0jn8" path="res://smooth_terrain/props/rail.gd" id="1_24b0p"]
 [ext_resource type="Texture2D" uid="uid://cehxp6f0j2f6t" path="res://smooth_terrain/assets/rail/Textures/colormap.png" id="2_nwlu7"]
 
-[sub_resource type="Curve3D" id="Curve3D_nwlu7"]
+[sub_resource type="Curve3D" id="Curve3D_mufwa"]
 resource_local_to_scene = true
+bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, -1.235, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -46.555),
+"tilts": PackedFloat32Array(0, 0.11868239, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_8pbdb"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
-
-[sub_resource type="Curve3D" id="Curve3D_mufwa"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -120,7 +113,7 @@ size = Vector3(0.6, 0.01, 0.2)
 
 [node name="rail" type="Node3D"]
 script = ExtResource("1_24b0p")
-curve = SubResource("Curve3D_nwlu7")
+curve = SubResource("Curve3D_mufwa")
 preview_curve = SubResource("Curve3D_8pbdb")
 
 [node name="path" type="Path3D" parent="."]
@@ -159,7 +152,6 @@ surface_0/tilt = true
 surface_0/offset = Vector2(0, 0)
 surface_0/triangle_count = 426
 unique_name_in_owner = true
-visible = false
 
 [node name="marker_01" type="CSGSphere3D" parent="."]
 unique_name_in_owner = true

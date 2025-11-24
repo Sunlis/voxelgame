@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=37 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
@@ -136,22 +136,6 @@ shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
-[sub_resource type="Curve3D" id="Curve3D_fah67"]
-resource_local_to_scene = true
-bake_interval = 1.0
-_data = {
-"points": PackedVector3Array(0, 0, 0, -1.235, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -46.555),
-"tilts": PackedFloat32Array(0, 0.11868239, 0)
-}
-point_count = 3
-
-[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
-_data = {
-"points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10.08, 0.115, -46.555, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
-
 [node name="main" type="Node"]
 script = ExtResource("1_at30r")
 
@@ -166,7 +150,7 @@ shadow_enabled = true
 shadow_opacity = 0.8
 directional_shadow_mode = 1
 
-[node name="terrain" type="VoxelTerrain" parent="."]
+[node name="terrain" type="VoxelTerrain" parent="." groups=["terrain"]]
 bounds = AABB(-64, -512, -64, 128, 528, 128)
 collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
@@ -229,8 +213,6 @@ tilt_frequency = 2.0
 move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-curve = SubResource("Curve3D_fah67")
-preview_curve = SubResource("Curve3D_yt5qh")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)

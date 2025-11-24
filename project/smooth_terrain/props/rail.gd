@@ -6,12 +6,6 @@ class_name Rail
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
-@export var curve: Curve3D = null:
-  set(value):
-    curve = value
-    _update()
-
-@export var preview_curve: Curve3D
 
 @export var handle_strength: float = 8.0
 
@@ -33,33 +27,17 @@ var _preview_valid: bool = false
 var PREVIEW_COLOR = Color.from_string("#63a5d9", Color.BLUE)
 
 func _ready():
-  if curve == null:
-    curve = Curve3D.new()
-  while curve.point_count < 2:
-    curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
-  if preview_curve == null:
-    preview_curve = Curve3D.new()
-  while preview_curve.point_count < 2:
-    preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
   path.curve_changed.connect(self._curve_changed)
   _curve_changed()
-  preview_curve = Curve3D.new()
-  var out = curve.get_point_out(curve.point_count - 1)
-  if out == Vector3.ZERO:
-    out = -curve.get_point_in(curve.point_count - 1)
-  preview_curve.add_point(
-    curve.get_point_position(curve.point_count - 1),
-    curve.get_point_in(curve.point_count - 1),
-    out)
-  preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
-  preview_path.curve = preview_curve
   _hide_preview()
 
   preview_check.body_entered.connect(func(body: Node3D) -> void:
-    _mark_preview_invalid()
+    if body.is_in_group("terrain"):
+      _mark_preview_invalid()
   )
   preview_check.body_exited.connect(func(body: Node3D) -> void:
-    _mark_preview_valid()
+    if body.is_in_group("terrain"):
+      _mark_preview_valid()
   )
 
   Global.build_requested.connect(_on_build_requested)
@@ -67,12 +45,8 @@ func _ready():
   Global.player_build_mode_changed.connect(_build_mode_changed)
 
 func _curve_changed():
-  _rail_length = curve.get_baked_length()
+  _rail_length = path.curve.get_baked_length()
   _transforms.clear()
-
-func _update():
-  if is_inside_tree():
-    path.curve = curve
 
 func get_rail_length() -> float:
   return _rail_length
@@ -80,8 +54,8 @@ func get_rail_length() -> float:
 func get_transform_at_distance(distance: float) -> Transform3D:
   if distance in _transforms:
     return _transforms[distance]
-  if curve != null:
-    var tran = curve.sample_baked_with_rotation(clamp(distance, 0.0, self.get_rail_length()))
+  if path.curve != null:
+    var tran = path.curve.sample_baked_with_rotation(clamp(distance, 0.0, self.get_rail_length()))
     _transforms[distance] = tran
     return tran
   return Transform3D.IDENTITY
@@ -90,13 +64,13 @@ func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_t
   if build_type != BuildType.Type.RAIL:
     return
   var out = forward.normalized() * handle_strength
-  curve.add_point(pos, -out, out)
-  preview_curve.set_point_position(0, pos)
-  preview_curve.set_point_in(0, -out)
-  preview_curve.set_point_out(0, out)
-  preview_curve.set_point_position(1, pos)
-  preview_curve.set_point_in(1, -out)
-  preview_curve.set_point_out(1, out)
+  path.curve.add_point(pos, -out, out)
+  preview_path.curve.set_point_position(0, pos)
+  preview_path.curve.set_point_in(0, -out)
+  preview_path.curve.set_point_out(0, out)
+  preview_path.curve.set_point_position(1, pos)
+  preview_path.curve.set_point_in(1, -out)
+  preview_path.curve.set_point_out(1, out)
   _hide_preview()
 
 func _get_preview_collider() -> StaticBody3D:
@@ -122,12 +96,12 @@ func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
       (-out - _last_preview_in).length() < PREVIEW_THRESHOLD and
       (out - _last_preview_out).length() < PREVIEW_THRESHOLD):
     return
-  preview_curve.set_point_position(0, curve.get_point_position(curve.point_count - 1))
-  preview_curve.set_point_in(0, curve.get_point_in(curve.point_count - 1))
-  preview_curve.set_point_out(0, curve.get_point_out(curve.point_count - 1))
-  preview_curve.set_point_position(1, pos)
-  preview_curve.set_point_in(1, -out)
-  preview_curve.set_point_out(1, out)
+  preview_path.curve.set_point_position(0, path.curve.get_point_position(path.curve.point_count - 1))
+  preview_path.curve.set_point_in(0, path.curve.get_point_in(path.curve.point_count - 1))
+  preview_path.curve.set_point_out(0, path.curve.get_point_out(path.curve.point_count - 1))
+  preview_path.curve.set_point_position(1, pos)
+  preview_path.curve.set_point_in(1, -out)
+  preview_path.curve.set_point_out(1, out)
   marker_01.global_position = pos
   marker_02.global_position = pos + out
   _last_preview_pos = pos
