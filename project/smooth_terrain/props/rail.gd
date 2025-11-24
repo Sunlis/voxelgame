@@ -128,6 +128,7 @@ func _move_temp_rail(pos: Vector3, _norm: Vector3, forward: Vector3) -> void:
   preview_curve.set_point_position(1, pos)
   preview_curve.set_point_in(1, -out)
   preview_curve.set_point_out(1, out)
+  preview_path.curve = preview_curve
   marker_01.global_position = pos
   marker_02.global_position = pos + out
   _last_preview_pos = pos

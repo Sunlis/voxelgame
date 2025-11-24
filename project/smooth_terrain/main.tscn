@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="2_oexva"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
@@ -140,14 +140,14 @@ shader_parameter/normal_strength = 2.0
 resource_local_to_scene = true
 bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, -1.235, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -46.555),
+"points": PackedVector3Array(0, 0, 0, -1.24, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -35.65),
 "tilts": PackedFloat32Array(0, 0.11868239, 0)
 }
 point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_yt5qh"]
 _data = {
-"points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10.08, 0.115, -46.555, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
