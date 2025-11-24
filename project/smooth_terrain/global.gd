@@ -49,3 +49,10 @@ signal terrain_modified(point: Vector3, radius: float)
 ### DROPS
 
 signal create_drop(position: Vector3, drop_rate: float)
+
+### NOTIFICATIONS
+
+signal display_message(message: String)
+
+func notify_message(message: String) -> void:
+  display_message.emit(message)

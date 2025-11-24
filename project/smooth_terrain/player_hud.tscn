@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=9 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d33jq74ba1m5g" path="res://smooth_terrain/assets/ui/grab.png" id="5_a35rk"]
 [ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="5_kvse2"]
 [ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
+[ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
 
 [node name="player_hud" type="MarginContainer"]
 anchors_preset = 15
@@ -35,6 +36,7 @@ theme_override_constants/separation = 24
 
 [node name="build_menu" type="MarginContainer" parent="bottom/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu"]
@@ -156,3 +158,14 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="debug" parent="top right" instance=ExtResource("5_kvse2")]
+
+[node name="bottom_right" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="notifications" type="VBoxContainer" parent="bottom_right"]
+layout_mode = 2
+script = ExtResource("8_lqrjo")

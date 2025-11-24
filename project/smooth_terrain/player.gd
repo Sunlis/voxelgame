@@ -154,6 +154,7 @@ func _check_drops():
   if Input.is_action_just_pressed("pick_up_drops"):
     for drop in _drops:
       print("picking up drop ", drop.name)
+      Global.notify_message("Picked up %s" % Drops.get_drop_config(drop.drop_type).name)
       drop.queue_free()
     _drops.clear()
 
