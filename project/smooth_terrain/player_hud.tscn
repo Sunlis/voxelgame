@@ -31,31 +31,63 @@ size_flags_vertical = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="bottom"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
-[node name="build_menu" type="PanelContainer" parent="bottom/VBoxContainer"]
+[node name="build_menu" type="MarginContainer" parent="bottom/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/build_menu/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "(Mouse wheel) to change item
+(Q/E) to rotate
+(LMB) to place"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer"]
+layout_mode = 2
+
+[node name="panel" type="PanelContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/build_menu"]
+[node name="MarginContainer" type="MarginContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer"]
 layout_mode = 2
 
-[node name="build label" type="Label" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+[node name="build label" type="Label" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Build"
 horizontal_alignment = 1
 
-[node name="build_items" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu/VBoxContainer"]
+[node name="build_items" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="build_menu_item" parent="bottom/VBoxContainer/build_menu/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
+[node name="build_menu_item" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
 layout_mode = 2
 hovered = true
 
-[node name="build_menu_item2" parent="bottom/VBoxContainer/build_menu/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
+[node name="build_menu_item2" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
 layout_mode = 2
 build_type = 1
 
