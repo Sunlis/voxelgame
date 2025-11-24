@@ -145,7 +145,17 @@ func _handle_input(delta: float):
   if Input.is_action_just_pressed("toggle_flashlight"):
     flashlight.visible = not flashlight.visible
   
-  _raycast_drops()
+  _check_drops()
+
+func _check_drops():
+  if not camera:
+    return
+  
+  if Input.is_action_just_pressed("pick_up_drops"):
+    for drop in _drops:
+      print("picking up drop ", drop.name)
+      drop.queue_free()
+    _drops.clear()
 
 func _movement_controls(delta):
   var speed = base_speed
@@ -189,19 +199,6 @@ func _camera_zoom(delta):
   elif Input.is_action_pressed("camera_zoom_out"):
     camera.position.z = min(20, camera.position.z + (delta * 10.0))
   body.transparency = smoothstep(4.0, 0.5, camera.position.z)
-
-func _raycast_drops():
-  if self.mode != Mode.MINING:
-    return
-  if not camera:
-    return
-  
-  var params = PhysicsRayQueryParameters3D.create(
-    head.global_transform.origin,
-    head.global_transform.origin + -camera.global_transform.basis.z * dig_reach
-  )
-  params.collision_mask = 1 << 15 - 1 # Layer 15 = drops
-
 
 func _build_mode_checks():
   if not camera:

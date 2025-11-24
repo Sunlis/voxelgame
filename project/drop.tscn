@@ -34,7 +34,10 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va8iu"]
+transparency = 1
+cull_mode = 2
 shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.19607843)
 disable_receive_shadows = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f4jv2"]
@@ -57,7 +60,6 @@ mesh = SubResource("SphereMesh_va8iu")
 
 [node name="glow" type="MeshInstance3D" parent="rigidbody/mesh"]
 unique_name_in_owner = true
-visible = false
 mesh = SubResource("ArrayMesh_f4jv2")
 surface_material_override/0 = SubResource("StandardMaterial3D_va8iu")
 
