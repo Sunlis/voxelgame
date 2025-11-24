@@ -8,6 +8,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @export var mouse_sensitivity = 0.002
 @export var dig_reach = 4.0
+@export var pickup_reach = 8.0
 @export var dig_radius = 1.0
 @export var dig_noise: float = 0.02
 
@@ -104,6 +105,27 @@ func _check_collisions():
       other.apply_impulse(-collision.get_normal() * sqrt(self.velocity_before_collision.length()) * 0.1, collision.get_position())
 
 func _handle_input(delta: float):
+  _movement_controls(delta)
+  
+  if Input.is_action_just_pressed("pause"):
+    if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+      Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    else:
+      Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+  
+  _build_mode_checks()
+  _camera_zoom(delta)
+  _build_mode_controls(delta)
+
+  if self.mode == Mode.MINING and Input.is_action_pressed("dig") and not anim_player.is_playing():
+    anim_player.play("swing_pick")
+  
+  if Input.is_action_just_pressed("toggle_flashlight"):
+    flashlight.visible = not flashlight.visible
+  
+  _raycast_drops()
+
+func _movement_controls(delta):
   var speed = base_speed
   if not self.is_on_floor():
     speed *= 0.5
@@ -119,70 +141,78 @@ func _handle_input(delta: float):
   
   if self.is_on_floor() and Input.is_action_just_pressed("jump"):
     self.velocity.y = jump_force
-  
-  if Input.is_action_just_pressed("pause"):
-    if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-      Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _build_mode_controls(delta):
+  if not camera:
+    return
+  if Input.is_action_just_pressed("toggle_build_mode"):
+    if mode == Mode.BUILDING:
+      self.mode = Mode.MINING
     else:
-      Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+      self.mode = Mode.BUILDING
+    player_hud.build_mode = self.mode == Mode.BUILDING
+    Global.player_build_mode_changed.emit(self.mode == Mode.BUILDING, player_hud.get_selected_build_type())
+
+  if self.mode == Mode.BUILDING:
+    if Input.is_action_pressed("rotate_build_clockwise"):
+      build_marker.rot -= delta * build_rotate_speed
+    elif Input.is_action_pressed("rotate_build_counterclockwise"):
+      build_marker.rot += delta * build_rotate_speed
+
+func _camera_zoom(delta):
+  if not camera:
+    return
+  if Input.is_action_pressed("camera_zoom_in"):
+    camera.position.z = max(0, camera.position.z - (delta * 10.0))
+  elif Input.is_action_pressed("camera_zoom_out"):
+    camera.position.z = min(20, camera.position.z + (delta * 10.0))
+  body.transparency = smoothstep(4.0, 0.5, camera.position.z)
+
+func _raycast_drops():
+  if self.mode != Mode.MINING:
+    return
+  if not camera:
+    return
   
-  if camera:
-    if Input.is_action_pressed("camera_zoom_in"):
-      camera.position.z = max(0, camera.position.z - (delta * 10.0))
-    elif Input.is_action_pressed("camera_zoom_out"):
-      camera.position.z = min(20, camera.position.z + (delta * 10.0))
-    
-    body.transparency = smoothstep(4.0, 0.5, camera.position.z)
-    
-    if Input.is_action_just_pressed("toggle_build_mode"):
-      if mode == Mode.BUILDING:
-        self.mode = Mode.MINING
-      else:
-        self.mode = Mode.BUILDING
-      player_hud.build_mode = self.mode == Mode.BUILDING
-      Global.player_build_mode_changed.emit(self.mode == Mode.BUILDING, player_hud.get_selected_build_type())
+  var params = PhysicsRayQueryParameters3D.create(
+    head.global_transform.origin,
+    head.global_transform.origin + -camera.global_transform.basis.z * dig_reach
+  )
 
-    if self.mode == Mode.BUILDING:
-      var state = get_world_3d().direct_space_state
-      var origin = head.global_transform.origin
-      var direction = -camera.global_transform.basis.z
-      var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * build_reach)
-      # only collide with terrain (layer 5)
-      query.collision_mask = 1 << 5 - 1
-      var result = state.intersect_ray(query)
-      var collision = "position" in result
-      build_marker.visible = collision
-      if collision:
-        var pos = Vector3(result.position)
-        var norm = Vector3(result.normal).normalized()
-        var build_position = pos + (norm * 0.1)
-        build_marker.global_transform.origin = build_position
-        # avoid "Target and up vectors are colinear" by choosing a fallback up vector
-        var up_vec = Vector3.UP
-        if abs(norm.dot(up_vec)) > 0.999:
-          up_vec = Vector3(1, 0, 0) # fallback perpendicular vector
-        build_marker.look_at(build_marker.global_transform.origin + norm, up_vec)
-        var selected_build = player_hud.get_selected_build_type()
-        build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
-        if selected_build == BuildType.Type.RAIL:
-          build_position += norm * 0.5 # lift rails slightly above ground
-          Global.move_temporary_rail_point(build_position, norm, build_marker.forward)
-        if Input.is_action_just_pressed("build"):
-          Global.build(build_position, norm, build_marker.forward, selected_build)
-    else: # self.mode != Mode.BUILDING
-      build_marker.visible = false
+func _build_mode_checks():
+  if not camera:
+    return
 
-    if self.mode == Mode.BUILDING:
-      if Input.is_action_pressed("rotate_build_clockwise"):
-        build_marker.rot -= delta * build_rotate_speed
-      elif Input.is_action_pressed("rotate_build_counterclockwise"):
-        build_marker.rot += delta * build_rotate_speed
+  build_marker.visible = false
+  if self.mode != Mode.BUILDING:
+    return
 
-  if self.mode == Mode.MINING and Input.is_action_pressed("dig") and not anim_player.is_playing():
-    anim_player.play("swing_pick")
-  
-  if Input.is_action_just_pressed("toggle_flashlight"):
-    flashlight.visible = not flashlight.visible
+  var state = get_world_3d().direct_space_state
+  var origin = head.global_transform.origin
+  var direction = -camera.global_transform.basis.z
+  var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * build_reach)
+  # only collide with terrain (layer 5)
+  query.collision_mask = 1 << 5 - 1
+  var result = state.intersect_ray(query)
+  var collision = "position" in result
+  build_marker.visible = collision
+  if collision:
+    var pos = Vector3(result.position)
+    var norm = Vector3(result.normal).normalized()
+    var build_position = pos + (norm * 0.1)
+    build_marker.global_transform.origin = build_position
+    # avoid "Target and up vectors are colinear" by choosing a fallback up vector
+    var up_vec = Vector3.UP
+    if abs(norm.dot(up_vec)) > 0.999:
+      up_vec = Vector3(1, 0, 0) # fallback perpendicular vector
+    build_marker.look_at(build_marker.global_transform.origin + norm, up_vec)
+    var selected_build = player_hud.get_selected_build_type()
+    build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
+    if selected_build == BuildType.Type.RAIL:
+      build_position += norm * 0.5 # lift rails slightly above ground
+      Global.move_temporary_rail_point(build_position, norm, build_marker.forward)
+    if Input.is_action_just_pressed("build"):
+      Global.build(build_position, norm, build_marker.forward, selected_build)
 
 
 func start_dig():
