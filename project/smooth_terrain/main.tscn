@@ -136,18 +136,18 @@ shader_parameter/normal_strength = 2.0
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
-[sub_resource type="Curve3D" id="Curve3D_fah67"]
+[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
 resource_local_to_scene = true
-bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, -1.24, 0.755, 4.005, 14.355, 0.79, -56.55, 0, -0.625, 0, 0, -0.775, 0, 12.64, 0.48, -52.01, 1.29, 0, -1.38, 0, 0, 0, 10.08, 0.115, -35.65),
-"tilts": PackedFloat32Array(0, 0.11868239, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 14, 0.4, -56.5, 0, 0, 0, -0.465, 0, 2.09, 13.925, 0.935, -55.12, 0.745, 0, -3.8, 0, 0, 0, 10.87, 0, -44.385),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_yt5qh"]
+[sub_resource type="Curve3D" id="Curve3D_fah67"]
+resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(1.29, 0, -1.38, -1.29, 0, 1.38, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -223,14 +223,14 @@ _spawnable_scenes = PackedStringArray("uid://dw6os34ni7lta")
 spawn_path = NodePath("../drops")
 
 [node name="cart" parent="." node_paths=PackedStringArray("rail") instance=ExtResource("18_gxx5o")]
-transform = Transform3D(-0.95559835, 0.05224256, 0.29000446, 0, 0.98415864, -0.17729026, -0.2946725, -0.16941826, -0.9404603, 14.355, 0.79, -56.55)
+transform = Transform3D(-0.99852645, 0.019590836, 0.050607976, 3.7252899e-09, 0.9325641, -0.36100453, -0.05426756, -0.36047253, -0.9311899, 14, 0.4, -56.5)
 rail = NodePath("../rail")
 tilt_frequency = 2.0
 move_speed = 4.0
 
 [node name="rail" parent="." instance=ExtResource("18_4hwsc")]
-curve = SubResource("Curve3D_fah67")
-preview_curve = SubResource("Curve3D_yt5qh")
+curve = SubResource("Curve3D_yt5qh")
+preview_curve = SubResource("Curve3D_fah67")
 
 [node name="dumpster" parent="." instance=ExtResource("20_yt5qh")]
 transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)

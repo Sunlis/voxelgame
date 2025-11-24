@@ -17,7 +17,6 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @onready var path: Path3D = %path
 @onready var preview_path: Path3D = %preview_path
-@onready var path_mesh: PathMesh3D = %mesh
 @onready var preview_mesh: PathMesh3D = %preview_mesh
 
 @onready var preview_check: PathArea3D = %preview_check
@@ -33,25 +32,9 @@ var _preview_valid: bool = false
 var PREVIEW_COLOR = Color.from_string("#63a5d9", Color.BLUE)
 
 func _ready():
-  if curve == null:
-    curve = Curve3D.new()
-  while curve.point_count < 2:
-    curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
-  if preview_curve == null:
-    preview_curve = Curve3D.new()
-  while preview_curve.point_count < 2:
-    preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
   path.curve_changed.connect(self._curve_changed)
   _curve_changed()
-  preview_curve = Curve3D.new()
-  var out = curve.get_point_out(curve.point_count - 1)
-  if out == Vector3.ZERO:
-    out = -curve.get_point_in(curve.point_count - 1)
-  preview_curve.add_point(
-    curve.get_point_position(curve.point_count - 1),
-    curve.get_point_in(curve.point_count - 1),
-    out)
-  preview_curve.add_point(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
+  
   preview_path.curve = preview_curve
   _hide_preview()
 
