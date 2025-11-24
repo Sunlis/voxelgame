@@ -102,7 +102,7 @@ fit_content = true
 [node name="buildings" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[url=\"https://animpicstudio.itch.io/poly-megapolis-city-unity-ue-godot\"]Buildings[/url] (though tbh this pack was a pain to use)"
+text = "[url=\"https://animpicstudio.itch.io/poly-megapolis-city-unity-ue-godot\"]Buildings[/url]"
 fit_content = true
 
 [node name="pathmesh" type="RichTextLabel" parent="VBoxContainer"]
@@ -115,4 +115,22 @@ fit_content = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://kenney.nl/assets/train-kit\"]Rail mesh[/url]"
+fit_content = true
+
+[node name="grab icon" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://www.flaticon.com/free-icon/grab_6146785?term=grab&page=1&position=2&origin=search&related_id=6146785\"]Grab icon[/url]"
+fit_content = true
+
+[node name="wrench icon" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://www.flaticon.com/free-icon/wrench_953812?term=wrench&page=1&position=1&origin=search&related_id=953812\"]Wrench icon[/url]"
+fit_content = true
+
+[node name="blahaj" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://skfb.ly/oGwQt\"]Blahaj[/url]"
 fit_content = true

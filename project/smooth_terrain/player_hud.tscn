@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=8 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
 [ext_resource type="PackedScene" uid="uid://bh73umytkudvh" path="res://smooth_terrain/build_menu_item.tscn" id="2_abirf"]
 [ext_resource type="Texture2D" uid="uid://qikctejv1hqe" path="res://smooth_terrain/assets/ui/flashlight.png" id="4_1k1ky"]
+[ext_resource type="Texture2D" uid="uid://d33jq74ba1m5g" path="res://smooth_terrain/assets/ui/grab.png" id="5_a35rk"]
 [ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="5_kvse2"]
+[ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
 
 [node name="player_hud" type="MarginContainer"]
 anchors_preset = 15
@@ -66,6 +68,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/controls"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
 layout_mode = 2
@@ -81,6 +84,38 @@ flip_h = true
 [node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "(F) Flashlight"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("5_a35rk")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "(E) Pick up drops"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("6_1k1ky")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "(B) Toggle build mode"
 horizontal_alignment = 1
 
 [node name="top right" type="MarginContainer" parent="."]
