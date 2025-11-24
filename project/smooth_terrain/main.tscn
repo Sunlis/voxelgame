@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=38 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="2_muprf"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bllfwvmlam755" path="res://smooth_terrain/actors/cart.tscn" id="18_gxx5o"]
 [ext_resource type="PackedScene" uid="uid://c13gjqnhj2ubf" path="res://environment.tscn" id="20_fah67"]
 [ext_resource type="PackedScene" uid="uid://chxh4h680iioj" path="res://dumpster.tscn" id="20_yt5qh"]
+[ext_resource type="PackedScene" uid="uid://b3haqueb71gup" path="res://bridge.tscn" id="21_fah67"]
 
 [sub_resource type="Gradient" id="Gradient_yt5qh"]
 offsets = PackedFloat32Array(0.44474393, 0.49595687)
@@ -218,3 +219,6 @@ move_speed = 4.0
 transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)
 
 [node name="environment" parent="." instance=ExtResource("20_fah67")]
+
+[node name="bridge" parent="." instance=ExtResource("21_fah67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.249, 0, 0)
