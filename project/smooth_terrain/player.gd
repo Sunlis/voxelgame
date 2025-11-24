@@ -30,6 +30,10 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @onready var build_marker: BuildMarker = %build_marker
 @onready var anim_player: AnimationPlayer = %anim
 
+@onready var drop_area: Area3D = %drop_area
+@onready var drop_area_shape: CollisionShape3D = %drop_area_shape
+var _drops = []
+
 var id: int
 var camera: Camera3D = null
 var is_authority: bool = false
@@ -57,6 +61,24 @@ func _ready():
   body.mesh.material.albedo_color = Color.from_hsv(float(id % 10) / 10.0, 0.8, 0.8)
   self.set_multiplayer_authority.call_deferred(id, true)
   mp_sync.set_multiplayer_authority.call_deferred(id)
+
+  if is_authority:
+    drop_area.body_entered.connect(_body_enter_drop_area)
+    drop_area.body_exited.connect(_body_exit_drop_area)
+
+func _body_enter_drop_area(b: Node3D) -> void:
+  var drop = b.get_parent_node_3d()
+  if not drop or not drop is Drop:
+    return
+  _drops.append(drop)
+  drop.highlight = true
+
+func _body_exit_drop_area(b: Node3D) -> void:
+  var drop = b.get_parent_node_3d()
+  if not drop or not drop is Drop:
+    return
+  _drops.erase(drop)
+  drop.highlight = false
 
 func _unhandled_input(event: InputEvent) -> void:
   if not event is InputEventMouseMotion:
@@ -178,6 +200,8 @@ func _raycast_drops():
     head.global_transform.origin,
     head.global_transform.origin + -camera.global_transform.basis.z * dig_reach
   )
+  params.collision_mask = 1 << 15 - 1 # Layer 15 = drops
+
 
 func _build_mode_checks():
   if not camera:

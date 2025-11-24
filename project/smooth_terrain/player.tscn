@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=17 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 [ext_resource type="PackedScene" uid="uid://smc2oaia7e80" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
@@ -58,6 +58,9 @@ albedo_color = Color(0.37784582, 0.28032616, 0.13192704, 1)
 albedo_color = Color(0.7365769, 0.7873032, 0.7902216, 1)
 metallic = 0.9
 roughness = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_soj0r"]
+height = 8.0
 
 [sub_resource type="Animation" id="Animation_ju8qp"]
 length = 0.001
@@ -194,6 +197,17 @@ material = SubResource("StandardMaterial3D_vuq3k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 visible = false
 radius = 0.2
+
+[node name="drop_area" type="Area3D" parent="head"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16384
+monitorable = false
+
+[node name="drop_area_shape" type="CollisionShape3D" parent="head/drop_area"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -4)
+shape = SubResource("CylinderShape3D_soj0r")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw6os34ni7lta"]
+[gd_scene load_steps=9 format=4 uid="uid://dw6os34ni7lta"]
 
 [ext_resource type="Script" uid="uid://b86jilwa7ohc5" path="res://drop.gd" id="1_f4jv2"]
 [ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="1_hmaih"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igoh1"]
 resource_local_to_scene = true
-albedo_color = Color(0.5911141, 0.591114, 0.59111404, 1)
+albedo_color = Color(0.5, 0.5, 0.5, 1)
 normal_enabled = true
 normal_texture = ExtResource("1_hmaih")
 uv1_triplanar = true
@@ -20,6 +20,23 @@ height = 0.2
 radial_segments = 5
 rings = 2
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_f4jv2"]
+_surfaces = [{
+"aabb": AABB(-0.13013284, -0.14838377, -0.11281668, 0.25623494, 0.29676753, 0.24752738),
+"attribute_data": PackedByteArray("AAAAAAAAAADNzEw+AAAAAM3MzD4AAAAAmpkZPwAAAADNzEw/AAAAAAAAgD8AAAAAAAAAAKuqqj7NzEw+q6qqPs3MzD6rqqo+mpkZP6uqqj7NzEw/q6qqPgAAgD+rqqo+AAAAAKuqKj/NzEw+q6oqP83MzD6rqio/mpkZP6uqKj/NzEw/q6oqPwAAgD+rqio/AAAAAAAAgD/NzEw+AACAP83MzD4AAIA/mpkZPwAAgD/NzEw/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 90,
+"index_data": PackedByteArray("AAAGAAEAAQAGAAcAAQAHAAIAAgAHAAgAAgAIAAMAAwAIAAkAAwAJAAQABAAJAAoABAAKAAUABQAKAAsABgAMAAcABwAMAA0ABwANAAgACAANAA4ACAAOAAkACQAOAA8ACQAPAAoACgAPABAACgAQAAsACwAQABEADAASAA0ADQASABMADQATAA4ADgATABQADgAUAA8ADwAUABUADwAVABAAEAAVABYAEAAWABEAEQAWABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("61hAPOrxFz6n0ZY761hAPOrxFz6n0ZY761hAPOrxFz6n0ZY761hAPOrxFz6n0ZY761hAPOrxFz6n0ZY761hAPOrxFz6n0ZY7NFWROx1qoz1SjAE+uJvzPR1qoz1haDE9OKSfPR1qoz00Rsy9x/GQvR1qoz3I89a92Dj5vR1qoz1U2g49NFWROx1qoz1SjAE+LbXVOxTLfb2a8Qk+6iABPhXLfb3y6UM96vesPRXLfb3IWNe9WFuXvRTLfb1uDOe9i0EFvhXLfb0WGhE9LbXVOxTLfb2a8Qk+6FhAPOrxF76j0ZY76FhAPOrxF76j0ZY76FhAPOrxF76j0ZY76FhAPOrxF76j0ZY76FhAPOrxF76j0ZY76FhAPOrxF76j0ZY7AID//////78AgP////9N8ACA//8AAO3aAID//9w1/78AgP//Y5//vwCA//////+//3/Zrv///79Awjeo//9N8I/a4tkAAO3abyXi2dw1/7++PTeoY5//v/9/2a7///+//38lUf///79AwsdX//9N8I/aHCYAAO3abyUcJtw1/7++PcdXY5//v/9/JVH///+/AIAAAP///78AgAAA//9N8ACAAAAAAO3aAIAAANw1/78AgAAAY5//vwCAAAD///+/")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va8iu"]
+shading_mode = 0
+disable_receive_shadows = true
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f4jv2"]
 points = PackedVector3Array(0.0759895, 0.047575787, 0.03145228, -0.07948536, -0.05106844, 0.022677839, -0.08000896, -0.05140426, 0.02581102, -0.08000896, 0.05140426, 0.02581102, 0.04986974, 0.051232524, -0.06768153, 0.0046332297, -0.09590628, -0.0043063997, -0.04968317, -0.051328108, -0.06782212, 0.0046064304, -0.050634682, 0.0821577, 0.08013906, -0.051308535, 0.025777252, 0.04986974, -0.051232524, -0.06768153, -0.04968317, 0.051328108, -0.06782212, -0.001358795, 0.09326333, 0.010681789, -0.0043325527, 0.050696738, 0.082248986, 0.0046332297, 0.09590628, -0.0043063997, 0.08010123, 0.048259765, 0.019728543, -0.004333491, -0.09547117, 0.004698977, -0.010273997, -0.04765067, 0.07914387, 0.0046064304, 0.050634682, 0.0821577, -0.004362261, 0.09608521, -0.0043287585, -0.07971036, 0.048211336, 0.028751953, -0.05264579, 0.04827828, -0.0647296, 0.08013906, 0.051308535, 0.025777252, 0.053418953, -0.04871084, -0.062351216, -0.080115624, -0.048456024, 0.019772813, 0.004607368, -0.09535431, 0.004702623, -0.004362261, -0.09608521, -0.0043287585, 0.079784855, -0.04806882, 0.028697886, -0.0043325527, -0.050696738, 0.082248986, -0.07971036, -0.048211336, 0.028751953, -0.080115624, 0.048456024, 0.019772813, -0.05264579, -0.04827828, -0.0647296, 0.08010123, -0.048259765, 0.019728543)
 
@@ -31,12 +48,18 @@ replication_config = SubResource("SceneReplicationConfig_f4jv2")
 
 [node name="rigidbody" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-collision_layer = 512
-collision_mask = 513
+collision_layer = 16896
+collision_mask = 16897
 
 [node name="mesh" type="MeshInstance3D" parent="rigidbody"]
 unique_name_in_owner = true
 mesh = SubResource("SphereMesh_va8iu")
+
+[node name="glow" type="MeshInstance3D" parent="rigidbody/mesh"]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("ArrayMesh_f4jv2")
+surface_material_override/0 = SubResource("StandardMaterial3D_va8iu")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="rigidbody"]
 shape = SubResource("ConvexPolygonShape3D_f4jv2")

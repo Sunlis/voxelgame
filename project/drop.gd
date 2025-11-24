@@ -2,11 +2,19 @@
 
 extends Node3D
 
+class_name Drop
+
 @export var drop_type: Drops.Type = Drops.Type.TRASH:
   set(v):
     drop_type = v
     _update()
 
+@export var highlight: bool = false:
+  set(v):
+    highlight = v
+    _update()
+
+@onready var glow_mesh: Node3D = %glow
 @onready var rigidbody: RigidBody3D = %rigidbody
 @onready var mesh_instance: MeshInstance3D = %mesh
 
@@ -45,3 +53,4 @@ func _update():
     return
   var material = mesh_instance.get_active_material(0)
   material.albedo_color = ALBEDO.get(drop_type, Color(1, 0, 1))
+  glow_mesh.visible = highlight
