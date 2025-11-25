@@ -10,10 +10,8 @@ func _ready():
 func _on_create_drop(pos: Vector3, drop_rate: float, force: bool) -> void:
   var drop_result = Drops.select_drop_at_depth(-pos.y, drop_rate)
   if not drop_result.should_drop and not force:
-    print('No drop created at depth %f' % -pos.y)
     return
   if force and not drop_result.should_drop:
-    print('forcing drop')
     drop_result = Drops.DepthDrop.new(Drops.Type.TRASH, 0.0, true)
   var drop = DropScene.instantiate()
   drop.drop_type = drop_result.type
