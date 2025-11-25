@@ -146,6 +146,11 @@ func _handle_input(delta: float):
     flashlight.visible = not flashlight.visible
   
   _check_drops()
+  _debug_stuff()
+
+func _debug_stuff():
+  if Input.is_action_just_pressed("debug_spawn_drop"):
+    Global.create_drop(self.global_transform.origin + -camera.global_transform.basis.z * 2.0, 1.0, true)
 
 func _check_drops():
   if not camera:
@@ -252,4 +257,4 @@ func dig(origin: Vector3, direction: Vector3, radius: float):
     vt.do_sphere(dig_point, radius)
     Global.terrain_modified.emit(dig_point, radius * 2.0)
     if TerrainUtil.sphere_intersect(dig_point, radius):
-      Global.create_drop.emit(dig_point, drop_rate)
+      Global.create_drop(dig_point, drop_rate)

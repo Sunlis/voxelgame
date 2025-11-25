@@ -48,7 +48,10 @@ signal terrain_modified(point: Vector3, radius: float)
 
 ### DROPS
 
-signal create_drop(position: Vector3, drop_rate: float)
+signal drop_requested(position: Vector3, drop_rate: float, force: bool)
+
+func create_drop(position: Vector3, drop_rate: float, force: bool = false) -> void:
+  drop_requested.emit(position, drop_rate, force)
 
 ### NOTIFICATIONS
 
