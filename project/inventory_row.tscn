@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bswk7nsoqyrlg"]
+
+[ext_resource type="Texture2D" uid="uid://ctj571e5rxmkv" path="res://smooth_terrain/assets/ui/icons/trash.png" id="1_8n42i"]
+[ext_resource type="Script" uid="uid://ciwxxnvopm00k" path="res://inventory_row.gd" id="1_i0dr7"]
+
+[node name="inventory_row" type="HBoxContainer"]
+script = ExtResource("1_i0dr7")
+
+[node name="icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_8n42i")
+expand_mode = 3
+
+[node name="count" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x02"
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="title" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Trash"

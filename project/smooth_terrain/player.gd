@@ -129,7 +129,7 @@ func _check_collisions():
 func _handle_input(delta: float):
   _movement_controls(delta)
   
-  if Input.is_action_just_pressed("pause"):
+  if Input.is_action_just_pressed("toggle_mouse_capture"):
     if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     else:
@@ -153,7 +153,6 @@ func _check_drops():
   
   if Input.is_action_just_pressed("pick_up_drops"):
     for drop in _drops:
-      print("picking up drop ", drop.name)
       Global.notify_message("Picked up %s" % Drops.get_drop_config(drop.drop_type).name)
       drop.queue_free()
     _drops.clear()

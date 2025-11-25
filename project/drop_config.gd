@@ -1,3 +1,5 @@
+@tool
+
 extends Resource
 
 class_name Drops
@@ -68,21 +70,21 @@ class DropConfig:
       str(type), name, min_depth, max_depth, rarity, value
     ]
 
-static var drop_configs: Dictionary = {
+static var drop_configs: Array[DropConfig] = [
   
   # Garbage Tier (0 - 50)
 
-  Type.TRASH: DropConfig.new(Type.TRASH)
+  DropConfig.new(Type.TRASH)
       .set_name("Trash")
       .set_depth_range(0, 20)
       .set_rarity(0.5)
       .set_value(0.1),
-  Type.BOTTLECAP: DropConfig.new(Type.BOTTLECAP)
+  DropConfig.new(Type.BOTTLECAP)
       .set_name("Bottlecap")
       .set_depth_range(0, 30)
       .set_rarity(0.3)
       .set_value(0.3),
-  Type.PENNY: DropConfig.new(Type.PENNY)
+  DropConfig.new(Type.PENNY)
       .set_name("Penny")
       .set_depth_range(10, 50)
       .set_rarity(0.1)
@@ -90,17 +92,18 @@ static var drop_configs: Dictionary = {
   
   # Common Tier (30 - 100)
 
-  Type.COAL: DropConfig.new(Type.COAL)
+  DropConfig.new(Type.COAL)
       .set_name("Coal")
       .set_depth_range(20, 100)
       .set_rarity(0.6)
       .set_value(1),
-  Type.HEMATITE: DropConfig.new(Type.HEMATITE)
+  DropConfig.new(Type.HEMATITE)
       .set_name("Hematite")
       .set_depth_range(30, 120)
       .set_rarity(0.5)
       .set_value(1.5),
-  Type.QUARTZ: DropConfig.new(Type.QUARTZ)
+  DropConfig.new(Type.QUARTZ)
+      .set_name("Quartz")
       .set_name("Quartz")
       .set_depth_range(40, 140)
       .set_rarity(0.4)
@@ -108,17 +111,17 @@ static var drop_configs: Dictionary = {
 
   # Uncommon Tier (80 - 200)
 
-  Type.GYPSUM: DropConfig.new(Type.GYPSUM)
+  DropConfig.new(Type.GYPSUM)
       .set_name("Gypsum")
       .set_depth_range(70, 180)
       .set_rarity(0.3)
       .set_value(4),
-  Type.PYRITE: DropConfig.new(Type.PYRITE)
+  DropConfig.new(Type.PYRITE)
       .set_name("Pyrite")
       .set_depth_range(80, 200)
       .set_rarity(0.25)
       .set_value(6),
-  Type.MALACHITE: DropConfig.new(Type.MALACHITE)
+  DropConfig.new(Type.MALACHITE)
       .set_name("Malachite")
       .set_depth_range(90, 220)
       .set_rarity(0.2)
@@ -126,17 +129,17 @@ static var drop_configs: Dictionary = {
 
   # Rare Tier (180 - 300)
 
-  Type.CINNABAR: DropConfig.new(Type.CINNABAR)
+  DropConfig.new(Type.CINNABAR)
       .set_name("Cinnabar")
       .set_depth_range(160, 280)
       .set_rarity(0.15)
       .set_value(10),
-  Type.GOLD: DropConfig.new(Type.GOLD)
+  DropConfig.new(Type.GOLD)
       .set_name("Gold")
       .set_depth_range(180, 300)
       .set_rarity(0.1)
       .set_value(15),
-  Type.PLATINUM: DropConfig.new(Type.PLATINUM)
+  DropConfig.new(Type.PLATINUM)
       .set_name("Platinum")
       .set_depth_range(200, 320)
       .set_rarity(0.08)
@@ -144,25 +147,28 @@ static var drop_configs: Dictionary = {
   
   # Exotic Tier (280+)
 
-  Type.IRIDIUM: DropConfig.new(Type.IRIDIUM)
+  DropConfig.new(Type.IRIDIUM)
       .set_name("Iridium")
       .set_depth_range(270, 350)
       .set_rarity(0.05)
       .set_value(30),
-  Type.OBSIDIAN: DropConfig.new(Type.OBSIDIAN)
+  DropConfig.new(Type.OBSIDIAN)
       .set_name("Obsidian")
       .set_depth_range(300, 400)
       .set_rarity(0.03)
       .set_value(40),
-  Type.KIMBERLITE: DropConfig.new(Type.KIMBERLITE)
+  DropConfig.new(Type.KIMBERLITE)
       .set_name("Kimberlite")
       .set_depth_range(320, 450)
       .set_rarity(0.01)
       .set_value(50),
-}
+]
 
 static func get_drop_config(drop_type: Type) -> DropConfig:
-  return drop_configs.get(drop_type, null)
+  for config in drop_configs:
+    if config.type == drop_type:
+      return config
+  return null
 
 class DepthDrop:
   var type: Type
@@ -176,7 +182,7 @@ class DepthDrop:
 static func select_drop_at_depth(depth: float, drop_rate: float) -> DepthDrop:
   var total_rarity = 0.0
   var valid_drops = []
-  for config in drop_configs.values():
+  for config in drop_configs:
     if config.drop_at_depth(depth):
       total_rarity += config.get_rarity_at_depth(depth)
       valid_drops.append(config)

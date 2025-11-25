@@ -134,3 +134,9 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[url=\"https://skfb.ly/oGwQt\"]Blahaj[/url]"
 fit_content = true
+
+[node name="item icons" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[url=\"https://glionox.itch.io/items16\"]Inventory Icons[/url]"
+fit_content = true

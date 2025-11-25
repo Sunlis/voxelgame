@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://ls2bswkpbvbv" path="res://smooth_terrain/multiplayer_menu.gd" id="1_w7ghm"]
 
 [node name="multiplayer_menu" type="VBoxContainer"]
+offset_right = 305.0
+offset_bottom = 179.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_w7ghm")
 
 [node name="status" type="Label" parent="."]
@@ -11,6 +15,7 @@ layout_mode = 2
 
 [node name="container" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="container"]

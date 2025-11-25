@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=10 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="5_kvse2"]
 [ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
 [ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
+[ext_resource type="PackedScene" uid="uid://dyly04l33cy0l" path="res://inventory.tscn" id="9_6s5kh"]
 
 [node name="player_hud" type="MarginContainer"]
 anchors_preset = 15
@@ -169,3 +170,8 @@ theme_override_constants/margin_bottom = 8
 [node name="notifications" type="VBoxContainer" parent="bottom_right"]
 layout_mode = 2
 script = ExtResource("8_lqrjo")
+
+[node name="inventory" parent="." instance=ExtResource("9_6s5kh")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
