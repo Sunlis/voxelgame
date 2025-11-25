@@ -15,7 +15,6 @@ layout_mode = 2
 
 [node name="container" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="container"]
