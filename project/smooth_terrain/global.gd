@@ -42,6 +42,14 @@ func do_move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3)
 
 signal player_build_mode_changed(building: bool, build_type: BuildType.Type)
 
+func change_player_build_mode(building: bool, build_type: BuildType.Type) -> void:
+  player_build_mode_changed.emit(building, build_type)
+
+signal player_build_marker_valid_changed(valid: bool, reason: String)
+
+func change_player_build_marker_valid(valid: bool, reason: String = "") -> void:
+  player_build_marker_valid_changed.emit(valid, reason)
+
 ### COLLISIONS
 
 signal terrain_modified(point: Vector3, radius: float)

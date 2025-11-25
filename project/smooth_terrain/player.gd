@@ -188,7 +188,7 @@ func _build_mode_controls(delta):
     else:
       self.mode = Mode.BUILDING
     player_hud.build_mode = self.mode == Mode.BUILDING
-    Global.player_build_mode_changed.emit(self.mode == Mode.BUILDING, player_hud.get_selected_build_type())
+    Global.change_player_build_mode(self.mode == Mode.BUILDING, player_hud.get_selected_build_type())
 
   if self.mode == Mode.BUILDING:
     if Input.is_action_pressed("rotate_build_clockwise"):
@@ -223,11 +223,13 @@ func _build_mode_checks():
   var collision = "position" in result
   build_marker.visible = collision
   build_marker.valid = false
+  Global.change_player_build_marker_valid(false, "Target too far")
   if collision:
     var pos = Vector3(result.position)
     var norm = Vector3(result.normal).normalized()
     var diff = origin - pos
     build_marker.valid = diff.length() <= build_reach
+    Global.change_player_build_marker_valid(build_marker.valid, "Target too far")
     var build_position = pos + (norm * 0.1)
     build_marker.global_transform.origin = build_position
     # avoid "Target and up vectors are colinear" by choosing a fallback up vector

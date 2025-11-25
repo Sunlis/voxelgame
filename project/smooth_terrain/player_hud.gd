@@ -15,18 +15,30 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
     selected_build_index = v
     _update()
 
+@export var build_valid = true:
+  set(v):
+    build_valid = v
+    _update()
+var build_valid_reason: String = ""
+
 @onready var build_menu: Control = %build_menu
 @onready var build_item_container: Control = %build_items
 @onready var crosshair: Control = %crosshair
+@onready var center_label: Label = %center_label
 
 func _ready():
   _update()
+  Global.player_build_marker_valid_changed.connect(func(v, r):
+    build_valid_reason = r
+    build_valid = v)
 
 func _update():
   if not is_inside_tree():
     return
   build_menu.visible = build_mode
   crosshair.modulate.a = 0.2 if build_mode else 0.7
+  center_label.visible = build_mode and not build_valid
+  center_label.text = build_valid_reason
   var build_items = build_item_container.get_children()
   var wrapped_index = Global.wrap_mod(selected_build_index, build_items.size())
   for i in build_items.size():
