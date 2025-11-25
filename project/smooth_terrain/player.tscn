@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=18 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 [ext_resource type="PackedScene" uid="uid://smc2oaia7e80" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
+[ext_resource type="PackedScene" uid="uid://bwjjjmdjai6bv" path="res://smooth_terrain/candle.tscn" id="2_vuq3k"]
 [ext_resource type="PackedScene" uid="uid://b7i0m8172qkjt" path="res://build_marker.tscn" id="3_soj0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjl7a"]
@@ -148,6 +149,11 @@ radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_icaiy")
 
+[node name="candle" parent="body" instance=ExtResource("2_vuq3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2906552, 0.0066491514, -0.57450074)
+light_energy = 0.75154936
+flicker_speed = 0.04
+
 [node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_2tc2v")
@@ -168,6 +174,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="flashlight" type="SpotLight3D" parent="head"]
 unique_name_in_owner = true
+visible = false
 layers = 2
 light_energy = 1.5
 light_indirect_energy = 1.5
