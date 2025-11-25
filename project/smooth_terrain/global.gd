@@ -50,6 +50,11 @@ signal player_build_marker_valid_changed(valid: bool, reason: String)
 func change_player_build_marker_valid(valid: bool, reason: String = "") -> void:
   player_build_marker_valid_changed.emit(valid, reason)
 
+signal local_player_position_changed(position: Vector3)
+
+func change_local_player_position(position: Vector3) -> void:
+  local_player_position_changed.emit(position)
+
 ### COLLISIONS
 
 signal terrain_modified(point: Vector3, radius: float)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=19 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 [ext_resource type="PackedScene" uid="uid://smc2oaia7e80" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
@@ -28,6 +28,10 @@ fill_to = Vector2(0.6, 0.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icaiy"]
 albedo_texture = SubResource("GradientTexture2D_soj0r")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vuq3k"]
+seed = -1531438218
+fractal_type = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2tc2v"]
 properties/0/path = NodePath(".:position")
@@ -149,10 +153,14 @@ radial_segments = 32
 rings = 16
 material = SubResource("StandardMaterial3D_icaiy")
 
-[node name="candle" parent="body" instance=ExtResource("2_vuq3k")]
+[node name="handlight" parent="body" instance=ExtResource("2_vuq3k")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2906552, 0.0066491514, -0.57450074)
-light_energy = 0.75154936
+light_energy = 0.5781661
+energy_min = 0.5
+energy_max = 0.7
 flicker_speed = 0.04
+noise = SubResource("FastNoiseLite_vuq3k")
 
 [node name="mp_sync" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true

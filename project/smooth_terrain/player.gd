@@ -24,7 +24,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 @onready var body: MeshInstance3D = %body
 @onready var head: Node3D = %head
 @onready var eyes: CSGCombiner3D = %eyes
-@onready var flashlight: SpotLight3D = %flashlight
+@onready var handlight: Node3D = %handlight
 
 @onready var player_hud: PlayerHUD = %player_hud
 @onready var build_marker: BuildMarker = %build_marker
@@ -111,6 +111,7 @@ func _physics_process(delta):
 
   if is_authority:
     _handle_input(delta)
+    Global.change_local_player_position(self.global_transform.origin)
 
   velocity_before_collision = self.velocity
   move_and_slide()
@@ -143,7 +144,7 @@ func _handle_input(delta: float):
     anim_player.play("swing_pick")
   
   if Input.is_action_just_pressed("toggle_flashlight"):
-    flashlight.visible = not flashlight.visible
+    handlight.visible = not handlight.visible
   
   _check_drops()
   _debug_stuff()

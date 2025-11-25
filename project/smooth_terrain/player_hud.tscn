@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=11 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
 [ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
 [ext_resource type="PackedScene" uid="uid://dyly04l33cy0l" path="res://inventory.tscn" id="9_6s5kh"]
+[ext_resource type="Script" uid="uid://d308ldxd5hxkg" path="res://smooth_terrain/pos_label.gd" id="10_rh58i"]
 
 [node name="player_hud" type="MarginContainer"]
 anchors_preset = 15
@@ -17,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kvse2")
+build_valid = null
 
 [node name="center" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -184,3 +186,19 @@ script = ExtResource("8_lqrjo")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="top_right" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="top_right"]
+layout_mode = 2
+
+[node name="pos_label" type="Label" parent="top_right/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("10_rh58i")
