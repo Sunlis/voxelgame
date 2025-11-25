@@ -24,6 +24,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="crosshair" type="TextureRect" parent="center"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_abirf")
 

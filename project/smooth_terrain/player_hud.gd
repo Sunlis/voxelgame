@@ -17,6 +17,7 @@ const BuildType = preload("res://smooth_terrain/build_types.gd")
 
 @onready var build_menu: Control = %build_menu
 @onready var build_item_container: Control = %build_items
+@onready var crosshair: Control = %crosshair
 
 func _ready():
   _update()
@@ -25,6 +26,7 @@ func _update():
   if not is_inside_tree():
     return
   build_menu.visible = build_mode
+  crosshair.modulate.a = 0.2 if build_mode else 0.7
   var build_items = build_item_container.get_children()
   var wrapped_index = Global.wrap_mod(selected_build_index, build_items.size())
   for i in build_items.size():

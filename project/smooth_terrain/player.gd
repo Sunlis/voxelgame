@@ -216,15 +216,18 @@ func _build_mode_checks():
   var state = get_world_3d().direct_space_state
   var origin = head.global_transform.origin
   var direction = -camera.global_transform.basis.z
-  var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * build_reach)
+  var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * 128.0)
   # only collide with terrain (layer 5)
   query.collision_mask = 1 << 5 - 1
   var result = state.intersect_ray(query)
   var collision = "position" in result
   build_marker.visible = collision
+  build_marker.valid = false
   if collision:
     var pos = Vector3(result.position)
     var norm = Vector3(result.normal).normalized()
+    var diff = origin - pos
+    build_marker.valid = diff.length() <= build_reach
     var build_position = pos + (norm * 0.1)
     build_marker.global_transform.origin = build_position
     # avoid "Target and up vectors are colinear" by choosing a fallback up vector
@@ -237,7 +240,7 @@ func _build_mode_checks():
     if selected_build == BuildType.Type.RAIL:
       build_position += norm * 0.5 # lift rails slightly above ground
       Global.move_temporary_rail_point(build_position, norm, build_marker.forward)
-    if Input.is_action_just_pressed("build"):
+    if build_marker.valid and Input.is_action_just_pressed("build"):
       Global.build(build_position, norm, build_marker.forward, selected_build)
 
 

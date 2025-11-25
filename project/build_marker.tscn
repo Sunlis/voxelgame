@@ -4,13 +4,15 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asw5t"]
 transparency = 1
-albedo_color = Color(0.03137255, 0.4745098, 0.8039216, 0.60784316)
+albedo_color = Color(0.03137255, 0.4745098, 0.8039216, 0.5)
 emission_enabled = true
 emission = Color(0.03137255, 0.4745098, 0.8039216, 1)
 emission_energy_multiplier = 0.3
 
 [node name="build_marker" type="Node3D"]
 script = ExtResource("1_al237")
+forward = Vector3(0, 1, 0)
+material = SubResource("StandardMaterial3D_asw5t")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = SubResource("StandardMaterial3D_asw5t")
