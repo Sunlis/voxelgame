@@ -239,6 +239,7 @@ func _build_mode_checks():
     if abs(norm.dot(up_vec)) > 0.999:
       up_vec = Vector3(1, 0, 0) # fallback perpendicular vector
     build_marker.look_at(build_marker.global_transform.origin + norm, up_vec)
+    Global.move_build_marker(build_position, norm, build_marker.forward)
     var selected_build = player_hud.get_selected_build_type()
     build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
     if selected_build == BuildType.Type.RAIL:

@@ -38,6 +38,11 @@ func move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) ->
 func do_move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) -> void:
   move_temp_rail.emit(pos, norm, forward)
 
+signal build_marker_moved(pos: Vector3, norm: Vector3, forward: Vector3)
+
+func move_build_marker(pos: Vector3, norm: Vector3, forward: Vector3) -> void:
+  build_marker_moved.emit(pos, norm, forward)
+
 ### PLAYER
 
 signal player_build_mode_changed(building: bool, build_type: BuildType.Type)
