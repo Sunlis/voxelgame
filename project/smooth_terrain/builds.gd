@@ -16,6 +16,7 @@ func _on_build_requested(
   if build_type == BuildType.Type.LANTERN:
     node = preload(LANTERN).instantiate()
   else:
+    # RAIL handled elsewhere
     return
   node.name = "Build_%d" % self.get_child_count()
   node.position = pos
