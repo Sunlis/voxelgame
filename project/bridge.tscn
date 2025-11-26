@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3haqueb71gup"]
+[gd_scene load_steps=14 format=3 uid="uid://b3haqueb71gup"]
 
 [ext_resource type="Script" uid="uid://oqgrn2fiyi68" path="res://bridge.gd" id="1_25uw4"]
 [ext_resource type="Texture2D" uid="uid://b0evdll3ajfx2" path="res://smooth_terrain/assets/materials/Stylized_03_Wood_Planks/Stylized_03_Wood_Planks_basecolor_512.png" id="1_tynux"]
@@ -6,13 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://tgtka4co1teb" path="res://smooth_terrain/assets/materials/Stylized_03_Wood_Planks/Stylized_03_Wood_Planks_metallic_512.png" id="3_0n2te"]
 [ext_resource type="Texture2D" uid="uid://byvt0tnd6p6n0" path="res://smooth_terrain/assets/materials/Stylized_03_Wood_Planks/Stylized_03_Wood_Planks_normal_512.png" id="4_6xinw"]
 [ext_resource type="Texture2D" uid="uid://g54wdwlxog1g" path="res://smooth_terrain/assets/materials/Stylized_03_Wood_Planks/Stylized_03_Wood_Planks_roughness_512.png" id="5_qeo2h"]
-
-[sub_resource type="Curve3D" id="Curve3D_25uw4"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysvkp"]
 albedo_texture = ExtResource("1_tynux")
@@ -28,41 +21,62 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n2te"]
+albedo_color = Color(0.3882353, 0.64705884, 0.8509804, 1)
+emission_enabled = true
+emission = Color(0.3882353, 0.64705884, 0.8509804, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="Curve3D" id="Curve3D_25uw4"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="BoxMesh" id="BoxMesh_866h2"]
-material = SubResource("StandardMaterial3D_ysvkp")
 size = Vector3(0.9, 0.06, 0.3)
 
 [sub_resource type="MultiMesh" id="MultiMesh_1d2iu"]
 transform_format = 1
+instance_count = 21
 mesh = SubResource("BoxMesh_866h2")
+buffer = PackedFloat32Array(0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 2, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 2.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 3, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 3.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 4, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 4.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 5.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 6, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 6.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 7, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 7.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 8, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 8.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 9, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 9.5, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, -1, 10, 0, 1, 0, 0, 1, 0, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tynux"]
-size = Vector3(0.9, 0.06, 1)
+size = Vector3(0.9, 0.06, 0.6)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0n2te"]
 
 [node name="bridge" type="Node3D"]
 script = ExtResource("1_25uw4")
+end_point = Vector3(10, 0, 0)
+preview = false
+display_material = SubResource("StandardMaterial3D_ysvkp")
+preview_material = SubResource("StandardMaterial3D_0n2te")
 
 [node name="path" type="Path3D" parent="."]
 unique_name_in_owner = true
 curve = SubResource("Curve3D_25uw4")
 
-[node name="PathMultiMesh3D" type="PathMultiMesh3D" parent="." node_paths=PackedStringArray("path_3d")]
+[node name="mesh" type="PathMultiMesh3D" parent="." node_paths=PackedStringArray("path_3d")]
 path_3d = NodePath("../path")
 multi_mesh = SubResource("MultiMesh_1d2iu")
 distribution = 1
 distance = 0.5
+unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_ysvkp")
 
-[node name="modifier" type="PathModifier3D" parent="PathMultiMesh3D"]
-rotation_modifier = Vector3(-1.5707964, 0, 0)
+[node name="modifier" type="PathModifier3D" parent="mesh"]
+curve_offset_end = 10.0
+rotation_modifier = Vector3(4.371139e-08, 0, 0)
 unique_name_in_owner = true
 
 [node name="PathStaticBody3D" type="PathStaticBody3D" parent="." node_paths=PackedStringArray("path_3d")]
 path_3d = NodePath("../path")
 shape = SubResource("BoxShape3D_tynux")
 distribution = 1
-distance = 1.0
+distance = 0.5
 rotation_mode = 1
 collision_layer = 16913
 

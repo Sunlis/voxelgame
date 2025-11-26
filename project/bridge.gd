@@ -10,12 +10,20 @@ extends Node3D
   set(v):
     end_point = v
     _update()
+@export var preview: bool = true:
+  set(v):
+    preview = v
+    _update()
+
+@export var display_material: Material
+@export var preview_material: BaseMaterial3D
 
 @onready var path: Path3D = %path
+@onready var mesh: PathMultiMesh3D = %mesh
 @onready var mod: PathModifier3D = %modifier
 
 func _ready():
-  pass
+  _update()
 
 func _update():
   if not is_inside_tree():
@@ -25,3 +33,4 @@ func _update():
   path.curve.add_point(end_point)
   var angle = (end_point - start_point).angle_to(Vector3.UP)
   mod.rotation_modifier = Vector3(angle - PI / 2, 0, 0)
+  mesh.material_override = preview_material if preview else display_material
