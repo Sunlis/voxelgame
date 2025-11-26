@@ -2,15 +2,18 @@ extends Node
 
 enum Type {
   LANTERN,
-  RAIL
+  RAIL,
+  BRIDGE
 }
 
 const NAMES = {
   Type.LANTERN: "Lantern",
-  Type.RAIL: "Rail"
+  Type.RAIL: "Rail",
+  Type.BRIDGE: "Bridge"
 }
 
 const ROTATABLE = {
   Type.LANTERN: false,
-  Type.RAIL: true
+  Type.RAIL: true,
+  Type.BRIDGE: false
 }

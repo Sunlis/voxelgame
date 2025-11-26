@@ -27,12 +27,14 @@ size_flags_vertical = 4
 
 [node name="crosshair" type="TextureRect" parent="center"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.7)
 layout_mode = 2
 texture = ExtResource("1_abirf")
 stretch_mode = 5
 
 [node name="center_label" type="Label" parent="center"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 1
 horizontal_alignment = 1
@@ -48,7 +50,6 @@ theme_override_constants/separation = 24
 
 [node name="build_menu" type="MarginContainer" parent="bottom/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu"]
@@ -104,6 +105,10 @@ hovered = true
 [node name="build_menu_item2" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
 layout_mode = 2
 build_type = 1
+
+[node name="build_menu_item3" parent="bottom/VBoxContainer/build_menu/HBoxContainer/VBoxContainer/panel/MarginContainer/VBoxContainer/build_items" instance=ExtResource("2_abirf")]
+layout_mode = 2
+build_type = 2
 
 [node name="controls" type="MarginContainer" parent="bottom/VBoxContainer"]
 layout_mode = 2
@@ -184,8 +189,6 @@ script = ExtResource("8_lqrjo")
 
 [node name="inventory" parent="." instance=ExtResource("9_6s5kh")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
 [node name="top_right" type="MarginContainer" parent="."]
 layout_mode = 2
