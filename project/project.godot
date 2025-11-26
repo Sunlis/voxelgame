@@ -171,9 +171,13 @@ debug_spawn_drop={
 
 anti_aliasing/quality/msaa_3d=1
 limits/global_shader_variables/buffer_size=262144
+global_illumination/sdfgi/probe_ray_count=0
+global_illumination/sdfgi/frames_to_converge=0
+global_illumination/sdfgi/frames_to_update_lights=4
 anti_aliasing/quality/screen_space_aa=1
-shadows/shadow_atlas/size=8192
+occlusion_culling/use_occlusion_culling=true
 shadows/shadow_atlas/quadrant_0_subdiv=1
 shadows/shadow_atlas/quadrant_1_subdiv=1
 shadows/shadow_atlas/quadrant_2_subdiv=1
 shadows/shadow_atlas/quadrant_3_subdiv=1
+shadows/shadow_atlas/size=8192

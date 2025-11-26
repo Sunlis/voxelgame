@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsbue3rdtanmp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aai17"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[node name="board_spotlight" type="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 0, -0.99999994, 0, 0.99999994, 0, 0, 0, 0)
+light_energy = 1.4
+distance_fade_enabled = true
+distance_fade_begin = 64.0
+distance_fade_shadow = 32.0
+distance_fade_length = 24.0
+spot_angle = 80.0
+spot_angle_attenuation = 1.5
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.1
+material = SubResource("StandardMaterial3D_aai17")

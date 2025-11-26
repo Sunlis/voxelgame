@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwjjjmdjai6bv"]
+[gd_scene load_steps=6 format=3 uid="uid://bwjjjmdjai6bv"]
 
 [ext_resource type="Script" uid="uid://dic3kyxb6n3l4" path="res://smooth_terrain/candle.gd" id="1_ty511"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ty511"]
+seed = 1516799675
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ty511"]
 top_radius = 0.04
@@ -20,11 +23,13 @@ height = 0.1
 
 [node name="candle" type="OmniLight3D"]
 light_color = Color(0.86671954, 0.5087073, 0.30507275, 1)
-light_energy = 0.72991693
+light_energy = 0.81652725
+light_bake_mode = 0
 shadow_enabled = true
 omni_range = 10.0
 omni_attenuation = 2.0
 script = ExtResource("1_ty511")
+noise = SubResource("FastNoiseLite_ty511")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

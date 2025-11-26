@@ -48,8 +48,10 @@ material = SubResource("StandardMaterial3D_q4ljm")
 unique_name_in_owner = true
 light_color = Color(0.7137255, 0.49803922, 0.27058825, 1)
 light_size = 0.2
+light_bake_mode = 0
 shadow_enabled = true
 shadow_blur = 2.0
+distance_fade_enabled = true
 omni_range = 40.0
 
 [node name="base" type="CSGBox3D" parent="."]
