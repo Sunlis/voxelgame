@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://disyxdk62rc83" path="res://smooth_terrain/assets/ui/menu/uipack_rpg_sheet.png" id="1_pohso"]
 [ext_resource type="Theme" uid="uid://d2184anlddcid" path="res://menu_theme.tres" id="1_psafj"]
-[ext_resource type="PackedScene" uid="uid://bswk7nsoqyrlg" path="res://inventory_row.tscn" id="3_5tt2m"]
+[ext_resource type="Script" uid="uid://banvxycm3y0r4" path="res://inventory.gd" id="2_mrqgh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psafj"]
 atlas = ExtResource("1_pohso")
@@ -14,14 +14,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 theme = ExtResource("1_psafj")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("2_mrqgh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
@@ -35,6 +40,8 @@ axis_stretch_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -42,23 +49,14 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "INVENTORY"
 
-[node name="inventory_row" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5tt2m")]
+[node name="items" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-drop_type = 11
-count = 3
-
-[node name="inventory_row2" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5tt2m")]
-layout_mode = 2
-drop_type = 6
-count = 2
-
-[node name="inventory_row3" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_5tt2m")]
-layout_mode = 2
-drop_type = 3
-count = 8

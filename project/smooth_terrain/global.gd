@@ -72,3 +72,11 @@ signal display_message(message: String)
 
 func notify_message(message: String) -> void:
   display_message.emit(message)
+
+
+### INVENTORY
+
+signal drop_collected(drop_type: Drops.Type, amount: int)
+
+func collect_drop(drop_type: Drops.Type, amount: int = 1) -> void:
+  drop_collected.emit(drop_type, amount)

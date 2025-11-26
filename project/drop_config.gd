@@ -26,6 +26,10 @@ enum Type {
   KIMBERLITE
 }
 
+static func get_random_type() -> Type:
+  var types = Type.values()
+  return types[randi() % types.size()]
+
 class DropConfig:
   var type: Type
   var name: String

@@ -12,7 +12,7 @@ func _on_create_drop(pos: Vector3, drop_rate: float, force: bool) -> void:
   if not drop_result.should_drop and not force:
     return
   if force and not drop_result.should_drop:
-    drop_result = Drops.DepthDrop.new(Drops.Type.TRASH, 0.0, true)
+    drop_result = Drops.DepthDrop.new(Drops.get_random_type(), 0.0, true)
   var drop = DropScene.instantiate()
   drop.drop_type = drop_result.type
   drop.name = "drop_%d" % _count
