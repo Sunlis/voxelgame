@@ -26,16 +26,41 @@ func _on_terrain_modified(pos: Vector3, radius: float) -> void:
           continue
         _marked[sample_pos] = true
         var sample = _sample_noise(sample_pos)
-        var sphere = CSGSphere3D.new()
-        sphere.radius = 0.1
-        add_child(sphere)
-        sphere.global_position = sample_pos
-        sphere.material = StandardMaterial3D.new()
-        sphere.material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-        var c = Color(0, sample, 0)
-        if sample > 0.65:
-          c.r = 1.0
-        elif sample > 0.5:
-          c.b = 1.0
-        sphere.material.albedo_color = c
-        sphere.material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+        if sample > 0.64:
+          _create_drop(sample_pos)
+        # var sphere = CSGSphere3D.new()
+        # sphere.radius = 0.1
+        # add_child(sphere)
+        # sphere.global_position = sample_pos
+        # sphere.material = StandardMaterial3D.new()
+        # sphere.material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+        # var c = Color(0, sample, 0)
+        # if sample > 0.65:
+        #   c.r = 1.0
+        # elif sample > 0.5:
+        #   c.b = 1.0
+        # sphere.material.albedo_color = c
+        # sphere.material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+
+func _create_drop(pos: Vector3):
+  var drop = RigidBody3D.new()
+  # drop.sleeping = true
+  add_child(drop)
+  drop.global_transform.origin = pos
+  drop.contact_monitor = true
+  drop.max_contacts_reported = 2
+  drop.set_collision_layer_value(1, false)
+  drop.set_collision_mask_value(1, true)
+  drop.set_collision_layer_value(5, true) # Terrain
+  drop.set_collision_layer_value(10, true) # Props
+  drop.set_collision_mask_value(10, true) # Props
+  drop.set_collision_layer_value(15, true) # Drops
+  drop.set_collision_mask_value(15, true) # Drops
+  drop.body_exited.connect(func(_b):
+    drop.sleeping = false)
+
+  var mesh_instance = MeshInstance3D.new()
+  drop.add_child(mesh_instance)
+  mesh_instance.mesh = SphereMesh.new()
+  mesh_instance.mesh.radius = 0.1
+  mesh_instance.mesh.height = 0.2
