@@ -46,6 +46,8 @@ var mode = Mode.MINING
 
 var velocity_before_collision: Vector3
 
+var noclip = false
+
 func _ready():
   id = int(self.name.split("_")[1])
   is_authority = get_tree().get_multiplayer().get_unique_id() == id
@@ -101,13 +103,17 @@ func _set_up_camera():
   camera.make_current()
 
 func _physics_process(delta):
-  if self.is_on_floor():
-    self.velocity *= 0.9
+  if not noclip:
+    if self.is_on_floor():
+      self.velocity *= 0.9
+    else:
+      self.velocity *= 0.98
   else:
-    self.velocity *= 0.98
-
-  var up = Vector3(0, 1, 0)
-  self.velocity -= up * gravity * delta
+    self.velocity *= 0.5
+  
+  if not noclip:
+    var up = Vector3(0, 1, 0)
+    self.velocity -= up * gravity * delta
 
   if is_authority:
     _handle_input(delta)
@@ -128,6 +134,13 @@ func _check_collisions():
       other.apply_impulse(-collision.get_normal() * sqrt(self.velocity_before_collision.length()) * 0.1, collision.get_position())
 
 func _handle_input(delta: float):
+  if Input.is_action_just_pressed("toggle_player_collision"):
+    noclip = not noclip
+  if noclip:
+    self.collision_mask = 0
+  else:
+    self.collision_mask = (1 << 1 - 1) | (1 << 10 - 1)
+
   _movement_controls(delta)
   
   if Input.is_action_just_pressed("toggle_mouse_capture"):
@@ -165,6 +178,9 @@ func _check_drops():
     _drops.clear()
 
 func _movement_controls(delta):
+  if noclip:
+    _flying_controls(delta)
+    return
   var speed = base_speed
   if not self.is_on_floor():
     speed *= 0.5
@@ -180,6 +196,24 @@ func _movement_controls(delta):
   
   if self.is_on_floor() and Input.is_action_just_pressed("jump"):
     self.velocity.y = jump_force
+
+func _flying_controls(delta):
+  var speed = base_speed * 5.0
+  var forward = camera.global_transform.basis.z
+  var right = camera.global_transform.basis.x
+  var up = camera.global_transform.basis.y
+  if Input.is_action_pressed("move_forward"):
+    self.velocity += -forward * speed * delta
+  elif Input.is_action_pressed("move_backward"):
+    self.velocity += forward * speed * delta
+  if Input.is_action_pressed("move_left"):
+    self.velocity += -right * speed * delta
+  elif Input.is_action_pressed("move_right"):
+    self.velocity += right * speed * delta
+  if Input.is_action_pressed("player_noclip_move_up"):
+    self.velocity += up * speed * delta
+  elif Input.is_action_pressed("player_noclip_move_down"):
+    self.velocity += -up * speed * delta
 
 func _build_mode_controls(delta):
   if not camera:
