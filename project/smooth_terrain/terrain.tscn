@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -155,6 +155,9 @@ graph_data = {
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ftjif"]
+frequency = 0.08
+
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
 bounds = AABB(-64, -512, -64, 128, 528, 128)
 collision_layer = 17
@@ -165,5 +168,6 @@ generator = SubResource("VoxelGeneratorGraph_wh6ns")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
 render_layers_mask = 3
 script = ExtResource("10_lwjo2")
+noises = Array[FastNoiseLite]([SubResource("FastNoiseLite_ftjif")])
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="."]
