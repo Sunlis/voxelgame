@@ -45,14 +45,16 @@ points = PackedVector3Array(0.0759895, 0.047575787, 0.03145228, -0.07948536, -0.
 
 [node name="drop" type="Node3D"]
 script = ExtResource("1_f4jv2")
+freeze_in_wall = null
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_f4jv2")
 
 [node name="rigidbody" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-collision_layer = 16896
-collision_mask = 16897
+disable_mode = 1
+collision_layer = 16384
+collision_mask = 16913
 
 [node name="mesh" type="MeshInstance3D" parent="rigidbody"]
 unique_name_in_owner = true
@@ -63,5 +65,19 @@ unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_f4jv2")
 surface_material_override/0 = SubResource("StandardMaterial3D_va8iu")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="rigidbody"]
+[node name="shape" type="CollisionShape3D" parent="rigidbody"]
+unique_name_in_owner = true
 shape = SubResource("ConvexPolygonShape3D_f4jv2")
+
+[node name="label" type="Label3D" parent="rigidbody"]
+unique_name_in_owner = true
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+modulate = Color(1, 1, 1, 0.49803922)
+text = "false"
+
+[node name="VoxelViewer" type="VoxelViewer" parent="rigidbody"]
+view_distance = 32
+requires_visuals = false

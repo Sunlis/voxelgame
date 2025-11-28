@@ -297,6 +297,6 @@ func dig(origin: Vector3, direction: Vector3, radius: float):
   for i in Util.rangef(0.0, dig_reach, radius / 2.0):
     var dig_point = origin - (i * diff)
     vt.do_sphere(dig_point, radius)
-    Global.terrain_modified.emit(dig_point, radius * 2.0)
+    Global.terrain_modified.emit(dig_point, radius)
     if TerrainUtil.sphere_intersect(dig_point, radius):
       Global.create_drop(dig_point, drop_rate)
