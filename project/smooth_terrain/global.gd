@@ -1,3 +1,5 @@
+@tool
+
 extends Node
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")

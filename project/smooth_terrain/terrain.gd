@@ -1,15 +1,26 @@
+@tool
+
 extends VoxelTerrain
+
+@export var noises: Array[ZN_FastNoiseLite] = []
+
+const CavesGeneratorScript = preload("res://caves_generator.gd")
 
 const DRAW_DEBUG_LABELS = false
 
 const CHECK_SIZE = 10.0
 var check_area = AABB(Vector3(-CHECK_SIZE / 2.0, -CHECK_SIZE, -CHECK_SIZE / 2.0), Vector3.ONE * CHECK_SIZE)
 
-const DENSITY = 2
+const DENSITY = 9
 
 var _marks: Array[Label3D] = []
 
 func _ready() -> void:
+  for noise in noises:
+    noise.seed = randi()
+  self.generator = CavesGeneratorScript.new()
+  self.generator.noises = noises
+  self.run_stream_in_editor = true
   Global.register_terrain(self)
   if DRAW_DEBUG_LABELS:
     for x in range(int(check_area.position.x), int(check_area.position.x + check_area.size.x), DENSITY):

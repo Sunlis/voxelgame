@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="8_b8uc3"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_bbjjh"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="10_lwjo2"]
+[ext_resource type="Script" uid="uid://byunax8cygog4" path="res://caves_generator.gd" id="11_2p7by"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
 render_priority = 0
@@ -29,142 +30,35 @@ shader_parameter/depth_textures = Array[Texture2D]([ExtResource("5_dvato"), ExtR
 shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), ExtResource("3_w0623"), ExtResource("4_fkfd3")])
 shader_parameter/normal_strength = 2.0
 
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_fah67"]
-seed = 1
-period = 32.0001
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
+seed = 1556613498
+period = 1.0001
 
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_2p7by"]
-seed = 3
-period = 128.0001
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_fkfd3"]
+seed = 155818390
+period = 2.0001
 
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_ftjif"]
-seed = 2
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_dvato"]
+seed = -380619309
+period = 3.0001
 
-[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_wh6ns"]
-graph_data = {
-"connections": [[8, 0, 13, 0], [7, 0, 6, 1], [6, 0, 15, 0], [9, 0, 8, 0], [32, 0, 28, 1], [28, 0, 13, 1], [3, 0, 6, 2], [26, 0, 27, 0], [26, 0, 32, 0], [25, 0, 28, 0], [22, 0, 21, 1], [21, 0, 25, 1], [20, 0, 14, 2], [19, 0, 14, 1], [15, 0, 25, 0], [14, 0, 15, 1], [18, 0, 14, 0], [1, 0, 6, 0], [24, 0, 21, 2], [13, 0, 4, 0], [23, 0, 21, 0]],
-"nodes": {
-"1": {
-"gui_position": Vector2(60, 210),
-"type": "InputX"
-},
-"13": {
-"gui_position": Vector2(940, 170),
-"smoothness": 0.0,
-"type": "SdfSmoothSubtract"
-},
-"14": {
-"auto_connect": true,
-"gui_position": Vector2(200, 350),
-"name": &"Noise_02",
-"noise": SubResource("ZN_FastNoiseLite_ftjif"),
-"type": "FastNoise3D"
-},
-"15": {
-"gui_position": Vector2(410, 280),
-"type": "Multiply"
-},
-"18": {
-"gui_position": Vector2(60, 350),
-"type": "InputX"
-},
-"19": {
-"gui_position": Vector2(10, 380),
-"type": "InputY"
-},
-"20": {
-"gui_position": Vector2(-40, 410),
-"type": "InputZ"
-},
-"21": {
-"auto_connect": true,
-"gui_position": Vector2(200, 490),
-"name": &"Noise_03",
-"noise": SubResource("ZN_FastNoiseLite_2p7by"),
-"type": "FastNoise3D"
-},
-"22": {
-"gui_position": Vector2(10, 520),
-"type": "InputY"
-},
-"23": {
-"gui_position": Vector2(60, 490),
-"type": "InputX"
-},
-"24": {
-"gui_position": Vector2(-40, 550),
-"type": "InputZ"
-},
-"25": {
-"gui_position": Vector2(580, 400),
-"type": "Multiply"
-},
-"26": {
-"gui_position": Vector2(400, 560),
-"type": "InputY"
-},
-"27": {
-"gui_position": Vector2(540, 560),
-"max": 10.0,
-"min": -10.0,
-"type": "ClampC"
-},
-"28": {
-"gui_position": Vector2(780, 340),
-"type": "Multiply"
-},
-"3": {
-"gui_position": Vector2(-40, 270),
-"type": "InputZ"
-},
-"32": {
-"edge0": -5.0,
-"edge1": -20.0,
-"gui_position": Vector2(570, 660),
-"type": "Smoothstep"
-},
-"4": {
-"auto_connect": true,
-"gui_position": Vector2(1140, 170),
-"type": "OutputSDF"
-},
-"6": {
-"auto_connect": true,
-"gui_position": Vector2(200, 210),
-"name": &"Noise_01",
-"noise": SubResource("ZN_FastNoiseLite_fah67"),
-"type": "FastNoise3D"
-},
-"7": {
-"gui_position": Vector2(10, 240),
-"type": "InputY"
-},
-"8": {
-"auto_connect": true,
-"gui_position": Vector2(290, 100),
-"height": 0.0,
-"type": "SdfPlane"
-},
-"9": {
-"gui_position": Vector2(210, 100),
-"type": "InputY"
-}
-},
-"version": 2
-}
+[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_2p7by"]
+script = ExtResource("11_2p7by")
+noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623"), SubResource("ZN_FastNoiseLite_fkfd3"), SubResource("ZN_FastNoiseLite_dvato")])
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 mesh_optimization_enabled = true
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
-bounds = AABB(-64, -512, -64, 128, 528, 128)
+bounds = AABB(-64, -512, -64, 128, 512, 128)
 collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
 area_edit_notification_enabled = true
-generator = SubResource("VoxelGeneratorGraph_wh6ns")
+generator = SubResource("VoxelGeneratorScript_2p7by")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
 render_layers_mask = 3
 script = ExtResource("10_lwjo2")
+noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623"), SubResource("ZN_FastNoiseLite_fkfd3"), SubResource("ZN_FastNoiseLite_dvato")])
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="."]
