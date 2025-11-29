@@ -31,15 +31,15 @@ shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), E
 shader_parameter/normal_strength = 2.0
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = 1556613498
+seed = -2028511216
 period = 1.0001
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_fkfd3"]
-seed = 155818390
+seed = 1151900745
 period = 2.0001
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_dvato"]
-seed = -380619309
+seed = 842324920
 period = 3.0001
 
 [sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_2p7by"]

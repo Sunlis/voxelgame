@@ -6,9 +6,9 @@ extends VoxelTerrain
 
 const CavesGeneratorScript = preload("res://caves_generator.gd")
 
-const DRAW_DEBUG_LABELS = false
+const DRAW_DEBUG_LABELS = true
 
-const CHECK_SIZE = 10.0
+const CHECK_SIZE = 20.0
 var check_area = AABB(Vector3(-CHECK_SIZE / 2.0, -CHECK_SIZE, -CHECK_SIZE / 2.0), Vector3.ONE * CHECK_SIZE)
 
 const DENSITY = 9
