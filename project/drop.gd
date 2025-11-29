@@ -51,12 +51,8 @@ const ALBEDO = {
 
 func _ready():
   Global.terrain_modified.connect(_on_terrain_modified)
-  rigidbody.body_entered.connect(_on_body_entered)
-  rigidbody.body_exited.connect(_on_body_exited)
-  rigidbody.contact_monitor = true
-  rigidbody.max_contacts_reported = 4
-  _check_in_terrain()
   _update()
+  _check_in_terrain.call_deferred()
 
 func _on_terrain_modified(point: Vector3, radius: float) -> void:
   if rigidbody.global_transform.origin.distance_to(point) <= radius:
@@ -76,19 +72,10 @@ func _on_body_exited(body: Node) -> void:
     _update()
 
 func _check_in_terrain():
-  var state = get_world_3d().direct_space_state
-  var params = PhysicsShapeQueryParameters3D.new()
-  params.shape = shape.shape
-  params.exclude = [rigidbody.get_rid()]
-  params.transform = rigidbody.global_transform
-  params.margin = 0.01
-  params.collision_mask = 1 << 5 - 1
-  var result = state.intersect_shape(params, 4)
-  _in_terrain = len(result) > 0
-  if len(result) > 0:
-    var collider = result[0].collider
-    var node = collider.get_parent()
-    print('colliding with %s %s' % [collider.name, node.name])
+  var terrain = Global.get_terrain()
+  var vt = terrain.get_voxel_tool()
+  vt.channel = VoxelBuffer.CHANNEL_SDF
+  _in_terrain = vt.get_voxel_f(rigidbody.global_transform.origin) < 0.0
   _update()
 
 func _update():
@@ -101,5 +88,5 @@ func _update():
   rigidbody.freeze = freeze_in_wall and _in_terrain
   label.text = "%s %s" % [freeze_in_wall, _in_terrain]
 
-func _process(_delta):
-  _check_in_terrain()
+# func _process(_delta):
+#   _check_in_terrain()

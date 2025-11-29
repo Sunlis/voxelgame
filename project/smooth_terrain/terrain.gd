@@ -3,14 +3,12 @@
 extends VoxelTerrain
 
 const DropScene = preload("res://drop.tscn")
-
-@export var cave_noises: Array[FastNoiseLite] = []
-
-@export var drop_noises: Array[ZN_FastNoiseLite] = []
-
 const CavesGeneratorScript = preload("res://caves_generator.gd")
 
-const DRAW_DEBUG_LABELS = true
+@export var cave_noises: Array[ZN_FastNoiseLite] = []
+@export var drop_noises: Array[FastNoiseLite] = []
+
+const DRAW_DEBUG_LABELS = false
 
 const CHECK_SIZE = 20.0
 var check_area = AABB(Vector3(-CHECK_SIZE / 2.0, -CHECK_SIZE, -CHECK_SIZE / 2.0), Vector3.ONE * CHECK_SIZE)
@@ -28,6 +26,7 @@ func _ready() -> void:
   for noise in drop_noises:
     noise.seed = randi()
   Global.register_terrain(self)
+  Global.terrain_modified.connect(_on_terrain_modified)
   if DRAW_DEBUG_LABELS:
     for x in range(int(check_area.position.x), int(check_area.position.x + check_area.size.x), DENSITY):
       for y in range(int(check_area.position.y), int(check_area.position.y + check_area.size.y), DENSITY):
@@ -48,8 +47,6 @@ func _process(_delta):
   for mark in _marks:
     mark.text = "%.2f (%d)" % [vt.get_voxel_f(mark.global_position), vt.get_voxel(mark.global_position)]
 
-  Global.terrain_modified.connect(_on_terrain_modified)
-
 func _sample_noise(pos: Vector3) -> float:
   var out = 0.0
   for noise in drop_noises:
@@ -60,9 +57,12 @@ var _marked = {}
 
 var _drops = []
 
+func _in_terrain(pos: Vector3) -> bool:
+  var vt = get_voxel_tool()
+  vt.channel = VoxelBuffer.CHANNEL_SDF
+  return vt.get_voxel_f(pos) < 0.0
+
 func _on_terrain_modified(pos: Vector3, radius: float) -> void:
-  if len(_drops) > 0:
-    return
   radius *= 2.0
   for x in range(floor(pos.x - radius), ceil(pos.x + radius) + 1):
     for y in range(floor(pos.y - radius), ceil(pos.y + radius) + 1):
@@ -73,11 +73,12 @@ func _on_terrain_modified(pos: Vector3, radius: float) -> void:
         if sample_pos.y > 0:
           continue
         _marked[sample_pos] = true
+        if not _in_terrain(sample_pos):
+          continue
         var sample = _sample_noise(sample_pos)
-        if sample > 0.64:
+        if sample > 0.5:
           # print('create drop at %s' % sample_pos)
           _create_drop(sample_pos)
-          return
 
 func _create_drop(pos: Vector3):
   var drop = DropScene.instantiate() as Drop

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=17 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -31,23 +31,19 @@ shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), E
 shader_parameter/normal_strength = 2.0
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = -2028511216
+seed = 1227450569
 period = 1.0001
-
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_fkfd3"]
-seed = 1151900745
-period = 2.0001
-
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_dvato"]
-seed = 842324920
-period = 3.0001
 
 [sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_2p7by"]
 script = ExtResource("11_2p7by")
-noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623"), SubResource("ZN_FastNoiseLite_fkfd3"), SubResource("ZN_FastNoiseLite_dvato")])
+noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
 mesh_optimization_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2p7by"]
+seed = -1906245039
+frequency = 0.0461
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
 bounds = AABB(-64, -512, -64, 128, 512, 128)
@@ -59,6 +55,7 @@ generator = SubResource("VoxelGeneratorScript_2p7by")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
 render_layers_mask = 3
 script = ExtResource("10_lwjo2")
-noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623"), SubResource("ZN_FastNoiseLite_fkfd3"), SubResource("ZN_FastNoiseLite_dvato")])
+cave_noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
+drop_noises = Array[FastNoiseLite]([SubResource("FastNoiseLite_2p7by")])
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="."]
