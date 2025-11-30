@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://da4open5ke3cm"]
+
+[ext_resource type="Texture2D" uid="uid://3fqi3wavq2yc" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_basecolor.jpg" id="1_4wiju"]
+[ext_resource type="Texture2D" uid="uid://bir1hyk1rmbcw" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_metallic.jpg" id="2_qxkrt"]
+[ext_resource type="Texture2D" uid="uid://0j8t20wfhvhy" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_normal.jpg" id="3_h4g4t"]
+[ext_resource type="Texture2D" uid="uid://dhe15k041lfkj" path="res://smooth_terrain/assets/materials/Asphalt_01/Asphalt_01_roughness.jpg" id="4_wn6sv"]
+
+[resource]
+albedo_texture = ExtResource("1_4wiju")
+metallic = 1.0
+metallic_texture = ExtResource("2_qxkrt")
+roughness_texture = ExtResource("4_wn6sv")
+normal_enabled = true
+normal_texture = ExtResource("3_h4g4t")

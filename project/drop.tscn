@@ -71,6 +71,7 @@ shape = SubResource("ConvexPolygonShape3D_f4jv2")
 
 [node name="label" type="Label3D" parent="rigidbody"]
 unique_name_in_owner = true
+visible = false
 pixel_size = 0.001
 billboard = 1
 no_depth_test = true

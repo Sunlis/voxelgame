@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://bntua5xlquk02"]
+
+[ext_resource type="Texture2D" uid="uid://ce3shfau7olvi" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_basecolor.jpg" id="1_w0stf"]
+[ext_resource type="Texture2D" uid="uid://lsjj3gr5x8ef" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_ambientocclusion.jpg" id="2_px6p1"]
+[ext_resource type="Texture2D" uid="uid://bxgxo8w8us6j1" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_height.jpg" id="3_740i2"]
+[ext_resource type="Texture2D" uid="uid://bkswvo3j5avue" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_metallic.jpg" id="4_o315o"]
+[ext_resource type="Texture2D" uid="uid://bbkanvse57jem" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_normal.jpg" id="5_nb3pr"]
+[ext_resource type="Texture2D" uid="uid://0fs5nnjw1pit" path="res://smooth_terrain/assets/materials/Asphalt_06/Asphalt_06_roughness.jpg" id="6_n50hi"]
+
+[resource]
+albedo_texture = ExtResource("1_w0stf")
+metallic = 1.0
+metallic_texture = ExtResource("4_o315o")
+roughness_texture = ExtResource("6_n50hi")
+normal_enabled = true
+normal_texture = ExtResource("5_nb3pr")
+ao_enabled = true
+ao_texture = ExtResource("2_px6p1")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_740i2")

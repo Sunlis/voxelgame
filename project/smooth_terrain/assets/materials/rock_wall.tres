@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://byisyysb4i5w8"]
+
+[ext_resource type="Texture2D" uid="uid://dagsj1hedvbj0" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_diffuse.png" id="1_7v32x"]
+[ext_resource type="Texture2D" uid="uid://cp3hmav8mgjb2" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_height.png" id="2_wy8tv"]
+[ext_resource type="Texture2D" uid="uid://drslhfwevbuf6" path="res://smooth_terrain/assets/materials/Rock Wall/downscale_normal.png" id="3_b05rc"]
+[ext_resource type="Texture2D" uid="uid://cwovo1mwp8ekl" path="res://smooth_terrain/assets/materials/Rock Wall/RockWall_roughness.png" id="4_wug6j"]
+
+[resource]
+albedo_texture = ExtResource("1_7v32x")
+roughness_texture = ExtResource("4_wug6j")
+normal_enabled = true
+normal_texture = ExtResource("3_b05rc")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_wy8tv")

@@ -253,8 +253,8 @@ func _build_mode_checks():
   var origin = head.global_transform.origin
   var direction = -camera.global_transform.basis.z
   var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * 128.0)
-  # only collide with terrain (layer 5)
-  query.collision_mask = 1 << 5 - 1
+  # terrain (5) and props (10)
+  query.collision_mask = (1 << 5 - 1) | (1 << 10 - 1)
   var result = state.intersect_ray(query)
   var collision = "position" in result
   build_marker.visible = collision

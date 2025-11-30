@@ -9,6 +9,7 @@ const CavesGeneratorScript = preload("res://caves_generator.gd")
 @export var drop_noises: Array[FastNoiseLite] = []
 
 const DRAW_DEBUG_LABELS = false
+const SPAWN_DROPS_ON_MODIFY = false
 
 const CHECK_SIZE = 20.0
 var check_area = AABB(Vector3(-CHECK_SIZE / 2.0, -CHECK_SIZE, -CHECK_SIZE / 2.0), Vector3.ONE * CHECK_SIZE)
@@ -26,7 +27,8 @@ func _ready() -> void:
   for noise in drop_noises:
     noise.seed = randi()
   Global.register_terrain(self)
-  Global.terrain_modified.connect(_on_terrain_modified)
+  if SPAWN_DROPS_ON_MODIFY:
+    Global.terrain_modified.connect(_on_terrain_modified)
   if DRAW_DEBUG_LABELS:
     for x in range(int(check_area.position.x), int(check_area.position.x + check_area.size.x), DENSITY):
       for y in range(int(check_area.position.y), int(check_area.position.y + check_area.size.y), DENSITY):

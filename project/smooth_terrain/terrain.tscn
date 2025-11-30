@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_bbjjh"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="10_lwjo2"]
 [ext_resource type="Script" uid="uid://byunax8cygog4" path="res://caves_generator.gd" id="11_2p7by"]
+[ext_resource type="PackedScene" uid="uid://c7qppp8qbyijx" path="res://models/loot_room.tscn" id="12_w0623"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6d"]
 render_priority = 0
@@ -31,10 +32,10 @@ shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), E
 shader_parameter/normal_strength = 2.0
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = 1227450569
+seed = -892259409
 period = 1.0001
 
-[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_2p7by"]
+[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_w0623"]
 script = ExtResource("11_2p7by")
 noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 
@@ -42,7 +43,7 @@ noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 mesh_optimization_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2p7by"]
-seed = -1906245039
+seed = 261425796
 frequency = 0.0461
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
@@ -51,7 +52,7 @@ collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
 area_edit_notification_enabled = true
-generator = SubResource("VoxelGeneratorScript_2p7by")
+generator = SubResource("VoxelGeneratorScript_w0623")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
 render_layers_mask = 3
 script = ExtResource("10_lwjo2")
@@ -59,3 +60,6 @@ cave_noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 drop_noises = Array[FastNoiseLite]([SubResource("FastNoiseLite_2p7by")])
 
 [node name="VoxelTerrainMultiplayerSynchronizer" type="VoxelTerrainMultiplayerSynchronizer" parent="."]
+
+[node name="loot_room" parent="." instance=ExtResource("12_w0623")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.90547, 0)

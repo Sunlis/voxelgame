@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b46gi3c6gyiai"]
+
+[ext_resource type="Texture2D" uid="uid://vp1rbu2w5kk4" path="res://smooth_terrain/assets/materials/Bark/Bark001_diffuse.png" id="1_m77g7"]
+[ext_resource type="Texture2D" uid="uid://dyt6bm6tict01" path="res://smooth_terrain/assets/materials/Bark/Bark001_height.png" id="2_3s6vf"]
+[ext_resource type="Texture2D" uid="uid://gsb4wgs7hdkq" path="res://smooth_terrain/assets/materials/Bark/Bark001_normal.png" id="3_778k3"]
+[ext_resource type="Texture2D" uid="uid://xgqhs34p4pow" path="res://smooth_terrain/assets/materials/Bark/Bark001_roughness.png" id="4_tm0up"]
+
+[resource]
+albedo_texture = ExtResource("1_m77g7")
+roughness_texture = ExtResource("4_tm0up")
+normal_enabled = true
+normal_texture = ExtResource("3_778k3")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_3s6vf")
