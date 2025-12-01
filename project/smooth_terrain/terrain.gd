@@ -64,10 +64,10 @@ func _in_terrain(pos: Vector3) -> bool:
   vt.channel = VoxelBuffer.CHANNEL_SDF
   return vt.get_voxel_f(pos) < 0.0
 
-func _on_terrain_modified(pos: Vector3, radius: float) -> void:
+func _on_terrain_modified(pos: Vector3, radius: float, p_config: PlayerConfig) -> void:
   radius *= 2.0
   for x in range(floor(pos.x - radius), ceil(pos.x + radius) + 1):
-    for y in range(floor(pos.y - radius), min(0, ceil(pos.y + radius) + 1)):
+    for y in range(floor(pos.y - radius), min(-1, ceil(pos.y + radius) + 1)):
       for z in range(floor(pos.z - radius), ceil(pos.z + radius) + 1):
         var sample_pos = Vector3(x, y, z)
         if sample_pos in _marked:
@@ -76,8 +76,7 @@ func _on_terrain_modified(pos: Vector3, radius: float) -> void:
         if not _in_terrain(sample_pos):
           continue
         var sample = _sample_noise(sample_pos)
-        if sample > 0.5:
-          # print('create drop at %s' % sample_pos)
+        if sample > 0.5 and randf() < p_config.drop_rate:
           _create_drop(sample_pos)
 
 func _create_drop(pos: Vector3):

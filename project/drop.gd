@@ -54,28 +54,19 @@ func _ready():
   _update()
   _check_in_terrain.call_deferred()
 
-func _on_terrain_modified(point: Vector3, radius: float) -> void:
-  if rigidbody.global_transform.origin.distance_to(point) <= radius:
+func _on_terrain_modified(point: Vector3, radius: float, _p_config: PlayerConfig) -> void:
+  if rigidbody.global_transform.origin.distance_to(point) <= radius * 2.0:
     _update()
     if _in_terrain:
       _check_in_terrain.call_deferred()
-
-func _on_body_entered(body: Node) -> void:
-  if body.is_in_group("terrain"):
-    _in_terrain = true
-    _update()
-
-func _on_body_exited(body: Node) -> void:
-  if body.is_in_group("terrain"):
-    _in_terrain = false
-    freeze_in_wall = false
-    _update()
 
 func _check_in_terrain():
   var terrain = Global.get_terrain()
   var vt = terrain.get_voxel_tool()
   vt.channel = VoxelBuffer.CHANNEL_SDF
-  _in_terrain = vt.get_voxel_f(rigidbody.global_transform.origin) < 0.0
+  _in_terrain = vt.get_voxel_f(rigidbody.global_transform.origin) < 0.1
+  if freeze_in_wall and not _in_terrain:
+    freeze_in_wall = false
   _update()
 
 func _update():
@@ -86,7 +77,10 @@ func _update():
   glow_mesh.visible = highlight
   rigidbody.sleeping = false
   rigidbody.freeze = freeze_in_wall and _in_terrain
-  label.text = "%s %s" % [freeze_in_wall, _in_terrain]
+  # label.text = "%s %s" % [freeze_in_wall, _in_terrain]
 
 # func _process(_delta):
-#   _check_in_terrain()
+#   var terrain = Global.get_terrain()
+#   var vt = terrain.get_voxel_tool()
+#   vt.channel = VoxelBuffer.CHANNEL_SDF
+#   label.text = "%s %s %.4f" % [freeze_in_wall, _in_terrain, vt.get_voxel_f(rigidbody.global_transform.origin)]
