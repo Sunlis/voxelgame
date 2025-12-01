@@ -150,6 +150,21 @@ func _handle_input(delta: float):
   _check_drops()
   _debug_stuff()
 
+  _painting()
+
+func _painting():
+  if not Input.is_action_pressed("debug_hold_paint"):
+    return
+  var terrain = Global.get_terrain()
+  var vt = terrain.get_voxel_tool()
+  vt.channel = VoxelBuffer.CHANNEL_SDF
+  vt.mode = VoxelTool.MODE_TEXTURE_PAINT
+  vt.texture_index = 1
+  vt.texture_opacity = 1.0
+  var target_position = head.global_transform.origin + -camera.global_transform.basis.z * 10.0
+  print('paint at %s' % target_position)
+  vt.do_sphere(target_position, 1.0)
+
 func _debug_stuff():
   if Input.is_action_just_pressed("debug_spawn_drop"):
     Global.create_drop(self.global_transform.origin + -camera.global_transform.basis.z * 2.0, 1.0, true)

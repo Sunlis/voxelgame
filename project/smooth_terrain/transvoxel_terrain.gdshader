@@ -4,6 +4,7 @@ shader_type spatial;
 #include "res://addons/zylann.voxel/shaders/virtual_texturing.gdshaderinc"
 #include "res://addons/zylann.voxel/shaders/triplanar.gdshaderinc"
 #include "res://addons/zylann.voxel/shaders/lod_fade.gdshaderinc"
+#include "res://addons/zylann.voxel/shaders/voxel_texturing.gdshaderinc"
 
 uniform sampler2D u_texture_top : source_color;
 uniform sampler2D top_normal_map;
@@ -17,12 +18,22 @@ uniform float normal_strength = 1.0;
 varying vec3 v_world_pos;
 varying vec3 v_vertex_pos_model;
 
+uniform sampler2DArray u_albedo_array : source_color;
+varying vec4 v_material_indices;
+varying vec4 v_material_weights;
+
 
 void vertex() {
   VERTEX = get_transvoxel_position(VERTEX, CUSTOM0);
   v_vertex_pos_model = VERTEX;
 
   v_world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+
+  // Indices are integer values so we can decode them as-is
+  v_material_indices = decode_8bit_vec4(CUSTOM1.x);
+
+  // Weights must be in [0..1] so we divide them
+  v_material_weights = decode_8bit_vec4(CUSTOM1.y) / 255.0;
 }
 
 void fragment() {
@@ -31,64 +42,89 @@ void fragment() {
   NORMAL = get_voxel_normal_view(v_vertex_pos_model, NORMAL, VIEW_MATRIX * MODEL_MATRIX);
 
   vec3 normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
-  vec3 wpos = v_world_pos * 0.2;
+  vec3 wpos = v_world_pos * 1.0;
 
-  float topness_midlevel = 0.5;
-  float topness_smoothness = 0.04;
-  float topness_min = topness_midlevel - topness_smoothness;
-  float topness_max = topness_midlevel + topness_smoothness;
-  float topness = smoothstep(topness_min, topness_max, normal.y);
+  // Sample the 4 blending textures, all with triplanar mapping.
+  // We can re-use the same triplanar blending factors for all of them so separating that part
+  // of the function improves performance a little.
+  vec3 blending = get_triplanar_blend(normal, 1.0);
+  vec3 col0 = texture_array_triplanar(u_albedo_array, wpos, blending, v_material_indices.x).rgb;
+  vec3 col1 = texture_array_triplanar(u_albedo_array, wpos, blending, v_material_indices.y).rgb;
+  vec3 col2 = texture_array_triplanar(u_albedo_array, wpos, blending, v_material_indices.z).rgb;
+  vec3 col3 = texture_array_triplanar(u_albedo_array, wpos, blending, v_material_indices.w).rgb;
 
-  float triplanar_sharpness = 8.0;
-  vec3 blending = get_triplanar_blend(normal, triplanar_sharpness);
+  // Get weights and make sure they are normalized.
+  // We may add a tiny safety margin so we can afford some degree of error.
+  vec4 weights = v_material_weights;
+  weights /= (weights.x + weights.y + weights.z + weights.w + 0.00001);
 
-  vec3 detail_normal = vec3(0.0);
+  // Calculate albedo
+  vec3 col =
+      col0 * weights.r +
+      col1 * weights.g +
+      col2 * weights.b +
+      col3 * weights.a;
 
-  int depth_layer = int(clamp(floor(-v_world_pos.y / layer_depth), 0.0, float(num_depth_textures - 1)));
-  if (v_world_pos.y > -1.0) {
-    vec3 top_col = texture_triplanar(u_texture_top, wpos, blending).rgb;
-    vec3 side_col = texture_triplanar(depth_textures[depth_layer], wpos, blending).rgb;
+  ALBEDO = col;
+  // ALBEDO = v_material_indices.xyz / 4.0;
+  ALBEDO = vec3(v_material_weights.rgb);
 
-    float r = top_col.r;
-    ALBEDO = mix(side_col, top_col, topness);
+  // float topness_midlevel = 0.5;
+  // float topness_smoothness = 0.04;
+  // float topness_min = topness_midlevel - topness_smoothness;
+  // float topness_max = topness_midlevel + topness_smoothness;
+  // float topness = smoothstep(topness_min, topness_max, normal.y);
+
+  // float triplanar_sharpness = 8.0;
+  // vec3 blending = get_triplanar_blend(normal, triplanar_sharpness);
+
+  // vec3 detail_normal = vec3(0.0);
+
+  // int depth_layer = int(clamp(floor(-v_world_pos.y / layer_depth), 0.0, float(num_depth_textures - 1)));
+  // if (v_world_pos.y > -1.0) {
+  //   vec3 top_col = texture_triplanar(u_texture_top, wpos, blending).rgb;
+  //   vec3 side_col = texture_triplanar(depth_textures[depth_layer], wpos, blending).rgb;
+
+  //   float r = top_col.r;
+  //   ALBEDO = mix(side_col, top_col, topness);
     
-    vec3 top_normal = texture_triplanar(top_normal_map, wpos, blending).rgb * 2.0 - 1.0;
-    vec3 side_normal = texture_triplanar(depth_normal_maps[depth_layer], wpos, blending).rgb * 2.0 - 1.0;
-    detail_normal = mix(side_normal, top_normal, topness);
-  } else {
-    ALBEDO = texture_triplanar(depth_textures[depth_layer], wpos, blending).rgb;
-    detail_normal = texture_triplanar(depth_normal_maps[depth_layer], wpos, blending).rgb * 2.0 - 1.0;
-  }
+  //   vec3 top_normal = texture_triplanar(top_normal_map, wpos, blending).rgb * 2.0 - 1.0;
+  //   vec3 side_normal = texture_triplanar(depth_normal_maps[depth_layer], wpos, blending).rgb * 2.0 - 1.0;
+  //   detail_normal = mix(side_normal, top_normal, topness);
+  // } else {
+  //   ALBEDO = texture_triplanar(depth_textures[depth_layer], wpos, blending).rgb;
+  //   detail_normal = texture_triplanar(depth_normal_maps[depth_layer], wpos, blending).rgb * 2.0 - 1.0;
+  // }
 
-  // Transform detail normal from triplanar tangent space to world space
-  vec3 world_normal = normalize(normal);
-  vec3 tangent, bitangent;
+  // // Transform detail normal from triplanar tangent space to world space
+  // vec3 world_normal = normalize(normal);
+  // vec3 tangent, bitangent;
 	
-	detail_normal.xy *= normal_strength;
-	detail_normal.z = sqrt(1.0 - clamp(dot(detail_normal.xy, detail_normal.xy), 0.0, 1.0));
+	// detail_normal.xy *= normal_strength;
+	// detail_normal.z = sqrt(1.0 - clamp(dot(detail_normal.xy, detail_normal.xy), 0.0, 1.0));
 
-  // Create tangent space basis from world normal
-  if (abs(world_normal.y) < 0.999) {
-    tangent = normalize(cross(world_normal, vec3(0.0, 1.0, 0.0)));
-  } else {
-    tangent = normalize(cross(world_normal, vec3(1.0, 0.0, 0.0)));
-  }
-  bitangent = cross(world_normal, tangent);
+  // // Create tangent space basis from world normal
+  // if (abs(world_normal.y) < 0.999) {
+  //   tangent = normalize(cross(world_normal, vec3(0.0, 1.0, 0.0)));
+  // } else {
+  //   tangent = normalize(cross(world_normal, vec3(1.0, 0.0, 0.0)));
+  // }
+  // bitangent = cross(world_normal, tangent);
   
-  // Transform detail normal to world space
-  vec3 world_detail_normal = normalize(
-    detail_normal.x * tangent + 
-    detail_normal.y * bitangent + 
-    detail_normal.z * world_normal
-  );
+  // // Transform detail normal to world space
+  // vec3 world_detail_normal = normalize(
+  //   detail_normal.x * tangent + 
+  //   detail_normal.y * bitangent + 
+  //   detail_normal.z * world_normal
+  // );
   
-  // Blend with surface normal and transform back to view space
-  vec3 final_world_normal = normalize(mix(world_normal, world_detail_normal, 0.5));
-  NORMAL = (VIEW_MATRIX * vec4(final_world_normal, 0.0)).xyz;
+  // // Blend with surface normal and transform back to view space
+  // vec3 final_world_normal = normalize(mix(world_normal, world_detail_normal, 0.5));
+  // NORMAL = (VIEW_MATRIX * vec4(final_world_normal, 0.0)).xyz;
 
 
-  // Discard has to be last to workaround https://github.com/godotengine/godot/issues/34966
-  if (get_lod_fade_discard(SCREEN_UV)) {
-    discard;
-  }
+  // // Discard has to be last to workaround https://github.com/godotengine/godot/issues/34966
+  // if (get_lod_fade_discard(SCREEN_UV)) {
+  //   discard;
+  // }
 }

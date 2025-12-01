@@ -30,7 +30,7 @@ func _generate_block(out_buffer : VoxelBuffer, origin_in_voxels : Vector3i, lod 
 
         var noise_value = _get_noise(pos_world * 0.02) * 10.0
 
-        var height = noise_value if pos_world.y < -10 else pos_world.y
+        var height = noise_value if pos_world.y < -10 else pos_world.y - 1.0
 
         # When outputting signed distances, use `set_voxel_f` instead of `set_voxel`
         out_buffer.set_voxel_f(height, rx, ry, rz, channel)

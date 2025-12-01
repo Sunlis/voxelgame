@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=20 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cl0glxqh3o60a" path="res://smooth_terrain/assets/materials/Ground Stone Puddle/downscale_diffuse.png" id="7_5gij2"]
 [ext_resource type="Texture2D" uid="uid://16mdxvr0q3uf" path="res://smooth_terrain/assets/materials/Grass 01/Grass001_normal.png" id="8_b8uc3"]
 [ext_resource type="Texture2D" uid="uid://bk4ett6ebf0c5" path="res://smooth_terrain/grass_albedo.png" id="9_bbjjh"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://bjessi6j8q74w" path="res://smooth_terrain/texture_array.png" id="9_fkfd3"]
 [ext_resource type="Script" uid="uid://beghwcxyaampl" path="res://smooth_terrain/terrain.gd" id="10_lwjo2"]
 [ext_resource type="Script" uid="uid://byunax8cygog4" path="res://caves_generator.gd" id="11_2p7by"]
 [ext_resource type="PackedScene" uid="uid://c7qppp8qbyijx" path="res://models/loot_room.tscn" id="12_w0623"]
@@ -30,20 +31,24 @@ shader_parameter/num_depth_textures = 3
 shader_parameter/depth_textures = Array[Texture2D]([ExtResource("5_dvato"), ExtResource("6_urxoo"), ExtResource("7_5gij2")])
 shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), ExtResource("3_w0623"), ExtResource("4_fkfd3")])
 shader_parameter/normal_strength = 2.0
+shader_parameter/u_albedo_array = ExtResource("9_fkfd3")
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = -892259409
+seed = -14825293
 period = 1.0001
 
-[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_w0623"]
+[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_fkfd3"]
 script = ExtResource("11_2p7by")
 noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7pt3m"]
+texturing_mode = 1
 mesh_optimization_enabled = true
 
+[sub_resource type="VoxelFormat" id="VoxelFormat_w0623"]
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2p7by"]
-seed = 261425796
+seed = -232764030
 frequency = 0.0461
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
@@ -52,8 +57,9 @@ collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
 area_edit_notification_enabled = true
-generator = SubResource("VoxelGeneratorScript_w0623")
+generator = SubResource("VoxelGeneratorScript_fkfd3")
 mesher = SubResource("VoxelMesherTransvoxel_7pt3m")
+format = SubResource("VoxelFormat_w0623")
 render_layers_mask = 3
 script = ExtResource("10_lwjo2")
 cave_noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
