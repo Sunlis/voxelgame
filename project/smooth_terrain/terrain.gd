@@ -9,7 +9,7 @@ const CavesGeneratorScript = preload("res://caves_generator.gd")
 @export var drop_noises: Array[FastNoiseLite] = []
 
 const DRAW_DEBUG_LABELS = false
-const SPAWN_DROPS_ON_MODIFY = false
+const SPAWN_DROPS_ON_MODIFY = true
 
 const CHECK_SIZE = 20.0
 var check_area = AABB(Vector3(-CHECK_SIZE / 2.0, -CHECK_SIZE, -CHECK_SIZE / 2.0), Vector3.ONE * CHECK_SIZE)
@@ -67,12 +67,10 @@ func _in_terrain(pos: Vector3) -> bool:
 func _on_terrain_modified(pos: Vector3, radius: float) -> void:
   radius *= 2.0
   for x in range(floor(pos.x - radius), ceil(pos.x + radius) + 1):
-    for y in range(floor(pos.y - radius), ceil(pos.y + radius) + 1):
+    for y in range(floor(pos.y - radius), min(0, ceil(pos.y + radius) + 1)):
       for z in range(floor(pos.z - radius), ceil(pos.z + radius) + 1):
         var sample_pos = Vector3(x, y, z)
         if sample_pos in _marked:
-          continue
-        if sample_pos.y > 0:
           continue
         _marked[sample_pos] = true
         if not _in_terrain(sample_pos):
