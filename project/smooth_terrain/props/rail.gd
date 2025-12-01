@@ -60,7 +60,7 @@ func get_transform_at_distance(distance: float) -> Transform3D:
     return tran
   return Transform3D.IDENTITY
 
-func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_type: BuildType.Type) -> void:
+func _on_build_requested(pos: Vector3, _norm: Vector3, forward: Vector3, build_type: BuildType.Type, _player_id: int) -> void:
   if build_type != BuildType.Type.RAIL:
     return
   var out = forward.normalized() * handle_strength

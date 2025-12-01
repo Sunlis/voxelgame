@@ -261,14 +261,15 @@ func _build_mode_checks():
     if abs(norm.dot(up_vec)) > 0.999:
       up_vec = Vector3(1, 0, 0) # fallback perpendicular vector
     build_marker.look_at(build_marker.global_transform.origin + norm, up_vec)
-    Global.move_build_marker(build_position, norm, build_marker.forward)
+    var player_id = get_tree().get_multiplayer().get_unique_id()
+    Global.move_build_marker(build_position, norm, build_marker.forward, player_id)
     var selected_build = player_hud.get_selected_build_type()
     build_marker.directional = BuildType.ROTATABLE.get(selected_build, false)
     if selected_build == BuildType.Type.RAIL:
       build_position += norm * 0.5 # lift rails slightly above ground
       Global.move_temporary_rail_point(build_position, norm, build_marker.forward)
     if build_marker.valid and Input.is_action_just_pressed("build"):
-      Global.build(build_position, norm, build_marker.forward, selected_build)
+      Global.build(build_position, norm, build_marker.forward, selected_build, player_id)
 
 func start_dig():
   var origin = head.global_transform.origin

@@ -22,14 +22,14 @@ func get_terrain() -> VoxelTerrain:
 
 ### BUILD
 
-signal build_requested(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type)
+signal build_requested(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type, player_id: int)
 
-func build(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type) -> void:
-  do_build.rpc_id(1, pos, norm, forward, build_type)
+func build(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type, player_id: int) -> void:
+  do_build.rpc_id(1, pos, norm, forward, build_type, player_id)
 
 @rpc("any_peer", "call_local", "reliable")
-func do_build(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type) -> void:
-  build_requested.emit(pos, norm, forward, build_type)
+func do_build(pos: Vector3, norm: Vector3, forward: Vector3, build_type: BuildType.Type, player_id: int) -> void:
+  build_requested.emit(pos, norm, forward, build_type, player_id)
 
 signal move_temp_rail(pos: Vector3, norm: Vector3, forward: Vector3)
 
@@ -40,10 +40,10 @@ func move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) ->
 func do_move_temporary_rail_point(pos: Vector3, norm: Vector3, forward: Vector3) -> void:
   move_temp_rail.emit(pos, norm, forward)
 
-signal build_marker_moved(pos: Vector3, norm: Vector3, forward: Vector3)
+signal build_marker_moved(pos: Vector3, norm: Vector3, forward: Vector3, player_id: int)
 
-func move_build_marker(pos: Vector3, norm: Vector3, forward: Vector3) -> void:
-  build_marker_moved.emit(pos, norm, forward)
+func move_build_marker(pos: Vector3, norm: Vector3, forward: Vector3, player_id: int) -> void:
+  build_marker_moved.emit(pos, norm, forward, player_id)
 
 ### PLAYER
 

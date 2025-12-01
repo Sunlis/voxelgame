@@ -31,6 +31,8 @@ func _ready():
 func _update():
   if not is_inside_tree():
     return
+  if not path:
+    return
   path.curve = Curve3D.new()
   path.curve.resource_local_to_scene = true
   path.curve.add_point(start_point)
