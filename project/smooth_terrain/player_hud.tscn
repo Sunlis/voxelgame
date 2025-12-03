@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bh73umytkudvh" path="res://smooth_terrain/build_menu_item.tscn" id="2_abirf"]
 [ext_resource type="Texture2D" uid="uid://qikctejv1hqe" path="res://smooth_terrain/assets/ui/flashlight.png" id="4_1k1ky"]
 [ext_resource type="Texture2D" uid="uid://d33jq74ba1m5g" path="res://smooth_terrain/assets/ui/grab.png" id="5_a35rk"]
-[ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="5_kvse2"]
 [ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
+[ext_resource type="Script" uid="uid://vd3kmrou3iij" path="res://smooth_terrain/fps_label.gd" id="7_rh58i"]
 [ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
 [ext_resource type="PackedScene" uid="uid://dyly04l33cy0l" path="res://inventory.tscn" id="9_6s5kh"]
 [ext_resource type="Script" uid="uid://d308ldxd5hxkg" path="res://smooth_terrain/pos_label.gd" id="10_rh58i"]
@@ -50,6 +50,7 @@ theme_override_constants/separation = 24
 
 [node name="build_menu" type="MarginContainer" parent="bottom/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bottom/VBoxContainer/build_menu"]
@@ -169,13 +170,6 @@ layout_mode = 2
 text = "(B) Toggle build mode"
 horizontal_alignment = 1
 
-[node name="top right" type="MarginContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="debug" parent="top right" instance=ExtResource("5_kvse2")]
-
 [node name="bottom_right" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -202,6 +196,12 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="top_right"]
 layout_mode = 2
 
+[node name="fps" type="Label" parent="top_right/VBoxContainer"]
+layout_mode = 2
+text = "FPS"
+script = ExtResource("7_rh58i")
+
 [node name="pos_label" type="Label" parent="top_right/VBoxContainer"]
 layout_mode = 2
+text = "POS"
 script = ExtResource("10_rh58i")
