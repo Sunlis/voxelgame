@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://e3fwn0wpnibi"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_options_menus/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="1_iwuka"]
-[ext_resource type="Script" path="res://menu_plugin_scenes/scenes/menus/options_menu/video/video_options_menu.gd" id="2_a1nvb"]
-[ext_resource type="PackedScene" path="res://addons/maaacks_options_menus/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="3_roc2u"]
+[ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_options_menus/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="1_iwuka"]
+[ext_resource type="Script" uid="uid://b7btqjletnpjy" path="res://menu_plugin_scenes/scenes/menus/options_menu/video/video_options_menu.gd" id="2_a1nvb"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_options_menus/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="3_roc2u"]
 
 [node name="Video" instance=ExtResource("1_iwuka")]
 script = ExtResource("2_a1nvb")
@@ -20,14 +20,13 @@ property_type = 2
 default_value = 0
 
 [node name="CameraShakeControl" parent="VBoxContainer" index="4" instance=ExtResource("3_roc2u")]
-visible = false
 layout_mode = 2
 lock_titles = true
-option_values = [1.0, 0.75, 0.5, 0.0]
-option_titles = Array[String](["Normal", "Reduced", "Minimal", "None"])
-option_name = "Camera Shake"
+option_values = [3.0, 2.0, 1.0, 0.0]
+option_titles = Array[String](["High", "Medium", "Low", "Off"])
+option_name = "Occlusion Culling"
 option_section = 3
-key = "CameraShake"
+key = "OcclusionCulling"
 section = "VideoSettings"
 property_type = 3
 default_value = 1.0

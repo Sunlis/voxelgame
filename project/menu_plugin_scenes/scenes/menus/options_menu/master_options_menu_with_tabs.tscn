@@ -13,7 +13,7 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Inputs" parent="." index="2" instance=ExtResource("3_scdxb")]
+[node name="Input" parent="." index="2" instance=ExtResource("3_scdxb")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
