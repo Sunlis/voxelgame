@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwjjjmdjai6bv" path="res://smooth_terrain/candle.tscn" id="2_vuq3k"]
 [ext_resource type="PackedScene" uid="uid://b7i0m8172qkjt" path="res://build_marker.tscn" id="3_soj0r"]
 
-[sub_resource type="Resource" id="Resource_62rxf"]
+[sub_resource type="Resource" id="Resource_icaiy"]
 script = ExtResource("2_icaiy")
 metadata/_custom_type_script = "uid://bp3rrxe88nohy"
 
@@ -130,7 +130,7 @@ _data = {
 collision_layer = 513
 floor_max_angle = 1.0471976
 script = ExtResource("1_2tc2v")
-config = SubResource("Resource_62rxf")
+config = SubResource("Resource_icaiy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vjl7a")
@@ -165,7 +165,7 @@ material = SubResource("StandardMaterial3D_icaiy")
 [node name="handlight" parent="body" instance=ExtResource("2_vuq3k")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2906552, 0.0066491514, -0.57450074)
-light_energy = 0.5333034
+light_energy = 0.48973733
 energy_min = 0.5
 energy_max = 0.7
 flicker_speed = 0.04

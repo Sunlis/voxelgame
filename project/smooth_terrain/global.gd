@@ -10,6 +10,39 @@ func wrap_mod(a: int, b: int) -> int:
 func wrap_fmod(a: float, b: float) -> float:
   return fmod(fmod(a, b) + b, b)
 
+### QUIT HANDLING
+
+signal quit_requested
+
+var _quit_cancelled: bool = false
+
+func cancel_quit():
+  _quit_cancelled = true
+
+func request_quit():
+  print("Requesting quit...")
+  quit_requested.emit()
+  await get_tree().create_timer(1.0).timeout
+  if not _quit_cancelled:
+    print("Quitting...")
+    get_tree().quit()
+  else:
+    print("Quit cancelled.")
+    _quit_cancelled = false
+
+### PAUSE
+
+signal pause_changed(paused: bool)
+
+var _paused: bool = false
+
+func is_paused() -> bool:
+  return _paused
+
+func set_paused(paused: bool) -> void:
+  _paused = paused
+  pause_changed.emit(paused)
+
 ### TERRAIN
 
 var _terrain: VoxelTerrain = null
@@ -65,6 +98,9 @@ func change_local_player_position(position: Vector3) -> void:
 ### COLLISIONS
 
 signal terrain_modified(point: Vector3, radius: float, player_config: PlayerConfig)
+
+func notify_terrain_modified(point: Vector3, radius: float, player_config: PlayerConfig) -> void:
+  terrain_modified.emit(point, radius, player_config)
 
 ### DROPS
 

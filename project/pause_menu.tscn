@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://1uieotatx55o"]
+[gd_scene load_steps=4 format=3 uid="uid://1uieotatx55o"]
 
 [ext_resource type="Script" uid="uid://cyci4tc3d2tl3" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://c3mignmhuvvq4" path="res://addons/maaacks_options_menus/base/scenes/menus/options_menu/paginated_tab_container.gd" id="2_05uyy"]
+[ext_resource type="PackedScene" uid="uid://vo1232mj5bq" path="res://menu_plugin_scenes/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_nwcfo"]
 
 [node name="pause_menu" type="MarginContainer"]
 anchors_preset = 15
@@ -18,29 +20,57 @@ color = Color(0, 0, 0, 0.39215687)
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="pages" type="TabContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+current_tab = 0
+tabs_visible = false
+script = ExtResource("2_05uyy")
+metadata/_custom_type_script = "uid://c3mignmhuvvq4"
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="main" type="MarginContainer" parent="CenterContainer/pages"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
+metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/pages/main"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="resume_btn" type="Button" parent="CenterContainer/pages/main/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
-[node name="Button2" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="options_btn" type="Button" parent="CenterContainer/pages/main/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="Button3" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="quit_btn" type="Button" parent="CenterContainer/pages/main/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="options" type="MarginContainer" parent="CenterContainer/pages"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/pages/options"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="options" parent="CenterContainer/pages/options/VBoxContainer" instance=ExtResource("2_nwcfo")]
+layout_mode = 2
+
+[node name="back_btn" type="Button" parent="CenterContainer/pages/options/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

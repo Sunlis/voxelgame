@@ -22,7 +22,7 @@ Global="*res://smooth_terrain/Global.tscn"
 Multiplayer="*res://smooth_terrain/multiplayer.tscn"
 Debug="*res://smooth_terrain/debug.tscn"
 UPNPHelper="*res://smooth_terrain/upnp.gd"
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+AppConfig="*res://addons/maaacks_options_menus/base/scenes/autoloads/app_config.tscn"
 
 [display]
 
@@ -36,7 +36,7 @@ window/quality/msaa_3d=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/PathMesh3D/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/PathMesh3D/plugin.cfg", "res://addons/maaacks_options_menus/plugin.cfg")
 
 [filesystem]
 
@@ -172,11 +172,21 @@ player_noclip_move_down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_options_menus/base/translations/menus_translations.en.translation", "res://addons/maaacks_options_menus/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 3d_physics/layer_5="Terrain"
 3d_physics/layer_10="Props"
 3d_physics/layer_15="Drops"
+
+[maaacks_options_menus]
+
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://menu_plugin_scenes/"
 
 [physics]
 

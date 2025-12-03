@@ -23,13 +23,14 @@ var build_valid_reason: String = ""
 @onready var build_item_container: Control = %build_items
 @onready var crosshair: Control = %crosshair
 @onready var center_label: Label = %center_label
-@onready var pause_menu: Control = %pause_menu
+@onready var pause_menu: PauseMenu = %pause_menu
 
 func _ready():
   _update()
   Global.player_build_marker_valid_changed.connect(func(v, r):
     build_valid_reason = r
     build_valid = v)
+  pause_menu.resume.connect(_unpause)
 
 func _update():
   if not is_inside_tree():
@@ -52,7 +53,20 @@ func _process(_delta):
       selected_build_index -= 1
     Global.player_build_mode_changed.emit(build_mode, get_selected_build_type())
   if Input.is_action_just_pressed("pause"):
-    pause_menu.visible = not pause_menu.visible
+    if pause_menu.visible:
+      _unpause()
+    else:
+      _pause()
+
+func _pause():
+  pause_menu.visible = true
+  Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+  Global.set_paused(true)
+
+func _unpause():
+  pause_menu.visible = false
+  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+  Global.set_paused(false)
 
 var _pan_delta: float = 0.0
 var _last_pan = 0.0

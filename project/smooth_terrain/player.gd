@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
-@export var config: PlayerConfig
+@export var config: PlayerConfiguration
 
 @onready var mp_sync: MultiplayerSynchronizer = %mp_sync
 @onready var viewer: VoxelViewer = %viewer
@@ -122,6 +122,8 @@ func _check_collisions():
       other.apply_impulse(-collision.get_normal() * sqrt(self.velocity_before_collision.length()) * 0.1, collision.get_position())
 
 func _handle_input(delta: float):
+  if Global.is_paused():
+    return
   if Input.is_action_just_pressed("toggle_player_collision"):
     noclip = not noclip
   if noclip:
@@ -277,7 +279,7 @@ func start_dig():
   dig.rpc_id(1, origin, forward, config)
 
 @rpc("any_peer", "call_local", "reliable")
-func dig(origin: Vector3, direction: Vector3, p_config: PlayerConfig):
+func dig(origin: Vector3, direction: Vector3, p_config: PlayerConfiguration):
   var vt := Global.get_terrain().get_voxel_tool()
   vt.mode = VoxelTool.MODE_REMOVE
   var point = origin + direction * p_config.dig_reach

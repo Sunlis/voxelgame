@@ -1,6 +1,6 @@
 extends Resource
 
-class_name PlayerConfig
+class_name PlayerConfiguration
 
 @export var base_speed = 40.0
 @export var jump_force = 10.0
