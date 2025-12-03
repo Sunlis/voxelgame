@@ -97,9 +97,9 @@ func change_local_player_position(position: Vector3) -> void:
 
 ### COLLISIONS
 
-signal terrain_modified(point: Vector3, radius: float, player_config: PlayerConfig)
+signal terrain_modified(point: Vector3, radius: float, player_config: PlayerConfiguration)
 
-func notify_terrain_modified(point: Vector3, radius: float, player_config: PlayerConfig) -> void:
+func notify_terrain_modified(point: Vector3, radius: float, player_config: PlayerConfiguration) -> void:
   terrain_modified.emit(point, radius, player_config)
 
 ### DROPS
