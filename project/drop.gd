@@ -54,7 +54,7 @@ func _ready():
   _update()
   _check_in_terrain.call_deferred()
 
-func _on_terrain_modified(point: Vector3, radius: float, _p_config: PlayerConfig) -> void:
+func _on_terrain_modified(point: Vector3, radius: float, _p_config: PlayerConfiguration) -> void:
   if rigidbody.global_transform.origin.distance_to(point) <= radius * 2.0:
     _update()
     if _in_terrain:
