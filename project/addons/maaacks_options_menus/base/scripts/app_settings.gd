@@ -2,6 +2,8 @@ class_name AppSettings
 extends Node
 ## Interface to read/write general application settings through [PlayerConfig].
 
+const PlayerConfig = preload("res://addons/maaacks_options_menus/base/scripts/player_config.gd")
+
 const INPUT_SECTION = &'InputSettings'
 const AUDIO_SECTION = &'AudioSettings'
 const VIDEO_SECTION = &'VideoSettings'

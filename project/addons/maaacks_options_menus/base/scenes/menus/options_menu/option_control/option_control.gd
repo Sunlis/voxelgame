@@ -3,6 +3,8 @@ class_name OptionControl
 extends Control
 ## Generic scene for editing a value of the [PlayerConfig].
 
+const PlayerConfig = preload("res://addons/maaacks_options_menus/base/scripts/player_config.gd")
+
 signal setting_changed(value)
 
 enum OptionSections{

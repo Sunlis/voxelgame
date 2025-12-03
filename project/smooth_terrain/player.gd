@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const BuildType = preload("res://smooth_terrain/build_types.gd")
 
-@export var config: PlayerConfiguration
+@export var config: PlayerConfig
 
 @onready var mp_sync: MultiplayerSynchronizer = %mp_sync
 @onready var viewer: VoxelViewer = %viewer
@@ -279,7 +279,7 @@ func start_dig():
   dig.rpc_id(1, origin, forward, config)
 
 @rpc("any_peer", "call_local", "reliable")
-func dig(origin: Vector3, direction: Vector3, p_config: PlayerConfiguration):
+func dig(origin: Vector3, direction: Vector3, p_config: PlayerConfig):
   var vt := Global.get_terrain().get_voxel_tool()
   vt.mode = VoxelTool.MODE_REMOVE
   var point = origin + direction * p_config.dig_reach

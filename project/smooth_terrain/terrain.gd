@@ -64,7 +64,7 @@ func _in_terrain(pos: Vector3) -> bool:
   vt.channel = VoxelBuffer.CHANNEL_SDF
   return vt.get_voxel_f(pos) < 0.0
 
-func _on_terrain_modified(pos: Vector3, radius: float, p_config: PlayerConfiguration) -> void:
+func _on_terrain_modified(pos: Vector3, radius: float, p_config: PlayerConfig) -> void:
   radius *= 2.0
   for x in range(floor(pos.x - radius), ceil(pos.x + radius) + 1):
     for y in range(floor(pos.y - radius), min(-1, ceil(pos.y + radius) + 1)):
