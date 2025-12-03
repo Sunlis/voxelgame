@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=12 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
 [ext_resource type="PackedScene" uid="uid://dyly04l33cy0l" path="res://inventory.tscn" id="9_6s5kh"]
 [ext_resource type="Script" uid="uid://d308ldxd5hxkg" path="res://smooth_terrain/pos_label.gd" id="10_rh58i"]
+[ext_resource type="PackedScene" uid="uid://1uieotatx55o" path="res://pause_menu.tscn" id="11_ab2qg"]
 
 [node name="player_hud" type="MarginContainer"]
 anchors_preset = 15
@@ -205,3 +206,8 @@ script = ExtResource("7_rh58i")
 layout_mode = 2
 text = "POS"
 script = ExtResource("10_rh58i")
+
+[node name="pause_menu" parent="." instance=ExtResource("11_ab2qg")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
