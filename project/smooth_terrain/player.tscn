@@ -165,7 +165,7 @@ material = SubResource("StandardMaterial3D_icaiy")
 [node name="handlight" parent="body" instance=ExtResource("2_vuq3k")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2906552, 0.0066491514, -0.57450074)
-light_energy = 0.48973733
+light_energy = 0.54322374
 energy_min = 0.5
 energy_max = 0.7
 flicker_speed = 0.04
