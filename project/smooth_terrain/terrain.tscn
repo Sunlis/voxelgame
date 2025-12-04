@@ -32,7 +32,7 @@ shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), E
 shader_parameter/normal_strength = 2.0
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = -892259409
+seed = 748885249
 period = 1.0001
 
 [sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_w0623"]
@@ -43,11 +43,11 @@ noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 mesh_optimization_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2p7by"]
-seed = 261425796
+seed = 224643592
 frequency = 0.0461
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
-bounds = AABB(-64, -512, -64, 128, 512, 128)
+bounds = AABB(-64, -512, -64, 128, 528, 128)
 collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
