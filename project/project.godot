@@ -223,6 +223,7 @@ copy_path="res://menu_plugin_scenes/"
 lights_and_shadows/directional_shadow/size=2048
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+reflections/specular_occlusion/enabled=false
 anti_aliasing/quality/msaa_3d=1
 limits/global_shader_variables/buffer_size=262144
 global_illumination/sdfgi/probe_ray_count=0

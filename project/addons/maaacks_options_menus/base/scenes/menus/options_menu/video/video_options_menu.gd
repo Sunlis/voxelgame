@@ -4,11 +4,13 @@ extends Control
 @onready var anti_aliasing_control : ListOptionControl = %AntiAliasingControl
 @onready var occlusion_culling_control : ListOptionControl = %OcclusionCullingControl
 @onready var shadow_control: ListOptionControl = %ShadowControl
+@onready var sdfgi_control: ListOptionControl = %SDFGIControl
 
 func _ready() -> void:
 	anti_aliasing_control.setting_changed.connect(_on_anti_aliasing_setting_changed)
 	occlusion_culling_control.setting_changed.connect(_on_occlusion_culling_setting_changed)
 	shadow_control.setting_changed.connect(_on_shadow_setting_changed)
+	sdfgi_control.setting_changed.connect(_on_sdfgi_setting_changed)
 	var window : Window = get_window()
 	_update_ui(window)
 	window.connect("size_changed", _preselect_resolution.bind(window))
@@ -47,7 +49,6 @@ func _on_v_sync_control_setting_changed(value) -> void:
 func _on_anti_aliasing_setting_changed(value) -> void:
 	print('changing anti aliasing to %d' % value)
 	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), value)
-	print(get_viewport().msaa_3d)
 
 func _on_occlusion_culling_setting_changed(value) -> void:
 	print('changing occlusion culling to %d' % value)
@@ -81,3 +82,32 @@ func _on_shadow_setting_changed(value) -> void:
 		soft_shadow_filters.get(value, 0))
 	RenderingServer.positional_soft_shadow_filter_set_quality(
 		soft_shadow_filters.get(value, 0))
+
+func _on_sdfgi_setting_changed(value) -> void:
+	print('changing SDFGI quality to %d' % value)
+	var ray_counts = {
+		0: RenderingServer.ENV_SDFGI_RAY_COUNT_4,
+		1: RenderingServer.ENV_SDFGI_RAY_COUNT_32,
+		2: RenderingServer.ENV_SDFGI_RAY_COUNT_64,
+		3: RenderingServer.ENV_SDFGI_RAY_COUNT_128,
+	}
+	RenderingServer.environment_set_sdfgi_ray_count(
+		ray_counts.get(value, RenderingServer.ENV_SDFGI_RAY_COUNT_4))
+	
+	var frames_to_converge = {
+		0: RenderingServer.ENV_SDFGI_CONVERGE_IN_5_FRAMES,
+		1: RenderingServer.ENV_SDFGI_CONVERGE_IN_10_FRAMES,
+		2: RenderingServer.ENV_SDFGI_CONVERGE_IN_20_FRAMES,
+		3: RenderingServer.ENV_SDFGI_CONVERGE_IN_30_FRAMES
+	}
+	RenderingServer.environment_set_sdfgi_frames_to_converge(
+		frames_to_converge.get(value, RenderingServer.ENV_SDFGI_CONVERGE_IN_5_FRAMES))
+	
+	var frames_to_update = {
+		0: RenderingServer.ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES,
+		1: RenderingServer.ENV_SDFGI_UPDATE_LIGHT_IN_8_FRAMES,
+		2: RenderingServer.ENV_SDFGI_UPDATE_LIGHT_IN_4_FRAMES,
+		3: RenderingServer.ENV_SDFGI_UPDATE_LIGHT_IN_2_FRAMES
+	}
+	RenderingServer.environment_set_sdfgi_frames_to_update_light(
+		frames_to_update.get(value, RenderingServer.ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES))
