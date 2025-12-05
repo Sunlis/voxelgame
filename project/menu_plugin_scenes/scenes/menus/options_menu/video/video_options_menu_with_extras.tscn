@@ -8,6 +8,7 @@
 script = ExtResource("2_a1nvb")
 
 [node name="AntiAliasingControl" parent="VBoxContainer" index="3" instance=ExtResource("3_roc2u")]
+unique_name_in_owner = true
 layout_mode = 2
 lock_titles = true
 option_values = [0, 1, 2, 3]
@@ -17,16 +18,30 @@ option_section = 3
 key = "Anti-aliasing"
 section = "VideoSettings"
 property_type = 2
-default_value = 0
+default_value = 3
 
-[node name="CameraShakeControl" parent="VBoxContainer" index="4" instance=ExtResource("3_roc2u")]
+[node name="OcclusionCullingControl" parent="VBoxContainer" index="4" instance=ExtResource("3_roc2u")]
+unique_name_in_owner = true
 layout_mode = 2
 lock_titles = true
-option_values = [3.0, 2.0, 1.0, 0.0]
-option_titles = Array[String](["High", "Medium", "Low", "Off"])
+option_values = [0, 1, 2, 3]
+option_titles = Array[String](["Off", "Low", "Medium", "High"])
 option_name = "Occlusion Culling"
 option_section = 3
 key = "OcclusionCulling"
 section = "VideoSettings"
-property_type = 3
-default_value = 1.0
+property_type = 2
+default_value = 3
+
+[node name="ShadowControl" parent="VBoxContainer" index="5" instance=ExtResource("3_roc2u")]
+unique_name_in_owner = true
+layout_mode = 2
+lock_titles = true
+option_values = [0, 1, 2, 3]
+option_titles = Array[String](["Low", "Medium", "High", "Ultra"])
+option_name = "Shadows"
+option_section = 3
+key = "Shadows"
+section = "VideoSettings"
+property_type = 2
+default_value = 2
