@@ -104,6 +104,21 @@ bool PathMesh3D::get_warp_along_curve(uint64_t p_surface_idx) const {
     return surfaces[p_surface_idx].warp_along_curve;
 }
 
+void PathMesh3D::set_mesh_length_offset(uint64_t p_surface_idx, real_t p_mesh_length_offset) {
+    CHECK_SURFACE_IDX(p_surface_idx);
+
+    if (surfaces[p_surface_idx].mesh_length_offset != p_mesh_length_offset) {
+        surfaces[p_surface_idx].mesh_length_offset = p_mesh_length_offset;
+        queue_rebuild();
+    }
+}
+
+real_t PathMesh3D::get_mesh_length_offset(uint64_t p_surface_idx) const {
+    CHECK_SURFACE_IDX_V(p_surface_idx, false);
+    
+    return surfaces[p_surface_idx].mesh_length_offset;
+}
+
 void PathMesh3D::set_sample_cubic(uint64_t p_surface_idx, bool p_cubic) {
     CHECK_SURFACE_IDX(p_surface_idx);
 
@@ -157,14 +172,6 @@ void PathMesh3D::set_mesh(const Ref<Mesh> &p_mesh) {
 
         source_mesh = p_mesh;
 
-        // Ensure per-surface storage exists for the newly assigned mesh to avoid out-of-bounds
-        if (source_mesh.is_valid()) {
-            uint64_t src_count = source_mesh->get_surface_count();
-            if (surfaces.size() < src_count) {
-                surfaces.resize(src_count);
-            }
-        }
-
         if (source_mesh.is_valid()) {
             source_mesh->connect("changed", callable_mp(this, &PathMesh3D::_on_mesh_changed));
         }
@@ -215,6 +222,8 @@ void PathMesh3D::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_count", "surface_index"), &PathMesh3D::get_count);
     ClassDB::bind_method(D_METHOD("set_warp_along_curve", "surface_index", "warp"), &PathMesh3D::set_warp_along_curve);
     ClassDB::bind_method(D_METHOD("get_warp_along_curve", "surface_index"), &PathMesh3D::get_warp_along_curve);
+    ClassDB::bind_method(D_METHOD("set_mesh_length_offset", "surface_index", "offset"), &PathMesh3D::set_mesh_length_offset);
+    ClassDB::bind_method(D_METHOD("get_mesh_length_offset", "surface_index"), &PathMesh3D::get_mesh_length_offset);
     ClassDB::bind_method(D_METHOD("set_sample_cubic", "surface_index", "cubic"), &PathMesh3D::set_sample_cubic);
     ClassDB::bind_method(D_METHOD("get_sample_cubic", "surface_index"), &PathMesh3D::get_sample_cubic);
     ClassDB::bind_method(D_METHOD("set_tilt", "surface_index", "tilt"), &PathMesh3D::set_tilt);
@@ -283,6 +292,8 @@ void PathMesh3D::_get_property_list(List<PropertyInfo> *p_list) const {
         p_list->push_back(PropertyInfo(
                 Variant::BOOL, surf_name + "/warp_along_curve", PROPERTY_HINT_NONE, "", usage));
         p_list->push_back(PropertyInfo(
+                Variant::FLOAT, surf_name + "/mesh_length_offset", PROPERTY_HINT_NONE, "", usage));
+        p_list->push_back(PropertyInfo(
                 Variant::BOOL, surf_name + "/sample_cubic", PROPERTY_HINT_NONE, "", usage));
         p_list->push_back(PropertyInfo(
                 Variant::BOOL, surf_name + "/tilt", PROPERTY_HINT_NONE, "", usage));
@@ -324,6 +335,8 @@ bool PathMesh3D::_property_get_revert(const StringName &p_name, Variant &r_prope
             r_property = 2;
         } else if (sub_name == "warp_along_curve") {
             r_property = true;
+        } else if (sub_name == "mesh_length_offset") {
+            r_property = 0.0;
         } else if (sub_name == "sample_cubic") {
             r_property = false;
         } else if (sub_name == "tilt") {
@@ -355,6 +368,8 @@ bool PathMesh3D::_set(const StringName &p_name, const Variant &p_property) {
             set_count(surf_idx, p_property);
         } else if (sub_name == "warp_along_curve") {
             set_warp_along_curve(surf_idx, p_property);
+        } else if (sub_name == "mesh_length_offset") {
+            set_mesh_length_offset(surf_idx, p_property);
         } else if (sub_name == "sample_cubic") {
             set_sample_cubic(surf_idx, p_property);
         } else if (sub_name == "tilt") {
@@ -386,6 +401,8 @@ bool PathMesh3D::_get(const StringName &p_name, Variant &r_property) const {
             r_property = get_count(surf_idx);
         } else if (sub_name == "warp_along_curve") {
             r_property = get_warp_along_curve(surf_idx);
+        } else if (sub_name == "mesh_length_offset") {
+            r_property = get_mesh_length_offset(surf_idx);
         } else if (sub_name == "sample_cubic") {
             r_property = get_sample_cubic(surf_idx);
         } else if (sub_name == "tilt") {
@@ -428,24 +445,13 @@ void PathMesh3D::_rebuild_mesh() {
     double mesh_l = _get_mesh_length();
     ERR_FAIL_COND_MSG(mesh_l == 0.0, "Provided mesh has no length in Z dimension.  Try rotating on X or Y to gain length.");
     ERR_FAIL_COND_MSG(baked_l < mesh_l, "Curve length < mesh length, cannot tile.");
-
-    // Guard: ensure we have per-surface entries for the source mesh before indexing.
-    if (source_mesh.is_valid()) {
-        uint64_t src_surf_count = source_mesh->get_surface_count();
-        if (surfaces.size() < src_surf_count) {
-            surfaces.resize(src_surf_count);
-        }
-    }
-
-    // If the source mesh has no surfaces, nothing to do.
-    if (!source_mesh.is_valid() || source_mesh->get_surface_count() == 0) {
-        return;
-    }
     
     for (uint64_t idx_surf = 0; idx_surf < source_mesh->get_surface_count(); ++idx_surf) {
         SurfaceData &surf = surfaces[idx_surf];
 
         Array arrays = source_mesh->surface_get_arrays(idx_surf);
+
+        PackedVector3Array old_verts = arrays[Mesh::ARRAY_VERTEX];
 
         LocalVector<bool> has_column;
         has_column.resize(Mesh::ARRAY_MAX);
@@ -453,10 +459,8 @@ void PathMesh3D::_rebuild_mesh() {
             has_column[idx_type] = arrays[idx_type].get_type() != Variant::NIL;
         }
 
-        // Only extract vertex array after checking columns exist.
         #define MAKE_OLD_ARRAY(m_type, m_name, m_index) \
             m_type m_name = has_column[m_index] ? m_type(arrays[m_index]) : m_type()
-        MAKE_OLD_ARRAY(PackedVector3Array, old_verts, Mesh::ARRAY_VERTEX);
         MAKE_OLD_ARRAY(PackedVector3Array, old_norms, Mesh::ARRAY_NORMAL);
         MAKE_OLD_ARRAY(PackedFloat32Array, old_tang, Mesh::ARRAY_TANGENT);
         MAKE_OLD_ARRAY(PackedVector2Array, old_uv1, Mesh::ARRAY_TEX_UV);
@@ -669,9 +673,9 @@ double PathMesh3D::_get_mesh_length() const {
     if (source_mesh.is_valid()) {
         double min_z = 0;
         double max_z = 0;
+        real_t mesh_length_offset = 0.0;
         for (uint64_t idx_surf = 0; idx_surf < source_mesh->get_surface_count(); ++idx_surf) {
-            // If surfaces hasn't been filled yet, use a default SurfaceData so we don't OOB.
-            SurfaceData surf = idx_surf < surfaces.size() ? surfaces[idx_surf] : SurfaceData();
+            SurfaceData surf = surfaces[idx_surf];
 
             Array mesh_array = source_mesh->surface_get_arrays(idx_surf);
             PackedVector3Array verts = mesh_array[Mesh::ARRAY_VERTEX];
@@ -686,8 +690,9 @@ double PathMesh3D::_get_mesh_length() const {
                     max_z = vert.z;
                 }
             }
+            mesh_length_offset = surf.mesh_length_offset;
         }
-        return Math::absd(max_z - min_z);
+        return Math::absd(max_z - min_z) + mesh_length_offset;
     } else {
         return 1.0;
     }
@@ -703,17 +708,7 @@ uint64_t PathMesh3D::_get_max_count() const {
 
 void PathMesh3D::_on_mesh_changed() {
     if (source_mesh.is_valid()) {
-        // Defensive: keep surfaces array in sync with mesh surface count
-        uint64_t src_count = source_mesh->get_surface_count();
-        uint64_t old_size = surfaces.size();
-        if (src_count > old_size) {
-            surfaces.resize(src_count);
-            for (uint64_t i = old_size; i < src_count; ++i) {
-                surfaces[i] = SurfaceData();
-            }
-        } else if (src_count < old_size) {
-            surfaces.resize(src_count);
-        }
+        surfaces.resize(source_mesh->get_surface_count());
     } else {
         surfaces.clear();
     }
@@ -743,11 +738,9 @@ PathMesh3D::~PathMesh3D() {
         }
         path3d = nullptr;
     }
-    if (collision_node != nullptr) {
-        collision_node->queue_free();
-        collision_node = nullptr;
+    if (generated_mesh.is_valid()) {
+        generated_mesh->clear_surfaces();
+        generated_mesh.unref();
     }
-    generated_mesh->clear_surfaces();
-    generated_mesh.unref();
     surfaces.clear();
 }
