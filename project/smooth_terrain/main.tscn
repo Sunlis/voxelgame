@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=29 format=3 uid="uid://d3yg8jlxa54m1"]
 
 [ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
 [ext_resource type="PackedScene" uid="uid://quow35pn6yq8" path="res://smooth_terrain/terrain.tscn" id="3_bbm1f"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
+[ext_resource type="Script" uid="uid://byunax8cygog4" path="res://caves_generator.gd" id="4_bbm1f"]
 [ext_resource type="PackedScene" uid="uid://clwevfsvq22e8" path="res://smooth_terrain/multiplayer_menu.tscn" id="4_oexva"]
+[ext_resource type="Script" uid="uid://b8r1ck37hod4t" path="res://smooth_terrain/sprays.gd" id="13_6c2kk"]
 [ext_resource type="Script" uid="uid://c6psn3cq7dpf3" path="res://smooth_terrain/builds.gd" id="15_tgnr8"]
 [ext_resource type="Script" uid="uid://cbpq1pki1mqb1" path="res://smooth_terrain/drops.gd" id="16_yt5qh"]
 [ext_resource type="PackedScene" uid="uid://d2ixdxijpuadn" path="res://smooth_terrain/props/rail.tscn" id="18_4hwsc"]
@@ -105,6 +107,14 @@ fog_depth_begin = 64.0
 fog_depth_end = 128.0
 volumetric_fog_density = 0.005
 
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
+seed = -1033625806
+period = 1.0001
+
+[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_6c2kk"]
+script = ExtResource("4_bbm1f")
+noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
+
 [node name="main" type="Node"]
 script = ExtResource("1_at30r")
 
@@ -120,6 +130,7 @@ shadow_opacity = 0.8
 directional_shadow_mode = 1
 
 [node name="terrain" parent="." instance=ExtResource("3_bbm1f")]
+generator = SubResource("VoxelGeneratorScript_6c2kk")
 unique_name_in_owner = true
 
 [node name="mp_spawner" type="MultiplayerSpawner" parent="."]
@@ -170,3 +181,10 @@ move_speed = 4.0
 transform = Transform3D(-1.9318516, -0.51761615, -0.0047794925, -3.4481985e-07, -0.01846525, 1.9999149, -0.5176382, 1.9317694, 0.017835973, 13.762217, 1.5110998, -58.43265)
 
 [node name="environment" parent="." instance=ExtResource("20_fah67")]
+
+[node name="sprays" type="Node3D" parent="."]
+script = ExtResource("13_6c2kk")
+
+[node name="spray_spawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://cjqwpku4ir4oc")
+spawn_path = NodePath("../sprays")

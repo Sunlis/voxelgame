@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://smc2oaia7e80"]
+[gd_scene load_steps=13 format=3 uid="uid://smc2oaia7e80"]
 
 [ext_resource type="Texture2D" uid="uid://i2sxniwbnh2q" path="res://smooth_terrain/assets/ui/crosshairs/crosshair179.png" id="1_abirf"]
 [ext_resource type="Script" uid="uid://weuvmdahmr2m" path="res://smooth_terrain/player_hud.gd" id="1_kvse2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qikctejv1hqe" path="res://smooth_terrain/assets/ui/flashlight.png" id="4_1k1ky"]
 [ext_resource type="Texture2D" uid="uid://d33jq74ba1m5g" path="res://smooth_terrain/assets/ui/grab.png" id="5_a35rk"]
 [ext_resource type="Texture2D" uid="uid://cmbr13he8c8mg" path="res://smooth_terrain/assets/ui/wrench.png" id="6_1k1ky"]
+[ext_resource type="Texture2D" uid="uid://bpicc8e6xlcme" path="res://smooth_terrain/assets/ui/drawing_brush.png" id="7_jn4nh"]
 [ext_resource type="Script" uid="uid://vd3kmrou3iij" path="res://smooth_terrain/fps_label.gd" id="7_rh58i"]
 [ext_resource type="Script" uid="uid://b4pkqu4xc0edq" path="res://smooth_terrain/notifications.gd" id="8_lqrjo"]
 [ext_resource type="PackedScene" uid="uid://dyly04l33cy0l" path="res://inventory.tscn" id="9_6s5kh"]
@@ -123,10 +124,10 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+[node name="flashlight_info" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/flashlight_info"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 texture = ExtResource("4_1k1ky")
@@ -134,15 +135,15 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/flashlight_info"]
 layout_mode = 2
 text = "(F) Flashlight"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+[node name="drops_info" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/drops_info"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 texture = ExtResource("5_a35rk")
@@ -150,15 +151,15 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/drops_info"]
 layout_mode = 2
 text = "(E) Pick up drops"
 horizontal_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+[node name="build_info" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/build_info"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 texture = ExtResource("6_1k1ky")
@@ -166,9 +167,25 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/build_info"]
 layout_mode = 2
 text = "(B) Toggle build mode"
+horizontal_alignment = 1
+
+[node name="spray_info" type="VBoxContainer" parent="bottom/VBoxContainer/controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="bottom/VBoxContainer/controls/HBoxContainer/spray_info"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("7_jn4nh")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="bottom/VBoxContainer/controls/HBoxContainer/spray_info"]
+layout_mode = 2
+text = "(R) Spray decal"
 horizontal_alignment = 1
 
 [node name="bottom_right" type="MarginContainer" parent="."]

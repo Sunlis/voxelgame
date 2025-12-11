@@ -123,3 +123,15 @@ signal drop_collected(drop_type: Drops.Type, amount: int)
 
 func collect_drop(drop_type: Drops.Type, amount: int = 1) -> void:
   drop_collected.emit(drop_type, amount)
+
+
+### SPRAYS
+
+signal spray_created(position: Vector3, forward: Vector3, spray_type: Spray.Type, color: Color, player_id: int)
+
+func create_spray(position: Vector3, forward: Vector3, spray_type: Spray.Type, color: Color, player_id: int) -> void:
+  _do_create_spray.rpc_id(1, position, forward, spray_type, color, player_id)
+
+@rpc("any_peer", "call_local", "reliable")
+func _do_create_spray(position: Vector3, forward: Vector3, spray_type: Spray.Type, color: Color, player_id: int) -> void:
+  spray_created.emit(position, forward, spray_type, color, player_id)

@@ -142,6 +142,7 @@ func _handle_input(delta: float):
   _build_mode_checks()
   _camera_zoom(delta)
   _build_mode_controls(delta)
+  _check_spray()
 
   if self.mode == Mode.MINING and Input.is_action_pressed("dig") and not anim_player.is_playing():
     anim_player.play("swing_pick")
@@ -151,6 +152,17 @@ func _handle_input(delta: float):
   
   _check_drops()
   _debug_stuff()
+
+func _check_spray():
+  if not camera:
+    return
+  if Input.is_action_just_pressed("spray_decal"):
+    var collision = _do_camera_raycast((1 << 5 - 1) | (1 << 10 - 1), 128.0)
+    if not collision:
+      return
+    var pos = collision.position
+    var norm = collision.normal.normalized()
+    Global.create_spray(pos, -norm, Spray.Type.ARROW, Color.WHITE, get_tree().get_multiplayer().get_unique_id())
 
 func _debug_stuff():
   if Input.is_action_just_pressed("debug_spawn_drop"):
@@ -231,6 +243,20 @@ func _camera_zoom(delta):
     camera.position.z = min(20, camera.position.z + (delta * 10.0))
   body.transparency = smoothstep(4.0, 0.5, camera.position.z)
 
+func _do_camera_raycast(_col_mask: int, max_distance: float):
+  if not camera:
+    print("tried to raycast with no camera")
+    return null
+  var state = get_world_3d().direct_space_state
+  var origin = head.global_transform.origin
+  var direction = -camera.global_transform.basis.z
+  var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * max_distance)
+  query.collision_mask = _col_mask
+  var result = state.intersect_ray(query)
+  if "position" in result:
+    return result
+  return null
+
 func _build_mode_checks():
   if not camera:
     return
@@ -239,21 +265,12 @@ func _build_mode_checks():
   if self.mode != Mode.BUILDING:
     return
 
-  var state = get_world_3d().direct_space_state
-  var origin = head.global_transform.origin
-  var direction = -camera.global_transform.basis.z
-  var query = PhysicsRayQueryParameters3D.create(origin, origin + direction * 128.0)
-  # terrain (5) and props (10)
-  query.collision_mask = (1 << 5 - 1) | (1 << 10 - 1)
-  var result = state.intersect_ray(query)
-  var collision = "position" in result
-  build_marker.visible = collision
-  build_marker.valid = false
+  var collision = _do_camera_raycast((1 << 5 - 1) | (1 << 10 - 1), 128.0)
   Global.change_player_build_marker_valid(false, "Target too far")
   if collision:
-    var pos = Vector3(result.position)
-    var norm = Vector3(result.normal).normalized()
-    var diff = origin - pos
+    var pos = Vector3(collision.position)
+    var norm = Vector3(collision.normal).normalized()
+    var diff = head.global_transform.origin - pos
     build_marker.valid = diff.length() <= config.build_reach
     Global.change_player_build_marker_valid(build_marker.valid, "Target too far")
     var build_position = pos + (norm * 0.1)
