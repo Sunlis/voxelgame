@@ -171,7 +171,8 @@ material = SubResource("StandardMaterial3D_icaiy")
 [node name="handlight" parent="body" instance=ExtResource("2_vuq3k")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -2)
-light_energy = 0.54228175
+light_energy = 0.575332
+omni_range = 40.0
 energy_min = 0.5
 energy_max = 0.7
 flicker_speed = 0.04
@@ -226,8 +227,7 @@ depth = 0.6
 material = SubResource("StandardMaterial3D_vuq3k")
 
 [node name="range_marker" type="CSGSphere3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 radius = 0.2
 
 [node name="drop_area" type="Area3D" parent="head"]

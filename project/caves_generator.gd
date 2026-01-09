@@ -28,7 +28,7 @@ func _generate_block(out_buffer : VoxelBuffer, origin_in_voxels : Vector3i, lod 
       for ry in out_buffer.get_size().y:
         pos_world.y = origin_in_voxels.y + (ry << lod)
 
-        var noise_value = _get_noise(pos_world * 0.02) * 10.0
+        var noise_value = _get_noise(pos_world) * 0.03
 
         var height = noise_value if pos_world.y < -10 else pos_world.y
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://quow35pn6yq8"]
+[gd_scene load_steps=19 format=3 uid="uid://quow35pn6yq8"]
 
 [ext_resource type="Shader" uid="uid://cuhrhqjasqqyn" path="res://smooth_terrain/transvoxel_terrain.gdshader" id="1_ftjif"]
 [ext_resource type="Texture2D" uid="uid://b4y0y5mei5b4r" path="res://smooth_terrain/assets/materials/Stone Dirt Wall/downscale_normal.png" id="2_2p7by"]
@@ -31,9 +31,14 @@ shader_parameter/depth_textures = Array[Texture2D]([ExtResource("5_dvato"), ExtR
 shader_parameter/depth_normal_maps = Array[Texture2D]([ExtResource("2_2p7by"), ExtResource("3_w0623"), ExtResource("4_fkfd3")])
 shader_parameter/normal_strength = 2.0
 
+[sub_resource type="ZN_FastNoiseLiteGradient" id="ZN_FastNoiseLiteGradient_w0623"]
+noise_type = 0
+seed = 1
+
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = -119827059
-period = 1.0001
+seed = 1626715774
+period = 64.0001
+warp_noise = SubResource("ZN_FastNoiseLiteGradient_w0623")
 
 [sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_w0623"]
 script = ExtResource("11_2p7by")
@@ -43,11 +48,11 @@ noises = Array[ZN_FastNoiseLite]([SubResource("ZN_FastNoiseLite_w0623")])
 mesh_optimization_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2p7by"]
-seed = 1706945944
-frequency = 0.0461
+seed = -1511094477
+frequency = 0.0149
 
 [node name="terrain" type="VoxelTerrain" groups=["terrain"]]
-bounds = AABB(-64, -512, -64, 128, 528, 128)
+bounds = AABB(-256, -2048, -256, 512, 2064, 512)
 collision_layer = 17
 material_override = SubResource("ShaderMaterial_hlu6d")
 block_enter_notification_enabled = true
