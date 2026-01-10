@@ -52,6 +52,8 @@ func _ready():
   self.set_multiplayer_authority.call_deferred(id, true)
   mp_sync.set_multiplayer_authority.call_deferred(id)
 
+  self.scale = Vector3.ONE * config.scale
+
   if is_authority:
     drop_area.body_entered.connect(_body_enter_drop_area)
     drop_area.body_exited.connect(_body_exit_drop_area)
@@ -77,8 +79,8 @@ func _unhandled_input(event: InputEvent) -> void:
     return
   if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
     return
-  rotate_y(-event.relative.x * config.mouse_sensitivity)
-  head.rotate_x(-event.relative.y * config.mouse_sensitivity)
+  rotate_y(-event.relative.x * config.get_mouse_sensitivity())
+  head.rotate_x(-event.relative.y * config.get_mouse_sensitivity())
   head.rotation.x = clamp(head.rotation.x, PI * -0.49, PI * 0.49)
   # eyes look creepy if you let them rotate too much
   eyes.rotation.x = clamp(head.rotation.x, PI * -0.25, PI * 0.25)
@@ -101,7 +103,7 @@ func _physics_process(delta):
   
   if not noclip:
     var up = Vector3(0, 1, 0)
-    self.velocity -= up * config.gravity * delta
+    self.velocity -= up * config.get_gravity() * delta
 
   if is_authority:
     _handle_input(delta)
@@ -183,7 +185,7 @@ func _movement_controls(delta):
   if noclip:
     _flying_controls(delta)
     return
-  var speed = config.base_speed
+  var speed = config.get_base_speed()
   if not self.is_on_floor():
     speed *= 0.5
   if Input.is_action_pressed("move_forward"):
@@ -197,10 +199,10 @@ func _movement_controls(delta):
     self.velocity += transform.basis.x * speed * delta
   
   if self.is_on_floor() and Input.is_action_just_pressed("jump"):
-    self.velocity.y = config.jump_force
+    self.velocity.y = config.get_jump_force()
 
 func _flying_controls(delta):
-  var speed = config.base_speed * 5.0
+  var speed = config.get_base_speed() * 5.0
   var forward = camera.global_transform.basis.z
   var right = camera.global_transform.basis.x
   var up = camera.global_transform.basis.y
@@ -230,9 +232,9 @@ func _build_mode_controls(delta):
 
   if self.mode == Mode.BUILDING:
     if Input.is_action_pressed("rotate_build_clockwise"):
-      build_marker.rot -= delta * config.build_rotate_speed
+      build_marker.rot -= delta * config.get_build_rotate_speed()
     elif Input.is_action_pressed("rotate_build_counterclockwise"):
-      build_marker.rot += delta * config.build_rotate_speed
+      build_marker.rot += delta * config.get_build_rotate_speed()
 
 func _camera_zoom(delta):
   if not camera:
@@ -271,7 +273,7 @@ func _build_mode_checks():
     var pos = Vector3(collision.position)
     var norm = Vector3(collision.normal).normalized()
     var diff = head.global_transform.origin - pos
-    build_marker.valid = diff.length() <= config.build_reach
+    build_marker.valid = diff.length() <= config.get_build_reach()
     Global.change_player_build_marker_valid(build_marker.valid, "Target too far")
     var build_position = pos + (norm * 0.1)
     build_marker.global_transform.origin = build_position
@@ -299,11 +301,11 @@ func start_dig():
 func dig(origin: Vector3, direction: Vector3, p_config: PlayerConfig):
   var vt := Global.get_terrain().get_voxel_tool()
   vt.mode = VoxelTool.MODE_REMOVE
-  var point = origin + direction * p_config.dig_reach
+  var point = origin + direction * p_config.get_dig_reach()
   var diff = (origin - point).normalized()
-  for i in Util.rangef(0.0, p_config.dig_reach, p_config.dig_radius / 2.0):
+  for i in Util.rangef(0.0, p_config.get_dig_reach(), p_config.get_dig_radius() / 2.0):
     var dig_point = origin - (i * diff)
-    vt.do_sphere(dig_point, p_config.dig_radius)
-    Global.terrain_modified.emit(dig_point, p_config.dig_radius, p_config)
+    vt.do_sphere(dig_point, p_config.get_dig_radius())
+    Global.terrain_modified.emit(dig_point, p_config.get_dig_radius(), p_config)
     # if TerrainUtil.sphere_intersect(dig_point, radius):
     #   Global.create_drop(dig_point, drop_rate)

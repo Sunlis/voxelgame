@@ -49,7 +49,7 @@ func _on_terrain_modified(pos: Vector3, radius: float, p_config: PlayerConfig) -
         if not _in_terrain(sample_pos):
           continue
         var sample = _sample_noise(sample_pos)
-        if sample > 0.5 and randf() < p_config.drop_rate:
+        if sample > 0.5 and randf() < p_config.get_drop_rate():
           _create_drop(sample_pos)
 
 func _create_drop(pos: Vector3):

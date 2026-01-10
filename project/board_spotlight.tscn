@@ -11,6 +11,7 @@ distance_fade_enabled = true
 distance_fade_begin = 64.0
 distance_fade_shadow = 32.0
 distance_fade_length = 24.0
+spot_range = 10.0
 spot_angle = 80.0
 spot_angle_attenuation = 1.5
 
