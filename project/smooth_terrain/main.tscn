@@ -1,6 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://d3yg8jlxa54m1"]
+[gd_scene load_steps=30 format=3 uid="uid://d3yg8jlxa54m1"]
 
-[ext_resource type="Script" uid="uid://lmo7m18w27w6" path="res://smooth_terrain/main.gd" id="1_at30r"]
+[ext_resource type="Script" path="res://smooth_terrain/main.gd" id="1_at30r"]
 [ext_resource type="Shader" uid="uid://cuuykowgx18an" path="res://sky_shader.gdshader" id="2_yt5qh"]
 [ext_resource type="PackedScene" uid="uid://quow35pn6yq8" path="res://smooth_terrain/terrain.tscn" id="3_bbm1f"]
 [ext_resource type="Script" uid="uid://iema3ac4rayl" path="res://smooth_terrain/players.gd" id="3_muprf"]
@@ -107,9 +107,14 @@ fog_depth_begin = 64.0
 fog_depth_end = 128.0
 volumetric_fog_density = 0.005
 
+[sub_resource type="ZN_FastNoiseLiteGradient" id="ZN_FastNoiseLiteGradient_w0623"]
+noise_type = 0
+seed = 1
+
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_w0623"]
-seed = -1033625806
-period = 1.0001
+seed = 251694027
+period = 64.0001
+warp_noise = SubResource("ZN_FastNoiseLiteGradient_w0623")
 
 [sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_6c2kk"]
 script = ExtResource("4_bbm1f")

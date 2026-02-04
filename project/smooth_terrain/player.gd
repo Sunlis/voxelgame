@@ -88,9 +88,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _set_up_camera():
   camera = Camera3D.new()
   head.add_child(camera)
+  camera.far = 512.0
   camera.position = Vector3(0, 0, 0)
   eyes.visible = false
   camera.make_current()
+
+func _process(delta):
+  if is_authority:
+    _handle_input(delta)
+    Global.change_local_player_position(self.global_transform.origin)
 
 func _physics_process(delta):
   if not noclip:
@@ -104,10 +110,6 @@ func _physics_process(delta):
   if not noclip:
     var up = Vector3(0, 1, 0)
     self.velocity -= up * config.get_gravity() * delta
-
-  if is_authority:
-    _handle_input(delta)
-    Global.change_local_player_position(self.global_transform.origin)
 
   velocity_before_collision = self.velocity
   move_and_slide()

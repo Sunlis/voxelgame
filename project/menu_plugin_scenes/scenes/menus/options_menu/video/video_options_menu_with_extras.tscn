@@ -18,7 +18,7 @@ option_section = 3
 key = "Anti-aliasing"
 section = "VideoSettings"
 property_type = 2
-default_value = 3
+default_value = 0
 
 [node name="OcclusionCullingControl" parent="VBoxContainer" index="4" instance=ExtResource("3_roc2u")]
 unique_name_in_owner = true
@@ -31,7 +31,7 @@ option_section = 3
 key = "OcclusionCulling"
 section = "VideoSettings"
 property_type = 2
-default_value = 3
+default_value = 0
 
 [node name="ShadowControl" parent="VBoxContainer" index="5" instance=ExtResource("3_roc2u")]
 unique_name_in_owner = true
@@ -44,7 +44,7 @@ option_section = 3
 key = "Shadows"
 section = "VideoSettings"
 property_type = 2
-default_value = 2
+default_value = 0
 
 [node name="SDFGIControl" parent="VBoxContainer" index="6" instance=ExtResource("3_roc2u")]
 unique_name_in_owner = true
@@ -57,4 +57,4 @@ option_section = 3
 key = "GlobalIllumination"
 section = "VideoSettings"
 property_type = 2
-default_value = 2
+default_value = 0
