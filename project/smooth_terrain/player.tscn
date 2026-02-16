@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://daole3dpr3ja2"]
+[gd_scene load_steps=22 format=3 uid="uid://daole3dpr3ja2"]
 
 [ext_resource type="Script" uid="uid://bgvykjji86myt" path="res://smooth_terrain/player.gd" id="1_2tc2v"]
 [ext_resource type="Script" uid="uid://bp3rrxe88nohy" path="res://player_config.gd" id="2_icaiy"]
 [ext_resource type="PackedScene" uid="uid://smc2oaia7e80" path="res://smooth_terrain/player_hud.tscn" id="2_ju8qp"]
 [ext_resource type="PackedScene" uid="uid://bwjjjmdjai6bv" path="res://smooth_terrain/candle.tscn" id="2_vuq3k"]
 [ext_resource type="PackedScene" uid="uid://b7i0m8172qkjt" path="res://build_marker.tscn" id="3_soj0r"]
+[ext_resource type="AudioStream" uid="uid://ndcm3chknbir" path="res://smooth_terrain/soft_dig_randomizer.tres" id="4_62rxf"]
 
 [sub_resource type="Resource" id="Resource_icaiy"]
 script = ExtResource("2_icaiy")
@@ -120,6 +121,21 @@ tracks/1/keys = {
 "method": &"start_dig"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.2,
+"stream": ExtResource("4_62rxf")
+}],
+"times": PackedFloat32Array(0.12)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_soj0r"]
 _data = {
@@ -166,7 +182,7 @@ material = SubResource("StandardMaterial3D_icaiy")
 [node name="handlight" parent="body" instance=ExtResource("2_vuq3k")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -0.5)
-light_energy = 0.55429196
+light_energy = 0.55579656
 energy_min = 0.5
 energy_max = 0.7
 flicker_speed = 0.04
@@ -247,3 +263,5 @@ unique_name_in_owner = true
 [node name="build_marker" parent="." instance=ExtResource("3_soj0r")]
 unique_name_in_owner = true
 visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
